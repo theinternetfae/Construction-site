@@ -6,6 +6,7 @@ function App() {
   return (
     <main>
       <h1>Hello! Welcome to construction:</h1>
+      <p>Couldn't do much today...</p>
     </main>
   )
 }
