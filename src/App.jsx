@@ -1,12 +1,12 @@
 import { useState } from 'react'
+import Welcome from './Welcome.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <main>
-      <h1>Hello! Welcome to construction:</h1>
-      <p>Couldn't do much today...</p>
+      <Welcome />
     </main>
   )
 }

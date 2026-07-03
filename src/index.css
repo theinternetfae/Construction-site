@@ -3,3 +3,9 @@
 h1 {
   @apply text-6xl text-center font-bold; 
 }
+
+@layer components {
+  .welcome {
+    @apply bg-gradient-to-b from-white to-[#CCDEE4] text-white w-full min-h-svh;
+  }
+}
