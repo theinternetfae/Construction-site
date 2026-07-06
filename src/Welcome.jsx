@@ -8,14 +8,14 @@ function Welcome() {
 
                     <img src="images/optima-logo-nobg.png" alt="" className="sect-one-img"/>
 
-                    <h1>Productivity that adapts to <span>you</span>.</h1>
+                    <h1>Productivity<br/>that adapts to <span>you</span>.</h1>
                 
-                    <h2>Optima analyzes your task patterns and evolves with you; helping you achieve more, sustainably.</h2>
+                    <h2>Optima analyzes your task patterns<br/>and evolves with you — helping you<br/>achieve more, sustainably.</h2>
 
                     <div className="benefit">
                         <i className="bi bi-clipboard-data-fill"></i>   
                         <div className="benefit-info">
-                            <p>Adapts to Your Consistency</p>
+                            <p className="title">Adapts to Your Consistency</p>
                             <p>Optima adjusts your daily task capacity based on your completion trends.</p>
                         </div>
                     </div>
@@ -23,7 +23,7 @@ function Welcome() {
                     <div className="benefit">
                         <i className="bi bi-stars"></i>   
                         <div className="benefit-info">
-                            <p>Encourages Sustainable Habits</p>
+                            <p className="title">Encourages Sustainable Habits</p>
                             <p>With a simple logic system it provides support that evolves with you.</p>
                         </div>
                     </div>
@@ -31,8 +31,8 @@ function Welcome() {
                     <div className="benefit">
                         <i className="bi bi-bullseye"></i>
                         <div className="benefit-info">
-                            <p>Focus on What Matters</p>
-                            <p>Optima adjusts your daily task capacity based on your completion trends.</p>
+                            <p className="title">Focus on What Matters</p>
+                            <p>Quiet the noise and organize your thoughts. Optima helps you stay committed to important tasks.</p>
                         </div>
                     </div>
 
