@@ -37,7 +37,52 @@ function Welcome() {
                     </div>
 
                 </section>
-                <section className="welcome-body-sect welcome-body-sect-two"></section>
+
+
+
+                <section className="welcome-body-sect welcome-body-sect-two">
+
+                    <div className="sign-up-one">
+                        <h2>Welcome!</h2>
+                        <h3>Sign up to access Optima.</h3>
+                    </div>
+
+                    <form className="sign-up-two">
+
+                        <input type="text" placeholder="First Name" className="actual-input"/>
+                        <input type="text" placeholder="Last Name" className="actual-input"/>
+                        <input type="text" placeholder="Email" className="actual-input"/>
+
+                        <div className="password-input">
+
+                            <input type="password" placeholder="Password"/>
+                            <i className="bi bi-eye-slash"></i>   
+
+                        </div>
+
+                        <div className="password-input">
+
+                            <input type="password" placeholder="Confirm Password"/>
+                            <i className="bi bi-eye-slash"></i>   
+
+                        </div>
+
+                        <input type="submit" value={"Sign Up"} className="submit-input"/>
+
+                    </form>
+
+                    <div className="sign-up-three">
+                        <p>Already have an account? <span>Sign in</span></p>
+
+                        <button>
+                            Sign up another way
+                            <i class="bi bi-google"></i>
+                            <i class="bi bi-apple"></i>    
+                        </button>
+                    </div>
+
+
+                </section>
 
             </div>
 

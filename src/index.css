@@ -52,7 +52,56 @@
       }
 
       .welcome-body-sect-two {
-        @apply border border-2 border-[#FFFFFF25] bg-white rounded-xl;
+        @apply border border-2 border-[#FFFFFF25] bg-white rounded-xl shadow-2xl p-15 flex flex-col gap-5 justify-around;
+
+        .sign-up-one {
+          @apply flex flex-col gap-2;
+
+          h2 {
+            @apply font-bold text-4xl;
+          }
+
+          h3 {
+            @apply text-[#969696];
+          }
+        }
+
+        .sign-up-two {
+          @apply flex flex-col gap-5;
+
+          .actual-input {
+            @apply border border-2 border-[#FFFFFF25] p-2 rounded-xl focus:outline-none shadow-sm;
+          }
+
+          .password-input {
+            @apply border border-2 border-[#FFFFFF25] p-2 rounded-xl flex justify-between shadow-sm;
+
+            input {
+              @apply w-full focus:outline-none; 
+            }
+
+            i {
+              @apply cursor-pointer;
+            }
+          }
+
+          .submit-input {
+            @apply border border-2 border-[#FFFFFF25] bg-[#2563EB] text-white shadow-xl p-2 rounded-lg flex justify-between
+          }
+        }
+
+        .sign-up-three {
+          @apply flex flex-col items-center gap-4 mt-2;
+
+          span {
+            @apply text-[#2563EB] cursor-pointer;
+          }
+          
+          button {
+            @apply border border-2 border-[#2563EB] cursor-pointer p-2 flex gap-2 rounded-xl shadow-xl;
+          }
+        }
+
       }
     }
 
