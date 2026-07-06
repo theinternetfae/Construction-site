@@ -5,11 +5,24 @@ h1 {
 } 
 
 @layer components {
+
   .welcome {
-    @apply bg-gradient-to-b from-white to-[#CCDEE4] w-full min-h-svh;
+ 
+    @apply bg-[url(images/optima-productivity-backdrop.jpg)] bg-center bg-no-repeat bg-cover 
+      w-full min-h-svh flex justify-center items-center;
   
-    h1 {
-      @apply text-6xl text-center font-bold; 
-    } 
+    .welcome-body {
+      @apply border border-2 border-[#FFFFFF25] w-[90%] bg-[#FFFFFF25] backdrop-blur-[10px] rounded-xl;
+
+      .welcome-body-sect-one {
+
+        .sect-one-img {
+          @apply border border-2 border-black;
+        }
+
+      }
+    }
+
   }
+
 }
