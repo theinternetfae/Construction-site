@@ -7,19 +7,20 @@
   --light-text: #000000;
   --light-accent: #2563EB; 
   --light-img: url(images/optima-productivity-backdrop.jpg);
+  --light-logo: url(images/optima-logo-light.png);
 
   --dark-bgcolor: #171717;
   --dark-text: #FFFFFF;
   --dark-accent: #60A5FA;
   --dark-img: url(images/optima-productivity-backdrop-black.jpg);
-
+  --dark-logo: url(images/optima-logo-dark.png);
 }
 
 
 body {
   cursor: default;
-  caret-color: #2563EB;  
-  /* color: light-dark(var(--light-text), var(--dark-text)); */
+  caret-color: light-dark(var(--light-accent), var(--dark-accent));  
+  color: light-dark(var(--light-text), var(--dark-text));
 }
 
 @layer components {
@@ -36,8 +37,9 @@ body {
         @apply hidden
         md:flex md:flex-col md:items-start md:gap-10 md:p-5 md:w-[50%];
 
-        .sect-one-img {
-          @apply h-20;
+        .logo-box {
+          @apply h-20 w-[240px] [background-image:var(--light-logo)] bg-center bg-no-repeat bg-cover
+          dark:[background-image:var(--dark-logo)];
         }
 
         h1 {

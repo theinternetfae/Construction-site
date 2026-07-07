@@ -6,7 +6,8 @@ function Welcome() {
                 
                 <section className="welcome-body-sect welcome-body-sect-one">
 
-                    <img src="images/optima-logo-nobg.png" alt="" className="sect-one-img"/>
+                    <div className="logo-box">
+                    </div>
 
                     <h1>Productivity<br/>that adapts to <span>you</span>.</h1>
                 
