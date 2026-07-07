@@ -1,6 +1,6 @@
-function Welcome() {
+function WelcomeBack() {
     return ( 
-        <div className="welcome">   
+        <div className="welcome-back">   
 
             <div className="welcome-body">
                 
@@ -44,14 +44,12 @@ function Welcome() {
                 <section className="welcome-body-sect welcome-body-sect-two">
 
                     <div className="sign-up-one">
-                        <h2>Welcome!</h2>
-                        <h3>Sign up to access Optima.</h3>
+                        <h2>Welcome Back!</h2>
+                        <h3>Sign In to continue Optima.</h3>
                     </div>
 
                     <form className="sign-up-two">
 
-                        <input type="text" placeholder="First Name" className="actual-input"/>
-                        <input type="text" placeholder="Last Name" className="actual-input"/>
                         <input type="email" placeholder="Email" className="actual-input"/>
 
                         <div className="password-input">
@@ -61,22 +59,16 @@ function Welcome() {
 
                         </div>
 
-                        <div className="password-input">
 
-                            <input type="password" placeholder="Confirm Password"/>
-                            <i className="bi bi-eye-slash"></i>   
-
-                        </div>
-
-                        <input type="submit" value={"Sign Up"} className="submit-input"/>
+                        <input type="submit" value={"Sign In"} className="submit-input"/>
 
                     </form>
 
                     <div className="sign-up-three">
-                        <p>Already have an account? <span>Sign in</span></p>
+                        <p>Don't have an account? <span>Sign Up</span></p>
 
                         <button>
-                            Sign up another way
+                            Sign In another way
                             <i className="bi bi-google"></i>
                             <i className="bi bi-apple"></i>    
                         </button>
@@ -91,4 +83,4 @@ function Welcome() {
     );
 }
 
-export default Welcome;
+export default WelcomeBack;
