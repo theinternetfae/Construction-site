@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body {
+  cursor: default;
+}
+
 @layer components {
 
   .welcome {
@@ -8,14 +12,11 @@
       w-full min-h-svh flex justify-center items-center;
   
     .welcome-body {
-      @apply border border-2 border-[#FFFFFF25] w-[90%] bg-[#FFFFFF25] backdrop-blur-[10px] rounded-xl p-5 flex;
-
-      .welcome-body-sect {
-        @apply w-[50%];
-      }
+      @apply border border-2 border-[#FFFFFF25] w-[95%] bg-[#FFFFFF25] backdrop-blur-[10px] rounded-xl p-5 flex;
 
       .welcome-body-sect-one {
-        @apply flex flex-col items-start gap-10 p-5;
+        @apply hidden
+        md:flex md:flex-col md:items-start md:gap-10 md:p-5 md:w-[50%];
 
         .sect-one-img {
           @apply h-20;
@@ -52,22 +53,27 @@
       }
 
       .welcome-body-sect-two {
-        @apply border border-2 border-[#FFFFFF25] bg-white rounded-xl shadow-2xl p-15 flex flex-col gap-5 justify-around;
+        @apply border border-2 border-[#FFFFFF25] bg-white rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
+        md:w-[50%] md:p-10
+        lg:p-15;
 
         .sign-up-one {
           @apply flex flex-col gap-2;
 
           h2 {
-            @apply font-bold text-4xl;
+            @apply font-bold text-2xl 
+            md:text-4xl;
           }
 
           h3 {
-            @apply text-[#969696];
+            @apply text-[#969696] text-sm
+            md:text-base;
           }
         }
 
         .sign-up-two {
-          @apply flex flex-col gap-5;
+          @apply flex flex-col gap-5 text-sm
+          md:text-base;
 
           .actual-input {
             @apply border border-2 border-[#FFFFFF25] p-2 rounded-xl focus:outline-none shadow-sm;
@@ -86,12 +92,13 @@
           }
 
           .submit-input {
-            @apply border border-2 border-[#FFFFFF25] bg-[#2563EB] text-white shadow-xl p-2 rounded-lg flex justify-between
+            @apply border border-2 border-[#FFFFFF25] bg-[#2563EB] text-white shadow-xl p-2 rounded-lg flex justify-between cursor-pointer;
           }
         }
 
         .sign-up-three {
-          @apply flex flex-col items-center gap-4 mt-2;
+          @apply flex flex-col items-center gap-4 mt-2 text-sm
+          md:text-base;
 
           span {
             @apply text-[#2563EB] cursor-pointer;

@@ -76,8 +76,8 @@ function Welcome() {
 
                         <button>
                             Sign up another way
-                            <i class="bi bi-google"></i>
-                            <i class="bi bi-apple"></i>    
+                            <i className="bi bi-google"></i>
+                            <i className="bi bi-apple"></i>    
                         </button>
                     </div>
 
