@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function WelcomeBack() {
     return ( 
         <div className="welcome-back">   
@@ -39,8 +41,6 @@ function WelcomeBack() {
 
                 </section>
 
-
-
                 <section className="welcome-body-sect welcome-body-sect-two">
 
                     <div className="sign-up-one">
@@ -59,13 +59,18 @@ function WelcomeBack() {
 
                         </div>
 
-
                         <input type="submit" value={"Sign In"} className="submit-input"/>
 
                     </form>
 
                     <div className="sign-up-three">
-                        <p>Don't have an account? <span>Sign Up</span></p>
+                        <p>
+                            Don't have an account?{" "}
+                            
+                            <Link to={"/"}>
+                                <span>Sign Up</span>
+                            </Link>
+                        </p>
 
                         <button>
                             Sign In another way
@@ -73,7 +78,6 @@ function WelcomeBack() {
                             <i className="bi bi-apple"></i>    
                         </button>
                     </div>
-
 
                 </section>
 

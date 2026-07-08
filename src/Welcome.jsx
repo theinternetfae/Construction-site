@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Welcome() {
     return ( 
         <div className="welcome">   
@@ -73,8 +75,14 @@ function Welcome() {
                     </form>
 
                     <div className="sign-up-three">
-                        <p>Already have an account? <span>Sign in</span></p>
-
+                        <p>
+                            Already have an account?{" "} 
+                            
+                            <Link to={"/signin"}>
+                                <span>Sign In</span>
+                            </Link>
+                        </p>
+        
                         <button>
                             Sign up another way
                             <i className="bi bi-google"></i>
