@@ -14,6 +14,10 @@
   --dark-accent: #60A5FA;
   --dark-img: url(images/optima-productivity-backdrop-black.jpg);
   --dark-logo: url(images/optima-logo-dark.png);
+
+  --red: #9c0012;
+  --green: #477023;
+
 }
 
 
@@ -262,6 +266,14 @@ body {
   }
 
   .overall-main-body {
-    @apply border border-2 border-black h-[100vh] w-[100vw] flex;
+    @apply h-[100vh] w-[100vw] flex;
+
+    nav {
+      @apply border border-2 border-[var(--red)] h-full w-[20vw];
+    }
+
+    main {
+      @apply border border-2 border-[var(--green)] w-[80vw];
+    }
   }
 }

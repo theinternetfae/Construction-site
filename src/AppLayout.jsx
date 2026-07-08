@@ -4,7 +4,9 @@ import SideMenu from "./SideMenu";
 function AppLayout() {
     return ( 
         <div className="overall-main-body">
-            <SideMenu />
+            <header>
+                <SideMenu />
+            </header>
 
             <main>
                 <Outlet />
