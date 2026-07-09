@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function SideMenu() {
     return ( 
         <nav>
@@ -8,15 +10,16 @@ function SideMenu() {
 
             <section className="nav-sect">
                 
-                <div className="navigation">
+
+                <Link to={"home"} className="navigation">
                     <i class="bi bi-house-door-fill"></i>
                     <p>Home</p>
-                </div>
+                </Link>
 
-                <div className="navigation">
+                <Link to={"stats"} className="navigation">
                     <i class="bi bi-bar-chart"></i>
                     <p>Stats</p>
-                </div>
+                </Link>
                 
                 <div className="navigation">
                     <i class="bi bi-clock-history"></i>
