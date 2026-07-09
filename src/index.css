@@ -136,8 +136,7 @@ body {
           }
           
           button {
-            @apply border border-2 border-[var(--light-accent)] cursor-pointer p-2 flex gap-2 rounded-xl shadow-xl
-            dark:border-[var(--dark-accent)];
+            @apply border border-2 border-[#FFFFFF25] bg-[#FFFFFF25] cursor-pointer p-2 flex gap-2 rounded-xl shadow-xl;
           }
         }
 
@@ -255,8 +254,7 @@ body {
           }
           
           button {
-            @apply border border-2 border-[var(--light-accent)] cursor-pointer p-2 flex gap-2 rounded-xl shadow-xl
-            dark:border-[var(--dark-accent)];
+            @apply border border-2 border-[#FFFFFF25] bg-[#FFFFFF25] cursor-pointer p-2 flex gap-2 rounded-xl shadow-xl;
           }
         }
 
@@ -266,14 +264,27 @@ body {
   }
 
   .overall-main-body {
-    @apply h-[100vh] w-[100vw] flex;
+    @apply h-[100vh] w-[100vw] flex bg-[#E0E0DE];
 
     nav {
-      @apply border border-2 border-[var(--red)] h-full w-[20vw];
+      @apply p-5 h-full w-[20vw] rounded-[0px_10px_10px_0px] bg-[#F9FAFB] flex flex-col;
+      /* after:content-[""] after:block after:border after:border-[#B2B0AC] after:w-[50%] after:mt-5; */
+
+      .logo-sect {
+        @apply flex text-3xl gap-1 text-[var(--light-accent)];
+      }
+
+      .nav-sect {
+        @apply border border-2 flex flex-col gap-5; 
+
+        .navigation {
+          @apply border border-2 flex gap-2 p-3 rounded-lg text-[#5F5F5F];
+        }
+      }
     }
 
     main {
-      @apply border border-2 border-[var(--green)] w-[80vw];
+      @apply p-5 w-[80vw];
     }
   }
 }
