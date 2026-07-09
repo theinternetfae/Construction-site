@@ -278,8 +278,29 @@ body {
         @apply flex flex-col gap-5 mt-10; 
 
         .navigation {
-          @apply border border-2 border-transparent shadow-sm cursor-pointer flex gap-2 p-3 rounded-lg text-[#5F5F5F]
+          @apply border border-2 border-transparent shadow-xs cursor-pointer flex gap-2 p-3 rounded-lg text-[#5F5F5F]
           first:bg-[#BFDBFE] first:text-[var(--light-accent)];
+        }
+      }
+
+      .quirk-sect {
+        @apply border p-2 rounded-lg shadow-lg flex flex-col gap-2 text-[#5F5F5F] mt-auto;
+
+        .level-info {
+          @apply flex justify-between; 
+        }
+
+        .level-calc {
+          @apply text-2xl ;
+        }
+
+        .level-display {
+          @apply h-8 rounded-lg flex justify-between shadow-xl;
+
+          span {
+            @apply w-[33%] bg-[#A5A5A5]
+            first:rounded-l-lg first:bg-[var(--light-accent)] last:rounded-r-lg;
+          }
         }
       }
     }

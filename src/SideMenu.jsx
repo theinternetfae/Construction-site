@@ -30,8 +30,23 @@ function SideMenu() {
             
             </section>
             
-            <section>
+            <section className="quirk-sect">
                 
+                <div className="level-info">
+                    <p>Level 1: Rookie</p>
+                    <i class="bi bi-info-circle"></i>
+                </div>
+
+                <div className="level-calc">
+                    <p>0/100</p>
+                </div>
+
+                <div className="level-display">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
             </section>
         </nav>
     );
