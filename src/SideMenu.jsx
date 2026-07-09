@@ -30,7 +30,9 @@ function SideMenu() {
             
             </section>
             
-            <section></section>
+            <section>
+                
+            </section>
         </nav>
     );
 }
