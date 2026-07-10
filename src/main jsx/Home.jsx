@@ -23,42 +23,60 @@ function Home() {
                 <div className="date-slider">
 
                     <span className="date">
-                        <p className="date-day">SUN</p>
-                        <p className="date-num">1</p>
+                        <p className="date-day first">SUN</p>
+                        <div className="date-num-cont">
+                            <p className="date-num first">1</p>
+                        </div>
                     </span>
 
                     <span className="date">
                         <p className="date-day">MON</p>
-                        <p className="date-num">2</p>
+                        <div className="date-num-cont">
+                            <p className="date-num">2</p>
+                        </div>
                     </span>
 
                     <span className="date">
                         <p className="date-day">TUE</p>
-                        <p className="date-num">3</p>
+                        <div className="date-num-cont">
+                            <p className="date-num">3</p>
+                        </div>
                     </span>
 
                     <span className="date">
                         <p className="date-day">WED</p>
-                        <p className="date-num">4</p>
+                        <div className="date-num-cont">
+                            <p className="date-num">4</p>
+                        </div>
                     </span>
 
                     <span className="date">
                         <p className="date-day">THUR</p>
-                        <p className="date-num">5</p>
+                        <div className="date-num-cont">
+                            <p className="date-num">5</p>
+                        </div>
                     </span>
 
                     <span className="date">
                         <p className="date-day">FRI</p>
-                        <p className="date-num">6</p>
+                        <div className="date-num-cont">
+                            <p className="date-num">6</p>
+                        </div>      
                     </span>
 
                     <span className="date">
                         <p className="date-day">SAT</p>
-                        <p className="date-num">7</p>
+                        <div className="date-num-cont">
+                            <p className="date-num">7</p>
+                        </div>
                     </span>
 
                 </div>
            
+            </section>
+
+            <section className="task-display">
+                <p>No tasks</p>
             </section>
         </div>
     );

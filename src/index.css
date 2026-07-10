@@ -279,7 +279,8 @@ body {
 
         .navigation {
           @apply border border-2 border-transparent shadow-xs cursor-pointer flex gap-2 p-3 rounded-lg text-[#5F5F5F]
-          first:bg-[#BFDBFE] first:text-[var(--light-accent)];
+          first:bg-[#BFDBFE] first:text-[var(--light-accent)]
+          duration-300 ease-in-out hover:bg-[#BFDBFE];
         }
       }
 
@@ -323,7 +324,7 @@ body {
           }
 
           i {
-            @apply text-[var(--light-accent)] cursor-pointer text-lg;
+            @apply text-[var(--light-accent)] cursor-pointer text-xl;
           }
         }
 
@@ -334,18 +335,40 @@ body {
             @apply grid grid-cols-7 place-items-center w-full;
 
             .date {
-              @apply p-2 w-25 flex flex-col gap-4 justify-center items-center rounded-lg cursor-pointer;
+              @apply p-2 w-25 flex flex-col gap-4 justify-center items-center rounded-lg cursor-pointer 
+              duration-300 ease-in-out hover:bg-[#BFDBFE]
+              first:bg-[#BFDBFE];
 
               .date-day {
                 @apply text-sm font-bold text-[#A5A5A5];
               }
 
-              .date-num {
-                @apply border border-3 border-[#A5A5A5] p-6 shadow-sm text-center rounded-full
+              .first {
+                @apply text-[var(--light-accent)];
               }
+
+              .date-num-cont {
+                @apply border border-3 border-[#A5A5A5] p-1 shadow-sm text-center rounded-full;              
+
+                .date-num {
+                  @apply p-5 rounded-full text-center w-15 font-bold;
+                }
+
+                .first {
+                  @apply bg-[var(--light-accent)] text-white
+                }
+              }
+ 
             }
           }
+        }
 
+        .task-display {
+          @apply p-5 rounded-lg shadow-lg bg-[#F9FAFB];
+
+          p {
+            @apply text-center
+          }
         }
       }
     }
