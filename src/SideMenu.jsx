@@ -4,7 +4,7 @@ function SideMenu() {
     return ( 
         <nav>
             <section className="logo-sect">
-                <i class="bi bi-check2-circle"></i>
+                <i className="bi bi-check2-circle"></i>
                 <p>Optima</p>
             </section>
 
@@ -12,22 +12,22 @@ function SideMenu() {
                 
 
                 <Link to={"home"} className="navigation">
-                    <i class="bi bi-house-door-fill"></i>
+                    <i className="bi bi-house-door-fill"></i>
                     <p>Home</p>
                 </Link>
 
                 <Link to={"stats"} className="navigation">
-                    <i class="bi bi-bar-chart"></i>
+                    <i className="bi bi-bar-chart"></i>
                     <p>Stats</p>
                 </Link>
                 
                 <div className="navigation">
-                    <i class="bi bi-clock-history"></i>
+                    <i className="bi bi-clock-history"></i>
                     <p>History</p>
                 </div>
                 
                 <div className="navigation">
-                    <i class="bi bi-gear"></i>
+                    <i className="bi bi-gear"></i>
                     <p>Settings</p>
                 </div>
             
@@ -37,7 +37,7 @@ function SideMenu() {
                 
                 <div className="level-info">
                     <p>Level 1: Rookie</p>
-                    <i class="bi bi-info-circle"></i>
+                    <i className="bi bi-info-circle"></i>
                 </div>
 
                 <div className="level-calc">

@@ -307,6 +307,39 @@ body {
 
     main {
       @apply p-5 w-[80vw];
+
+      .home {
+        @apply p-5 flex flex-col gap-8;
+
+        .header {
+          @apply flex justify-between rounded-lg items-center;
+
+          .task-groups {
+            @apply bg-[#F9FAFB] p-2 rounded-lg shadow-sm; 
+          }
+
+          p {
+            @apply font-bold w-full text-center
+          }
+
+          i {
+            @apply text-[var(--light-accent)] cursor-pointer text-lg;
+          }
+        }
+
+        .date-slider-cont {
+          @apply flex items-center justify-center border;
+
+          .date-slider {
+            @apply border grid grid-cols-7;
+
+            .date {
+
+            }
+          }
+
+        }
+      }
     }
   }
 }
