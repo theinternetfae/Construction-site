@@ -328,13 +328,21 @@ body {
         }
 
         .date-slider-cont {
-          @apply flex items-center justify-center border;
+          @apply flex items-center justify-center p-5 bg-[#F9FAFB] rounded-lg shadow-lg;
 
           .date-slider {
-            @apply border grid grid-cols-7;
+            @apply grid grid-cols-7 place-items-center w-full;
 
             .date {
+              @apply p-2 w-25 flex flex-col gap-4 justify-center items-center rounded-lg cursor-pointer;
 
+              .date-day {
+                @apply text-sm font-bold text-[#A5A5A5];
+              }
+
+              .date-num {
+                @apply border border-3 border-[#A5A5A5] p-6 shadow-sm text-center rounded-full
+              }
             }
           }
 
