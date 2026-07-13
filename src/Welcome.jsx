@@ -13,6 +13,8 @@ function Welcome() {
 
     const {setIsUser} = useContext(UserContext);
 
+    const [hiddenPass, setHiddenPass] = useState(false);
+
     function signUp(e) {
 
         e.preventDefault();
@@ -29,7 +31,7 @@ function Welcome() {
         
         setIsUser(userData);
         console.log(userData);
-        
+
         setFirstName('');
         setLastName('');
         setEmail('');
@@ -95,15 +97,15 @@ function Welcome() {
 
                         <div className="password-input">
 
-                            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassWord(e.target.value)}/>
-                            <i className="bi bi-eye-slash"></i>   
+                            <input type={hiddenPass ? "text" : "password"} placeholder="Password" value={password} onChange={(e) => setPassWord(e.target.value)}/>
+                            <i className={`${hiddenPass ? "bi bi-eye" : "bi bi-eye-slash"}`} onClick={() => setHiddenPass(!hiddenPass)}></i>   
 
                         </div>
 
                         <div className="password-input">
 
-                            <input type="password" placeholder="Confirm Password" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)}/>
-                            <i className="bi bi-eye-slash"></i>   
+                            <input type={hiddenPass ? "text" : "password"} placeholder="Confirm Password" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)}/>
+                            <i className={`${hiddenPass ? "bi bi-eye" : "bi bi-eye-slash"}`} onClick={() => setHiddenPass(!hiddenPass)}></i>   
 
                         </div>
 
