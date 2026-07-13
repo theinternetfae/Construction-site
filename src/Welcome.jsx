@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import { useContext } from "react";
+import { UserContext } from "./js files/contexts";
 
 function Welcome() {
 
@@ -10,24 +11,32 @@ function Welcome() {
     const [password, setPassWord] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
 
+    const {setIsUser} = useContext(UserContext);
+
     function signUp(e) {
 
         e.preventDefault();
 
-        console.log("Name:", `${firstName} ${lastName}`);
-        console.log("Email:", email);
-        console.log("Password:", password);
-        console.log("Confirmed password:", confirmPass);
+        const fullName = `${firstName} ${lastName}`;
+        const rightWord = `${password.toLowerCase() === confirmPass.toLowerCase() ? password : ''}`;
     
+        
+        const userData = { 
+            name: fullName,
+            email: email,
+            password: rightWord
+        }
+        
+        setIsUser(userData);
+        console.log(userData);
+        
         setFirstName('');
         setLastName('');
         setEmail('');
         setPassWord('');
         setConfirmPass('');
 
-    }
-
-    
+    }    
 
     return ( 
         <div className="welcome">   
