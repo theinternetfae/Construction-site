@@ -1,6 +1,34 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
 
 function Welcome() {
+
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassWord] = useState("");
+    const [confirmPass, setConfirmPass] = useState("");
+
+    function signUp(e) {
+
+        e.preventDefault();
+
+        console.log("Name:", `${firstName} ${lastName}`);
+        console.log("Email:", email);
+        console.log("Password:", password);
+        console.log("Confirmed password:", confirmPass);
+    
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPassWord('');
+        setConfirmPass('');
+
+    }
+
+    
+
     return ( 
         <div className="welcome">   
 
@@ -52,25 +80,25 @@ function Welcome() {
 
                     <form className="sign-up-two">
 
-                        <input type="text" placeholder="First Name" className="actual-input"/>
-                        <input type="text" placeholder="Last Name" className="actual-input"/>
-                        <input type="email" placeholder="Email" className="actual-input"/>
+                        <input type="text" placeholder="First Name" className="actual-input" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                        <input type="text" placeholder="Last Name" className="actual-input" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                        <input type="email" placeholder="Email" className="actual-input" value={email} onChange={(e) => setEmail(e.target.value)}/>
 
                         <div className="password-input">
 
-                            <input type="password" placeholder="Password"/>
+                            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassWord(e.target.value)}/>
                             <i className="bi bi-eye-slash"></i>   
 
                         </div>
 
                         <div className="password-input">
 
-                            <input type="password" placeholder="Confirm Password"/>
+                            <input type="password" placeholder="Confirm Password" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)}/>
                             <i className="bi bi-eye-slash"></i>   
 
                         </div>
 
-                        <input type="submit" value={"Sign Up"} className="submit-input"/>
+                        <input type="submit" value={"Sign Up"} className="submit-input" onClick={(e) => signUp(e)}/>
 
                     </form>
 
