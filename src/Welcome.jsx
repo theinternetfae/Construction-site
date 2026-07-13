@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { UserContext } from "./js files/contexts";
 
@@ -14,19 +14,55 @@ function Welcome() {
     const {setIsUser} = useContext(UserContext);
 
     const [hiddenPass, setHiddenPass] = useState(false);
+    const [showError, setShowError] = useState(false);
+    const [passError, setPassError] = useState(false);
+
+    useEffect(() => {
+
+        if(!showError) return;
+
+        const timer = setTimeout(() => {
+            setShowError(false);
+        }, 3000)
+
+        return () => clearTimeout(timer);
+
+    }, [showError])
+
+    useEffect(() => {
+
+        if(!passError) return;
+
+        const timer = setTimeout(() => {
+            setPassError(false);
+        }, 3000)
+
+        return () => clearTimeout(timer);
+
+    }, [passError])
 
     function signUp(e) {
 
         e.preventDefault();
 
+        if(!firstName || !lastName || !email || !password || !confirmPass) {
+            setShowError(true);
+            return;
+        };
+
+        if(password.toLowerCase() !== confirmPass.toLowerCase()) {
+            setConfirmPass('');
+            setPassError(true);
+            return;
+        }
+
         const fullName = `${firstName} ${lastName}`;
-        const rightWord = `${password.toLowerCase() === confirmPass.toLowerCase() ? password : ''}`;
     
         
         const userData = { 
             name: fullName,
             email: email,
-            password: rightWord
+            password: password
         }
         
         setIsUser(userData);
@@ -89,12 +125,15 @@ function Welcome() {
                         <h3>Sign up to access Optima.</h3>
                     </div>
 
+                    <p className={`error-message ${showError ? '' : 'hidden'}`}>Fill in all fields</p>
+
                     <form className="sign-up-two">
 
                         <input type="text" placeholder="First Name" className="actual-input" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
                         <input type="text" placeholder="Last Name" className="actual-input" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
                         <input type="email" placeholder="Email" className="actual-input" value={email} onChange={(e) => setEmail(e.target.value)}/>
 
+                        <p className={`error-message ${passError ? '' : 'hidden'}`}>Passwords don't match</p>
                         <div className="password-input">
 
                             <input type={hiddenPass ? "text" : "password"} placeholder="Password" value={password} onChange={(e) => setPassWord(e.target.value)}/>

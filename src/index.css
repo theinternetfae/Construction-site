@@ -15,7 +15,7 @@
   --dark-img: url(images/optima-productivity-backdrop-black.jpg);
   --dark-logo: url(images/optima-logo-dark.png);
 
-  --red: #9c0012;
+  --red: #d00018;
   --green: #477023;
 
 }
@@ -98,6 +98,10 @@ body {
             @apply text-[#969696] text-sm
             md:text-base;
           }
+        }
+
+        .error-message {
+          @apply text-sm text-[var(--red)]
         }
 
         .sign-up-two {
