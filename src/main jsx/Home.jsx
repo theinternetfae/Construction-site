@@ -17,7 +17,6 @@ function Home() {
                 <i class="bi bi-clipboard-plus-fill"></i>
 
             </section>
-//saving
             <section className="date-slider-cont">
 
                 <div className="date-slider">

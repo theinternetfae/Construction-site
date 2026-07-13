@@ -8,7 +8,7 @@ import Stats from './main jsx/Stats.jsx';
 
 function App() {
 
-  const [user, setIsUser] = useState(true);
+  const [user, setIsUser] = useState(false);
 
   return (
     
