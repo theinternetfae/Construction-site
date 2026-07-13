@@ -201,9 +201,8 @@ function Welcome() {
                         </p>
         
                         <button>
-                            Sign up another way
-                            <i className="bi bi-google"></i>
-                            <i className="bi bi-apple"></i>    
+                            Sign up with Google
+                            <i className="bi bi-google"></i>    
                         </button>
                     </div>
 

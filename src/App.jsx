@@ -11,6 +11,7 @@ import { UserContext } from './js files/contexts.js';
 function App() {
 
   const [user, setIsUser] = useState(null);
+  const [verified, isVerified] = useState(false);
   
   const userData = { 
     name: "",
@@ -18,17 +19,17 @@ function App() {
     password: ""
   }
 
-  
+
 
   return (
     
     <UserContext.Provider value={{user, setIsUser}}>
       <Routes>
 
-        <Route path="/" element={user ? <Navigate to="/test" replace/> : <Welcome/>}></Route>
-        <Route path="/signin" element={user ? <Navigate to="/test" replace/> : <WelcomeBack/>}></Route>
+        <Route path="/" element={verified ? <Navigate to="/test" replace/> : <Welcome/>}></Route>
+        <Route path="/signin" element={verified ? <Navigate to="/test" replace/> : <WelcomeBack/>}></Route>
 
-        <Route path="/test" element={!user ? <Navigate to="/" replace/> : <AppLayout/>}>
+        <Route path="/test" element={!verified ? <Navigate to="/" replace/> : <AppLayout/>}>
 
           <Route index element={<Navigate to="home" replace />}></Route>
 
