@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { UserContext } from "./js files/contexts";
+import { isValidEmail, isStrongPassword } from "./js files/Utilities";
 
 function Welcome() {
 
@@ -14,8 +15,14 @@ function Welcome() {
     const {setIsUser} = useContext(UserContext);
 
     const [hiddenPass, setHiddenPass] = useState(false);
+
+
+
+
     const [showError, setShowError] = useState(false);
     const [passError, setPassError] = useState(false);
+    const [passErrorMessage, setPassErrorMessage] = useState('');
+    const [emailError, setEmailError] = useState(false);
 
     useEffect(() => {
 
@@ -23,7 +30,7 @@ function Welcome() {
 
         const timer = setTimeout(() => {
             setShowError(false);
-        }, 3000)
+        }, 5000)
 
         return () => clearTimeout(timer);
 
@@ -35,11 +42,27 @@ function Welcome() {
 
         const timer = setTimeout(() => {
             setPassError(false);
-        }, 3000)
+        }, 5000)
 
         return () => clearTimeout(timer);
 
     }, [passError])
+
+    useEffect(() => {
+
+        if(!emailError) return;
+
+        const timer = setTimeout(() => {
+            setEmailError(false);
+        }, 5000)
+
+        return () => clearTimeout(timer);
+
+    }, [emailError])
+
+
+
+
 
     function signUp(e) {
 
@@ -52,12 +75,25 @@ function Welcome() {
 
         if(password.toLowerCase() !== confirmPass.toLowerCase()) {
             setConfirmPass('');
+            setPassErrorMessage('Passwords do not match');
             setPassError(true);
             return;
         }
 
+        if(!isStrongPassword(password)) {
+            setConfirmPass('');
+            setPassErrorMessage('Password must be at least 8 characters and include uppercase, lowercase, number, and symbol.');
+            setPassError(true);
+            return;
+        }
+
+        if(!isValidEmail(email)) {
+            setEmail('');
+            setEmailError(true);
+            return;
+        }
+
         const fullName = `${firstName} ${lastName}`;
-    
         
         const userData = { 
             name: fullName,
@@ -131,9 +167,12 @@ function Welcome() {
 
                         <input type="text" placeholder="First Name" className="actual-input" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
                         <input type="text" placeholder="Last Name" className="actual-input" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                
+                        <p className={`error-message ${emailError ? '' : 'hidden'}`}>Not a valid email address</p>
                         <input type="email" placeholder="Email" className="actual-input" value={email} onChange={(e) => setEmail(e.target.value)}/>
 
-                        <p className={`error-message ${passError ? '' : 'hidden'}`}>Passwords don't match</p>
+                
+                        <p className={`error-message ${passError ? '' : 'hidden'}`}>{passErrorMessage}</p>
                         <div className="password-input">
 
                             <input type={hiddenPass ? "text" : "password"} placeholder="Password" value={password} onChange={(e) => setPassWord(e.target.value)}/>
