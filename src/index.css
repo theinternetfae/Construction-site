@@ -154,7 +154,7 @@ body {
 
   .welcome-back {
  
-    @apply [background-image:var(--light-img)] bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center
+    @apply [background-image:var(--light-img)] z-10 bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center
       dark:[background-image:var(--dark-img)];
   
     .welcome-body {
@@ -376,5 +376,10 @@ body {
         }
       }
     }
+  }
+
+  .alert-container {
+    @apply border border-2 border-white fixed z-50 w-full h-full;
+    /* bg-black/1 backdrop-blur-sm fixed top-0 z-50 w-full h-full flex items-center justify-center */
   }
 }

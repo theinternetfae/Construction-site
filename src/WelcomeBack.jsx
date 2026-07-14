@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "./js files/contexts";
+import Alert from "./utilities jsx/Alert";
 
 function WelcomeBack() {
+
+    const { verified, isVerified } = useContext(UserContext);
+
     return ( 
         <div className="welcome-back">   
 
@@ -73,9 +79,8 @@ function WelcomeBack() {
                         </p>
 
                         <button>
-                            Sign In another way
-                            <i className="bi bi-google"></i>
-                            <i className="bi bi-apple"></i>    
+                            Sign Up with Google
+                            <i className="bi bi-google"></i>    
                         </button>
                     </div>
 
@@ -83,6 +88,7 @@ function WelcomeBack() {
 
             </div>
 
+            {!verified && <Alert/>}
         </div>
     );
 }

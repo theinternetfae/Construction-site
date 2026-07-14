@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import AppLayout from './AppLayout.jsx';
-import Welcome from './Welcome.jsx'
-import WelcomeBack from './WelcomeBack.jsx'
+import Welcome from './Welcome.jsx';
+import WelcomeBack from './WelcomeBack.jsx';
 import { Route, Routes, Navigate } from "react-router-dom";
 import Home from './main jsx/Home.jsx';
 import Stats from './main jsx/Stats.jsx';
@@ -20,10 +20,9 @@ function App() {
   }
 
 
-
   return (
     
-    <UserContext.Provider value={{user, setIsUser}}>
+    <UserContext.Provider value={{user, setIsUser, verified, isVerified}}>
       <Routes>
 
         <Route path="/" element={verified ? <Navigate to="/test" replace/> : <Welcome/>}></Route>
@@ -44,4 +43,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
