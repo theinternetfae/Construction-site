@@ -1,4 +1,10 @@
+import { useState } from "react";
+import TaskEditor from "../utilities jsx/TaskEditor.jsx";
+
 function Home() {
+
+    const [showEditor, setShowEditor] = useState(false);
+    
     return ( 
         <div className="home">
             <section className="header">
@@ -14,7 +20,7 @@ function Home() {
                     July 10th, 2026
                 </p>
 
-                <i class="bi bi-clipboard-plus-fill"></i>
+                <i className="bi bi-clipboard-plus-fill" onClick={(() => setShowEditor(true))}></i>
 
             </section>
             <section className="date-slider-cont">
@@ -77,6 +83,11 @@ function Home() {
             <section className="task-display">
                 <p>No tasks</p>
             </section>
+
+            {showEditor && <TaskEditor
+                exit={() => setShowEditor(false)}
+            />}
+            
         </div>
     );
 }

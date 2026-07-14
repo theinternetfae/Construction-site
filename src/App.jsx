@@ -3,22 +3,21 @@ import AppLayout from './AppLayout.jsx';
 import Welcome from './Welcome.jsx';
 import WelcomeBack from './WelcomeBack.jsx';
 import { Route, Routes, Navigate } from "react-router-dom";
-import Home from './main jsx/Home.jsx';
-import Stats from './main jsx/Stats.jsx';
+import Home from './pages/Home.jsx';
+import Stats from './pages/Stats.jsx';
 import { UserContext } from './js files/contexts.js';
 
 
 function App() {
 
   const [user, setIsUser] = useState(null);
-  const [verified, isVerified] = useState(false);
+  const [verified, isVerified] = useState(true);
   
   const userData = { 
     name: "",
     email: "",
     password: ""
   }
-
 
   return (
     
