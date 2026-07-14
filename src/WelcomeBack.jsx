@@ -62,7 +62,6 @@ function WelcomeBack() {
         return () => clearInterval(timer);
     }, [emailError])
 
-
     useEffect(() => {
         
         if (!alertVisibility) return;

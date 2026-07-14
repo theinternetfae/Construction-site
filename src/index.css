@@ -386,11 +386,25 @@ body {
     @apply bg-black/1 backdrop-blur-sm fixed top-0 z-50 w-full h-full flex justify-center;
 
     .alert-box {
-      @apply border border-2 border-[var(--dark-accent)] mb-auto p-5 flex flex-col gap-5 bg-[var(--dark-bgcolor)] rounded-b-xl;
+      @apply border border-2 border-[var(--light-accent)] mb-auto p-5 flex flex-col gap-5 bg-[var(--light-bgcolor)] text-[var(--light-text)] rounded-b-xl text-sm
+      translate-y-[-30rem] transition ease-in duration-800
+      dark:border-[var(--dark-accent)] dark:bg-[var(--dark-bgcolor)] dark:text-[var(--dark-text)]
+      md:text-base;
 
-      button {
-        @apply cursor-pointer p-2 rounded-lg font-bold bg-[var(--dark-accent)] shadow-lg
+      p {
+        @apply text-center;
       }
+
+      .choices {
+        @apply flex gap-5 justify-center;
+
+        button {
+          @apply cursor-pointer p-2 w-30 rounded-lg font-bold bg-[var(--light-accent)] shadow-lg text-sm
+          dark:bg-[var(--dark-accent)]
+          md:text-base;
+        }
+      }
+
     }
   }
 }
