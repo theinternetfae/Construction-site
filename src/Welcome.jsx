@@ -17,8 +17,6 @@ function Welcome() {
     const [hiddenPass, setHiddenPass] = useState(false);
 
 
-
-
     const [showError, setShowError] = useState(false);
     const [passError, setPassError] = useState(false);
     const [passErrorMessage, setPassErrorMessage] = useState('');
@@ -60,7 +58,16 @@ function Welcome() {
 
     }, [emailError])
 
+    useEffect(() => {
+        
+        if (!hiddenPass) return;
 
+        const timer = setInterval(() => {
+            setHiddenPass(false);
+        }, 5000)
+
+        return () => clearInterval(timer);
+    }, [hiddenPass])
 
 
 
@@ -161,14 +168,14 @@ function Welcome() {
                         <h3>Sign up to access Optima.</h3>
                     </div>
 
-                    <p className={`error-message ${showError ? '' : 'hidden'}`}>Fill in all fields</p>
+                    <p className={`error-message ${showError ? '' : 'hidden'}`}>Please fill in all fields</p>
 
                     <form className="sign-up-two">
 
                         <input type="text" placeholder="First Name" className="actual-input" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
                         <input type="text" placeholder="Last Name" className="actual-input" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
                 
-                        <p className={`error-message ${emailError ? '' : 'hidden'}`}>Not a valid email address</p>
+                        <p className={`error-message ${emailError ? '' : 'hidden'}`}>Please input a valid email address</p>
                         <input type="email" placeholder="Email" className="actual-input" value={email} onChange={(e) => setEmail(e.target.value)}/>
 
                 

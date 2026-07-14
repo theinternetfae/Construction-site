@@ -1,11 +1,75 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "./js files/contexts";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "./js files/Contexts.js";
 import Alert from "./utilities jsx/Alert";
+import { isValidEmail } from "./js files/Utilities.js";
 
 function WelcomeBack() {
 
-    const { verified, isVerified } = useContext(UserContext);
+    // const { verified, isVerified } = useContext(UserContext);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [generalError, setGeneralError] = useState(false);
+    const [emailError, setEmailError] = useState(false);
+    
+    const [hiddenPass, setHiddenPass] = useState(false);
+
+    function signUp(e) {
+
+        e.preventDefault();
+
+        if(!email || !password) {
+            setGeneralError(true);
+            return;
+        }
+
+        if(!isValidEmail(email)) {
+            setEmailError(true);
+            return;
+        }
+
+        console.log("Working:", `${email}-${password}`);
+    
+        setEmail('');
+        setPassword('');
+
+    }
+
+    useEffect(() => {
+        
+        if (!generalError) return;
+
+        const timer = setInterval(() => {
+            setGeneralError(false);
+        }, 5000)
+
+        return () => clearInterval(timer);
+    }, [generalError])
+
+    
+    useEffect(() => {
+        
+        if (!emailError) return;
+
+        const timer = setInterval(() => {
+            setEmailError(false);
+        }, 5000)
+
+        return () => clearInterval(timer);
+    }, [emailError])
+
+    useEffect(() => {
+        
+        if (!hiddenPass) return;
+
+        const timer = setInterval(() => {
+            setHiddenPass(false);
+        }, 5000)
+
+        return () => clearInterval(timer);
+    }, [hiddenPass])
+
 
     return ( 
         <div className="welcome-back">   
@@ -54,18 +118,20 @@ function WelcomeBack() {
                         <h3>Sign In to continue Optima.</h3>
                     </div>
 
+                    <p className={`error-message ${generalError ? '' : 'hidden'}`}>Please fill in all fields</p>
                     <form className="sign-up-two">
 
-                        <input type="email" placeholder="Email" className="actual-input"/>
+                        <p className={`error-message ${emailError ? '' : 'hidden'}`}>Please input a valid email address</p>
+                        <input type="email" placeholder="Email" value={email} className="actual-input" onChange={(e) => setEmail(e.target.value)}/>
 
                         <div className="password-input">
 
-                            <input type="password" placeholder="Password"/>
-                            <i className="bi bi-eye-slash"></i>   
+                            <input type={hiddenPass ? "text" : "password"} placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                            <i className={hiddenPass ? "bi bi-eye" : "bi bi-eye-slash"} onClick={(() => setHiddenPass(!hiddenPass))}></i>   
 
                         </div>
 
-                        <input type="submit" value={"Sign In"} className="submit-input"/>
+                        <input type="submit" value={"Sign In"} className="submit-input" onClick={(e) => signUp(e)}/>
 
                     </form>
 
@@ -88,7 +154,6 @@ function WelcomeBack() {
 
             </div>
 
-            {!verified && <Alert/>}
         </div>
     );
 }

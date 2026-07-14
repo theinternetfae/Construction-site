@@ -222,6 +222,10 @@ body {
           }
         }
 
+        .error-message {
+          @apply text-sm text-[var(--red)]
+        }
+
         .sign-up-two {
           @apply flex flex-col gap-5 text-sm
           md:text-base;
