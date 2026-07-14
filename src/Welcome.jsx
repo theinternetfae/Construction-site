@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { UserContext } from "./js files/contexts";
 import { isValidEmail, isStrongPassword } from "./js files/Utilities";
+import Alert from "./utilities jsx/Alert.jsx";
 
 function Welcome() {
 
@@ -21,6 +22,8 @@ function Welcome() {
     const [passError, setPassError] = useState(false);
     const [passErrorMessage, setPassErrorMessage] = useState('');
     const [emailError, setEmailError] = useState(false);
+
+    const [alertVisibility, setAlertVisibility] = useState(false);
 
     useEffect(() => {
 
@@ -68,6 +71,18 @@ function Welcome() {
 
         return () => clearInterval(timer);
     }, [hiddenPass])
+
+    useEffect(() => {
+        
+        if (!alertVisibility) return;
+
+        const timer = setInterval(() => {
+            setAlertVisibility(false);
+        }, 5000)
+
+        return () => clearInterval(timer);
+
+    }, [alertVisibility])
 
 
 
@@ -207,16 +222,21 @@ function Welcome() {
                             </Link>
                         </p>
         
-                        <button>
+                        <button onClick={(() => setAlertVisibility(true))}>
                             Sign up with Google
                             <i className="bi bi-google"></i>    
                         </button>
                     </div>
 
-
                 </section>
 
             </div>
+
+            {alertVisibility && <Alert
+                text={'Feature coming soon!'}
+                buttonText={'Okay'}
+                buttonActionOne={() => setAlertVisibility(false)}
+            />}
 
         </div>
     );

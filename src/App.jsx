@@ -11,7 +11,7 @@ import { UserContext } from './js files/contexts.js';
 function App() {
 
   const [user, setIsUser] = useState(null);
-  const [verified, isVerified] = useState(true);
+  const [verified, isVerified] = useState(false);
   
   const userData = { 
     name: "",
