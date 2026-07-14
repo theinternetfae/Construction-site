@@ -7,6 +7,7 @@ import { isValidEmail } from "./js files/Utilities.js";
 function WelcomeBack() {
 
     // const { verified, isVerified } = useContext(UserContext);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -14,6 +15,8 @@ function WelcomeBack() {
     const [emailError, setEmailError] = useState(false);
     
     const [hiddenPass, setHiddenPass] = useState(false);
+
+    const [alertVisibility, setAlertVisibility] = useState(false);
 
     function signUp(e) {
 
@@ -58,6 +61,18 @@ function WelcomeBack() {
 
         return () => clearInterval(timer);
     }, [emailError])
+
+
+    useEffect(() => {
+        
+        if (!alertVisibility) return;
+
+        const timer = setInterval(() => {
+            setAlertVisibility(false);
+        }, 5000)
+
+        return () => clearInterval(timer);
+    }, [alertVisibility])
 
     useEffect(() => {
         
@@ -144,7 +159,7 @@ function WelcomeBack() {
                             </Link>
                         </p>
 
-                        <button>
+                        <button onClick={(() => setAlertVisibility(true))}>
                             Sign Up with Google
                             <i className="bi bi-google"></i>    
                         </button>
@@ -154,6 +169,12 @@ function WelcomeBack() {
 
             </div>
 
+            {alertVisibility && <Alert
+                text={'Feature coming soon!'}
+                buttonText={'Okay'}
+                buttonActionOne={() => setAlertVisibility(false)}
+            />}
+        
         </div>
     );
 }
