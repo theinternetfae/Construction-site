@@ -11,7 +11,7 @@ function Welcome() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassWord] = useState("");
-    const [confirmPass, setConfirmPass] = useState("");
+    const [confirmPass, setConfirmPass] = useState("");;
 
     const {setIsUser} = useContext(UserContext);
 
