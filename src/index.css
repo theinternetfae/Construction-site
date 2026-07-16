@@ -419,16 +419,38 @@ body {
       }
 
       .emoji-section {
-        @apply rounded-lg flex items-center justify-center flex flex-col gap-3; 
+        @apply rounded-lg flex items-center justify-center flex flex-col gap-3 relative; 
 
         .emoji-box {
           @apply p-5 bg-[#E0E0DE] shadow-lg rounded-lg cursor-pointer text-4xl;
+        }
+
+        .emoji-picker {
+          @apply border border-2 mt-[25%] absolute p-3 rounded-lg flex flex-col gap-2 bg-[#F9FAFB] border-[var(--light-accent)];
+
+          .emoji-labels {
+            @apply bg-[#E0E0DE] rounded-lg p-2 flex gap-6 text-lg;
+
+            i {
+              @apply cursor-pointer;
+            }
+          }
+
+          .emoji-holder {
+            @apply p-2 rounded-lg bg-[#E0E0DE] grid grid-cols-7 place-items-center w-full;
+
+            span {
+              @apply cursor-pointer
+            }
+          }
+
         }
 
         input {
           @apply text-center text-xl w-full
           outline-none;
         }
+
       }
 
       .color-section {

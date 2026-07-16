@@ -1,6 +1,11 @@
 import { createPortal } from "react-dom";
+import EmojiPicker from "./Emoji.jsx";
+import { useState } from "react";
 
 function TaskEditor({exit}) {
+
+    const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
+
     return createPortal( 
         <div className="task-editor"> 
 
@@ -10,9 +15,11 @@ function TaskEditor({exit}) {
                 
                 <section className="emoji-section">
                     
-                    <div className="emoji-box">
+                    <div className="emoji-box" onClick={() => setOpenEmojiPicker(!openEmojiPicker)}>
                         <i class="bi bi-plus"></i>
                     </div>
+
+                    {openEmojiPicker && <EmojiPicker/>}
 
                     <input type="text" placeholder="What to do?" />
                 
