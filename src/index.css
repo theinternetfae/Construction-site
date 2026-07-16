@@ -426,7 +426,7 @@ body {
         }
 
         .emoji-picker {
-          @apply border border-2 mt-[25%] absolute p-3 rounded-lg flex flex-col gap-2 bg-[#F9FAFB] border-[var(--light-accent)];
+          @apply border border-2 mt-[25%] absolute p-3 rounded-lg flex flex-col gap-2 bg-[#F9FAFB] z-50 border-[var(--light-accent)];
 
           .emoji-labels {
             @apply bg-[#E0E0DE] rounded-lg p-2 flex gap-6 text-lg;
@@ -454,7 +454,11 @@ body {
       }
 
       .color-section {
-        @apply p-4 flex justify-between rounded-lg bg-[#E0E0DE];    
+        @apply p-4 flex flex-col rounded-lg bg-[#E0E0DE] relative;    
+
+        .color-controls {
+          @apply flex justify-between;
+        }
 
         p {
           @apply font-bold text-lg;
@@ -462,6 +466,18 @@ body {
 
         .color-box {
           @apply border cursor-pointer w-20 rounded-lg inset-shadow-sm;
+        }
+
+        .color-picker {
+          @apply absolute right-3 top-10 p-3 rounded-lg flex flex-col gap-2 bg-[#F9FAFB] border border-2 border-[var(--light-accent)];
+
+          .color-holder {
+            @apply bg-[#E0E0DE] rounded-lg p-2 flex gap-6 text-lg grid grid-cols-6 place-items-center;
+            
+            span {
+              @apply border border-2 p-2 rounded-full cursor-pointer;
+            }
+          }
         }
       }
 

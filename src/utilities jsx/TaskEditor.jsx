@@ -1,10 +1,12 @@
 import { createPortal } from "react-dom";
 import EmojiPicker from "./Emoji.jsx";
+import ColorPicker from "./Colors.jsx";
 import { useState } from "react";
 
 function TaskEditor({exit}) {
 
     const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
+    const [openColorPicker, setOpenColorPicker] = useState(false);
 
     return createPortal( 
         <div className="task-editor"> 
@@ -26,8 +28,14 @@ function TaskEditor({exit}) {
                 </section>
                 
                 <section className="color-section">
-                    <p>Color</p>
-                    <div className="color-box"></div>
+
+                    <div className="color-controls">
+                        <p>Color</p>
+                        <div className="color-box" onClick={() => setOpenColorPicker(!openColorPicker)}></div>
+                    </div>
+
+                    {openColorPicker && <ColorPicker/>}
+
                 </section>
 
                 <section className="days-section">
