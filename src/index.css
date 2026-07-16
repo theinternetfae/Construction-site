@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: light dark;
+  /* color-scheme: light dark; */
 
   --light-bgcolor: #E0E0DE;
   --light-text: #000000;
@@ -408,10 +408,78 @@ body {
   }
 
   .task-editor {
-    @apply bg-black/1 backdrop-blur-sm fixed top-0 z-50 w-full h-full flex justify-center p-5;
+    @apply bg-black/1 backdrop-blur-sm fixed top-0 z-50 w-full h-full flex flex-col justify-center p-5;
 
     .editor-cont {
-      @apply border border-2 border-black m-auto;
+      @apply m-auto w-[50%] border border-2 border-[var(--light-accent)] flex flex-col p-5 gap-5 rounded-lg bg-[#F9FAFB] shadow-lg;
+
+      .exit-editor {
+        @apply ml-auto cursor-pointer text-[#5F5F5F] transition duration-300 ease-in-out text-xl
+        hover:text-[var(--light-accent)]; 
+      }
+
+      .emoji-section {
+        @apply rounded-lg flex items-center justify-center flex flex-col gap-3; 
+
+        .emoji-box {
+          @apply p-5 bg-[#E0E0DE] shadow-lg rounded-lg cursor-pointer text-4xl;
+        }
+
+        input {
+          @apply text-center text-xl w-full
+          outline-none;
+        }
+      }
+
+      .color-section {
+        @apply p-4 flex justify-between rounded-lg bg-[#E0E0DE];    
+
+        p {
+          @apply font-bold text-lg;
+        }
+
+        .color-box {
+          @apply border cursor-pointer w-20 rounded-lg inset-shadow-sm;
+        }
+      }
+
+      .days-section {
+        @apply rounded-lg p-4 bg-[#E0E0DE] flex flex-col gap-4;
+
+        p {
+          @apply font-bold text-lg;
+        }
+
+        .days-of-week {
+          @apply flex justify-between items-center;
+
+          span {
+            @apply bg-[#F9FAFB] border border-2 border-transparent p-3 rounded-lg transition shadow-lg cursor-pointer duration-300 ease-in-out
+            hover:border-[var(--light-accent)]; 
+          }
+        }
+
+      }
+
+      .reminder-section {
+        @apply rounded-lg p-4 bg-[#E0E0DE] flex justify-between;
+
+        p {
+          @apply font-bold text-lg;
+        }
+
+        .reminder-toggle {
+          @apply w-20 rounded-lg bg-[#5F5F5F] inset-shadow-sm; 
+        }
+      }
+
+      .testing {
+        @apply rounded-lg p-4 bg-[#E0E0DE] flex justify-between;
+      }
+
+      .add-task {
+        @apply border border-2 p-2 rounded-lg bg-[var(--light-accent)] font-bold text-white cursor-pointer;
+      }
     }
   }
 }
