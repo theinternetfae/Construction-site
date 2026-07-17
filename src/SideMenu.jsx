@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function SideMenu() {
 
     const [quirkInfoShow, setQuirkInfoShow] = useState(false);
+
+    const location = useLocation();
 
     useEffect(() => {
         
@@ -23,24 +25,24 @@ function SideMenu() {
 
                 <section className="nav-sect-sm">
                 
-                    <Link to={"home"} className="navigation">
+                    <Link to={"home"} className={`navigation ${location.pathname === '/test/home' ? 'bg-[#BFDBFE] text-[var(--light-accent)] flex' : ""}`}>
                         <i className="bi bi-house-door-fill"></i>
-                        <p>Home</p>
+                        <p className={`${location.pathname === '/test/home' ? 'block' : ""}`}>Home</p>
                     </Link>
 
-                    <Link to={"stats"} className="navigation">
+                    <Link to={"stats"} className={`navigation ${location.pathname === '/test/stats' ? 'bg-[#BFDBFE] text-[var(--light-accent)] flex' : ""}`}>
                         <i className="bi bi-bar-chart"></i>
-                        <p className="hidden">Stats</p>
+                        <p className={`${location.pathname === '/test/stats' ? 'block' : ""}`}>Stats</p>
                     </Link>
                     
                     <div className="navigation">
                         <i className="bi bi-clock-history"></i>
-                        <p className="hidden">History</p>
+                        <p className={`${location.pathname === '/test/history' ? 'block' : ""}`}>History</p>
                     </div>
                     
                     <div className="navigation">
                         <i className="bi bi-gear"></i>
-                        <p className="hidden">Settings</p>
+                        <p className={`${location.pathname === '/test/settings' ? 'block' : ""}`}>Settings</p>
                     </div>
 
                 </section>          
@@ -68,22 +70,22 @@ function SideMenu() {
                 <section className="nav-sect">
                     
 
-                    <Link to={"home"} className="navigation">
+                    <Link to={"home"} className={`navigation ${location.pathname === '/test/home' ? 'bg-[#BFDBFE] text-[var(--light-accent)]' : ""}`}>
                         <i className="bi bi-house-door-fill"></i>
                         <p>Home</p>
                     </Link>
 
-                    <Link to={"stats"} className="navigation">
+                    <Link to={"stats"} className={`navigation ${location.pathname === '/test/stats' ? 'bg-[#BFDBFE] text-[var(--light-accent)]' : ""}`}>
                         <i className="bi bi-bar-chart"></i>
                         <p>Stats</p>
                     </Link>
                     
-                    <div className="navigation">
+                    <div className={`navigation ${location.pathname === '/test/history' ? 'bg-[#BFDBFE] text-[var(--light-accent)]' : ""}`}>
                         <i className="bi bi-clock-history"></i>
                         <p>History</p>
                     </div>
                     
-                    <div className="navigation">
+                    <div className={`navigation ${location.pathname === '/test/settings' ? 'bg-[#BFDBFE] text-[var(--light-accent)]' : ""}`}>
                         <i className="bi bi-gear"></i>
                         <p>Settings</p>
                     </div>
