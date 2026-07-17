@@ -456,11 +456,14 @@ body {
     @apply bg-black/1 backdrop-blur-sm fixed top-0 z-50 w-full h-full flex flex-col justify-center p-5;
 
     .editor-cont {
-      @apply m-auto w-[50%] border border-2 border-[var(--light-accent)] flex flex-col p-5 gap-5 rounded-lg bg-[#F9FAFB] shadow-lg;
+      @apply m-auto w-full border border-2 border-[var(--light-accent)] flex flex-col p-3 gap-5 rounded-lg bg-[#F9FAFB] shadow-lg
+      md:p-5 md:w-[90%]
+      lg:w-[50%];
 
       .exit-editor {
-        @apply ml-auto cursor-pointer text-[#5F5F5F] transition duration-300 ease-in-out text-xl
-        hover:text-[var(--light-accent)]; 
+        @apply ml-auto text-lg cursor-pointer text-[#5F5F5F] transition duration-300 ease-in-out text-base
+        hover:text-[var(--light-accent)]
+        md:text-xl; 
       }
 
       .emoji-section {
@@ -492,8 +495,9 @@ body {
         }
 
         input {
-          @apply text-center text-xl w-full
-          outline-none;
+          @apply text-center text-lg w-full
+          outline-none 
+          md:text-xl;
         }
 
       }
@@ -506,7 +510,8 @@ body {
         }
 
         p {
-          @apply font-bold text-lg;
+          @apply font-bold 
+          md:text-lg;
         }
 
         .color-box {
@@ -530,15 +535,18 @@ body {
         @apply rounded-lg p-4 bg-[#E0E0DE] flex flex-col gap-4;
 
         p {
-          @apply font-bold text-lg;
+          @apply font-bold 
+          md:text-lg;
         }
 
         .days-of-week {
-          @apply flex justify-between items-center;
+          @apply flex justify-between items-center w-full gap-[2.5px]
+          md:gap-0;
 
           span {
-            @apply bg-[#F9FAFB] border border-2 border-transparent p-3 rounded-lg transition shadow-lg cursor-pointer duration-300 ease-in-out
-            hover:border-[var(--light-accent)]; 
+            @apply bg-[#F9FAFB] text-sm border border-2 p-[2px] border-transparent rounded-lg transition shadow-lg cursor-pointer duration-300 ease-in-out
+            hover:border-[var(--light-accent)]
+            md:p-3 md:text-base; 
           }
         }
       }
@@ -547,7 +555,8 @@ body {
         @apply rounded-lg p-4 bg-[#E0E0DE] flex justify-between;
 
         p {
-          @apply font-bold text-lg;
+          @apply font-bold 
+          md:text-lg;
         }
 
         .reminder-toggle {
