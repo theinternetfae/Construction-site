@@ -1,6 +1,22 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function SideMenu() {
+
+    const [quirkInfoShow, setQuirkInfoShow] = useState(false);
+
+    useEffect(() => {
+        
+        if(!quirkInfoShow) return;
+
+        const timer = setTimeout(() => {
+            setQuirkInfoShow(false);
+        }, 5000)
+
+        return () => clearTimeout(timer)
+
+    }, [quirkInfoShow])
+
     return ( 
         <nav>
             <div className="sm-nav">
@@ -30,14 +46,13 @@ function SideMenu() {
                 </section>          
 
 
-                <section className="quirk-sect-sm">
+                <section className="quirk-sect-sm" onClick={() => setQuirkInfoShow(!quirkInfoShow)}>
                     <p className="quirk-level-sm">1</p>
-                    <div className="quirk-info-sm">
+                    <div className={`quirk-info-sm ${quirkInfoShow && 'block'}`}>
                         <p>Level One: Rookie</p>
                         <p>0/100</p>
                     </div>
                 </section>
-
 
             </div>
 

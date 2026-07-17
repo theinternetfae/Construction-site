@@ -295,7 +295,7 @@ body {
           @apply p-3 shadow-sm rounded-lg relative text-white bg-[var(--light-accent)] font-bold;
 
           .quirk-info-sm {
-            @apply text-sm absolute top-[-60px] right-[-12px] rounded-lg bg-[#F9FAFB] shadow-md w-40 text-[var(--light-accent)] text-center
+            @apply text-sm absolute top-[-60px] right-[-12px] rounded-lg bg-[#F9FAFB] shadow-md w-40 text-[var(--light-accent)] text-center hidden;
           }
         }
       }
