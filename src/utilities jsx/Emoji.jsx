@@ -16,8 +16,8 @@ function EmojiPicker() {
 
             <div className="emoji-holder">
                 {
-                    EMOJIS.map(e => {
-                        return <span>{e.emoji}</span>
+                    EMOJIS.map((e, i)=> {
+                        return <span key={i}>{e.emoji}</span>
                     })
                 }
             </div>

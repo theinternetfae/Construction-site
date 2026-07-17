@@ -474,7 +474,8 @@ body {
         }
 
         .emoji-picker {
-          @apply border border-2 mt-[25%] absolute p-3 rounded-lg flex flex-col gap-2 bg-[#F9FAFB] z-50 border-[var(--light-accent)];
+          @apply border border-2 mt-[60%] absolute p-3 rounded-lg flex flex-col gap-2 bg-[#F9FAFB] z-50 border-[var(--light-accent)]
+          md:mt-[25%];
 
           .emoji-labels {
             @apply bg-[#E0E0DE] rounded-lg p-2 flex gap-6 text-lg;
