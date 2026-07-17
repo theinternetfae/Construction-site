@@ -271,44 +271,74 @@ body {
   }
 
   .overall-main-body {
-    @apply h-[100vh] w-[100vw] flex bg-[#E0E0DE];
+    @apply h-[100vh] w-[100vw] flex bg-[#E0E0DE] flex-col relative
+    md:flex-row; 
 
     nav {
-      @apply px-5 py-10 h-full w-[20vw] rounded-[0px_10px_10px_0px] bg-[#F9FAFB] flex flex-col;
+      @apply px-4 py-4 w-full bottom-0 rounded-[10px_10px_0px_0px] bg-[#F9FAFB] absolute
+      md:static md:h-full md:w-[20vw] md:rounded-[0px_10px_10px_0px] md:px-5 md:py-10;
 
-      .logo-sect {
-        @apply flex text-3xl gap-1 text-[var(--light-accent)];
-      }
+      .sm-nav {
+        @apply flex justify-between items-center
+        md:hidden;
 
-      .nav-sect {
-        @apply flex flex-col gap-5 mt-10; 
+        .nav-sect-sm {
+          @apply flex gap-6;
 
-        .navigation {
-          @apply border border-2 border-transparent shadow-xs cursor-pointer flex gap-2 p-3 rounded-lg text-[#5F5F5F]
-          first:bg-[#BFDBFE] first:text-[var(--light-accent)]
-          duration-300 ease-in-out hover:bg-[#BFDBFE];
-        }
-      }
-
-      .quirk-sect {
-        @apply border p-2 rounded-lg shadow-lg flex flex-col gap-2 text-[#5F5F5F] mt-auto;
-
-        .level-info {
-          @apply flex justify-between; 
-        }
-
-        .level-calc {
-          @apply text-2xl ;
-        }
-
-        .level-display {
-          @apply h-8 rounded-lg flex justify-between shadow-xl;
-
-          span {
-            @apply w-[33%] bg-[#A5A5A5]
-            first:rounded-l-lg first:bg-[var(--light-accent)] last:rounded-r-lg;
+          .navigation {
+            @apply flex gap-1 p-2 shadow-sm rounded-lg
+            first:bg-[#BFDBFE] first:text-[var(--light-accent)]
           }
         }
+
+        .quirk-sect-sm {
+          @apply p-3 shadow-sm rounded-lg relative text-white bg-[var(--light-accent)] font-bold;
+
+          .quirk-info-sm {
+            @apply text-sm absolute top-[-60px] right-[-12px] rounded-lg bg-[#F9FAFB] shadow-md w-40 text-[var(--light-accent)] text-center
+          }
+        }
+      }
+
+      .md-lg-nav {
+        @apply hidden h-full flex-col justify-between 
+        md:flex;
+          
+        .logo-sect {
+          @apply flex text-3xl gap-1 text-[var(--light-accent)];
+        }
+
+        .nav-sect {
+          @apply flex flex-col gap-5 mt-10; 
+
+          .navigation {
+            @apply border border-2 border-transparent shadow-xs cursor-pointer flex gap-2 p-3 rounded-lg text-[#5F5F5F]
+            first:bg-[#BFDBFE] first:text-[var(--light-accent)]
+            duration-300 ease-in-out hover:bg-[#BFDBFE];
+          }
+        }
+
+        .quirk-sect {
+          @apply border p-2 rounded-lg shadow-lg flex flex-col gap-2 text-[#5F5F5F] mt-auto;
+
+          .level-info {
+            @apply flex justify-between; 
+          }
+
+          .level-calc {
+            @apply text-2xl ;
+          }
+
+          .level-display {
+            @apply h-8 rounded-lg flex justify-between shadow-xl;
+
+            span {
+              @apply w-[33%] bg-[#A5A5A5]
+              first:rounded-l-lg first:bg-[var(--light-accent)] last:rounded-r-lg;
+            }
+          }
+        }
+
       }
     }
 
@@ -496,7 +526,6 @@ body {
             hover:border-[var(--light-accent)]; 
           }
         }
-
       }
 
       .reminder-section {
