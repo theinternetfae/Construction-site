@@ -272,18 +272,20 @@ body {
 
   .overall-main-body {
     @apply h-[100vh] w-[100vw] flex bg-[#E0E0DE] flex-col relative
-    md:flex-row; 
+    lg:flex-row; 
 
     nav {
       @apply px-4 py-4 w-full bottom-0 rounded-[10px_10px_0px_0px] bg-[#F9FAFB] absolute
-      md:static md:h-full md:w-[20vw] md:rounded-[0px_10px_10px_0px] md:px-5 md:py-10;
+      lg:static lg:h-full lg:w-[20vw] lg:rounded-[0px_10px_10px_0px] lg:px-5 lg:py-10;
 
       .sm-nav {
-        @apply flex justify-between items-center
-        md:hidden;
+        @apply flex justify-between items-center 
+        md:text-xl
+        lg:hidden;
 
         .nav-sect-sm {
-          @apply flex gap-6;
+          @apply flex gap-6
+          md:gap-12;
 
           .navigation {
             @apply flex gap-1 p-2 shadow-sm rounded-lg
@@ -292,7 +294,8 @@ body {
         }
 
         .quirk-sect-sm {
-          @apply p-3 shadow-sm rounded-lg relative text-white bg-[var(--light-accent)] font-bold;
+          @apply p-3 shadow-sm rounded-lg relative text-white bg-[var(--light-accent)] font-bold
+          md:p-5;
 
           .quirk-info-sm {
             @apply text-sm absolute top-[-60px] right-[-12px] rounded-lg bg-[#F9FAFB] shadow-md w-40 text-[var(--light-accent)] text-center hidden;
@@ -302,7 +305,7 @@ body {
 
       .md-lg-nav {
         @apply hidden h-full flex-col justify-between 
-        md:flex;
+        lg:flex;
           
         .logo-sect {
           @apply flex text-3xl gap-1 text-[var(--light-accent)];
@@ -343,25 +346,32 @@ body {
     }
 
     main {
-      @apply p-5 w-[80vw];
+      @apply p-5 
+      lg:w-[80vw];
 
       .home {
-        @apply p-5 flex flex-col gap-8;
+        @apply flex flex-col gap-8
+        md:p-3
+        lg:p-5;
 
         .header {
           @apply flex justify-between rounded-lg items-center;
 
           .task-groups {
-            @apply bg-[#F9FAFB] p-2 rounded-lg shadow-sm; 
+            @apply bg-[#F9FAFB] text-sm p-2 rounded-lg shadow-sm
+            focus:outline-none
+            md:text-base; 
           }
 
           p {
-            @apply font-bold w-full text-center
+            @apply font-bold w-full text-center text-sm
+            md:text-base;
           }
 
           i {
-            @apply cursor-pointer text-xl text-[#5F5F5F] transition duration-300 ease-in-out
-            hover:text-[var(--light-accent)];
+            @apply cursor-pointer text-lg text-[#5F5F5F] transition duration-300 ease-in-out
+            hover:text-[var(--light-accent)]
+            md:text-xl;
           }
         }
 
@@ -372,12 +382,14 @@ body {
             @apply grid grid-cols-7 place-items-center w-full;
 
             .date {
-              @apply p-2 w-25 flex flex-col gap-4 justify-center items-center rounded-lg cursor-pointer 
+              @apply w-11 p-1 text-sm flex flex-col gap-4 justify-center items-center rounded-lg cursor-pointer 
               duration-300 ease-in-out hover:bg-[#BFDBFE]
-              first:bg-[#BFDBFE];
+              first:bg-[#BFDBFE]
+              md:p-2 md:w-20 md:text-base;
 
               .date-day {
-                @apply text-sm font-bold text-[#A5A5A5];
+                @apply text-xs font-bold text-[#A5A5A5]
+                md:text-sm;
               }
 
               .first {
@@ -388,7 +400,8 @@ body {
                 @apply border border-3 border-[#A5A5A5] p-1 shadow-sm text-center rounded-full;              
 
                 .date-num {
-                  @apply p-5 rounded-full text-center w-15 font-bold;
+                  @apply p-2 rounded-full text-center font-bold
+                  md:w-15 md:p-5;
                 }
 
                 .first {
@@ -401,10 +414,12 @@ body {
         }
 
         .task-display {
-          @apply p-5 rounded-lg shadow-lg bg-[#F9FAFB];
+          @apply p-3 rounded-lg shadow-lg bg-[#F9FAFB]
+          md:p-5;
 
           p {
-            @apply text-center
+            @apply text-center text-sm
+            md:text-base;
           }
         }
       }

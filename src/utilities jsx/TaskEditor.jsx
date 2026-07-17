@@ -13,12 +13,12 @@ function TaskEditor({exit}) {
 
             <div className="editor-cont">
 
-                <i class="bi bi-x-square-fill exit-editor" onClick={exit}></i>
+                <i className="bi bi-x-square-fill exit-editor" onClick={exit}></i>
                 
                 <section className="emoji-section">
                     
                     <div className="emoji-box" onClick={() => setOpenEmojiPicker(!openEmojiPicker)}>
-                        <i class="bi bi-plus"></i>
+                        <i className="bi bi-plus"></i>
                     </div>
 
                     {openEmojiPicker && <EmojiPicker/>}
