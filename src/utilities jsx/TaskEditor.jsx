@@ -8,6 +8,28 @@ function TaskEditor({exit}) {
     const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
     const [openColorPicker, setOpenColorPicker] = useState(false);
 
+    const [emoji, setEmoji] = useState('');
+    const [name, setName] = useState('');
+    const [color, setColor] = useState('');
+    const [days, setDays] = useState([]);
+    // const [startDate, setStartDate] = useState(null);
+    // const [endDate, setEndDate] = useState(null);
+    const [reminder, setReminder] = useState(false);
+    // const [reminderTime, setReminderTime] = useState(null);
+    // const [priority, setPriority] = useState(false);
+    // const [completed, setCompleted] = useState(false);
+
+
+    function createTask() {
+        const task = {
+            emoji,
+            name,
+            color
+        }
+
+        console.log(task);
+    }
+
     return createPortal( 
         <div className="task-editor"> 
 
@@ -18,12 +40,15 @@ function TaskEditor({exit}) {
                 <section className="emoji-section">
                     
                     <div className="emoji-box" onClick={() => setOpenEmojiPicker(!openEmojiPicker)}>
-                        <i className="bi bi-plus"></i>
+                        {emoji ? emoji : <i className="bi bi-plus"></i>}
                     </div>
 
-                    {openEmojiPicker && <EmojiPicker/>}
+                    {openEmojiPicker && <EmojiPicker
+                        pickEmoji={(e) => setEmoji(e)}
+                        close={() => setOpenEmojiPicker(false)}
+                    />}
 
-                    <input type="text" placeholder="What to do?" />
+                    <input type="text" placeholder="What to do?" onChange={(n) => setName(n.target.value)}/>
                 
                 </section>
                 
@@ -31,10 +56,15 @@ function TaskEditor({exit}) {
 
                     <div className="color-controls">
                         <p>Color</p>
-                        <div className="color-box" onClick={() => setOpenColorPicker(!openColorPicker)}></div>
+                        <div className="color-box" onClick={() => setOpenColorPicker(!openColorPicker)} style={{
+                            backgroundColor: `${color}`
+                        }}></div>
                     </div>
 
-                    {openColorPicker && <ColorPicker/>}
+                    {openColorPicker && <ColorPicker
+                        pickColor={(c) => setColor(c)}
+                        close={() => setOpenColorPicker(false)}
+                    />}
 
                 </section>
 
@@ -74,7 +104,7 @@ function TaskEditor({exit}) {
                     </div>
                 </section> */}
                 
-                <button className="add-task">Add Task</button>
+                <button className="add-task" onClick={() => createTask()}>Add Task</button>
 
             </div>
         

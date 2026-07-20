@@ -1,4 +1,4 @@
-function ColorPicker() {
+function ColorPicker({pickColor, close}) {
 
     const customColors = [
         "#EF4444",
@@ -30,7 +30,11 @@ function ColorPicker() {
             <div className="color-holder">
                 {
                     customColors.map((c, i) => {
-                        return <span key={i} style={{backgroundColor: c}}></span>
+                        return <span key={i} style={{backgroundColor: c}}
+                        onClick={() => {
+                            pickColor(c);
+                            close();
+                        }}></span>
                     })
                 }
             </div>

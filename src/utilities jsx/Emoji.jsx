@@ -1,6 +1,6 @@
 import EMOJIS from "../js files/Emojis.js"
 
-function EmojiPicker() {
+function EmojiPicker({pickEmoji, close}) {
     return ( 
         <div className="emoji-picker">
             
@@ -17,7 +17,10 @@ function EmojiPicker() {
             <div className="emoji-holder">
                 {
                     EMOJIS.map((e, i)=> {
-                        return <span key={i}>{e.emoji}</span>
+                        return <span key={i} onClick={() => {
+                            pickEmoji(e.emoji);
+                            close();
+                        }}>{e.emoji}</span>
                     })
                 }
             </div>

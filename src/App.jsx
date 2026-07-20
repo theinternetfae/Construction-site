@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AppLayout from './AppLayout.jsx';
 import Welcome from './Welcome.jsx';
 import WelcomeBack from './WelcomeBack.jsx';
 import { Route, Routes, Navigate } from "react-router-dom";
 import Home from './pages/Home.jsx';
 import Stats from './pages/Stats.jsx';
-import { UserContext } from './js files/contexts.js';
+import { TaskContext, UserContext } from './js files/contexts.js';
 
 
 function App() {
@@ -19,26 +19,39 @@ function App() {
     password: ""
   }
 
+  const taskList = [];
+
+  useEffect(() => {
+    console.log(taskList);
+  }, [taskList]);
+  
+
   return (
     
-    <UserContext.Provider value={{user, setIsUser, verified, isVerified}}>
-      <Routes>
+    <TaskContext.Provider value={{taskList}}>
 
-        <Route path="/" element={verified ? <Navigate to="/test" replace/> : <Welcome/>}></Route>
-        <Route path="/signin" element={verified ? <Navigate to="/test" replace/> : <WelcomeBack/>}></Route>
+      <UserContext.Provider value={{user, setIsUser, verified, isVerified}}>
 
-        <Route path="/test" element={!verified ? <Navigate to="/" replace/> : <AppLayout/>}>
+        <Routes>
 
-          <Route index element={<Navigate to="home" replace />}></Route>
+          <Route path="/" element={verified ? <Navigate to="/test" replace/> : <Welcome/>}></Route>
+          <Route path="/signin" element={verified ? <Navigate to="/test" replace/> : <WelcomeBack/>}></Route>
 
-          <Route path="home" element={<Home/>}></Route>
-          <Route path="stats" element={<Stats/>}></Route>
+          <Route path="/test" element={!verified ? <Navigate to="/" replace/> : <AppLayout/>}>
 
-        </Route>
+            <Route index element={<Navigate to="home" replace />}></Route>
 
-      </Routes>
-    </UserContext.Provider>
+            <Route path="home" element={<Home/>}></Route>
+            <Route path="stats" element={<Stats/>}></Route>
 
+          </Route>
+
+        </Routes>
+
+      </UserContext.Provider>
+
+    </TaskContext.Provider>
+  
   )
 }
 
