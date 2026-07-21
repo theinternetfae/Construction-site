@@ -17,5 +17,9 @@ export function formatDate(date) {
     const month = theDate.getMonth() + 1;
     const day = theDate.getDate();
 
-    return `${year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`;
+    return `${year}-${lessThanTen(month)}-${lessThanTen(day)}`;
+}
+
+export function lessThanTen(less) {
+    return less < 10 ? `0${less}` : less;
 }

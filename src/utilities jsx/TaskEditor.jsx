@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import EmojiPicker from "./Emoji.jsx";
 import ColorPicker from "./Colors.jsx";
 import { useState } from "react";
-import { formatDate } from "../js files/Utilities.js";
+import { formatDate, lessThanTen } from "../js files/Utilities.js";
 
 function TaskEditor({exit}) {
 
@@ -20,12 +20,19 @@ function TaskEditor({exit}) {
     const [days, setDays] = useState([]);
     const [endDate, setEndDate] = useState(null);
     const [reminder, setReminder] = useState(false);
-    // const [reminderTime, setReminderTime] = useState(null);
-    // const [priority, setPriority] = useState(false);
-    // const [completed, setCompleted] = useState(false);
+    
+    const [reminderHour, setReminderHour] = useState('00');
+    const [reminderMinutes, setReminderMinutes] = useState('00');
+    const [meridiem, setMeridiem] = useState('AM');
+    
+    const [priority, setPriority] = useState(false);
+    const [completed, setCompleted] = useState(false);
 
 
     function createTask() {
+
+        const reminderTime = `${reminderHour}:${reminderMinutes} ${meridiem}`
+
         const task = {
             emoji,
             name,
@@ -33,7 +40,9 @@ function TaskEditor({exit}) {
             days,
             startDate: today,
             endDate,
-            reminder
+            reminderTime,
+            priority,
+            completed
         }
 
         console.log(task);
@@ -254,27 +263,27 @@ function TaskEditor({exit}) {
                     <p>Set reminder</p>
                     <div className="reminder-time">
 
-                        <select name="" id="">
+                        <select name="" id="" onClick={e => setReminderHour(e.target.value)}>
 
                             {
                                 hours().map(h => (
-                                    <option key={h} value={h} hidden={h === 0}>{h < 10 ? `0${h}` : h}</option>
+                                    <option key={h} value={h} hidden={h === 0}>{lessThanTen(h)}</option>
                                 ))
                             }
 
                         </select>
                     
-                        <select name="" id="">
+                        <select name="" id="" onClick={e => setReminderMinutes(e.target.value)}>
                             
                             {
                                 minutes().map(m => (
-                                    <option key={m} value={m} hidden={m === 0}>{m < 10 ? `0${m}` : m}</option>
+                                    <option key={m} value={m} hidden={m === 0}>{lessThanTen(m)}</option>
                                 ))
                             }
                             
                         </select>
                     
-                        <select name="" id="">
+                        <select name="" id="" onClick={e => setMeridiem(e.target.value)}>
                             <option value="AM">AM</option>
                             <option value="PM">PM</option>
                         </select>
