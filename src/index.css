@@ -555,7 +555,7 @@ body {
         }
 
         .color-box {
-          @apply border cursor-pointer w-20 rounded-lg inset-shadow-sm;
+          @apply cursor-pointer bg-[#5F5F5F] w-20 rounded-lg inset-shadow-sm;
         }
 
         .color-picker {
@@ -622,6 +622,19 @@ body {
 
       .reminder-time-section {
         @apply rounded-lg p-4 bg-[#E0E0DE] flex justify-between;
+      
+        p {
+          @apply font-bold 
+          md:text-lg;
+        }
+
+        .reminder-time {
+          @apply flex gap-2
+        }
+        select {
+          @apply p-1 bg-[#F9FAFB] rounded-lg shadow-lg
+          focus:outline-none;
+        }
       }
 
       .add-task {

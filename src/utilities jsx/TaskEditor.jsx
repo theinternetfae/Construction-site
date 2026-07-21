@@ -8,6 +8,9 @@ function TaskEditor({exit}) {
 
     const today = formatDate(Date.now());
 
+    const minutes = () => Array.from({ length: 60 }, (_, i) => i);
+    const hours = () => Array.from({length: 13}, (_, i) => i);
+
     const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
     const [openColorPicker, setOpenColorPicker] = useState(false);
 
@@ -84,7 +87,7 @@ function TaskEditor({exit}) {
                 </section>
 
                 <section className="days-section">
-                    <p>Task days</p>
+                    <p>Repeat</p>
                     <div className="days-of-week">
                         
                         <span 
@@ -247,12 +250,37 @@ function TaskEditor({exit}) {
                     </div>
                 </section>
                 
-                {/* <section className={`reminder-time-section ${!reminder && 'hidden'}`}>
-                    <p>On Reminder?</p>
-                    <div className="reminder-toggle">
-                        <div className="reminder-toggle-slider"></div>
+                <section className={`reminder-time-section ${!reminder && 'hidden'}`}>
+                    <p>Set reminder</p>
+                    <div className="reminder-time">
+
+                        <select name="" id="">
+
+                            {
+                                hours().map(h => (
+                                    <option key={h} value={h} hidden={h === 0}>{h < 10 ? `0${h}` : h}</option>
+                                ))
+                            }
+
+                        </select>
+                    
+                        <select name="" id="">
+                            
+                            {
+                                minutes().map(m => (
+                                    <option key={m} value={m} hidden={m === 0}>{m < 10 ? `0${m}` : m}</option>
+                                ))
+                            }
+                            
+                        </select>
+                    
+                        <select name="" id="">
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select>
+                    
                     </div>
-                </section> */}
+                </section>
                 
                 <button className="add-task" onClick={() => createTask()}>Add Task</button>
 
