@@ -40,7 +40,10 @@ function TaskEditor({exit}) {
                 
                 <section className="emoji-section">
                     
-                    <div className="emoji-box" onClick={() => setOpenEmojiPicker(!openEmojiPicker)}>
+                    <div className="emoji-box" onClick={() => {
+                        setOpenEmojiPicker(!openEmojiPicker)
+                        setOpenColorPicker(false);
+                    }}>
                         {emoji ? emoji : <i className="bi bi-plus"></i>}
                     </div>
 
@@ -57,7 +60,12 @@ function TaskEditor({exit}) {
 
                     <div className="color-controls">
                         <p>Color</p>
-                        <div className="color-box" onClick={() => setOpenColorPicker(!openColorPicker)} style={{
+                        <div className="color-box" onClick={() => {
+                            setOpenColorPicker(!openColorPicker)
+                            setOpenEmojiPicker(false)
+                        }} 
+                        
+                        style={{
                             backgroundColor: `${color}`
                         }}></div>
                     </div>
