@@ -2,8 +2,11 @@ import { createPortal } from "react-dom";
 import EmojiPicker from "./Emoji.jsx";
 import ColorPicker from "./Colors.jsx";
 import { useState } from "react";
+import { formatDate } from "../js files/Utilities.js";
 
 function TaskEditor({exit}) {
+
+    const today = formatDate(Date.now());
 
     const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
     const [openColorPicker, setOpenColorPicker] = useState(false);
@@ -12,8 +15,7 @@ function TaskEditor({exit}) {
     const [name, setName] = useState('');
     const [color, setColor] = useState('');
     const [days, setDays] = useState([]);
-    // const [startDate, setStartDate] = useState(null);
-    // const [endDate, setEndDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
     const [reminder, setReminder] = useState(false);
     // const [reminderTime, setReminderTime] = useState(null);
     // const [priority, setPriority] = useState(false);
@@ -26,6 +28,8 @@ function TaskEditor({exit}) {
             name,
             color,
             days,
+            startDate: today,
+            endDate,
             reminder
         }
 
@@ -229,14 +233,12 @@ function TaskEditor({exit}) {
 
                     </div>
                 </section>
-
-                {/*FOR THE SPAN OF DAYS OF TASK APPEARANCE*/}                
-                {/* <section className="testing">
-                    <p>On Reminder?</p>
-                    <div className="reminder-toggle">
-                        <div className="reminder-toggle-slider"></div>
-                    </div>
-                </section> */}
+                
+                <section className={`start-end-section ${days.length === 0 && "hidden"}`}>
+                    <input type="date" value={today} className="when-to-when text-[#5F5F5F]" disabled/>
+                    <i className="bi bi-caret-right"></i>
+                    <input type="date" className="when-to-when" min={today} onChange={(e) => setEndDate(e.target.value)}/>
+                </section>
 
                 <section className="reminder-section">
                     <p>On Reminder?</p>
@@ -245,8 +247,7 @@ function TaskEditor({exit}) {
                     </div>
                 </section>
                 
-                {/*FOR PICKING THE TIME OF REMINDER*/}
-                {/* <section className="testing">
+                {/* <section className={`reminder-time-section ${!reminder && 'hidden'}`}>
                     <p>On Reminder?</p>
                     <div className="reminder-toggle">
                         <div className="reminder-toggle-slider"></div>

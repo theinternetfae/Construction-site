@@ -9,3 +9,13 @@ export function isStrongPassword(password) {
 
     return regex.test(password);
 }
+
+export function formatDate(date) {
+    const theDate = new Date(date);
+
+    const year = theDate.getFullYear();
+    const month = theDate.getMonth() + 1;
+    const day = theDate.getDate();
+
+    return `${year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`;
+}

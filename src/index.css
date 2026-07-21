@@ -591,6 +591,18 @@ body {
         }
       }
 
+      .start-end-section {
+        @apply rounded-lg p-4 bg-[#E0E0DE] flex justify-around items-center;
+
+        input {
+          @apply p-2 rounded-lg bg-[#F9FAFB] shadow-lg
+        }
+
+        i {
+          @apply text-[var(--light-accent)]
+        }
+      }
+
       .reminder-section {
         @apply rounded-lg p-4 bg-[#E0E0DE] flex justify-between;
 
@@ -608,7 +620,7 @@ body {
         }
       }
 
-      .testing {
+      .reminder-time-section {
         @apply rounded-lg p-4 bg-[#E0E0DE] flex justify-between;
       }
 
