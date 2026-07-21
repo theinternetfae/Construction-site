@@ -31,6 +31,7 @@ function TaskEditor({exit}) {
     }
 
     return createPortal( 
+
         <div className="task-editor"> 
 
             <div className="editor-cont">
@@ -110,6 +111,7 @@ function TaskEditor({exit}) {
         
         </div>,
         document.getElementById("modal-root")
+    
     );
 }
 

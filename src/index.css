@@ -519,12 +519,13 @@ body {
             @apply bg-[#E0E0DE] rounded-lg p-2 flex gap-6 text-lg;
 
             i {
-              @apply cursor-pointer;
+              @apply cursor-pointer transition duration-300 ease-in-out
+              hover:text-[var(--light-accent)];
             }
           }
 
           .emoji-holder {
-            @apply p-2 rounded-lg bg-[#E0E0DE] grid grid-cols-7 place-items-center w-full;
+            @apply p-2 rounded-lg bg-[#E0E0DE] grid grid-cols-6 place-items-center w-full;
 
             span {
               @apply cursor-pointer
