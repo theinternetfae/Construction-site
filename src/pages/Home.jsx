@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TaskEditor from "../utilities jsx/TaskEditor.jsx";
+import Task from "../utilities jsx/Task.jsx";
 
 function Home() {
 
@@ -81,7 +82,8 @@ function Home() {
             </section>
 
             <section className="task-display">
-                <p>No tasks</p>
+                {/* <p>No tasks</p> */}
+                <Task/>
             </section>
 
             {showEditor && <TaskEditor

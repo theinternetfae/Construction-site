@@ -642,4 +642,33 @@ body {
       }
     }
   }
+
+  .task {
+    @apply p-3 rounded-lg bg-[#E0E0DE] shadow-sm flex justify-between items-center cursor-pointer;
+
+    .task-labels {
+      @apply flex gap-3 items-center;
+
+      .emoji-box {
+        @apply p-2 rounded-lg text-lg bg-[#F9FAFB];
+      }
+
+      p {
+        @apply font-bold;
+      }
+    }
+
+    .task-updates {
+      @apply flex gap-5 text-xl items-center;
+
+      i {
+        @apply text-[#5F5F5F] cursor-pointer
+      }
+
+      input {
+        @apply border border-2 border-black w-4 h-4 cursor-pointer
+        focus:outline-none;
+      }
+    }
+  }
 }
