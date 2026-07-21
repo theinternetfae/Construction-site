@@ -24,7 +24,8 @@ function TaskEditor({exit}) {
         const task = {
             emoji,
             name,
-            color
+            color,
+            days
         }
 
         console.log(task);
@@ -80,13 +81,151 @@ function TaskEditor({exit}) {
                 <section className="days-section">
                     <p>Task days</p>
                     <div className="days-of-week">
-                        <span>Mon</span>
-                        <span>Tue</span>
-                        <span>Wed</span>
-                        <span>Thur</span>
-                        <span>Fri</span>
-                        <span>Sat</span>
-                        <span>Sun</span>
+                        
+                        <span 
+                            onClick={() => {
+
+                                if(days.includes('Mon')) {
+
+                                    const cleanDays = days.filter(d => d !== 'Mon')
+
+                                    setDays(cleanDays);
+
+                                } else {
+
+                                    setDays([...days, "Mon"]);
+
+                                }
+
+                            }} 
+                            
+                            className={`${days.includes('Mon') ? 'border-[var(--light-accent)]' : ""}`}
+                        >Mon</span>
+                        
+                        <span 
+                            onClick={() => {
+
+                                if(days.includes('Tue')) {
+
+                                    const cleanDays = days.filter(d => d !== 'Tue')
+
+                                    setDays(cleanDays);
+                                    
+                                } else {
+
+                                    setDays([...days, "Tue"]);
+
+                                };
+
+                            }}
+                            
+                            className={`${days.includes('Tue') ? 'border-[var(--light-accent)]' : ""}`}
+                        >Tue</span>
+
+                        <span 
+                            onClick={() => {
+
+                                if(days.includes('Wed')) {
+
+                                    const cleanDays = days.filter(d => d !== 'Wed')
+
+                                    setDays(cleanDays);
+
+                                } else {
+
+                                    setDays([...days, "Wed"]);
+
+                                };
+
+                            }}
+                            
+                            className={`${days.includes('Wed') ? 'border-[var(--light-accent)]' : ""}`}
+                        >Wed</span>
+
+                        <span 
+                        
+                            onClick={() => {
+
+                                if(days.includes('Thur')) {
+                                    
+                                    const cleanDays = days.filter(d => d !== 'Thur')
+
+                                    setDays(cleanDays);
+                                
+                                } else {
+
+                                    setDays([...days, "Thur"]);
+
+                                };
+
+                            }}
+                        
+                            className={`${days.includes('Thur') ? 'border-[var(--light-accent)]' : ""}`}
+                        >Thur</span>
+
+                        <span 
+                        
+                            onClick={() => {
+
+                                if(days.includes('Fri')) {
+                                    
+                                    const cleanDays = days.filter(d => d !== 'Fri')
+
+                                    setDays(cleanDays);
+                                
+                                } else {
+
+                                    setDays([...days, "Fri"]);
+
+                                };
+
+                            }}
+                        
+                            className={`${days.includes('Fri') ? 'border-[var(--light-accent)]' : ""}`}
+                        >Fri</span>
+
+                        <span 
+                        
+                            onClick={() => {
+
+                                if(days.includes('Sat')) {
+                                    
+                                    const cleanDays = days.filter(d => d !== 'Sat')
+
+                                    setDays(cleanDays);
+                                
+                                } else {
+
+                                    setDays([...days, "Sat"]);
+
+                                };
+
+                            }}
+                        
+                            className={`${days.includes('Sat') ? 'border-[var(--light-accent)]' : ""}`}
+                        >Sat</span>
+
+                        <span 
+                        
+                            onClick={() => {
+
+                                if(days.includes('Sun')) {
+                                    
+                                    const cleanDays = days.filter(d => d !== 'Sun')
+
+                                    setDays(cleanDays);
+                                
+                                } else {
+
+                                    setDays([...days, "Sun"]);
+
+                                };
+
+                            }}
+                        
+                            className={`${days.includes('Sun') ? 'border-[var(--light-accent)]' : ""}`}
+                        >Sun</span>
+                                            
                     </div>
                 </section>
 

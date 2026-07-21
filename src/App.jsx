@@ -6,6 +6,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Home from './pages/Home.jsx';
 import Stats from './pages/Stats.jsx';
 import { TaskContext, UserContext } from './js files/contexts.js';
+import { getTaskList } from './js files/Storage.js';
 
 
 function App() {
@@ -19,10 +20,12 @@ function App() {
     password: ""
   }
 
-  const taskList = [];
+  const [taskList, setTaskList] = useState(
+    getTaskList() || []
+  )
 
   useEffect(() => {
-    console.log(taskList);
+    console.log("This is the taskList", taskList);
   }, [taskList]);
   
 
