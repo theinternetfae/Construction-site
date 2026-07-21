@@ -600,7 +600,11 @@ body {
         }
 
         .reminder-toggle {
-          @apply w-20 rounded-lg bg-[#5F5F5F] inset-shadow-sm; 
+          @apply w-20 rounded-lg bg-[#5F5F5F] inset-shadow-sm flex items-center p-1 cursor-pointer; 
+
+          .reminder-toggle-slider {
+            @apply h-full w-5 rounded-full bg-[#E0E0DE] shadow-lg transition duration-500 ease-in-out;
+          }
         }
       }
 

@@ -25,7 +25,8 @@ function TaskEditor({exit}) {
             emoji,
             name,
             color,
-            days
+            days,
+            reminder
         }
 
         console.log(task);
@@ -212,7 +213,7 @@ function TaskEditor({exit}) {
                                 if(days.includes('Sun')) {
                                     
                                     const cleanDays = days.filter(d => d !== 'Sun')
-
+                                
                                     setDays(cleanDays);
                                 
                                 } else {
@@ -225,7 +226,7 @@ function TaskEditor({exit}) {
                         
                             className={`${days.includes('Sun') ? 'border-[var(--light-accent)]' : ""}`}
                         >Sun</span>
-                                            
+
                     </div>
                 </section>
 
@@ -239,8 +240,8 @@ function TaskEditor({exit}) {
 
                 <section className="reminder-section">
                     <p>On Reminder?</p>
-                    <div className="reminder-toggle">
-                        <div className="reminder-toggle-slider"></div>
+                    <div className="reminder-toggle" onClick={() => setReminder(!reminder)} >
+                        <div className={`reminder-toggle-slider ${reminder ? "translate-x-13" : ""}`}></div>
                     </div>
                 </section>
                 
