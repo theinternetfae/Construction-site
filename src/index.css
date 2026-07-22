@@ -417,7 +417,7 @@ body {
         }
 
         .task-display {
-          @apply p-3 rounded-lg shadow-lg bg-[#F9FAFB]
+          @apply p-3 rounded-lg shadow-lg bg-[#F9FAFB] flex flex-col gap-5
           md:p-5;
 
           p {
@@ -659,7 +659,8 @@ body {
     }
 
     .task-updates {
-      @apply flex gap-5 text-xl items-center;
+      @apply flex gap-5 text-lg items-center
+      md:text-xl;
 
       i {
         @apply text-[#5F5F5F] cursor-pointer

@@ -1,10 +1,10 @@
-function Task() {
+function Task({taskInfo}) {
     return ( 
         <div className="task">
             
             <section className="task-labels">
-                <div className="emoji-box">😘</div>
-                <p>Love</p>
+                <div className="emoji-box">{taskInfo.emoji}</div>
+                <p>{taskInfo.name}</p>
             </section>
             
             <section className="task-updates">

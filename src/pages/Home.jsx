@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 import Task from "../utilities jsx/Task.jsx";
+import { TaskContext } from "../js files/contexts.js";
 
 function Home() {
+
+    const {taskList} = useContext(TaskContext);
 
     const [showEditor, setShowEditor] = useState(false);
     
@@ -82,8 +85,13 @@ function Home() {
             </section>
 
             <section className="task-display">
-                {/* <p>No tasks</p> */}
-                <Task/>
+                {taskList.length === 0 && <p>No tasks</p>}
+                {taskList.map((e, i) => {
+                    return <Task
+                        key={i}
+                        taskInfo={e}
+                    />
+                })}
             </section>
 
             {showEditor && <TaskEditor
