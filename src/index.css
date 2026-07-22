@@ -565,7 +565,7 @@ body {
             @apply bg-[#E0E0DE] rounded-lg p-2 flex gap-6 text-lg grid grid-cols-6 place-items-center;
             
             span {
-              @apply border border-2 p-2 rounded-full cursor-pointer;
+              @apply border border-2 border-transparent p-2 rounded-full cursor-pointer;
             }
           }
         }

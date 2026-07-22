@@ -106,6 +106,7 @@ function TaskEditor({exit}) {
 
                     {openColorPicker && <ColorPicker
                         pickColor={(c) => setColor(c)}
+                        color={color}
                         close={() => setOpenColorPicker(false)}
                     />}
 
