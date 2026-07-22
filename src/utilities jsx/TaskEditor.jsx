@@ -92,9 +92,17 @@ function TaskEditor({exit, task}) {
             completed
         } : t)
 
-        
         setTaskList(editedTaskList);
         saveTaskList(editedTaskList);
+        exit();
+    }
+
+    function deleteTask() {
+        const cleanedTaskList = taskList.filter(t => t.uniqueId !== task.uniqueId);
+
+        console.log(cleanedTaskList);
+        setTaskList(cleanedTaskList);
+        saveTaskList(cleanedTaskList);
         exit();
     }
 
@@ -230,7 +238,7 @@ function TaskEditor({exit, task}) {
                    {task ? "Save changes" : "Add Task"}
                 </button>
 
-                {task && <button className="delete-task">
+                {task && <button className="delete-task" onClick={() => deleteTask()}>
                    Delete task
                 </button>}
 
