@@ -1,4 +1,10 @@
+import {useState} from "react";
+import TaskEditor from "./TaskEditor.jsx"
+
 function Task({taskInfo}) {
+
+    const [editing, setEditing] = useState(false);
+
     return ( 
         <div className="task">
             
@@ -8,9 +14,17 @@ function Task({taskInfo}) {
             </section>
             
             <section className="task-updates">
+                <i className="bi bi-pencil" onClick={() => setEditing(true)}></i>
                 <i className="bi bi-star-fill"></i>
                 <input type="checkbox" />
             </section>
+
+            {editing && <TaskEditor
+            
+                exit={() => setEditing(false)}
+                task={taskInfo}
+
+            />}
 
         </div>
     );

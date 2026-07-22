@@ -7,7 +7,10 @@ import { TaskContext } from "../js files/contexts.js";
 import { saveTaskList } from "../js files/Storage.js";
 import Alert from "./Alert.jsx";
 
-function TaskEditor({exit}) {
+function TaskEditor({exit, task}) {
+
+    console.log("The editing task", task);
+    console.log("Exit code:", exit);
 
     const {taskList, setTaskList} = useContext(TaskContext);
 
@@ -19,19 +22,23 @@ function TaskEditor({exit}) {
     const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
     const [openColorPicker, setOpenColorPicker] = useState(false);
 
-    const [emoji, setEmoji] = useState('');
-    const [name, setName] = useState('');
-    const [color, setColor] = useState('#2563EB');
-    const [days, setDays] = useState([]);
-    const [endDate, setEndDate] = useState(null);
-    const [reminder, setReminder] = useState(false);
+    const [emoji, setEmoji] = useState(task ? task.emoji : '');
+    const [name, setName] = useState(task ? task.name : '');
+    const [color, setColor] = useState(task ? task.color : '');
     
+    const [days, setDays] = useState(task ? task.days : []);
+    const [endDate, setEndDate] = useState(task ? task.endDate : null);
+    const [startDate, setStartDate] = useState(task ? task.startDate : today)
+
+    const [reminder, setReminder] = useState(task ? task.reminder : false);
+    
+
     const [reminderHour, setReminderHour] = useState('00');
     const [reminderMinutes, setReminderMinutes] = useState('00');
     const [meridiem, setMeridiem] = useState('AM');
     
-    const [priority, setPriority] = useState(false);
-    const [completed, setCompleted] = useState(false);
+    const [priority, setPriority] = useState(task ? task.priority : false);
+    const [completed, setCompleted] = useState(task ? task.completed : false);
 
     const [alert, setAlert] = useState(false);
 
@@ -44,23 +51,23 @@ function TaskEditor({exit}) {
 
         const reminderTime = !reminder ? null : `${reminderHour}:${reminderMinutes} ${meridiem}`
 
-        const task = {
+        const newTask = {
             emoji,
             name,
             color,
             days,
-            startDate: days.length === 0 ? null : today,
+            startDate: days.length === 0 ? null : startDate,
             endDate,
             reminderTime,
             priority,
             completed
         }
 
-        const newTaskList = [...taskList, task];
+        const newTaskList = [...taskList, newTask];
         setTaskList(newTaskList);
         saveTaskList(newTaskList);
         exit();
-        console.log(task);
+        console.log(newTask);
 
     }
 
@@ -86,8 +93,7 @@ function TaskEditor({exit}) {
                         close={() => setOpenEmojiPicker(false)}
                     />}
 
-                    <input type="text" placeholder="What to do?" onChange={(n) => setName(n.target.value)}/>
-                
+                    <input type="text" placeholder="What to do?" value={name} onChange={(n) => setName(n.target.value)}/>
                 </section>
                 
                 <section className="color-section">
