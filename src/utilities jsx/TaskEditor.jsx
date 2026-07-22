@@ -9,15 +9,13 @@ import Alert from "./Alert.jsx";
 
 function TaskEditor({exit, task}) {
 
-    console.log("The editing task", task);
-    console.log("Exit code:", exit);
-
     const {taskList, setTaskList} = useContext(TaskContext);
 
     const today = formatDate(Date.now());
 
     const minutes = () => Array.from({ length: 60 }, (_, i) => i);
     const hours = () => Array.from({length: 13}, (_, i) => i);
+    const daysOfWeek = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
 
     const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
     const [openColorPicker, setOpenColorPicker] = useState(false);
@@ -121,158 +119,40 @@ function TaskEditor({exit, task}) {
                 <section className="days-section">
                     <p>Repeat</p>
                     <div className="days-of-week">
-                        
-                        <span 
-                            onClick={() => {
 
-                                if(days.includes('Mon')) {
+                        {
+                            daysOfWeek.map((e, i) => {
+                                return   <span 
+                                    onClick={() => {
 
-                                    const cleanDays = days.filter(d => d !== 'Mon')
+                                        if(days.includes(e)) {
 
-                                    setDays(cleanDays);
+                                            const cleanDays = days.filter(d => d !== e)
 
-                                } else {
+                                            setDays(cleanDays);
 
-                                    setDays([...days, "Mon"]);
+                                        } else {
 
-                                }
+                                            setDays([...days, e]);
 
-                            }} 
-                            
-                            className={`${days.includes('Mon') ? 'border-[var(--light-accent)]' : ""}`}
-                        >Mon</span>
-                        
-                        <span 
-                            onClick={() => {
+                                        }
 
-                                if(days.includes('Tue')) {
-
-                                    const cleanDays = days.filter(d => d !== 'Tue')
-
-                                    setDays(cleanDays);
+                                    }} 
                                     
-                                } else {
-
-                                    setDays([...days, "Tue"]);
-
-                                };
-
-                            }}
-                            
-                            className={`${days.includes('Tue') ? 'border-[var(--light-accent)]' : ""}`}
-                        >Tue</span>
-
-                        <span 
-                            onClick={() => {
-
-                                if(days.includes('Wed')) {
-
-                                    const cleanDays = days.filter(d => d !== 'Wed')
-
-                                    setDays(cleanDays);
-
-                                } else {
-
-                                    setDays([...days, "Wed"]);
-
-                                };
-
-                            }}
-                            
-                            className={`${days.includes('Wed') ? 'border-[var(--light-accent)]' : ""}`}
-                        >Wed</span>
-
-                        <span 
+                                    className={`${days.includes(e) ? 'border-[var(--light-accent)]' : ""}`}
+                                >{e}
+                                </span>
+                            })
                         
-                            onClick={() => {
-
-                                if(days.includes('Thur')) {
-                                    
-                                    const cleanDays = days.filter(d => d !== 'Thur')
-
-                                    setDays(cleanDays);
-                                
-                                } else {
-
-                                    setDays([...days, "Thur"]);
-
-                                };
-
-                            }}
+                        }                        
                         
-                            className={`${days.includes('Thur') ? 'border-[var(--light-accent)]' : ""}`}
-                        >Thur</span>
-
-                        <span 
-                        
-                            onClick={() => {
-
-                                if(days.includes('Fri')) {
-                                    
-                                    const cleanDays = days.filter(d => d !== 'Fri')
-
-                                    setDays(cleanDays);
-                                
-                                } else {
-
-                                    setDays([...days, "Fri"]);
-
-                                };
-
-                            }}
-                        
-                            className={`${days.includes('Fri') ? 'border-[var(--light-accent)]' : ""}`}
-                        >Fri</span>
-
-                        <span 
-                        
-                            onClick={() => {
-
-                                if(days.includes('Sat')) {
-                                    
-                                    const cleanDays = days.filter(d => d !== 'Sat')
-
-                                    setDays(cleanDays);
-                                
-                                } else {
-
-                                    setDays([...days, "Sat"]);
-
-                                };
-
-                            }}
-                        
-                            className={`${days.includes('Sat') ? 'border-[var(--light-accent)]' : ""}`}
-                        >Sat</span>
-
-                        <span 
-                        
-                            onClick={() => {
-
-                                if(days.includes('Sun')) {
-                                    
-                                    const cleanDays = days.filter(d => d !== 'Sun')
-                                
-                                    setDays(cleanDays);
-                                
-                                } else {
-
-                                    setDays([...days, "Sun"]);
-
-                                };
-
-                            }}
-                        
-                            className={`${days.includes('Sun') ? 'border-[var(--light-accent)]' : ""}`}
-                        >Sun</span>
-
                     </div>
                 </section>
                 
                 <section className={`start-end-section ${days.length === 0 && "hidden"}`}>
                     <input type="date" value={today} className="when-to-when text-[#5F5F5F]" disabled/>
                     <i className="bi bi-caret-right"></i>
-                    <input type="date" className="when-to-when" min={today} onChange={(e) => setEndDate(e.target.value)}/>
+                    <input type="date" className="when-to-when" value={endDate} min={today} onChange={(e) => setEndDate(e.target.value)}/>
                 </section>
 
                 <section className="reminder-section">

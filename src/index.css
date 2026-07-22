@@ -663,7 +663,8 @@ body {
       md:text-xl;
 
       i {
-        @apply text-[#5F5F5F] cursor-pointer
+        @apply text-[#5F5F5F] cursor-pointer transition duration-300 ease-in-out
+        first:hover:text-[var(--light-accent)]
       }
 
       input {
