@@ -62,17 +62,7 @@ function WelcomeBack() {
         return () => clearInterval(timer);
     }, [emailError])
 
-    useEffect(() => {
-        
-        if (!alertVisibility) return;
-
-        const timer = setInterval(() => {
-            setAlertVisibility(false);
-        }, 5000)
-
-        return () => clearInterval(timer);
-    }, [alertVisibility])
-
+    
     useEffect(() => {
         
         if (!hiddenPass) return;

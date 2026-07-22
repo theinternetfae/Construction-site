@@ -4,9 +4,7 @@ export function getTaskList() {
     return taskList;
 }
 
-export function setTaskList() {
-
-    const taskList = [];
+export function saveTaskList(taskList) {
 
     localStorage.setItem("tasks", JSON.stringify(taskList));
 

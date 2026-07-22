@@ -72,19 +72,6 @@ function Welcome() {
         return () => clearInterval(timer);
     }, [hiddenPass])
 
-    useEffect(() => {
-        
-        if (!alertVisibility) return;
-
-        const timer = setInterval(() => {
-            setAlertVisibility(false);
-        }, 5000)
-
-        return () => clearInterval(timer);
-
-    }, [alertVisibility])
-
-
 
     function signUp(e) {
 

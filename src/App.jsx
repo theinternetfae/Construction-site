@@ -31,7 +31,7 @@ function App() {
 
   return (
     
-    <TaskContext.Provider value={{taskList}}>
+    <TaskContext.Provider value={{taskList, setTaskList}}>
 
       <UserContext.Provider value={{user, setIsUser, verified, isVerified}}>
 

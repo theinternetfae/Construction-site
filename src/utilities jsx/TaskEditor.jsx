@@ -1,10 +1,15 @@
 import { createPortal } from "react-dom";
 import EmojiPicker from "./Emoji.jsx";
 import ColorPicker from "./Colors.jsx";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { formatDate, lessThanTen } from "../js files/Utilities.js";
+import { TaskContext } from "../js files/contexts.js";
+import { saveTaskList } from "../js files/Storage.js";
+import Alert from "./Alert.jsx";
 
 function TaskEditor({exit}) {
+
+    const {taskList, setTaskList} = useContext(TaskContext);
 
     const today = formatDate(Date.now());
 
@@ -16,7 +21,7 @@ function TaskEditor({exit}) {
 
     const [emoji, setEmoji] = useState('');
     const [name, setName] = useState('');
-    const [color, setColor] = useState('');
+    const [color, setColor] = useState('#2563EB');
     const [days, setDays] = useState([]);
     const [endDate, setEndDate] = useState(null);
     const [reminder, setReminder] = useState(false);
@@ -28,24 +33,35 @@ function TaskEditor({exit}) {
     const [priority, setPriority] = useState(false);
     const [completed, setCompleted] = useState(false);
 
+    const [alert, setAlert] = useState(false);
 
     function createTask() {
 
-        const reminderTime = `${reminderHour}:${reminderMinutes} ${meridiem}`
+        if(!emoji || !name) {
+            setAlert(true);
+            return;
+        };
+
+        const reminderTime = !reminder ? null : `${reminderHour}:${reminderMinutes} ${meridiem}`
 
         const task = {
             emoji,
             name,
             color,
             days,
-            startDate: today,
+            startDate: days.length === 0 ? null : today,
             endDate,
             reminderTime,
             priority,
             completed
         }
 
+        const newTaskList = [...taskList, task];
+        setTaskList(newTaskList);
+        saveTaskList(newTaskList);
+        exit();
         console.log(task);
+
     }
 
     return createPortal( 
@@ -295,6 +311,11 @@ function TaskEditor({exit}) {
 
             </div>
         
+            {alert && <Alert
+                text={'Please fill in required fields; Name & Emoji'}
+                buttonActionOne={() => setAlert(false)}
+                buttonTextOne={'Okay'}
+            />}
         </div>,
         document.getElementById("modal-root")
     

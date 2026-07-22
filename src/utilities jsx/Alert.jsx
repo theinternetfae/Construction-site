@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import { useState, useEffect } from "react";
 
-function Alert({text, buttonText, buttonActionOne, buttonActionTwo}) {
+function Alert({text, buttonTextOne, buttonTextTwo, buttonActionOne, buttonActionTwo}) {
     
     const [scrolling, setScrolling] = useState("");
 
@@ -15,6 +15,14 @@ function Alert({text, buttonText, buttonActionOne, buttonActionTwo}) {
     
     }, [])
 
+    useEffect(() => {
+        const exit = setTimeout(() => {
+            buttonActionOne();
+        }, 5000)
+
+        return () => clearTimeout(exit);
+    }, [])
+
 
     return createPortal( 
         
@@ -26,9 +34,9 @@ function Alert({text, buttonText, buttonActionOne, buttonActionTwo}) {
             
                 <div className="choices">
     
-                    <button onClick={buttonActionOne}>{buttonText}</button>
+                    <button onClick={buttonActionOne}>{buttonTextOne}</button>
                 
-                    {buttonActionTwo && <button>Test button</button>}
+                    {buttonActionTwo && <button onClick={buttonActionTwo}>{buttonTextTwo}</button>}
 
                 </div>
 
