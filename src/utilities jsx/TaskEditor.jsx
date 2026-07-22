@@ -49,7 +49,10 @@ function TaskEditor({exit, task}) {
 
         const reminderTime = !reminder ? null : `${reminderHour}:${reminderMinutes} ${meridiem}`
 
+        const uniqueId = crypto.randomUUID()
+
         const newTask = {
+            uniqueId,
             emoji,
             name,
             color,
@@ -67,6 +70,32 @@ function TaskEditor({exit, task}) {
         exit();
         console.log(newTask);
 
+    }
+
+    function editTask() {
+        if(!emoji || !name) {
+            setAlert(true);
+            return;
+        };
+
+        const reminderTime = !reminder ? null : `${reminderHour}:${reminderMinutes} ${meridiem}`
+
+        const editedTaskList = taskList.map(t => t.uniqueId === task.uniqueId ? {
+            ...task,
+            emoji,
+            name,
+            color,
+            days,
+            endDate,
+            reminderTime,
+            priority,
+            completed
+        } : t)
+
+        
+        setTaskList(editedTaskList);
+        saveTaskList(editedTaskList);
+        exit();
     }
 
     return createPortal( 
@@ -122,7 +151,8 @@ function TaskEditor({exit, task}) {
 
                         {
                             daysOfWeek.map((e, i) => {
-                                return   <span 
+                                return   <span
+                                    key={i} 
                                     onClick={() => {
 
                                         if(days.includes(e)) {
@@ -152,7 +182,7 @@ function TaskEditor({exit, task}) {
                 <section className={`start-end-section ${days.length === 0 && "hidden"}`}>
                     <input type="date" value={today} className="when-to-when text-[#5F5F5F]" disabled/>
                     <i className="bi bi-caret-right"></i>
-                    <input type="date" className="when-to-when" value={endDate} min={today} onChange={(e) => setEndDate(e.target.value)}/>
+                    <input type="date" className="when-to-when" value={endDate ? endDate : today} min={today} onChange={(e) => setEndDate(e.target.value)}/>
                 </section>
 
                 <section className="reminder-section">
@@ -164,6 +194,7 @@ function TaskEditor({exit, task}) {
                 
                 <section className={`reminder-time-section ${!reminder && 'hidden'}`}>
                     <p>Set reminder</p>
+                    
                     <div className="reminder-time">
 
                         <select name="" id="" onClick={e => setReminderHour(e.target.value)}>
@@ -192,9 +223,16 @@ function TaskEditor({exit, task}) {
                         </select>
                     
                     </div>
+
                 </section>
                 
-                <button className="add-task" onClick={() => createTask()}>Add Task</button>
+                <button className="add-task" onClick={() => task ? editTask() : createTask()}>
+                   {task ? "Save changes" : "Add Task"}
+                </button>
+
+                {task && <button className="delete-task">
+                   Delete task
+                </button>}
 
             </div>
         

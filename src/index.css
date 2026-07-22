@@ -640,6 +640,10 @@ body {
       .add-task {
         @apply border border-2 p-2 rounded-lg bg-[var(--light-accent)] font-bold text-white cursor-pointer;
       }
+
+      .delete-task {
+        @apply border border-2 p-2 rounded-lg bg-[var(--red)] font-bold text-white cursor-pointer;
+      }
     }
   }
 
