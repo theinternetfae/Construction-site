@@ -649,7 +649,7 @@ body {
   }
 
   .task {
-    @apply p-3 rounded-lg bg-[#E0E0DE] shadow-sm flex justify-between items-center;
+    @apply p-3 rounded-lg bg-[#E0E0DE] shadow-sm flex justify-between items-center transition duration-300 ease-in-out;
 
     .task-labels {
       @apply flex gap-3 items-center;
