@@ -22,37 +22,37 @@ function EmojiPicker({pickEmoji, close}) {
             <div className="emoji-labels">
                 
                 <i 
-                    className={`bi bi-building ${emojiCategory === 'work' ? "text-[var(--light-accent)]" : ''}`} 
+                    className={`bi bi-building ${emojiCategory === 'work' ? "text-[var(--accent)]" : ''}`} 
                     onClick={() => setEmojiCategory('work')} 
                     title="Work"    
                 ></i>
                 
                 <i 
-                    className={`bi bi-house ${emojiCategory === 'home' ? "text-[var(--light-accent)]" : ''}`}
+                    className={`bi bi-house ${emojiCategory === 'home' ? "text-[var(--accent)]" : ''}`}
                     onClick={() => setEmojiCategory('home')} 
                     title="Home"
                 ></i>
                 
                 <i 
-                    className={`bi bi-heart-pulse ${emojiCategory === 'health' ? "text-[var(--light-accent)]" : ''}`} 
+                    className={`bi bi-heart-pulse ${emojiCategory === 'health' ? "text-[var(--accent)]" : ''}`} 
                     onClick={() => setEmojiCategory('health')} 
                     title="Health"
                 ></i>
                 
                 <i 
-                    className={`bi bi-star ${emojiCategory === 'important' ? "text-[var(--light-accent)]" : ''}`}
+                    className={`bi bi-star ${emojiCategory === 'important' ? "text-[var(--accent)]" : ''}`}
                     onClick={() => setEmojiCategory('important')} 
                     title="Important"
                 ></i>
                 
                 <i 
-                    className={`bi bi-chat ${emojiCategory === 'social' ? "text-[var(--light-accent)]" : ''}`} 
+                    className={`bi bi-chat ${emojiCategory === 'social' ? "text-[var(--accent)]" : ''}`} 
                     onClick={() => setEmojiCategory('social')} 
                     title="Social"
                 ></i>
                 
                 <i 
-                    className={`bi bi-graph-up-arrow ${emojiCategory === 'growth' ? "text-[var(--light-accent)]" : ''}`} 
+                    className={`bi bi-graph-up-arrow ${emojiCategory === 'growth' ? "text-[var(--accent)]" : ''}`} 
                     onClick={() => setEmojiCategory('growth')} 
                     title="Growth"
                 ></i>

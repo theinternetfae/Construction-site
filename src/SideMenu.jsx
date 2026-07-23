@@ -25,12 +25,12 @@ function SideMenu() {
 
                 <section className="nav-sect-sm">
                 
-                    <Link to={"home"} className={`navigation ${location.pathname === '/test/home' ? 'bg-[#BFDBFE] text-[var(--light-accent)] flex' : ""}`}>
+                    <Link to={"home"} className={`navigation ${location.pathname === '/test/home' ? 'bg-[#BFDBFE] text-[var(--accent)] flex' : ""}`}>
                         <i className="bi bi-house-door-fill"></i>
                         <p className={`${location.pathname === '/test/home' ? 'block' : ""}`}>Home</p>
                     </Link>
 
-                    <Link to={"stats"} className={`navigation ${location.pathname === '/test/stats' ? 'bg-[#BFDBFE] text-[var(--light-accent)] flex' : ""}`}>
+                    <Link to={"stats"} className={`navigation ${location.pathname === '/test/stats' ? 'bg-[#BFDBFE] text-[var(--accent)] flex' : ""}`}>
                         <i className="bi bi-bar-chart"></i>
                         <p className={`${location.pathname === '/test/stats' ? 'block' : ""}`}>Stats</p>
                     </Link>
@@ -70,22 +70,22 @@ function SideMenu() {
                 <section className="nav-sect">
                     
 
-                    <Link to={"home"} className={`navigation ${location.pathname === '/test/home' ? 'bg-[#BFDBFE] text-[var(--light-accent)]' : ""}`}>
+                    <Link to={"home"} className={`navigation ${location.pathname === '/test/home' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
                         <i className="bi bi-house-door-fill"></i>
                         <p>Home</p>
                     </Link>
 
-                    <Link to={"stats"} className={`navigation ${location.pathname === '/test/stats' ? 'bg-[#BFDBFE] text-[var(--light-accent)]' : ""}`}>
+                    <Link to={"stats"} className={`navigation ${location.pathname === '/test/stats' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
                         <i className="bi bi-bar-chart"></i>
                         <p>Stats</p>
                     </Link>
                     
-                    <div className={`navigation ${location.pathname === '/test/history' ? 'bg-[#BFDBFE] text-[var(--light-accent)]' : ""}`}>
+                    <div className={`navigation ${location.pathname === '/test/history' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
                         <i className="bi bi-clock-history"></i>
                         <p>History</p>
                     </div>
                     
-                    <div className={`navigation ${location.pathname === '/test/settings' ? 'bg-[#BFDBFE] text-[var(--light-accent)]' : ""}`}>
+                    <div className={`navigation ${location.pathname === '/test/settings' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
                         <i className="bi bi-gear"></i>
                         <p>Settings</p>
                     </div>

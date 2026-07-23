@@ -3,17 +3,23 @@
 :root {
   /* color-scheme: light dark; */
 
+  --accent: #2563EB; 
+  --muted-accent: #BFDBFE;
+  --logo: url(images/optima-logo-light.png);
+
   --light-bgcolor: #E0E0DE;
   --light-text: #000000;
-  --light-accent: #2563EB; 
+  --mainbd-bg: #F9FAFB;
+  --muted-text: #5F5F5F;
+  --light-muted-text: #A5A5A5;
   --light-img: url(images/optima-productivity-backdrop.jpg);
-  --light-logo: url(images/optima-logo-light.png);
 
   --dark-bgcolor: #171717;
   --dark-text: #FFFFFF;
-  --dark-accent: #60A5FA;
   --dark-img: url(images/optima-productivity-backdrop-black.jpg);
-  --dark-logo: url(images/optima-logo-dark.png);
+
+
+  --faded-border: #FFFFFF25;
 
   --red: #d00018;
   --yellow: #FFB81C;
@@ -23,7 +29,7 @@
 
 body {
   cursor: default;
-  caret-color: light-dark(var(--light-accent), var(--dark-accent));  
+  caret-color: light-dark(var(--accent));  
   color: light-dark(var(--light-text), var(--dark-text));
 }
 
@@ -36,37 +42,35 @@ body {
       dark:[background-image:var(--dark-img)];
   
     .welcome-body {
-      @apply border border-2 border-[#FFFFFF25] w-[95%] bg-[#FFFFFF25] backdrop-blur-[10px] rounded-xl p-5 flex;
+      @apply border border-2 border-[var(--faded-border)] w-[95%] bg-[var(--faded-border)] backdrop-blur-[10px] rounded-xl p-5 flex;
 
       .welcome-body-sect-one {
         @apply hidden
         md:flex md:flex-col md:items-start md:gap-10 md:p-5 md:w-[50%];
 
         .logo-box {
-          @apply h-20 w-[240px] [background-image:var(--light-logo)] bg-center bg-no-repeat bg-cover
-          dark:[background-image:var(--dark-logo)];
+          @apply h-20 w-[240px] [background-image:var(--logo)] bg-center bg-no-repeat bg-cover;
         }
 
         h1 {
           @apply text-3xl;
           
           span {
-            @apply text-[var(--light-accent)] font-bold
-            dark:text-[var(--dark-accent)];
+            @apply text-[var(--accent)] font-bold
           }
         }
 
         h2 {
-          @apply text-[#3A3A3A] text-lg
-          dark:text-[#969696];
+          @apply text-[var(--light-muted-text)] text-lg
+          dark:text-[var(--muted-text)];
         }
 
         .benefit {
           @apply flex gap-5 items-center;
 
           i {
-            @apply p-3 text-[var(--light-accent)] bg-[var(--light-bgcolor)] rounded-xl shadow-2xl
-            dark:bg-[var(--dark-bgcolor)] dark:text-[var(--dark-accent)];
+            @apply p-3 text-[var(--accent)] bg-[var(--light-bgcolor)] rounded-xl shadow-2xl
+            dark:bg-[var(--dark-bgcolor)];
           }
 
           .benefit-info {
@@ -81,7 +85,7 @@ body {
       }
 
       .welcome-body-sect-two {
-        @apply border border-2 border-[#FFFFFF25] bg-[var(--light-bgcolor)] rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
+        @apply border border-2 border-[var(--faded-border)] bg-[var(--light-bgcolor)] rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
         md:w-[50%] md:p-10
         lg:p-15
         dark:bg-[var(--dark-bgcolor)];
@@ -95,7 +99,7 @@ body {
           }
 
           h3 {
-            @apply text-[#969696] text-sm
+            @apply text-[var(--muted-text)] text-sm
             md:text-base;
           }
         }
@@ -109,11 +113,11 @@ body {
           md:text-base;
 
           .actual-input {
-            @apply border border-2 border-[#FFFFFF25] p-2 rounded-xl focus:outline-none shadow-sm;
+            @apply border border-2 border-[var(--faded-border)] p-2 rounded-xl focus:outline-none shadow-sm;
           }
 
           .password-input {
-            @apply border border-2 border-[#FFFFFF25] p-2 rounded-xl flex justify-between shadow-sm;
+            @apply border border-2 border-[var(--faded-border)] p-2 rounded-xl flex justify-between shadow-sm;
 
             input {
               @apply w-full focus:outline-none; 
@@ -125,8 +129,7 @@ body {
           }
 
           .submit-input {
-            @apply border border-2 border-[#FFFFFF25] bg-[var(--light-accent)] text-white shadow-xl p-2 rounded-lg flex justify-between cursor-pointer
-            dark:bg-[var(--dark-accent)];
+            @apply border border-2 border-[var(--faded-border)] bg-[var(--accent)] text-white shadow-xl p-2 rounded-lg flex justify-between cursor-pointer;
           }
         }
 
@@ -135,12 +138,11 @@ body {
           md:text-base;
 
           span {
-            @apply text-[var(--light-accent)] cursor-pointer
-            dark:text-[var(--dark-accent)];
+            @apply text-[var(--accent)] cursor-pointer;
           }
           
           button {
-            @apply border border-2 border-[#FFFFFF25] bg-[#FFFFFF25] cursor-pointer p-2 flex gap-2 rounded-xl shadow-xl;
+            @apply border border-2 border-[var(--faded-border)] bg-[var(--faded-border)] cursor-pointer p-2 flex gap-2 rounded-xl shadow-xl;
           }
         }
 
@@ -158,37 +160,35 @@ body {
       dark:[background-image:var(--dark-img)];
   
     .welcome-body {
-      @apply border border-2 border-[#FFFFFF25] w-[95%] bg-[#FFFFFF25] backdrop-blur-[10px] rounded-xl p-5 flex;
+      @apply border border-2 border-[var(--faded-border)] w-[95%] bg-[var(--faded-border)] backdrop-blur-[10px] rounded-xl p-5 flex;
 
       .welcome-body-sect-one {
         @apply hidden
         md:flex md:flex-col md:items-start md:gap-10 md:p-5 md:w-[50%];
 
         .logo-box {
-          @apply h-20 w-[240px] [background-image:var(--light-logo)] bg-center bg-no-repeat bg-cover
-          dark:[background-image:var(--dark-logo)];
+          @apply h-20 w-[240px] [background-image:var(--logo)] bg-center bg-no-repeat bg-cover;
         }
 
         h1 {
           @apply text-3xl;
           
           span {
-            @apply text-[var(--light-accent)] font-bold
-            dark:text-[var(--dark-accent)];
+            @apply text-[var(--accent)] font-bold;
           }
         }
 
         h2 {
-          @apply text-[#3A3A3A] text-lg
-          dark:text-[#969696];
+          @apply text-[var(--light-muted-text)] text-lg
+          dark:text-[var(--muted-text)];
         }
 
         .benefit {
           @apply flex gap-5 items-center;
 
           i {
-            @apply p-3 text-[var(--light-accent)] bg-[var(--light-bgcolor)] rounded-xl shadow-2xl
-            dark:bg-[var(--dark-bgcolor)] dark:text-[var(--dark-accent)];
+            @apply p-3 text-[var(--accent)] bg-[var(--light-bgcolor)] rounded-xl shadow-2xl
+            dark:bg-[var(--dark-bgcolor)];
           }
 
           .benefit-info {
@@ -203,7 +203,7 @@ body {
       }
 
       .welcome-body-sect-two {
-        @apply border border-2 border-[#FFFFFF25] bg-[var(--light-bgcolor)] rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
+        @apply border border-2 border-[var(--faded-border)] bg-[var(--light-bgcolor)] rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
         md:w-[50%] md:p-10
         lg:p-15
         dark:bg-[var(--dark-bgcolor)];
@@ -217,7 +217,7 @@ body {
           }
 
           h3 {
-            @apply text-[#969696] text-sm
+            @apply text-[var(--muted-text)] text-sm
             md:text-base;
           }
         }
@@ -231,11 +231,11 @@ body {
           md:text-base;
 
           .actual-input {
-            @apply border border-2 border-[#FFFFFF25] p-2 rounded-xl focus:outline-none shadow-sm;
+            @apply border border-2 border-[var(--faded-border)] p-2 rounded-xl focus:outline-none shadow-sm;
           }
 
           .password-input {
-            @apply border border-2 border-[#FFFFFF25] p-2 rounded-xl flex justify-between shadow-sm;
+            @apply border border-2 border-[var(--faded-border)] p-2 rounded-xl flex justify-between shadow-sm;
 
             input {
               @apply w-full focus:outline-none; 
@@ -247,8 +247,8 @@ body {
           }
 
           .submit-input {
-            @apply border border-2 border-[#FFFFFF25] bg-[var(--light-accent)] text-white shadow-xl p-2 rounded-lg flex justify-between cursor-pointer
-            dark:bg-[var(--dark-accent)];
+            @apply border border-2 border-[var(--faded-border)] bg-[var(--accent)] text-white shadow-xl p-2 rounded-lg flex justify-between cursor-pointer
+            dark:bg-[var(--accent)];
           }
         }
 
@@ -257,12 +257,11 @@ body {
           md:text-base;
 
           span {
-            @apply text-[var(--light-accent)] cursor-pointer
-            dark:text-[var(--dark-accent)];
+            @apply text-[var(--accent)] cursor-pointer;
           }
           
           button {
-            @apply border border-2 border-[#FFFFFF25] bg-[#FFFFFF25] cursor-pointer p-2 flex gap-2 rounded-xl shadow-xl;
+            @apply border border-2 border-[var(--faded-border)] bg-[var(--faded-border)] cursor-pointer p-2 flex gap-2 rounded-xl shadow-xl;
           }
         }
 
@@ -272,11 +271,11 @@ body {
   }
 
   .overall-main-body {
-    @apply h-[100vh] w-[100vw] flex bg-[#E0E0DE] flex-col relative
+    @apply h-[100vh] w-[100vw] flex bg-[var(--light-bgcolor)] flex-col relative
     lg:flex-row; 
 
     nav {
-      @apply px-4 py-4 w-full bottom-0 rounded-[10px_10px_0px_0px] bg-[#F9FAFB] absolute
+      @apply px-4 py-4 w-full bottom-0 rounded-[10px_10px_0px_0px] bg-[var(--mainbd-bg)] absolute
       lg:static lg:h-full lg:w-[20vw] lg:rounded-[0px_10px_10px_0px] lg:px-5 lg:py-10;
 
       .sm-nav {
@@ -298,11 +297,11 @@ body {
         }
 
         .quirk-sect-sm {
-          @apply p-3 shadow-sm rounded-lg relative text-white bg-[var(--light-accent)] font-bold
+          @apply p-3 shadow-sm rounded-lg relative text-white bg-[var(--accent)] font-bold
           md:p-5;
 
           .quirk-info-sm {
-            @apply text-sm absolute top-[-60px] right-[-12px] rounded-lg bg-[#F9FAFB] shadow-md w-40 text-[var(--light-accent)] text-center hidden
+            @apply text-sm absolute top-[-60px] right-[-12px] rounded-lg bg-[var(--mainbd-bg)] shadow-md w-40 text-[var(--accent)] text-center hidden
             md:text-base md:top-[-70px];
           }
         }
@@ -313,20 +312,20 @@ body {
         lg:flex;
           
         .logo-sect {
-          @apply flex text-3xl gap-1 text-[var(--light-accent)];
+          @apply flex text-3xl gap-1 text-[var(--accent)];
         }
 
         .nav-sect {
           @apply flex flex-col gap-5 mt-10; 
 
           .navigation {
-            @apply border border-2 border-transparent shadow-xs cursor-pointer flex gap-2 p-3 rounded-lg text-[#5F5F5F]
-            duration-300 ease-in-out hover:bg-[#BFDBFE];
+            @apply border border-2 border-transparent shadow-xs cursor-pointer flex gap-2 p-3 rounded-lg text-[var(--muted-text)]
+            duration-300 ease-in-out hover:bg-[var(--muted-accent)] border;
           }
         }
 
         .quirk-sect {
-          @apply border p-2 rounded-lg shadow-lg flex flex-col gap-2 text-[#5F5F5F] mt-auto;
+          @apply border p-2 rounded-lg shadow-lg flex flex-col gap-2 text-[var(--muted-text)] mt-auto;
 
           .level-info {
             @apply flex justify-between; 
@@ -340,8 +339,8 @@ body {
             @apply h-8 rounded-lg flex justify-between shadow-xl;
 
             span {
-              @apply w-[33%] bg-[#A5A5A5]
-              first:rounded-l-lg first:bg-[var(--light-accent)] last:rounded-r-lg;
+              @apply w-[33%] bg-[var(--light-muted-text)]
+              first:rounded-l-lg first:bg-[var(--accent)] last:rounded-r-lg;
             }
           }
         }
@@ -362,7 +361,7 @@ body {
           @apply flex justify-between rounded-lg items-center;
 
           .task-groups {
-            @apply bg-[#F9FAFB] text-sm p-2 rounded-lg shadow-sm
+            @apply bg-[var(--mainbd-bg)] text-sm p-2 rounded-lg shadow-sm
             focus:outline-none
             md:text-base; 
           }
@@ -373,35 +372,35 @@ body {
           }
 
           i {
-            @apply cursor-pointer text-lg text-[#5F5F5F] transition duration-300 ease-in-out
-            hover:text-[var(--light-accent)]
+            @apply cursor-pointer text-lg text-[var(--muted-text)] transition duration-300 ease-in-out
+            hover:text-[var(--accent)]
             md:text-xl;
           }
         }
 
         .date-slider-cont {
-          @apply flex items-center justify-center p-5 bg-[#F9FAFB] rounded-lg shadow-lg;
+          @apply flex items-center justify-center p-5 bg-[var(--mainbd-bg)] rounded-lg shadow-lg;
 
           .date-slider {
             @apply grid grid-cols-7 place-items-center w-full;
 
             .date {
               @apply w-11 p-1 text-sm flex flex-col gap-4 justify-center items-center rounded-lg cursor-pointer 
-              duration-300 ease-in-out hover:bg-[#BFDBFE]
-              first:bg-[#BFDBFE]
+              duration-300 ease-in-out hover:bg-[var(--muted-accent)]
+              first:bg-[var(--muted-accent)]
               md:p-2 md:w-20 md:text-base;
 
               .date-day {
-                @apply text-xs font-bold text-[#A5A5A5]
+                @apply text-xs font-bold text-[var(--light-muted-text)]
                 md:text-sm;
               }
 
               .first {
-                @apply text-[var(--light-accent)];
+                @apply text-[var(--accent)];
               }
 
               .date-num-cont {
-                @apply border border-3 border-[#A5A5A5] p-1 shadow-sm text-center rounded-full;              
+                @apply border border-3 border-[var(--light-muted-text)] p-1 shadow-sm text-center rounded-full;              
 
                 .date-num {
                   @apply p-2 rounded-full text-center font-bold
@@ -409,7 +408,7 @@ body {
                 }
 
                 .first {
-                  @apply bg-[var(--light-accent)] text-white
+                  @apply bg-[var(--accent)] text-white
                 }
               }
  
@@ -418,7 +417,7 @@ body {
         }
 
         .task-display {
-          @apply p-3 rounded-lg shadow-lg bg-[#F9FAFB] flex flex-col gap-5
+          @apply p-3 rounded-lg shadow-lg bg-[var(--mainbd-bg)] flex flex-col gap-5
           md:p-5;
 
           p {
@@ -437,24 +436,24 @@ body {
           @apply flex justify-between items-center;
 
           i {
-            @apply text-lg text-[#5F5F5F] cursor-pointer transition duration-300 ease-in-out
-            hover:text-[var(--light-accent)]
+            @apply text-lg text-[var(--muted-text)] cursor-pointer transition duration-300 ease-in-out
+            hover:text-[var(--accent)]
             lg:text-xl;
           }
 
           select {
-            @apply p-2 text-sm bg-[#F9FAFB] rounded-lg shadow-lg 
+            @apply p-2 text-sm bg-[var(--mainbd-bg)] rounded-lg shadow-lg 
             focus:outline-none
             lg:p-3 lg:text-base;
           }
         }
 
         .stats-tasks-cont {
-          @apply grid grid-cols-7 place-items-center w-full bg-[#F9FAFB] p-5 rounded-lg shadow-lg;
+          @apply grid grid-cols-7 place-items-center w-full bg-[var(--mainbd-bg)] p-5 rounded-lg shadow-lg;
 
           .stats-task {
             @apply p-2 border border-2 border-transparent rounded-lg shadow-sm cursor-pointer transition duration-300 ease-in-out flex gap-2
-            first:border-[var(--light-accent)] hover:shadow-xl;
+            first:border-[var(--accent)] hover:shadow-xl;
 
             .stats-task-title {
               @apply hidden;
@@ -469,9 +468,9 @@ body {
     @apply bg-black/1 backdrop-blur-sm fixed top-0 z-50 w-full h-full flex justify-center;
 
     .alert-box {
-      @apply border border-2 border-[var(--light-accent)] mb-auto p-5 flex flex-col gap-5 bg-[var(--light-bgcolor)] text-[var(--light-text)] rounded-b-xl text-sm
+      @apply border border-2 border-[var(--accent)] mb-auto p-5 flex flex-col gap-5 bg-[var(--light-bgcolor)] text-[var(--light-text)] rounded-b-xl text-sm
       translate-y-[-30rem] transition ease-in duration-800
-      /* dark:border-[var(--dark-accent)] dark:bg-[var(--dark-bgcolor)] dark:text-[var(--dark-text)] */
+      /* dark:bg-[var(--dark-bgcolor)] dark:text-[var(--dark-text)] */
       md:text-base;
 
       p {
@@ -482,8 +481,7 @@ body {
         @apply flex gap-5 justify-center;
 
         button {
-          @apply cursor-pointer p-2 w-30 rounded-lg font-bold bg-[var(--light-accent)] shadow-lg text-sm text-white
-          /* dark:bg-[var(--dark-accent)] */
+          @apply cursor-pointer p-2 w-30 rounded-lg font-bold bg-[var(--accent)] shadow-lg text-sm text-white
           md:text-base;
         }
       }
@@ -495,13 +493,13 @@ body {
     @apply bg-black/1 backdrop-blur-sm fixed top-0 z-50 w-full h-full flex flex-col justify-center p-5;
 
     .editor-cont {
-      @apply m-auto w-full border border-2 border-[var(--light-accent)] flex flex-col p-3 gap-5 rounded-lg bg-[#F9FAFB] shadow-lg
+      @apply m-auto w-full border border-2 border-[var(--accent)] flex flex-col p-3 gap-5 rounded-lg bg-[var(--mainbd-bg)] shadow-lg
       md:p-5 md:w-[90%]
       lg:w-[50%];
 
       .exit-editor {
-        @apply ml-auto text-lg cursor-pointer text-[#5F5F5F] transition duration-300 ease-in-out text-base
-        hover:text-[var(--light-accent)]
+        @apply ml-auto text-lg cursor-pointer text-[var(--muted-text)] transition duration-300 ease-in-out text-base
+        hover:text-[var(--accent)]
         md:text-xl; 
       }
 
@@ -509,24 +507,24 @@ body {
         @apply rounded-lg flex items-center justify-center flex flex-col gap-3 relative; 
 
         .emoji-box {
-          @apply p-5 bg-[#E0E0DE] shadow-lg rounded-lg cursor-pointer text-4xl;
+          @apply p-5 bg-[var(--light-bgcolor)] shadow-lg rounded-lg cursor-pointer text-4xl;
         }
 
         .emoji-picker {
-          @apply border border-2 mt-[60%] absolute p-3 rounded-lg flex flex-col gap-2 bg-[#F9FAFB] z-50 border-[var(--light-accent)]
+          @apply border border-2 mt-[60%] absolute p-3 rounded-lg flex flex-col gap-2 bg-[var(--mainbd-bg)] z-50 border-[var(--accent)]
           md:mt-[25%];
 
           .emoji-labels {
-            @apply bg-[#E0E0DE] rounded-lg p-2 flex gap-6 text-lg;
+            @apply bg-[var(--light-bgcolor)] rounded-lg p-2 flex gap-6 text-lg;
 
             i {
               @apply cursor-pointer transition duration-300 ease-in-out
-              hover:text-[var(--light-accent)];
+              hover:text-[var(--accent)];
             }
           }
 
           .emoji-holder {
-            @apply p-2 rounded-lg bg-[#E0E0DE] grid grid-cols-6 place-items-center w-full;
+            @apply p-2 rounded-lg bg-[var(--light-bgcolor)] grid grid-cols-6 place-items-center w-full;
 
             span {
               @apply cursor-pointer
@@ -544,7 +542,7 @@ body {
       }
 
       .color-section {
-        @apply p-4 flex flex-col rounded-lg bg-[#E0E0DE] relative;    
+        @apply p-4 flex flex-col rounded-lg bg-[var(--light-bgcolor)] relative;    
 
         .color-controls {
           @apply flex justify-between;
@@ -556,14 +554,14 @@ body {
         }
 
         .color-box {
-          @apply cursor-pointer bg-[#5F5F5F] w-20 rounded-lg inset-shadow-sm;
+          @apply cursor-pointer bg-[var(--muted-text)] w-20 rounded-lg inset-shadow-sm;
         }
 
         .color-picker {
-          @apply absolute right-3 top-10 p-3 rounded-lg flex flex-col gap-2 bg-[#F9FAFB] border border-2 border-[var(--light-accent)];
+          @apply absolute right-3 top-10 p-3 rounded-lg flex flex-col gap-2 bg-[var(--mainbd-bg)] border border-2 border-[var(--accent)];
 
           .color-holder {
-            @apply bg-[#E0E0DE] rounded-lg p-2 flex gap-6 text-lg grid grid-cols-6 place-items-center;
+            @apply bg-[var(--light-bgcolor)] rounded-lg p-2 flex gap-6 text-lg grid grid-cols-6 place-items-center;
             
             span {
               @apply border border-2 border-transparent p-2 rounded-full cursor-pointer;
@@ -573,7 +571,7 @@ body {
       }
 
       .days-section {
-        @apply rounded-lg p-4 bg-[#E0E0DE] flex flex-col gap-4;
+        @apply rounded-lg p-4 bg-[var(--light-bgcolor)] flex flex-col gap-4;
 
         p {
           @apply font-bold 
@@ -585,27 +583,27 @@ body {
           md:gap-0;
 
           span {
-            @apply bg-[#F9FAFB] text-sm border border-2 p-[2px] border-transparent rounded-lg transition shadow-lg cursor-pointer duration-300 ease-in-out
-            hover:border-[var(--light-accent)]
+            @apply bg-[var(--mainbd-bg)] text-sm border border-2 p-[2px] border-transparent rounded-lg transition shadow-lg cursor-pointer duration-300 ease-in-out
+            hover:border-[var(--accent)]
             md:p-3 md:text-base; 
           }
         }
       }
 
       .start-end-section {
-        @apply rounded-lg p-4 bg-[#E0E0DE] flex justify-around items-center;
+        @apply rounded-lg p-4 bg-[var(--light-bgcolor)] flex justify-around items-center;
 
         input {
-          @apply p-2 rounded-lg bg-[#F9FAFB] shadow-lg
+          @apply p-2 rounded-lg bg-[var(--mainbd-bg)] shadow-lg
         }
 
         i {
-          @apply text-[var(--light-accent)]
+          @apply text-[var(--accent)]
         }
       }
 
       .reminder-section {
-        @apply rounded-lg p-4 bg-[#E0E0DE] flex justify-between;
+        @apply rounded-lg p-4 bg-[var(--light-bgcolor)] flex justify-between;
 
         p {
           @apply font-bold 
@@ -613,16 +611,16 @@ body {
         }
 
         .reminder-toggle {
-          @apply w-20 rounded-lg bg-[#5F5F5F] inset-shadow-sm flex items-center p-1 cursor-pointer; 
+          @apply w-20 rounded-lg bg-[var(--muted-text)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
 
           .reminder-toggle-slider {
-            @apply h-full w-5 rounded-full bg-[#E0E0DE] shadow-lg transition duration-500 ease-in-out;
+            @apply h-full w-5 rounded-full bg-[var(--light-bgcolor)] shadow-lg transition duration-500 ease-in-out;
           }
         }
       }
 
       .reminder-time-section {
-        @apply rounded-lg p-4 bg-[#E0E0DE] flex justify-between;
+        @apply rounded-lg p-4 bg-[var(--light-bgcolor)] flex justify-between;
       
         p {
           @apply font-bold 
@@ -633,13 +631,13 @@ body {
           @apply flex gap-2
         }
         select {
-          @apply p-1 bg-[#F9FAFB] rounded-lg shadow-lg
+          @apply p-1 bg-[var(--mainbd-bg)] rounded-lg shadow-lg
           focus:outline-none;
         }
       }
 
       .add-task {
-        @apply border border-2 p-2 rounded-lg bg-[var(--light-accent)] font-bold text-white cursor-pointer;
+        @apply border border-2 p-2 rounded-lg bg-[var(--accent)] font-bold text-white cursor-pointer;
       }
 
       .delete-task {
@@ -649,13 +647,13 @@ body {
   }
 
   .task {
-    @apply p-3 rounded-lg bg-[#E0E0DE] shadow-sm flex justify-between items-center transition duration-300 ease-in-out;
+    @apply p-3 rounded-lg bg-[var(--light-bgcolor)] shadow-sm flex justify-between items-center transition duration-300 ease-in-out;
 
     .task-labels {
       @apply flex gap-3 items-center;
 
       .emoji-box {
-        @apply p-2 rounded-lg text-lg bg-[#F9FAFB];
+        @apply p-2 rounded-lg text-lg bg-[var(--mainbd-bg)];
       }
 
       p {
@@ -668,8 +666,8 @@ body {
       md:text-xl;
 
       i {
-        @apply text-[#5F5F5F] cursor-pointer transition duration-300 ease-in-out
-        first:hover:text-[var(--light-accent)];
+        @apply text-[var(--muted-text)] cursor-pointer transition duration-300 ease-in-out
+        first:hover:text-[var(--accent)];
       }
 
       .bi-star-fill {
@@ -677,7 +675,7 @@ body {
       }
 
       input {
-        @apply border border-2 border-black w-4 h-4 cursor-pointer accent-[var(--light-accent)]
+        @apply border border-2 border-black w-4 h-4 cursor-pointer accent-[var(--accent)]
         focus:outline-none;
       }
     }

@@ -12,7 +12,7 @@ function Task({taskInfo}) {
 
     return ( 
         <div className={`task ${taskInfo.completed ? 'text-white' : ''}`} style={{
-            backgroundColor: taskInfo.completed ? `${taskInfo.color ? taskInfo.color : 'var(--light-accent)'}` : ''
+            backgroundColor: taskInfo.completed ? `${taskInfo.color ? taskInfo.color : 'var(--accent)'}` : ''
         }}>
             
             <section className="task-labels">
@@ -21,7 +21,7 @@ function Task({taskInfo}) {
             </section>
             
             <section className="task-updates">
-                <i className={`bi bi-pencil ${taskInfo.completed ? 'text-white hover:text-[var(--light-accent)]' : ''}`} title="Edit" onClick={() => setEditing(true)}></i>
+                <i className={`bi bi-pencil ${taskInfo.completed ? 'text-white hover:text-[var(--accent)]' : ''}`} title="Edit" onClick={() => setEditing(true)}></i>
             
                 <i className={`bi bi-star-fill ${taskInfo.priority ? 'text-[var(--yellow)]' : ''}`} title="Prioritize" onClick={() => {
                     

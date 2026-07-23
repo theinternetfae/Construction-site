@@ -177,7 +177,7 @@ function TaskEditor({exit, task}) {
 
                                     }} 
                                     
-                                    className={`${days.includes(e) ? 'border-[var(--light-accent)]' : ""}`}
+                                    className={`${days.includes(e) ? 'border-[var(--accent)]' : ""}`}
                                 >{e}
                                 </span>
                             })
