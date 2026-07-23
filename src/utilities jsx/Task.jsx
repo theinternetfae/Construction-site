@@ -8,13 +8,11 @@ function Task({taskInfo}) {
     const {taskList, setTaskList} = useContext(TaskContext);
 
     const [editing, setEditing] = useState(false);
-    const [priority, setPriority] = useState(taskInfo.priority);
-    const [completed, setCompleted] = useState(taskInfo.completed);
 
 
     return ( 
-        <div className={`task ${completed ? 'text-white' : ''}`} style={{
-            backgroundColor: completed ? taskInfo.color : ''
+        <div className={`task ${taskInfo.completed ? 'text-white' : ''}`} style={{
+            backgroundColor: taskInfo.completed ? `${taskInfo.color ? taskInfo.color : 'var(--light-accent)'}` : ''
         }}>
             
             <section className="task-labels">
@@ -23,15 +21,13 @@ function Task({taskInfo}) {
             </section>
             
             <section className="task-updates">
-                <i className={`bi bi-pencil ${completed ? 'text-white hover:text-[var(--light-accent)]' : ''}`} title="Edit" onClick={() => setEditing(true)}></i>
+                <i className={`bi bi-pencil ${taskInfo.completed ? 'text-white hover:text-[var(--light-accent)]' : ''}`} title="Edit" onClick={() => setEditing(true)}></i>
             
-                <i className={`bi bi-star-fill ${priority ? 'text-[var(--yellow)]' : ''}`} title="Prioritize" onClick={() => {
-                    
-                    setPriority(!priority);
+                <i className={`bi bi-star-fill ${taskInfo.priority ? 'text-[var(--yellow)]' : ''}`} title="Prioritize" onClick={() => {
                     
                     const editedTaskList = taskList.map(e => e.uniqueId === taskInfo.uniqueId ? {
                         ...taskInfo,
-                        priority: !priority
+                        priority: !e.priority
                     } : e);
 
                     setTaskList(editedTaskList);
@@ -39,13 +35,11 @@ function Task({taskInfo}) {
 
                 }}></i>
 
-                <input type="checkbox" title="Complete" checked={completed} onChange={() => {
-                    
-                    setCompleted(!completed);
+                <input type="checkbox" title="Complete" checked={taskInfo.completed} onChange={() => {
                     
                     const editedTaskList = taskList.map(e => e.uniqueId === taskInfo.uniqueId ? {
                         ...taskInfo,
-                        completed: !completed
+                        completed: !e.completed
                     } : e);
 
                     setTaskList(editedTaskList);

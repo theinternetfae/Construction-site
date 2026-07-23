@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 import Task from "../utilities jsx/Task.jsx";
 import { TaskContext } from "../js files/contexts.js";
@@ -7,17 +7,49 @@ function Home() {
 
     const {taskList} = useContext(TaskContext);
 
+    const [taskCategory, setTaskCategory] = useState('');
+    const [visibleTasks, setVisibileTasks] = useState([]);
+
+    useEffect(() => {
+
+        if(taskCategory === 'All') {
+            
+            setVisibileTasks(taskList);
+
+        } else if (taskCategory === 'Met') {
+            
+            const met = taskList.filter(t => t.completed);
+            setVisibileTasks(met);
+
+        } else if (taskCategory === 'Unmet') {
+
+            const unmet = taskList.filter(t => !t.completed);
+            setVisibileTasks(unmet);
+
+        } else if (taskCategory === 'Priorities') {
+
+            const priorities = taskList.filter(t => t.priority);
+            setVisibileTasks(priorities);
+
+        } else {
+
+            setVisibileTasks(taskList);
+
+        }
+
+    }, [taskCategory, taskList]);
+
     const [showEditor, setShowEditor] = useState(false);
     
     return ( 
         <div className="home">
             <section className="header">
                 
-                <select name="task-groups" id="" className="task-groups">
+                <select name="task-groups" id="" className="task-groups" onChange={e => setTaskCategory(e.target.value)}>
                     <option value="All">All</option>
                     <option value="Met">Met</option>
                     <option value="Unmet">Unmet</option>
-                    <option value="Commitments">Commitments</option>
+                    <option value="Priorities">Priorities</option>
                 </select>
 
                 <p className="current-date">
@@ -85,12 +117,11 @@ function Home() {
             </section>
 
             <section className="task-display">
-                {taskList.length === 0 && <p>No tasks</p>}
-                {taskList.map((e, i) => {
+                {visibleTasks.length === 0 && <p>No tasks</p>}
+                {visibleTasks.map(e => {
                     return <Task
-                        key={i}
-                        taskInfo={e}
-                    />
+                        key={e.uniqueId}
+                        taskInfo={e} />;
                 })}
             </section>
 
