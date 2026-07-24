@@ -56,7 +56,7 @@ body {
           @apply text-3xl;
           
           span {
-            @apply text-[var(--accent)] font-bold
+            @apply text-[var(--accent)] font-bold;
           }
         }
 
