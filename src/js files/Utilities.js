@@ -26,14 +26,14 @@ export function lessThanTen(less) {
     return less < 10 ? `0${less}` : less;
 }
 
-export function dates(chosenDate) {
+export function getDates(start, end) {
 
     //An array of dates starting from two months before the chosen dates to two months after it.
     
     const visibleDates = [];
 
-    const start = chosenDate.subtract(2, "month");
-    const end = chosenDate.add(2, "month");
+    // const start = chosenDate.subtract(2, "month");
+    // const end = chosenDate.add(2, "month");
 
     for (let i = start; i.isSameOrBefore(end); i = i.add(1, "day")) {
         
@@ -49,6 +49,5 @@ export function dates(chosenDate) {
     
     }
 
-    console.log(visibleDates);
     return visibleDates;
 }

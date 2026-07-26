@@ -2,13 +2,29 @@ import { useContext, useState, useEffect } from "react";
 import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 import Task from "../utilities jsx/Task.jsx";
 import { TaskContext } from "../js files/contexts.js";
+import dayjs from "../js files/DayJs.js";
+import { getDates } from "../js files/Utilities.js";
 
 function Home() {
 
     const {taskList} = useContext(TaskContext);
 
+    const now = dayjs();
+    const [chosenDate, setChosenDate] = useState(now);
+    const [visibleDates, setVisibleDates] = useState([]);
+
     const [taskCategory, setTaskCategory] = useState('');
     const [visibleTasks, setVisibileTasks] = useState([]);
+
+    useEffect(() => {
+
+        const end = chosenDate.add(6, 'day');
+
+        const days = getDates(chosenDate, end);
+
+        setVisibleDates(days);
+
+    }, [chosenDate])
 
     useEffect(() => {
 
@@ -52,8 +68,8 @@ function Home() {
                     <option value="Priorities">Priorities</option>
                 </select>
 
-                <p className="current-date">
-                    July 10th, 2026
+                <p className="current-date" onClick={() => setChosenDate(now)}>
+                    {`${chosenDate.format('MMMM DD, YYYY')}`}
                 </p>
 
                 <i className="bi bi-clipboard-plus-fill" onClick={(() => setShowEditor(true))}></i>
@@ -63,54 +79,14 @@ function Home() {
 
                 <div className="date-slider">
 
-                    <span className="date">
-                        <p className="date-day first">SUN</p>
-                        <div className="date-num-cont">
-                            <p className="date-num first">1</p>
-                        </div>
-                    </span>
-
-                    <span className="date">
-                        <p className="date-day">MON</p>
-                        <div className="date-num-cont">
-                            <p className="date-num">2</p>
-                        </div>
-                    </span>
-
-                    <span className="date">
-                        <p className="date-day">TUE</p>
-                        <div className="date-num-cont">
-                            <p className="date-num">3</p>
-                        </div>
-                    </span>
-
-                    <span className="date">
-                        <p className="date-day">WED</p>
-                        <div className="date-num-cont">
-                            <p className="date-num">4</p>
-                        </div>
-                    </span>
-
-                    <span className="date">
-                        <p className="date-day">THUR</p>
-                        <div className="date-num-cont">
-                            <p className="date-num">5</p>
-                        </div>
-                    </span>
-
-                    <span className="date">
-                        <p className="date-day">FRI</p>
-                        <div className="date-num-cont">
-                            <p className="date-num">6</p>
-                        </div>      
-                    </span>
-
-                    <span className="date">
-                        <p className="date-day">SAT</p>
-                        <div className="date-num-cont">
-                            <p className="date-num">7</p>
-                        </div>
-                    </span>
+                    {visibleDates.map(d => {
+                        return <span className={`date ${d.date.isSame(chosenDate) ? 'bg-[var(--muted-accent)]' : ''}`} key={d.key} onClick={() => setChosenDate(d.date)}>
+                            <p className={`date-day ${d.date.isToday() ? 'text-[var(--accent)]' : ''}`} >{d.day.toUpperCase()}</p>
+                            <div className="date-num-cont">
+                                <p className={`date-num ${d.date.isToday() ? 'bg-[var(--accent)] text-white' : ''}`}>{d.dayNumber}</p>
+                            </div>
+                        </span>
+                    })}
 
                 </div>
            

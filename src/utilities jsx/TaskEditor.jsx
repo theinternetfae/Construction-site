@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import EmojiPicker from "./Emoji.jsx";
 import ColorPicker from "./Colors.jsx";
 import { useContext, useState } from "react";
-import { formatDate, lessThanTen, dates } from "../js files/Utilities.js";
+import { formatDate, lessThanTen } from "../js files/Utilities.js";
 import { TaskContext } from "../js files/contexts.js";
 import { saveTaskList } from "../js files/Storage.js";
 import Alert from "./Alert.jsx";
@@ -15,7 +15,6 @@ function TaskEditor({exit, task}) {
 
     const now = dayjs();
     const today = now.format('YYYY-MM-DD');
-    dates(now);
 
     const minutes = () => Array.from({ length: 60 }, (_, i) => i);
     const hours = () => Array.from({length: 13}, (_, i) => i);
