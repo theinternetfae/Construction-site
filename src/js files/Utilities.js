@@ -1,3 +1,5 @@
+import dayjs from "./DayJs.js";
+
 export function isValidEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
 
@@ -22,4 +24,31 @@ export function formatDate(date) {
 
 export function lessThanTen(less) {
     return less < 10 ? `0${less}` : less;
+}
+
+export function dates(chosenDate) {
+
+    //An array of dates starting from two months before the chosen dates to two months after it.
+    
+    const visibleDates = [];
+
+    const start = chosenDate.subtract(2, "month");
+    const end = chosenDate.add(2, "month");
+
+    for (let i = start; i.isSameOrBefore(end); i = i.add(1, "day")) {
+        
+        visibleDates.push({
+            date: i,
+            key: i.format("YYYY-MM-DD"),
+            day: i.format("ddd"),
+            dayNumber: i.date(),
+            month: i.format("MMM"),
+            year: i.format('YYYY'),
+            isToday: i.isToday(),
+        });
+    
+    }
+
+    console.log(visibleDates);
+    return visibleDates;
 }
