@@ -37,18 +37,33 @@ function Home() {
         today.startOf('week')
     );
 
-    //FIX THE LAG AND STOP ON CHANGING WEEKSTART
-    document.addEventListener('keydown', (e) => {
-        if(e.key === 'ArrowRight') {
-            setWeekStart(weekStart.add(7, 'day'));
-            setChosenDate(chosenDate.add(7, 'day'));
-        } else if(e.key === 'ArrowLeft') {
-            setWeekStart(weekStart.subtract(7, 'day'));
-            setChosenDate(chosenDate.subtract(7, 'day'));
-        } else {
-            return;
+    useEffect(() => {
+
+        function handleArrowClicks(e) {
+
+            if(e.key === 'ArrowRight') {
+             
+                setWeekStart(prev => prev.add(7, 'day'));
+                setChosenDate(prev => prev.add(7, 'day'));
+            
+            } 
+            
+            if(e.key === 'ArrowLeft') {
+            
+                setWeekStart(prev => prev.subtract(7, 'day'));
+                setChosenDate(prev => prev.subtract(7, 'day'));
+            
+            }
+
         }
-    })
+
+        document.addEventListener('keydown', handleArrowClicks);
+
+        return () => {
+            document.removeEventListener('keydown', handleArrowClicks);
+        }
+
+    }, [])
     
     const visibleDates = getDates(weekStart, weekStart.add(6, 'day'));
 
@@ -98,7 +113,10 @@ function Home() {
                     <option value="Priorities">Priorities</option>
                 </select>
 
-                <p className="current-date" onClick={() => setChosenDate(today)}>
+                <p className="current-date" onClick={() => {
+                    setChosenDate(today);
+                    setWeekStart(today.startOf('week'));
+                }}>
                     {`${chosenDate.format('MMMM DD, YYYY')}`}
                 </p>
 
