@@ -25,7 +25,7 @@ function App() {
   )
   
   useEffect(() => {
-    console.log(taskList);
+    console.log("The complete taskList", taskList);
   }, [taskList]);
 
   return (

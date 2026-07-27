@@ -59,3 +59,32 @@ export function calculateTimeToMidnight() {
     return toNextMidnight;
 
 }
+
+export function generateTaskDuplicates(task) {
+
+    if(!task.startDate || !task.endDate) return;
+
+    const start = dayjs(task.startDate).add(1, 'day');
+    const end = dayjs(task.endDate);
+
+    const newTasksArray = [];
+
+    for(let i = start; i.isSameOrBefore(end); i = i.add(1, "day")) {
+        
+        const uniqueId = crypto.randomUUID();
+
+        if (task.days.includes(i.format('ddd'))) {
+            const newTask = {
+                ...task, 
+                uniqueId,
+                createdAt: i.toISOString(),
+                priority: false,
+                completed: false    
+            }
+            
+            newTasksArray.push(newTask);
+        }
+    }
+
+    return newTasksArray;
+}

@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import EmojiPicker from "./Emoji.jsx";
 import ColorPicker from "./Colors.jsx";
 import { useContext, useState } from "react";
-import { formatDate, lessThanTen } from "../js files/Utilities.js";
+import { formatDate, generateTaskDuplicates, lessThanTen } from "../js files/Utilities.js";
 import { TaskContext } from "../js files/contexts.js";
 import { saveTaskList } from "../js files/Storage.js";
 import Alert from "./Alert.jsx";
@@ -34,7 +34,7 @@ function TaskEditor({exit, task}) {
     const [reminder, setReminder] = useState(task ? task.reminder : false);
     
 
-    const [reminderHour, setReminderHour] = useState('00');
+    const [reminderHour, setReminderHour] = useState('08');
     const [reminderMinutes, setReminderMinutes] = useState('00');
     const [meridiem, setMeridiem] = useState('AM');
     
@@ -69,10 +69,12 @@ function TaskEditor({exit, task}) {
         }
 
         const newTaskList = [...taskList, newTask];
-        setTaskList(newTaskList);
-        saveTaskList(newTaskList);
+        const duplicates = generateTaskDuplicates(newTask);
+        
+        setTaskList(!duplicates ? newTaskList : newTaskList.concat(duplicates));
+        saveTaskList(!duplicates ? newTaskList : newTaskList.concat(duplicates));
+        
         exit();
-        console.log(newTask);
 
     }
 
@@ -104,7 +106,6 @@ function TaskEditor({exit, task}) {
     function deleteTask() {
         const cleanedTaskList = taskList.filter(t => t.uniqueId !== task.uniqueId);
 
-        console.log(cleanedTaskList);
         setTaskList(cleanedTaskList);
         saveTaskList(cleanedTaskList);
         exit();
@@ -209,7 +210,7 @@ function TaskEditor({exit, task}) {
                     
                     <div className="reminder-time">
 
-                        <select name="" id="" onClick={e => setReminderHour(e.target.value)}>
+                        <select name="" id="" onChange={e => setReminderHour(e.target.value)}>
 
                             {
                                 hours().map(h => (
@@ -219,7 +220,7 @@ function TaskEditor({exit, task}) {
 
                         </select>
                     
-                        <select name="" id="" onClick={e => setReminderMinutes(e.target.value)}>
+                        <select name="" id="" onChange={e => setReminderMinutes(e.target.value)}>
                             
                             {
                                 minutes().map(m => (
@@ -229,7 +230,7 @@ function TaskEditor({exit, task}) {
                             
                         </select>
                     
-                        <select name="" id="" onClick={e => setMeridiem(e.target.value)}>
+                        <select name="" id="" onChange={e => setMeridiem(e.target.value)}>
                             <option value="AM">AM</option>
                             <option value="PM">PM</option>
                         </select>
