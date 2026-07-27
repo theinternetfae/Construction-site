@@ -393,7 +393,8 @@ body {
           @apply flex items-center justify-center p-5 bg-[var(--mainbd-bg)] rounded-lg shadow-lg;
 
           .date-slider {
-            @apply w-full grid grid-cols-7 place-items-center w-full no-scrollbar;
+            @apply w-full grid grid-cols-7 place-items-center w-full gap-5 no-scrollbar
+            md:gap-0;
 
             .date {
               @apply w-11 p-1 text-sm flex flex-col gap-4 justify-center items-center rounded-lg cursor-pointer 
@@ -406,7 +407,8 @@ body {
               }
 
               .date-num-cont {
-                @apply border border-3 border-[var(--light-muted-text)] p-1 shadow-sm text-center rounded-full;              
+                @apply border border-3 border-[var(--light-muted-text)] shadow-sm text-center rounded-full
+                md:p-1;              
 
                 .date-num {
                   @apply p-2 rounded-full text-center w-8 font-bold
