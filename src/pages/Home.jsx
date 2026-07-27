@@ -3,18 +3,38 @@ import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 import Task from "../utilities jsx/Task.jsx";
 import { TaskContext } from "../js files/contexts.js";
 import dayjs from "../js files/DayJs.js";
-import { getDates } from "../js files/Utilities.js";
+import { calculateTimeToMidnight, getDates } from "../js files/Utilities.js";
 
 function Home() {
 
     const {taskList} = useContext(TaskContext);
+    
+    const [today, setToday] = useState(dayjs());
 
-    const now = dayjs();
-    //WORK ON CONFIGURING TODAY SO IT REACTS TO MIDNIGHT CHANGES INSTEAD OF JUST USER ENGAGEMENT RE-RENDER
+    useEffect(() => {
 
-    const [chosenDate, setChosenDate] = useState(now);
+        function rescheduleToday() {
+            
+            const changeDay = setTimeout(() => {
+
+                setToday(dayjs);
+
+                rescheduleToday();
+
+            }, calculateTimeToMidnight()) 
+        
+            return changeDay;
+        }
+
+        const timeout = rescheduleToday();
+
+        return () => clearTimeout(timeout);
+
+    }, []);
+
+    const [chosenDate, setChosenDate] = useState(today);
     const [weekStart, setWeekStart] = useState(
-        now.startOf('week')
+        today.startOf('week')
     );
 
     //FIX THE LAG AND STOP ON CHANGING WEEKSTART
@@ -78,7 +98,7 @@ function Home() {
                     <option value="Priorities">Priorities</option>
                 </select>
 
-                <p className="current-date" onClick={() => setChosenDate(now)}>
+                <p className="current-date" onClick={() => setChosenDate(today)}>
                     {`${chosenDate.format('MMMM DD, YYYY')}`}
                 </p>
 

@@ -27,13 +27,8 @@ export function lessThanTen(less) {
 }
 
 export function getDates(start, end) {
-
-    //An array of dates starting from two months before the chosen dates to two months after it.
     
     const visibleDates = [];
-
-    // const start = chosenDate.subtract(2, "month");
-    // const end = chosenDate.add(2, "month");
 
     for (let i = start; i.isSameOrBefore(end); i = i.add(1, "day")) {
         
@@ -50,4 +45,17 @@ export function getDates(start, end) {
     }
 
     return visibleDates;
+}
+
+export function calculateTimeToMidnight() {
+
+    const now = dayjs();
+
+    const toNextMidnight = now
+    .add(1, 'day')
+    .startOf('day')
+    .diff(now);
+
+    return toNextMidnight;
+
 }
