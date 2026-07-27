@@ -10,21 +10,31 @@ function Home() {
     const {taskList} = useContext(TaskContext);
 
     const now = dayjs();
+    //WORK ON CONFIGURING TODAY SO IT REACTS TO MIDNIGHT CHANGES INSTEAD OF JUST USER ENGAGEMENT RE-RENDER
+
     const [chosenDate, setChosenDate] = useState(now);
-    const [visibleDates, setVisibleDates] = useState([]);
+    const [weekStart, setWeekStart] = useState(
+        now.startOf('week')
+    );
+
+    //FIX THE LAG AND STOP ON CHANGING WEEKSTART
+    document.addEventListener('keydown', (e) => {
+        if(e.key === 'ArrowRight') {
+            setWeekStart(weekStart.add(7, 'day'));
+            setChosenDate(chosenDate.add(7, 'day'));
+        } else if(e.key === 'ArrowLeft') {
+            setWeekStart(weekStart.subtract(7, 'day'));
+            setChosenDate(chosenDate.subtract(7, 'day'));
+        } else {
+            return;
+        }
+    })
+    
+    const visibleDates = getDates(weekStart, weekStart.add(6, 'day'));
 
     const [taskCategory, setTaskCategory] = useState('');
     const [visibleTasks, setVisibileTasks] = useState([]);
 
-    useEffect(() => {
-
-        const end = chosenDate.add(6, 'day');
-
-        const days = getDates(chosenDate, end);
-
-        setVisibleDates(days);
-
-    }, [chosenDate])
 
     useEffect(() => {
 
@@ -80,7 +90,8 @@ function Home() {
                 <div className="date-slider">
 
                     {visibleDates.map(d => {
-                        return <span className={`date ${d.date.isSame(chosenDate) ? 'bg-[var(--muted-accent)]' : ''}`} key={d.key} onClick={() => setChosenDate(d.date)}>
+                        const isChosen = d.date.format('YYYY-MM-DD') === chosenDate.format('YYYY-MM-DD');
+                        return <span className={`date ${isChosen ? 'bg-[var(--muted-accent)]' : ''}`} key={d.key} onClick={() => setChosenDate(d.date)}>
                             <p className={`date-day ${d.date.isToday() ? 'text-[var(--accent)]' : ''}`} >{d.day.toUpperCase()}</p>
                             <div className="date-num-cont">
                                 <p className={`date-num ${d.date.isToday() ? 'bg-[var(--accent)] text-white' : ''}`}>{d.dayNumber}</p>
