@@ -55,6 +55,7 @@ function TaskEditor({exit, task}) {
         const uniqueId = crypto.randomUUID()
 
         const newTask = {
+            parentId: uniqueId,
             uniqueId,
             createdAt: dayjs().toISOString(),
             emoji,
