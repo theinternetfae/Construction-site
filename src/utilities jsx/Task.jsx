@@ -24,12 +24,12 @@ function Task({taskInfo}) {
             </section>
             
             <section className="task-updates">
-                <i className={`bi bi-pencil ${createdToday ? 'cursor-not-allowed text-[var(--light-muted-text)] hover:text-[var(--muted-text)]' : ''} ${taskInfo.completed ? 'text-white hover:text-[var(--accent)]' : ''}`} title="Edit" onClick={() => {
+                <i className={`bi bi-pencil ${createdToday ? 'cursor-not-allowed hover:text-[var(--muted-text)]' : ''} ${taskInfo.completed ? 'text-white hover:text-[var(--accent)]' : ''}`} title="Edit" onClick={() => {
                     if(createdToday) return;
                     setEditing(true)
                 }}></i>
             
-                <i className={`bi bi-star-fill ${createdToday ? 'cursor-not-allowed text-[var(--light-muted-text)] hover:text-[var(--muted-text)]' : ''} ${taskInfo.priority ? 'text-[var(--yellow)]' : ''}`} title="Prioritize" onClick={() => {
+                <i className={`bi bi-star-fill ${createdToday ? 'cursor-not-allowed hover:text-[var(--muted-text)]' : ''} ${taskInfo.priority ? 'text-[var(--yellow)]' : ''}`} title="Prioritize" onClick={() => {
                     
                     if(createdToday) return;
 

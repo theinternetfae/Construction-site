@@ -9,6 +9,7 @@ function Home() {
 
     const {taskList} = useContext(TaskContext);
     
+    const [todaysTasks, setTodaysTasks] = useState([]);
     const [today, setToday] = useState(dayjs());
 
     useEffect(() => {
@@ -64,41 +65,52 @@ function Home() {
         }
 
     }, [])
+
     
     const visibleDates = getDates(weekStart, weekStart.add(6, 'day'));
 
+    
+
+
     const [taskCategory, setTaskCategory] = useState('');
     const [visibleTasks, setVisibileTasks] = useState([]);
+    
+    useEffect(() => {
+        
+        const todaysTasksStorage = taskList.filter(t => t.scheduledDate === chosenDate.format('YYYY-MM-DD'))
 
+        setTodaysTasks(todaysTasksStorage);
+
+    }, [chosenDate])
 
     useEffect(() => {
 
         if(taskCategory === 'All') {
             
-            setVisibileTasks(taskList);
+            setVisibileTasks(todaysTasks);
 
         } else if (taskCategory === 'Met') {
             
-            const met = taskList.filter(t => t.completed);
+            const met = todaysTasks.filter(t => t.completed);
             setVisibileTasks(met);
 
         } else if (taskCategory === 'Unmet') {
 
-            const unmet = taskList.filter(t => !t.completed);
+            const unmet = todaysTasks.filter(t => !t.completed);
             setVisibileTasks(unmet);
 
         } else if (taskCategory === 'Priorities') {
 
-            const priorities = taskList.filter(t => t.priority);
+            const priorities = todaysTasks.filter(t => t.priority);
             setVisibileTasks(priorities);
 
         } else {
 
-            setVisibileTasks(taskList);
+            setVisibileTasks(todaysTasks);
 
         }
 
-    }, [taskCategory, taskList]);
+    }, [taskCategory, todaysTasks]);
 
     const [showEditor, setShowEditor] = useState(false);
     
