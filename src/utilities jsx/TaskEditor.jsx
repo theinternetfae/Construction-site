@@ -113,7 +113,7 @@ function TaskEditor({exit, task}) {
     }
 
     function deleteTask() {
-        const cleanedTaskList = taskList.filter(t => t.uniqueId !== task.uniqueId);
+        const cleanedTaskList = taskList.filter(t => t.createdAt < task.createdAt || t.parentId !== task.parentId);
 
         setTaskList(cleanedTaskList);
         saveTaskList(cleanedTaskList);
