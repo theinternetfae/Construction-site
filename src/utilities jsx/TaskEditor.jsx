@@ -58,12 +58,13 @@ function TaskEditor({exit, task}) {
             parentId: uniqueId,
             uniqueId,
             createdAt: dayjs().toISOString(),
+            scheduledDate: dayjs().format('YYYY-MM-DD'),
             emoji,
             name,
             color,
             days,
             startDate: days.length === 0 ? null : startDate,
-            endDate,
+            endDate: days.length === 0 ? null : endDate,
             reminderTime,
             priority,
             completed
@@ -87,15 +88,17 @@ function TaskEditor({exit, task}) {
 
         const reminderTime = !reminder ? null : `${reminderHour}:${reminderMinutes} ${meridiem}`
 
-        const cleanedTaskDuplicates = taskList.filter(t => t.createdAt < task.createdAt || t.parentId !== task.parentId);
+        const cleanedTaskDuplicates = taskList.filter(t => dayjs(t.scheduledDate) < dayjs(task.scheduledDate) || t.parentId !== task.parentId);
 
         const editedTask = {
             ...task,
+            createdAt: dayjs().toISOString(),
+            scheduledDate: dayjs().format('YYYY-MM-DD'),
             emoji,
             name,
             color,
             days,
-            endDate,
+            endDate: days.length === 0 ? null : endDate,
             reminderTime,
             priority,
             completed
@@ -107,13 +110,13 @@ function TaskEditor({exit, task}) {
         
         setTaskList(!freshDuplicates ? editedTaskList : editedTaskList.concat(freshDuplicates));
         saveTaskList(!freshDuplicates ? editedTaskList : editedTaskList.concat(freshDuplicates));
-        console.log("Removed duplicates forward and left editedTask + added duplicates", editedTaskList.concat(freshDuplicates));
+        
         exit();
 
     }
 
     function deleteTask() {
-        const cleanedTaskList = taskList.filter(t => t.createdAt < task.createdAt || t.parentId !== task.parentId);
+        const cleanedTaskList = taskList.filter(t => dayjs(t.scheduledDate) < dayjs(task.scheduledDate) || t.parentId !== task.parentId);
 
         setTaskList(cleanedTaskList);
         saveTaskList(cleanedTaskList);

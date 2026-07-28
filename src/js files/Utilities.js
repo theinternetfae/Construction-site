@@ -77,7 +77,7 @@ export function generateTaskDuplicates(task) {
             const newTask = {
                 ...task, 
                 uniqueId,
-                createdAt: i.toISOString(),
+                scheduledDate: i.format('YYYY-MM-DD'),
                 priority: false,
                 completed: false    
             }
@@ -87,10 +87,4 @@ export function generateTaskDuplicates(task) {
     }
 
     return newTasksArray;
-}
-
-export function clearDuplicates(task, taskList) {
-    const start = dayjs(task.createdAt);
-
-    
 }
