@@ -87,7 +87,9 @@ function TaskEditor({exit, task}) {
 
         const reminderTime = !reminder ? null : `${reminderHour}:${reminderMinutes} ${meridiem}`
 
-        const editedTaskList = taskList.map(t => t.uniqueId === task.uniqueId ? {
+        const cleanedTaskDuplicates = taskList.filter(t => t.createdAt < task.createdAt || t.parentId !== task.parentId);
+
+        const editedTask = {
             ...task,
             emoji,
             name,
@@ -97,11 +99,17 @@ function TaskEditor({exit, task}) {
             reminderTime,
             priority,
             completed
-        } : t)
+        }
 
-        setTaskList(editedTaskList);
-        saveTaskList(editedTaskList);
+        const editedTaskList = [...cleanedTaskDuplicates, editedTask];
+
+        const freshDuplicates = generateTaskDuplicates(editedTask);
+        
+        setTaskList(!freshDuplicates ? editedTaskList : editedTaskList.concat(freshDuplicates));
+        saveTaskList(!freshDuplicates ? editedTaskList : editedTaskList.concat(freshDuplicates));
+        console.log("Removed duplicates forward and left editedTask + added duplicates", editedTaskList.concat(freshDuplicates));
         exit();
+
     }
 
     function deleteTask() {

@@ -62,7 +62,7 @@ export function calculateTimeToMidnight() {
 
 export function generateTaskDuplicates(task) {
 
-    if(!task.startDate || !task.endDate) return;
+    if(!task.startDate || !task.endDate) return;   
 
     const start = dayjs(task.startDate).add(1, 'day');
     const end = dayjs(task.endDate);
@@ -87,4 +87,10 @@ export function generateTaskDuplicates(task) {
     }
 
     return newTasksArray;
+}
+
+export function clearDuplicates(task, taskList) {
+    const start = dayjs(task.createdAt);
+
+    
 }
