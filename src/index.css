@@ -360,11 +360,11 @@ body {
     }
 
     main {
-      @apply p-5 
+      @apply p-5 h-full
       lg:w-[80vw];
 
       .home {
-        @apply flex flex-col gap-8
+        @apply h-full flex flex-col gap-8
         md:p-3
         lg:p-5;
 
@@ -421,14 +421,20 @@ body {
         }
 
         .task-display {
-          @apply p-3 rounded-lg shadow-lg bg-[var(--mainbd-bg)] flex flex-col gap-5
-          md:p-5;
+          @apply rounded-lg bg-[var(--light-bgcolor)] h-[65%] overflow-y-auto no-scrollbar
+          md:h-[80%];
 
-          p {
-            @apply text-center text-sm
-            md:text-base;
+          .task-slider {
+            @apply h-full flex flex-col gap-5;
+         
+            p {
+              @apply text-center text-sm
+              md:text-base;
+            }
           }
+
         }
+
       }
 
       .stats {
@@ -651,13 +657,13 @@ body {
   }
 
   .task {
-    @apply p-3 rounded-lg bg-[var(--light-bgcolor)] shadow-sm flex justify-between items-center transition duration-300 ease-in-out;
+    @apply p-3 rounded-lg bg-[var(--mainbd-bg)] shadow-sm flex justify-between items-center transition duration-300 ease-in-out;
 
     .task-labels {
       @apply flex gap-3 items-center;
 
       .emoji-box {
-        @apply p-2 rounded-lg text-lg bg-[var(--mainbd-bg)];
+        @apply p-2 rounded-lg text-lg bg-[var(--light-muted-text)];
       }
 
       p {

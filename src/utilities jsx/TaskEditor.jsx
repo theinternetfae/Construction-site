@@ -18,7 +18,7 @@ function TaskEditor({exit, task}) {
 
     const minutes = () => Array.from({ length: 60 }, (_, i) => i);
     const hours = () => Array.from({length: 13}, (_, i) => i);
-    const daysOfWeek = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
+    const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
     const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
     const [openColorPicker, setOpenColorPicker] = useState(false);

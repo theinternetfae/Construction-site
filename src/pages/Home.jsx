@@ -142,12 +142,16 @@ function Home() {
             </section>
 
             <section className="task-display">
-                {visibleTasks.length === 0 && <p>No tasks</p>}
-                {visibleTasks.map(e => {
-                    return <Task
-                        key={e.uniqueId}
-                        taskInfo={e} />;
-                })}
+                <div className="task-slider">
+                    
+                    {visibleTasks.length === 0 && <p>No tasks</p>}
+                    {visibleTasks.map(e => {
+                        return <Task
+                            key={e.uniqueId}
+                            taskInfo={e} />;
+                    })}
+
+                </div>
             </section>
 
             {showEditor && <TaskEditor
