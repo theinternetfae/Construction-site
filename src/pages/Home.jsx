@@ -145,13 +145,45 @@ function Home() {
                 <div className="date-slider">
 
                     {visibleDates.map(d => {
+                        
                         const isChosen = d.date.format('YYYY-MM-DD') === chosenDate.format('YYYY-MM-DD');
+
+                        let counter = 100;
+
+                        const tasksForDay = taskList.filter(t => t.scheduledDate === d.date.format('YYYY-MM-DD'));
+                        const completed = tasksForDay.filter(t => t.completed).length;
+
+                        const progress = tasksForDay.length === 0 ? 0 : completed / tasksForDay.length * 100;
+                        
+                        counter = counter - progress;
+
                         return <span className={`date ${isChosen ? 'bg-[var(--muted-accent)]' : ''}`} key={d.key} onClick={() => setChosenDate(d.date)}>
                             <p className={`date-day ${d.date.isToday() ? 'text-[var(--accent)]' : ''}`} >{d.day.toUpperCase()}</p>
                             <div className="date-num-cont">
+                                <svg className="progress-ring" viewBox="0 0 40 40">
+
+                                    <circle
+                                        className="progress-bg"
+                                        cx="20"
+                                        cy="20"
+                                        r="16"
+                                        strokeDasharray={100}
+                                        strokeDashoffset={0}
+                                    />
+
+                                    <circle
+                                        className="progress"
+                                        cx="20"
+                                        cy="20"
+                                        r="16"
+                                        strokeDasharray={100}
+                                        strokeDashoffset={counter}
+                                    />
+
+                                </svg>
+
                                 <p className={`date-num ${d.date.isToday() ? 'bg-[var(--accent)] text-white' : ''}`}>
-                                    <i className="bi bi-trophy-fill hidden"></i>
-                                    {d.dayNumber}
+                                    {counter === 0 ? <i className="bi bi-trophy-fill"></i> : d.dayNumber}
                                 </p>
                             </div>
                         </span>
