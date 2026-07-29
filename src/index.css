@@ -407,12 +407,16 @@ body {
               }
 
               .date-num-cont {
-                @apply border border-3 border-[var(--light-muted-text)] shadow-sm text-center rounded-full
-                md:p-1;              
+                @apply border border-4 border-[var(--light-muted-text)] shadow-sm text-center rounded-full
+                md:p-1 md:border-5;              
 
                 .date-num {
                   @apply p-2 rounded-full text-center w-8 font-bold
                   md:w-15 md:p-5;
+
+                  i {
+                    @apply text-[var(--yellow)]
+                  }
                 }
               }
  

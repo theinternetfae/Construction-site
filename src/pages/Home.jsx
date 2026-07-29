@@ -75,13 +75,18 @@ function Home() {
     const [taskCategory, setTaskCategory] = useState('');
     const [visibleTasks, setVisibileTasks] = useState([]);
     
+    
     useEffect(() => {
         
+        setTodaysTasks([]);
+
         const todaysTasksStorage = taskList.filter(t => t.scheduledDate === chosenDate.format('YYYY-MM-DD'))
 
         setTodaysTasks(todaysTasksStorage);
 
-    }, [chosenDate])
+    }, [chosenDate, taskList])
+
+
 
     useEffect(() => {
 
@@ -144,7 +149,10 @@ function Home() {
                         return <span className={`date ${isChosen ? 'bg-[var(--muted-accent)]' : ''}`} key={d.key} onClick={() => setChosenDate(d.date)}>
                             <p className={`date-day ${d.date.isToday() ? 'text-[var(--accent)]' : ''}`} >{d.day.toUpperCase()}</p>
                             <div className="date-num-cont">
-                                <p className={`date-num ${d.date.isToday() ? 'bg-[var(--accent)] text-white' : ''}`}>{d.dayNumber}</p>
+                                <p className={`date-num ${d.date.isToday() ? 'bg-[var(--accent)] text-white' : ''}`}>
+                                    <i className="bi bi-trophy-fill hidden"></i>
+                                    {d.dayNumber}
+                                </p>
                             </div>
                         </span>
                     })}
