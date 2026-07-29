@@ -28,20 +28,6 @@ function Task({taskInfo}) {
                     if(createdToday) return;
                     setEditing(true)
                 }}></i>
-            
-                <i className={`bi bi-star-fill ${createdToday ? 'cursor-not-allowed hover:text-[var(--muted-text)]' : ''} ${taskInfo.priority ? 'text-[var(--yellow)]' : ''}`} title="Prioritize" onClick={() => {
-                    
-                    if(createdToday) return;
-
-                    const editedTaskList = taskList.map(e => e.uniqueId === taskInfo.uniqueId ? {
-                        ...taskInfo,
-                        priority: !e.priority
-                    } : e);
-
-                    setTaskList(editedTaskList);
-                    saveTaskList(editedTaskList);
-
-                }}></i>
 
                 <input type="checkbox" title="Complete" checked={taskInfo.completed} onChange={() => {
                    

@@ -38,7 +38,6 @@ function TaskEditor({exit, task}) {
     const [reminderMinutes, setReminderMinutes] = useState('00');
     const [meridiem, setMeridiem] = useState('AM');
     
-    const [priority, setPriority] = useState(task ? task.priority : false);
     const [completed, setCompleted] = useState(task ? task.completed : false);
 
     const [alert, setAlert] = useState(false);
@@ -66,7 +65,6 @@ function TaskEditor({exit, task}) {
             startDate: days.length === 0 ? null : startDate,
             endDate: days.length === 0 ? null : endDate,
             reminderTime,
-            priority,
             completed
         }
 
@@ -100,7 +98,6 @@ function TaskEditor({exit, task}) {
             days,
             endDate: days.length === 0 ? null : endDate,
             reminderTime,
-            priority,
             completed
         }
 

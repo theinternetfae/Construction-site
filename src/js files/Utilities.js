@@ -78,7 +78,6 @@ export function generateTaskDuplicates(task) {
                 ...task, 
                 uniqueId,
                 scheduledDate: i.format('YYYY-MM-DD'),
-                priority: false,
                 completed: false    
             }
             

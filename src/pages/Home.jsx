@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 import Task from "../utilities jsx/Task.jsx";
 import { TaskContext } from "../js files/contexts.js";
-import dayjs from "../js files/DayJs.js";
+import dayjs from "../js files/DayJs.js";   
 import { calculateTimeToMidnight, getDates } from "../js files/Utilities.js";
 
 function Home() {
@@ -104,11 +104,6 @@ function Home() {
             const unmet = todaysTasks.filter(t => !t.completed);
             setVisibileTasks(unmet);
 
-        } else if (taskCategory === 'Priorities') {
-
-            const priorities = todaysTasks.filter(t => t.priority);
-            setVisibileTasks(priorities);
-
         } else {
 
             setVisibileTasks(todaysTasks);
@@ -127,7 +122,6 @@ function Home() {
                     <option value="All">All</option>
                     <option value="Met">Met</option>
                     <option value="Unmet">Unmet</option>
-                    <option value="Priorities">Priorities</option>
                 </select>
 
                 <p className="current-date" onClick={() => {
