@@ -23,10 +23,6 @@ function App() {
   const [taskList, setTaskList] = useState(
     getTaskList() || []
   )
-  
-  useEffect(() => {
-    console.log("The complete taskList", taskList);
-  }, [taskList]);
 
   return (
     

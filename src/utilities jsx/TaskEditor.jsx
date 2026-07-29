@@ -86,7 +86,7 @@ function TaskEditor({exit, task}) {
 
         const reminderTime = !reminder ? null : `${reminderHour}:${reminderMinutes} ${meridiem}`
 
-        const cleanedTaskDuplicates = taskList.filter(t => dayjs(t.scheduledDate) < dayjs(task.scheduledDate) || t.parentId !== task.parentId);
+        const cleanedTaskDuplicates = taskList.filter(t => dayjs(t.scheduledDate).isBefore(dayjs(task.scheduledDate)) || t.parentId !== task.parentId);
 
         const editedTask = {
             ...task,
@@ -113,7 +113,7 @@ function TaskEditor({exit, task}) {
     }
 
     function deleteTask() {
-        const cleanedTaskList = taskList.filter(t => dayjs(t.scheduledDate) < dayjs(task.scheduledDate) || t.parentId !== task.parentId);
+        const cleanedTaskList = taskList.filter(t => dayjs(t.scheduledDate).isBefore(dayjs(task.scheduledDate)) || t.parentId !== task.parentId);
 
         setTaskList(cleanedTaskList);
         saveTaskList(cleanedTaskList);

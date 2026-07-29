@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useMemo } from "react";
 import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 import Task from "../utilities jsx/Task.jsx";
 import { TaskContext } from "../js files/contexts.js";
@@ -9,7 +9,6 @@ function Home() {
 
     const {taskList} = useContext(TaskContext);
     
-    const [todaysTasks, setTodaysTasks] = useState([]);
     const [today, setToday] = useState(dayjs());
 
     useEffect(() => {
@@ -75,17 +74,13 @@ function Home() {
     const [taskCategory, setTaskCategory] = useState('');
     const [visibleTasks, setVisibileTasks] = useState([]);
     
-    
-    useEffect(() => {
-        
-        setTodaysTasks([]);
+
+    const todaysTasks = useMemo(() => {
 
         const todaysTasksStorage = taskList.filter(t => t.scheduledDate === chosenDate.format('YYYY-MM-DD'))
+        return todaysTasksStorage;
 
-        setTodaysTasks(todaysTasksStorage);
-
-    }, [chosenDate, taskList])
-
+    }, [chosenDate, taskList]);
 
 
     useEffect(() => {
