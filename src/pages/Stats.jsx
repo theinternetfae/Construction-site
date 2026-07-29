@@ -9,6 +9,8 @@ function Stats() {
 
     const [today, setToday] = useState(dayjs());
 
+    const [chosenTask, setChosenTask] = useState('');
+
     useEffect(() => {
 
         function rescheduleToday() {
@@ -53,12 +55,18 @@ function Stats() {
             <section className="stats-header">
 
                 <i className="bi bi-lightbulb-fill"></i>
-                <select name="" id="">
+                <select name="" id="" value={chosenTask}    
+                    onChange={(e) => setChosenTask(e.target.value)}>
 
                     <option value="">📈 Overall</option>
 
                     {uniqueTasks.map(t => {
-                        return <option value={t.parentId} key={t.parentId}>{`${t.emoji} ${t.name}`}</option>
+                        return <option 
+                            value={t.parentId} 
+                            key={t.parentId} 
+                        >
+                            {`${t.emoji} ${t.name}`}
+                        </option>
                     })}
 
                 </select>
@@ -70,10 +78,23 @@ function Stats() {
             
                 <div className="stats-tasks">
                     
-                    <p className="stats-task">📈 <span className="stats-task-title block">Overall</span></p>
+                    <p className="stats-task"
+                        onClick={() => setChosenTask('')}
+                        style={{
+                            borderColor: !chosenTask ? 'var(--accent)' : "transparent"
+                        }} 
+                    >📈 <span className={`stats-task-title ${!chosenTask ? `block` : ''}`}>Overall</span></p>
     
                     {uniqueTasks.map(t => {
-                        return <p className="stats-task" key={t.parentId}>{`${t.emoji}`}<span className="stats-task-title">${`${t.name}`}</span></p>
+                        return <p className="stats-task"
+                            style={{
+                                borderColor: chosenTask === t.parentId ? t.color : "transparent"
+                            }} 
+                            key={t.parentId}
+                            onClick={() => setChosenTask(t.parentId)}
+                        >
+                            {`${t.emoji}`}<span className={`stats-task-title ${chosenTask === t.parentId ? `block` : ''}`}>{`${t.name}`}</span>
+                        </p>
                     })}
 
                 </div>
