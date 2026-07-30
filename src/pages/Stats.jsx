@@ -34,12 +34,6 @@ function Stats() {
 
 
 
-
-
-
-
-
-
     const [chosenMonth, setChosenMonth] = useState(today);
         
     const visibleMonth = useMemo(() => {
@@ -59,7 +53,6 @@ function Stats() {
     useEffect(() => {
         console.log("Month dates", visibleMonth);
     }, [])
-    
 
 
 
@@ -92,6 +85,7 @@ function Stats() {
         return uniqueTasks;
 
     }, [taskList, today]);
+
 
     return ( 
         <div className="stats">
@@ -153,7 +147,7 @@ function Stats() {
             <section className="stats-calendar">
                 <div className="calendar-outer">
 
-                    <i className="bi bi-caret-left-square"></i>
+                    <i className="bi bi-chevron-left"></i>
                     
                     <div className="calendar-inner">
                         <p className="calendar-month">JULY 2026</p>
@@ -166,83 +160,35 @@ function Stats() {
                                 ))}                            
 
                             </div>
-                            
+
+
                             <div className="calendar-dates">
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
-                                <p className="dates">1</p>
+                                {
+                                    visibleMonth.length > 0 &&
+                                    Array(visibleMonth[0].date.day()).fill(null).map((_, i) => (
+                                        <div key={"blank" + i} className="blank"></div>
+                                    ))
+                                }
+
+                                {
+                                    visibleMonth.map((day, i) => {
+                                        const isToday = day.date.isToday();
+
+                                        return (
+                                            <p key={i} className="dates">{day.dayNumber}</p>
+                                        )
+                                    })
+                                }
                             </div>
                         </div>
                     </div>
                     
-                    {/* <div className="calendar-grid">
-
-                        {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
-                            <div key={i} className="day-label">{d}</div>
-                        ))}
-
-                        {
-                            monthDays.length > 0 &&
-                            Array(monthDays[0].getDay()).fill(null).map((_, i) => (
-                                <div key={"blank"+ i} className="blank"></div>
-                            ))
-                        }
-
-                        {
-                            monthDays.map((day, i) => {
-                                const isToday = day.toDateString() === today.toDateString();
-                                const isMatch = matchingBorderDay.some(border => border.toDateString() === day.toDateString());
-
-                                const borderStyle = !selectedTask
-                                ? {}
-                                : isMatch
-                                    ? {border: `2px solid ${selectedTask.color}`}
-                                    : {border: 'grey'};
-
-                                return (
-                                    <div key={i} title={day.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })} className="date-cell" style={borderStyle}>
-                                        {isToday ? <i className="bi bi-geo-alt text-bluelight"></i> : day.getDate()}
-                                    </div>
-                                )
-                            })
-                        }
-
-                    </div> */}
-
-                    <i className="bi bi-caret-right-square"></i>
+                    <i className="bi bi-chevron-right"></i>
                 
                 </div>
             </section>
 
-            <section>BODY 3</section>
+            <section className="test">BODY 3</section>
         
             {aboutPage && <Alert
                 text={'Only reoccuring tasks are displayed here and calculated to determine your stats.'}
