@@ -47,10 +47,19 @@ function Stats() {
     }, [chosenMonth])
 
 
+    const [chosenTaskId, setchosenTaskId] = useState('');
 
+    const chosenTasks = useMemo(() => {
+        const chosen = taskList.filter(t => t.parentId === chosenTaskId);
+        
+        const chosenScheduled = chosen.map(t => ({
+            scheduledDate: t.scheduledDate,
+            color: t.color,
+            complete: t.completed
+        }));
 
-
-    const [chosenTask, setChosenTask] = useState('');
+        return chosenScheduled|| [];
+    }, [chosenTaskId])
 
     const [aboutPage, setAboutPage] = useState(false);
     const [taskEditor, setTaskEditor] = useState(false);
@@ -83,8 +92,8 @@ function Stats() {
                 <i className="bi bi-lightbulb-fill" 
                 onClick={() => setAboutPage(true)}></i>
 
-                <select name="" id="" value={chosenTask}    
-                    onChange={(e) => setChosenTask(e.target.value)}>
+                <select name="" id="" value={chosenTaskId}    
+                    onChange={(e) => setchosenTaskId(e.target.value)}>
 
                     <option value="">📈 Overall</option>
 
@@ -109,21 +118,21 @@ function Stats() {
                 <div className="stats-tasks">
                     
                     <p className="stats-task"
-                        onClick={() => setChosenTask('')}
+                        onClick={() => setchosenTaskId('')}
                         style={{
-                            borderColor: !chosenTask ? 'var(--accent)' : "transparent"
+                            borderColor: !chosenTaskId ? 'var(--accent)' : "transparent"
                         }} 
-                    >📈 <span className={`stats-task-title ${!chosenTask ? `block` : ''}`}>Overall</span></p>
+                    >📈 <span className={`stats-task-title ${!chosenTaskId ? `block` : ''}`}>Overall</span></p>
     
                     {uniqueTasks.map(t => {
                         return <p className="stats-task"
                             style={{
-                                borderColor: chosenTask === t.parentId ? t.color : "transparent"
+                                borderColor: chosenTaskId === t.parentId ? t.color : "transparent"
                             }} 
                             key={t.parentId}
-                            onClick={() => setChosenTask(t.parentId)}
+                            onClick={() => setchosenTaskId(t.parentId)}
                         >
-                            {`${t.emoji}`}<span className={`stats-task-title ${chosenTask === t.parentId ? `block` : ''}`}>{`${t.name}`}</span>
+                            {`${t.emoji}`}<span className={`stats-task-title ${chosenTaskId === t.parentId ? `block` : ''}`}>{`${t.name}`}</span>
                         </p>
                     })}
 
@@ -159,11 +168,24 @@ function Stats() {
                                 }
 
                                 {
+
                                     visibleMonth.map((day, i) => {
                                         const isToday = day.date.isToday();
 
+                                        const color = chosenTasks.map(t => t.color);
+                                        const chosenColor = color[0];
+                                        
+                                        const isScheduled = chosenTasks.some(t => t.scheduledDate === day.date.format('YYYY-MM-DD'));
+                                        const isCompleted = chosenTasks.some(t => t.scheduledDate === day.date.format('YYYY-MM-DD') && t.complete);
+
                                         return (
-                                            <p key={i} className="dates">{day.dayNumber}</p>
+                                            <p key={i} className={`dates 
+                                                ${isToday ? 'bg-[var(--accent)] text-white' : ''} 
+                                            `}
+                                            style={{
+                                                borderColor: isScheduled ? chosenColor : ''
+                                            }}
+                                            >{isCompleted ? <i className="bi bi-trophy-fill"></i> : day.dayNumber}</p>
                                         )
                                     })
                                 }

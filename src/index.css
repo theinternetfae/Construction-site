@@ -526,7 +526,11 @@ body {
                   md:gap-6;
 
                   p {
-                    @apply border border-2 border-[var(--light-muted-text)] p-2 rounded-full text-center
+                    @apply border border-2 border-[var(--light-muted-text)] p-2 rounded-full text-center;
+
+                    i {
+                      @apply text-[var(--yellow)];
+                    }
                   }
                 }
               }
@@ -549,7 +553,7 @@ body {
     @apply bg-black/1 backdrop-blur-sm fixed top-0 z-50 w-full h-full flex justify-center;
 
     .alert-box {
-      @apply border border-2 border-[var(--accent)] mb-auto p-5 flex flex-col gap-5 bg-[var(--light-bgcolor)] text-[var(--light-text)] rounded-b-xl text-sm
+      @apply border border-2 border-[var(--accent)] mb-auto p-5 flex flex-col gap-5 bg-[var(--mainbd-bg)] text-[var(--light-text)] rounded-b-xl text-sm
       translate-y-[-30rem] transition ease-in duration-800
       /* dark:bg-[var(--dark-bgcolor)] dark:text-[var(--dark-text)] */
       md:text-base;
