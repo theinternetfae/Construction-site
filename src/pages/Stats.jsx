@@ -114,30 +114,25 @@ function Stats() {
             </section>
             
             <section className="stats-tasks-cont">
-            
-                <div className="stats-tasks">
                     
-                    <p className="stats-task"
-                        onClick={() => setchosenTaskId('')}
+                <p className="stats-task"
+                    onClick={() => setchosenTaskId('')}
+                    style={{
+                        borderColor: !chosenTaskId ? 'var(--accent)' : "transparent"
+                    }} 
+                >📈 <span className={`stats-task-title ${!chosenTaskId ? `block` : ''}`}>Overall</span></p>
+
+                {uniqueTasks.map(t => {
+                    return <p className="stats-task"
                         style={{
-                            borderColor: !chosenTaskId ? 'var(--accent)' : "transparent"
+                            borderColor: chosenTaskId === t.parentId ? t.color : "transparent"
                         }} 
-                    >📈 <span className={`stats-task-title ${!chosenTaskId ? `block` : ''}`}>Overall</span></p>
-    
-                    {uniqueTasks.map(t => {
-                        return <p className="stats-task"
-                            style={{
-                                borderColor: chosenTaskId === t.parentId ? t.color : "transparent"
-                            }} 
-                            key={t.parentId}
-                            onClick={() => setchosenTaskId(t.parentId)}
-                        >
-                            {`${t.emoji}`}<span className={`stats-task-title ${chosenTaskId === t.parentId ? `block` : ''}`}>{`${t.name}`}</span>
-                        </p>
-                    })}
-
-                </div>
-
+                        key={t.parentId}
+                        onClick={() => setchosenTaskId(t.parentId)}
+                    >
+                        {`${t.emoji}`}<span className={`stats-task-title ${chosenTaskId === t.parentId ? `block` : ''}`}>{`${t.name}`}</span>
+                    </p>
+                })}
             
             </section>
             
@@ -198,7 +193,12 @@ function Stats() {
                 </div>
             </section>
 
-            <section className="test">BODY 3</section>
+            <section className="stats-calculator-cont">
+
+                <div className="stats-calculator cont-main"></div>
+                <div className="stats-results cont-main"></div>
+            
+            </section>
         
             {aboutPage && <Alert
                 text={'Only reoccuring tasks are displayed here and calculated to determine your stats.'}

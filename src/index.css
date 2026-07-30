@@ -20,6 +20,7 @@
 
 
   --faded-border: #FFFFFF25;
+  --light-grey: #F3F4F6;
 
   --red: #d00018;
   --yellow: #FFB81C;
@@ -282,12 +283,12 @@ body {
   }
 
   .overall-main-body {
-    @apply h-[100vh] w-[100vw] flex bg-[var(--light-bgcolor)] flex-col relative
+    @apply min-h-screen w-full flex bg-[var(--light-bgcolor)] flex-col relative
     lg:flex-row; 
 
     nav {
       @apply px-4 py-4 w-full bottom-0 rounded-[10px_10px_0px_0px] bg-[var(--mainbd-bg)] absolute
-      lg:static lg:h-full lg:w-[20vw] lg:rounded-[0px_10px_10px_0px] lg:px-5 lg:py-10;
+      lg:sticky lg:top-0 lg:h-screen lg:w-[20vw] lg:rounded-[0px_10px_10px_0px] lg:px-5 lg:py-10;
 
       .sm-nav {
         @apply flex justify-between items-center 
@@ -360,7 +361,7 @@ body {
     }
 
     main {
-      @apply p-5 h-full w-[100vw]
+      @apply p-5 w-full
       lg:w-[80vw];
 
       .home {
@@ -477,21 +478,16 @@ body {
         }
 
         .stats-tasks-cont {
-          @apply place-items-center w-full bg-[var(--mainbd-bg)] p-5 rounded-lg shadow-lg overflow-hidden;
+          @apply w-full bg-[var(--mainbd-bg)] p-5 rounded-lg shadow-lg flex flex-nowrap gap-5 overflow-x-auto no-scrollbar
+          md:gap-20;;
 
-          .stats-tasks {
-            @apply flex flex-nowrap gap-5 w-full overflow-x-auto no-scrollbar
-            md:gap-20;
+          .stats-task {
+            @apply p-2 shrink-0 border border-2 border-transparent rounded-lg shadow-sm cursor-pointer transition duration-300 ease-in-out flex gap-2
+            hover:shadow-xl;
 
-            .stats-task {
-              @apply p-2 shrink-0 border border-2 border-transparent rounded-lg shadow-sm cursor-pointer transition duration-300 ease-in-out flex gap-2
-              hover:shadow-xl;
-  
-              .stats-task-title {
-                @apply hidden;
-              }
+            .stats-task-title {
+              @apply hidden;
             }
-
           }
 
         }
@@ -504,7 +500,7 @@ body {
             md:gap-5 md:p-3;
 
             .calendar-inner {
-              @apply bg-[#F3F4F6] flex flex-col gap-2 p-3 rounded-lg
+              @apply bg-[var(--light-grey)] flex flex-col gap-2 p-3 rounded-lg
               md:gap-5;
 
               .calendar-month {
@@ -526,7 +522,8 @@ body {
                   md:gap-6;
 
                   p {
-                    @apply border border-2 border-[var(--light-muted-text)] p-2 rounded-full text-center;
+                    @apply border border-2 border-[var(--light-muted-text)] p-1 rounded-full text-center
+                    md:p-2;
 
                     i {
                       @apply text-[var(--yellow)];
@@ -542,8 +539,20 @@ body {
           }
         }
 
-        .test {
-          @apply border border-2
+        .stats-calculator-cont {
+          @apply border border-2 h-[100vh] p-5 flex flex-col gap-5;
+
+          .cont-main {
+            @apply h-[50%];
+          }
+
+          .stats-calculator {
+            @apply border border-2 border-[var(--yellow)];
+          }
+
+          .stats-results {
+            @apply border border-2 border-[var(--red)];
+          }
         }
       }
     }
