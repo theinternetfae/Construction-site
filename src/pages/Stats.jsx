@@ -41,22 +41,10 @@ function Stats() {
         const monthStart = chosenMonth.startOf('month');
         const monthEnd = chosenMonth.endOf('month');
 
-        
-        console.log("Month start:", monthStart.format('YYYY-MM-DD'));
-        console.log("Month end:", monthEnd.format('YYYY-MM-DD'));
-
         const month = getDates(monthStart, monthEnd);
         return month;
 
     }, [chosenMonth])
-    
-    useEffect(() => {
-        console.log("Month dates", visibleMonth);
-    }, [])
-
-
-
-
 
 
 
@@ -147,10 +135,10 @@ function Stats() {
             <section className="stats-calendar">
                 <div className="calendar-outer">
 
-                    <i className="bi bi-chevron-left"></i>
+                    <i className="bi bi-chevron-left" onClick={() => setChosenMonth(prev => prev.subtract(1, 'month'))}></i>
                     
                     <div className="calendar-inner">
-                        <p className="calendar-month">JULY 2026</p>
+                        <p className="calendar-month" onClick={() => setChosenMonth(today)}>{chosenMonth.format('MMMM YYYY')}</p>
                         <div className="calender">
 
                             <div className="calendar-header">
@@ -183,7 +171,7 @@ function Stats() {
                         </div>
                     </div>
                     
-                    <i className="bi bi-chevron-right"></i>
+                    <i className="bi bi-chevron-right" onClick={() => setChosenMonth(prev => prev.add(1, 'month'))}></i>
                 
                 </div>
             </section>

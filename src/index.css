@@ -499,7 +499,6 @@ body {
         .stats-calendar {
           @apply flex items-center justify-center;
 
-
           .calendar-outer {
             @apply flex items-center gap-1 p-2 bg-[var(--mainbd-bg)] rounded-lg shadow-lg
             md:gap-5 md:p-3;
@@ -533,20 +532,8 @@ body {
               }
             }
 
-            /* .calendar-grid {
-                @apply grid grid-cols-7 w-full gap-2 lg:gap-[25px];
-
-                .day-label {
-                    @apply text-sm lg:text-base;
-                }
-
-                .date-cell {
-                    @apply text-sm lg:text-base;
-                }
-            } */
-
             i {
-              @apply hover:text-[var(--accent)] transition duration-300 ease-in-out cursor-pointer;
+              @apply hover:text-[var(--accent)] transition duration-300 ease-in-out cursor-pointer font-bold;
             }
           }
         }
