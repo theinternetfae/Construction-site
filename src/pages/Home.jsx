@@ -33,9 +33,6 @@ function Home() {
     }, []);
 
     const [chosenDate, setChosenDate] = useState(today);
-    const [weekStart, setWeekStart] = useState(
-        today.startOf('week')
-    );
 
     useEffect(() => {
 
@@ -43,14 +40,12 @@ function Home() {
 
             if(e.key === 'ArrowRight') {
              
-                setWeekStart(prev => prev.add(7, 'day'));
                 setChosenDate(prev => prev.add(7, 'day'));
             
             } 
             
             if(e.key === 'ArrowLeft') {
             
-                setWeekStart(prev => prev.subtract(7, 'day'));
                 setChosenDate(prev => prev.subtract(7, 'day'));
             
             }
@@ -64,9 +59,16 @@ function Home() {
         }
 
     }, [])
+     
+    const visibleDates = useMemo(() => {
+        
+        const weekStart = chosenDate.startOf('week');
+        const dates = getDates(weekStart, weekStart.add(6, 'day'));
 
+        return dates
     
-    const visibleDates = getDates(weekStart, weekStart.add(6, 'day'));
+    }, [chosenDate])
+
 
     
 
@@ -121,7 +123,6 @@ function Home() {
 
                 <p className="current-date" onClick={() => {
                     setChosenDate(today);
-                    setWeekStart(today.startOf('week'));
                 }}>
                     {`${chosenDate.format('MMMM DD, YYYY')}`}
                 </p>

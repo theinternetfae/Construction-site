@@ -360,7 +360,7 @@ body {
     }
 
     main {
-      @apply p-5 h-full
+      @apply p-5 h-full w-[100vw]
       lg:w-[80vw];
 
       .home {
@@ -494,6 +494,50 @@ body {
 
           }
 
+        }
+
+        .stats-calendar {
+          @apply flex items-center justify-center;
+
+          .calendar-outer {
+            @apply flex items-center gap-5 p-3 bg-[var(--mainbd-bg)] rounded-lg shadow-lg;
+
+            .calendar-inner {
+              @apply bg-[#F3F4F6] flex flex-col gap-5 p-3 rounded-lg;
+
+              .calendar-month {
+                @apply font-bold;
+              }
+
+              .calender {
+                @apply flex flex-col gap-5 bg-[var(--mainbd-bg)] rounded-lg p-2;
+
+                .calendar-header {
+                  @apply grid grid-cols-7 gap-10 p-2 font-bold;
+                }
+
+                .calendar-dates {
+                  @apply grid grid-cols-7  gap-10 bg-[var(--mainbd-bg)] rounded-lg p-2;
+                }
+              }
+            }
+
+            /* .calendar-grid {
+                @apply grid grid-cols-7 w-full gap-2 lg:gap-[25px];
+
+                .day-label {
+                    @apply text-sm lg:text-base;
+                }
+
+                .date-cell {
+                    @apply text-sm lg:text-base;
+                }
+            } */
+
+            i {
+              @apply hover:text-[var(--accent)] transition duration-300 ease-in-out;
+            }
+          }
         }
       }
     }

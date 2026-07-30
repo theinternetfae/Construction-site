@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, useMemo } from "react";
 import { TaskContext } from "../js files/contexts";
 import dayjs from "dayjs";
-import { calculateTimeToMidnight } from "../js files/Utilities.js"
+import { calculateTimeToMidnight, getDates } from "../js files/Utilities.js"
 import Alert from "../utilities jsx/Alert.jsx";
 import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 
@@ -10,11 +10,6 @@ function Stats() {
     const { taskList } = useContext(TaskContext);
 
     const [today, setToday] = useState(dayjs());
-
-    const [chosenTask, setChosenTask] = useState('');
-
-    const [aboutPage, setAboutPage] = useState(false);
-    const [taskEditor, setTaskEditor] = useState(false);
 
     useEffect(() => {
 
@@ -37,6 +32,51 @@ function Stats() {
 
     }, []);
 
+
+
+
+
+
+
+
+
+    const [chosenMonth, setChosenMonth] = useState(today);
+        
+    const visibleMonth = useMemo(() => {
+
+        const monthStart = chosenMonth.startOf('month');
+        const monthEnd = chosenMonth.endOf('month');
+
+        
+        console.log("Month start:", monthStart.format('YYYY-MM-DD'));
+        console.log("Month end:", monthEnd.format('YYYY-MM-DD'));
+
+        const month = getDates(monthStart, monthEnd);
+        return month;
+
+    }, [chosenMonth])
+    
+    useEffect(() => {
+        console.log("Month dates", visibleMonth);
+    }, [])
+    
+
+
+
+
+
+
+
+
+
+    const [chosenTask, setChosenTask] = useState('');
+
+    const [aboutPage, setAboutPage] = useState(false);
+    const [taskEditor, setTaskEditor] = useState(false);
+
+
+
+
     const uniqueTasks = useMemo(() => {
         
         const uniqueTasksMap = new Map();
@@ -49,7 +89,6 @@ function Stats() {
 
         const uniqueTasks = [...uniqueTasksMap.values()];
         
-        console.log(uniqueTasks)
         return uniqueTasks;
 
     }, [taskList, today]);
@@ -111,7 +150,97 @@ function Stats() {
             
             </section>
             
-            <section>BODY 2</section>
+            <section className="stats-calendar">
+                <div className="calendar-outer">
+
+                    <i className="bi bi-caret-left-square"></i>
+                    
+                    <div className="calendar-inner">
+                        <p className="calendar-month">JULY 2026</p>
+                        <div className="calender">
+
+                            <div className="calendar-header">
+
+                                {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
+                                    <p key={i}>{d}</p>
+                                ))}                            
+
+                            </div>
+                            
+                            <div className="calendar-dates">
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                                <p className="dates">1</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {/* <div className="calendar-grid">
+
+                        {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
+                            <div key={i} className="day-label">{d}</div>
+                        ))}
+
+                        {
+                            monthDays.length > 0 &&
+                            Array(monthDays[0].getDay()).fill(null).map((_, i) => (
+                                <div key={"blank"+ i} className="blank"></div>
+                            ))
+                        }
+
+                        {
+                            monthDays.map((day, i) => {
+                                const isToday = day.toDateString() === today.toDateString();
+                                const isMatch = matchingBorderDay.some(border => border.toDateString() === day.toDateString());
+
+                                const borderStyle = !selectedTask
+                                ? {}
+                                : isMatch
+                                    ? {border: `2px solid ${selectedTask.color}`}
+                                    : {border: 'grey'};
+
+                                return (
+                                    <div key={i} title={day.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })} className="date-cell" style={borderStyle}>
+                                        {isToday ? <i className="bi bi-geo-alt text-bluelight"></i> : day.getDate()}
+                                    </div>
+                                )
+                            })
+                        }
+
+                    </div> */}
+
+                    <i className="bi bi-caret-right-square"></i>
+                
+                </div>
+            </section>
 
             <section>BODY 3</section>
         
