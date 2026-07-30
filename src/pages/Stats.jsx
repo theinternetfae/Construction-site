@@ -2,6 +2,8 @@ import { useContext, useEffect, useState, useMemo } from "react";
 import { TaskContext } from "../js files/contexts";
 import dayjs from "dayjs";
 import { calculateTimeToMidnight } from "../js files/Utilities.js"
+import Alert from "../utilities jsx/Alert.jsx";
+import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 
 function Stats() {
 
@@ -10,6 +12,9 @@ function Stats() {
     const [today, setToday] = useState(dayjs());
 
     const [chosenTask, setChosenTask] = useState('');
+
+    const [aboutPage, setAboutPage] = useState(false);
+    const [taskEditor, setTaskEditor] = useState(false);
 
     useEffect(() => {
 
@@ -54,7 +59,9 @@ function Stats() {
             
             <section className="stats-header">
 
-                <i className="bi bi-lightbulb-fill"></i>
+                <i className="bi bi-lightbulb-fill" 
+                onClick={() => setAboutPage(true)}></i>
+
                 <select name="" id="" value={chosenTask}    
                     onChange={(e) => setChosenTask(e.target.value)}>
 
@@ -70,7 +77,9 @@ function Stats() {
                     })}
 
                 </select>
-                <i className="bi bi-clipboard-plus-fill"></i>
+
+                <i className="bi bi-clipboard-plus-fill" 
+                onClick={() => setTaskEditor(true)}></i>
 
             </section>
             
@@ -106,6 +115,16 @@ function Stats() {
 
             <section>BODY 3</section>
         
+            {aboutPage && <Alert
+                text={'Only reoccuring tasks are displayed here and calculated to determine your stats.'}
+                buttonTextOne={'Okay'}
+                buttonActionOne={() => setAboutPage(false)}
+            />}
+
+            {taskEditor && <TaskEditor
+                exit={() => setTaskEditor(false)}
+            />}
+
         </div>
     );
 }
