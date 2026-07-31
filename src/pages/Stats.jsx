@@ -214,7 +214,7 @@ function Stats() {
                             cy="20"
                             r="16"
                             strokeDasharray={100}
-                            strokeDashoffset={30}
+                            strokeDashoffset={100}
                         />
 
                     </svg>
