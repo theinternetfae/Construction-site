@@ -195,8 +195,44 @@ function Stats() {
 
             <section className="stats-calculator-cont">
 
-                <div className="stats-calculator cont-main"></div>
-                <div className="stats-results cont-main"></div>
+                <div className="stats-calculator cont-main">
+
+                    <svg className="progress-ring" viewBox="0 0 40 40" >
+
+                        <circle
+                            className="progress-bg"
+                            cx="20"
+                            cy="20"
+                            r="16"
+                            strokeDasharray={100}
+                            strokeDashoffset={0}
+                        />
+
+                        <circle
+                            className="progress"
+                            cx="20"
+                            cy="20"
+                            r="16"
+                            strokeDasharray={100}
+                            strokeDashoffset={100}
+                            style={{
+                                stroke: 'var(--yellow)'
+                            }}
+                        />
+
+                    </svg>
+
+                    <div className="calculator-circle">
+                        <div className="calculator-cirlce-inner">
+                        
+                            <p>0%</p>
+                        
+                        </div>
+                    </div>
+
+                </div>
+                
+
             
             </section>
         

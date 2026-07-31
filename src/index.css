@@ -540,18 +540,45 @@ body {
         }
 
         .stats-calculator-cont {
-          @apply border border-2 h-[100vh] p-5 flex flex-col gap-5;
-
-          .cont-main {
-            @apply h-[50%];
-          }
+          @apply border border-2 flex flex-col gap-5;
 
           .stats-calculator {
-            @apply border border-2 border-[var(--yellow)];
+            @apply relative flex flex-col justify-center items-center;
+
+            .progress-ring {
+              @apply absolute rounded-full h-60 shadow-lg rotate-[-90deg]
+              md:h-80;
+
+              .progress-bg {
+                @apply fill-none stroke-7 stroke-[var(--light-muted-text)];
+              }
+
+              .progress {
+                @apply fill-none stroke-[var(--accent)] stroke-7 duration-800 ease-in-out;
+              }
+
+            }
+
+            
+            .calculator-circle {
+              @apply bg-[var(--mainbd-bg)] shadow-lg h-60 w-60 rounded-full flex justify-center items-center
+              md:h-80 md:w-80;
+            
+              .calculator-cirlce-inner {
+                @apply h-[60%] w-[60%] rounded-full flex justify-center items-center bg-[var(--light-bgcolor)] inset-shadow-sm;
+
+                p {
+                  @apply font-bold text-xl;
+                }
+
+              }
+
+            }
+
           }
 
           .stats-results {
-            @apply border border-2 border-[var(--red)];
+            @apply font-bold border border-2 p-4;
           }
         }
       }

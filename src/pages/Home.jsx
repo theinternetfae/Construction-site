@@ -69,9 +69,7 @@ function Home() {
     
     }, [chosenDate])
 
-
     
-
 
     const [taskCategory, setTaskCategory] = useState('');
     const [visibleTasks, setVisibileTasks] = useState([]);
