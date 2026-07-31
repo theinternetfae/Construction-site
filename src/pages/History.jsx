@@ -1,21 +1,69 @@
+import { TaskContext } from "../js files/contexts";
+import dayjs from "../js files/DayJs";
+import { useContext, useEffect, useState, useMemo } from "react";
+import Task from "../utilities jsx/Task";
+
 function History() {
+
+    const {taskList} = useContext(TaskContext);
+
+    const [month, setMonth] = useState('');
+    const [date, setDate] = useState('');
+    const [year, setYear] = useState('');
+
+    const [selectedDate, setSelectedDate] = useState(dayjs());
+    
+    function searchDate() {
+        const d = `${year}-${month}-${date}`;
+        
+        setDate('');
+        setMonth('');
+        setYear('');
+        
+        setSelectedDate(dayjs(d));
+    }
+
+    const todaysTasks = useMemo(() => {
+        
+        const tasks = taskList.filter(t => selectedDate.isSame(dayjs(t.scheduledDate), "day"));
+        
+        console.log(tasks);
+
+        return tasks;
+
+    }, [selectedDate, taskList])
+
+    useEffect(() => {
+        console.log(todaysTasks);
+    }, [])
+
     return ( 
         <div className="history">
             <section className="history-finder">
                 <div className="input-date">
-                    <input type="number" placeholder="MM"/>
-                    <input type="number" placeholder="DD"/>
-                    <input type="number" placeholder="YYYY"/>
-                    <i className="bi bi-search"></i>
+                    <input type="number" value={month} placeholder="MM" onChange={(e) => setMonth(e.target.value)}/>
+                    <input type="number" value={date} placeholder="DD" onChange={(e) => setDate(e.target.value)}/>
+                    <input type="number" value={year} placeholder="YYYY" onChange={(e) => setYear(e.target.value)}/>
+                    <i className="bi bi-search" onClick={(() => searchDate())}></i>
                 </div>
                 
-                <p className="quick-info">JULY 21, 2026 (0 TASKS)</p>
+                <p className="quick-info" onClick={(() => setSelectedDate(dayjs()))}>
+                    {selectedDate.format('MMM DD, YYYY').toUpperCase()} ({`${todaysTasks.length} ${todaysTasks.length === 1 ? 'TASK' : 'TASKS'}`})
+                </p>
             </section>
 
             <section className="info-on-date">
                 
                 <div className="history-tasks">
-                    SECTION 1
+                    {todaysTasks.length === 0 && 'No tasks'}
+                    {
+                        todaysTasks.map(t => 
+                            <Task
+                                taskInfo={t}
+                                noShow={true}
+                            />
+                        )
+                    }
                 </div>
                 
                 <div className="history-result">

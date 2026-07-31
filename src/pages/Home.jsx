@@ -122,7 +122,7 @@ function Home() {
                 <p className="current-date" onClick={() => {
                     setChosenDate(today);
                 }}>
-                    {`${chosenDate.format('MMMM DD, YYYY')}`}
+                    {chosenDate.format('MMMM DD, YYYY').toUpperCase()}
                 </p>
 
                 <i className="bi bi-clipboard-plus-fill" onClick={(() => setShowEditor(true))}></i>

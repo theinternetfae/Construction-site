@@ -4,7 +4,7 @@ import { TaskContext } from "../js files/contexts.js";
 import { saveTaskList } from "../js files/Storage.js";
 import dayjs from "../js files/DayJs.js";
 
-function Task({taskInfo}) {
+function Task({taskInfo, noShow}) {
 
     const now = dayjs();
     const createdToday = !dayjs(taskInfo.scheduledDate).isToday();
@@ -24,12 +24,12 @@ function Task({taskInfo}) {
             </section>
             
             <section className="task-updates">
-                <i className={`bi bi-pencil ${createdToday ? 'cursor-not-allowed hover:text-[var(--muted-text)]' : ''} ${taskInfo.completed ? 'text-white hover:text-[var(--accent)]' : ''}`} title="Edit" onClick={() => {
+                <i className={`bi bi-pencil ${noShow ? 'hidden' : ''} ${createdToday ? 'cursor-not-allowed hover:text-[var(--muted-text)]' : ''} ${taskInfo.completed ? 'text-white hover:text-[var(--accent)]' : ''}`} title="Edit" onClick={() => {
                     if(createdToday) return;
                     setEditing(true)
                 }}></i>
 
-                <input type="checkbox" title="Complete" checked={taskInfo.completed} onChange={() => {
+                <input type="checkbox" title="Complete" hidden={noShow} checked={taskInfo.completed} onChange={() => {
                    
                    if(createdToday) return;
 

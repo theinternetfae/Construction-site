@@ -624,7 +624,7 @@ body {
           }
 
           p {
-            @apply font-bold text-[10px]
+            @apply font-bold text-[10px] cursor-pointer
             lg:text-base;
           }
         }
@@ -633,7 +633,7 @@ body {
           @apply p-2 flex flex-col gap-5 mb-20;
 
           .history-tasks {
-            @apply p-4 text-center rounded-lg bg-[var(--mainbd-bg)] shadow-lg;
+            @apply p-4 text-center rounded-lg shadow-lg flex flex-col gap-5;
           }
 
           .history-result {
