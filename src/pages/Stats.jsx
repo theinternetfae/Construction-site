@@ -214,10 +214,7 @@ function Stats() {
                             cy="20"
                             r="16"
                             strokeDasharray={100}
-                            strokeDashoffset={100}
-                            style={{
-                                stroke: 'var(--yellow)'
-                            }}
+                            strokeDashoffset={30}
                         />
 
                     </svg>
@@ -232,7 +229,32 @@ function Stats() {
 
                 </div>
                 
+                <div className="stats-results cont-main">
+                    
+                    <div className="result-cont">
+                        <i className="bi bi-stars"></i>
+                        <p className="result-counter">0 days</p>
+                        <p className="title">Top streak</p>
+                    </div>
+                    
+                    <div className="result-cont">
+                        <i className="bi bi-fire"></i>
+                        <p className="result-counter">0 days</p>
+                        <p className="title">Current streak</p>
+                    </div>
 
+                    <div className="result-cont">
+                        <i className="bi bi-check-circle"></i>
+                        <p className="result-counter">0</p>
+                        <p className="title">Top streak</p>
+                    </div>
+                    
+                    <div className="result-cont">
+                        <i className="bi bi-info-circle"></i>
+                        <p className="result-counter">0 Active</p>
+                        <p className="title">Status</p>
+                    </div>
+                </div>
             
             </section>
         

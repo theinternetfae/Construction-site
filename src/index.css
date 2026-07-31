@@ -540,7 +540,7 @@ body {
         }
 
         .stats-calculator-cont {
-          @apply border border-2 flex flex-col gap-5;
+          @apply flex flex-col gap-8;
 
           .stats-calculator {
             @apply relative flex flex-col justify-center items-center;
@@ -578,7 +578,23 @@ body {
           }
 
           .stats-results {
-            @apply font-bold border border-2 p-4;
+            @apply p-4 grid grid-cols-2 gap-5;
+
+            .result-cont {
+              @apply border border-2 border-[var(--accent)] rounded-lg flex flex-col items-center justify-center gap-3 p-3 bg-[var(--mainbd-bg)];
+
+              i {
+                @apply text-[var(--accent)] text-2xl;
+              }
+
+              .result-counter {
+                @apply font-bold;
+              }
+
+              .title {
+                @apply text-sm font-bold text-[var(--light-muted-text)];
+              }
+            }
           }
         }
       }
