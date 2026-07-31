@@ -60,7 +60,7 @@ function TaskEditor({exit, task}) {
             scheduledDate: dayjs().format('YYYY-MM-DD'),
             emoji,
             name,
-            color,
+            color: color ? color : 'var(--accent)',
             days,
             startDate: days.length === 0 ? null : startDate,
             endDate: days.length === 0 ? null : endDate,
