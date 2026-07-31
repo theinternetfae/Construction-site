@@ -2,10 +2,13 @@ import { TaskContext } from "../js files/contexts";
 import dayjs from "../js files/DayJs";
 import { useContext, useEffect, useState, useMemo } from "react";
 import Task from "../utilities jsx/Task";
+import Alert from "../utilities jsx/Alert";
 
 function History() {
 
     const {taskList} = useContext(TaskContext);
+
+    const [error, setError] = useState(false);
 
     const [month, setMonth] = useState('');
     const [date, setDate] = useState('');
@@ -14,13 +17,20 @@ function History() {
     const [selectedDate, setSelectedDate] = useState(dayjs());
     
     function searchDate() {
-        const d = `${year}-${month}-${date}`;
-        
+
+        const d = `${year}-${month.padStart(2, "0")}-${date.padStart(2, "0")}`;        
+
+        if(!dayjs(d, 'YYYY-MM-DD', true).isValid()) {
+            setError(true);
+            return;
+        }
+
         setDate('');
         setMonth('');
         setYear('');
         
         setSelectedDate(dayjs(d));
+
     }
 
     const todaysTasks = useMemo(() => {
@@ -59,6 +69,7 @@ function History() {
                     {
                         todaysTasks.map(t => 
                             <Task
+                                key={t.uniqueId}
                                 taskInfo={t}
                                 noShow={true}
                             />
@@ -92,6 +103,12 @@ function History() {
                     </div>
                 </div>
             </section>
+
+            {error && <Alert
+                text={'Please input a valid date'}
+                buttonTextOne={'Okay'}
+                buttonActionOne={() => setError(false)}
+            />}
         </div>
     );
 }
