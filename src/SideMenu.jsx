@@ -35,10 +35,10 @@ function SideMenu() {
                         <p className={`${location.pathname === '/test/stats' ? 'block' : ""}`}>Stats</p>
                     </Link>
                     
-                    <div className="navigation">
+                    <Link to={"history"} className={`navigation ${location.pathname === '/test/history' ? 'bg-[#BFDBFE] text-[var(--accent)] flex' : ""}`}>
                         <i className="bi bi-clock-history"></i>
                         <p className={`${location.pathname === '/test/history' ? 'block' : ""}`}>History</p>
-                    </div>
+                    </Link>
                     
                     <div className="navigation">
                         <i className="bi bi-gear"></i>
@@ -80,10 +80,10 @@ function SideMenu() {
                         <p>Stats</p>
                     </Link>
                     
-                    <div className={`navigation ${location.pathname === '/test/history' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
+                    <Link to={"history"} className={`navigation ${location.pathname === '/test/history' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
                         <i className="bi bi-clock-history"></i>
                         <p>History</p>
-                    </div>
+                    </Link>
                     
                     <div className={`navigation ${location.pathname === '/test/settings' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
                         <i className="bi bi-gear"></i>

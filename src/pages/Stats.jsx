@@ -92,7 +92,7 @@ function Stats() {
                 <i className="bi bi-lightbulb-fill" 
                 onClick={() => setAboutPage(true)}></i>
 
-                <select name="" id="" value={chosenTaskId}    
+                <select id="unique-tasks" value={chosenTaskId}    
                     onChange={(e) => setchosenTaskId(e.target.value)}>
 
                     <option value="">📈 Overall</option>

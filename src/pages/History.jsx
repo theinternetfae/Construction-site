@@ -1,6 +1,7 @@
 function History() {
     return ( 
         <>
+            HISTORY
         </>
     );
 }
