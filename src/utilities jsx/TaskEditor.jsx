@@ -49,7 +49,7 @@ function TaskEditor({exit, task}) {
             return;
         };
 
-        const reminderTime = !reminder ? null : `${reminderHour}:${reminderMinutes} ${meridiem}`
+        const reminderTime = !reminder ? null : `${reminderHour}:${reminderMinutes} ${meridiem}`;
 
         const uniqueId = crypto.randomUUID()
 
