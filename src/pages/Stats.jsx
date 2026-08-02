@@ -61,6 +61,10 @@ function Stats() {
         return chosenScheduled|| [];
     }, [chosenTaskId])
 
+    useEffect(() => {
+        console.log(chosenTasks);
+    }, [chosenTasks])
+
     const [aboutPage, setAboutPage] = useState(false);
     const [taskEditor, setTaskEditor] = useState(false);
 
@@ -215,6 +219,9 @@ function Stats() {
                             r="16"
                             strokeDasharray={100}
                             strokeDashoffset={100}
+                            style={{
+                                stroke: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
+                            }}
                         />
 
                     </svg>
@@ -231,26 +238,68 @@ function Stats() {
                 
                 <div className="stats-results cont-main">
                     
-                    <div className="result-cont">
-                        <i className="bi bi-stars"></i>
+                    <div className="result-cont"
+                        style={{
+                            borderColor: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
+                        }}    
+                    >
+
+                        <i className="bi bi-stars"
+                        style={{
+                            color: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
+                        }}></i>
+
                         <p className="result-counter">0 days</p>
                         <p className="title">Top streak</p>
                     </div>
                     
-                    <div className="result-cont">
-                        <i className="bi bi-fire"></i>
+                    
+                    
+                    <div className="result-cont"
+                        style={{
+                            borderColor: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
+                        }}    
+                    >
+                        
+                        <i className="bi bi-fire"
+                        style={{
+                            color: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
+                        }}></i>
+                        
                         <p className="result-counter">0 days</p>
                         <p className="title">Current streak</p>
                     </div>
 
-                    <div className="result-cont">
-                        <i className="bi bi-check-circle"></i>
+                    
+                    
+                    <div className="result-cont"
+                        style={{
+                            borderColor: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
+                        }}    
+                    >
+                        
+                        <i className="bi bi-check-circle"
+                        style={{
+                            color: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
+                        }}></i>
+                        
                         <p className="result-counter">0</p>
                         <p className="title">Top streak</p>
                     </div>
                     
-                    <div className="result-cont">
-                        <i className="bi bi-info-circle"></i>
+                    
+                    
+                    <div className="result-cont"
+                        style={{
+                            borderColor: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
+                        }}    
+                    >
+                        
+                        <i className="bi bi-info-circle"
+                        style={{
+                            color: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
+                        }}></i>
+                        
                         <p className="result-counter">0 Active</p>
                         <p className="title">Status</p>
                     </div>
