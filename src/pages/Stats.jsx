@@ -70,7 +70,6 @@ function Stats() {
 
 
 
-
     const uniqueTasks = useMemo(() => {
         
         const uniqueTasksMap = new Map();
@@ -86,6 +85,152 @@ function Stats() {
         return uniqueTasks;
 
     }, [taskList, today]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //STATS CALCULATIONS
+
+    const stopperList = useMemo(() => {
+
+        const sortedTaskList = [...taskList].sort((a, b) => dayjs(a.scheduledDate) - dayjs(b.scheduledDate))
+
+        const grouped = sortedTaskList.reduce((acc, task) => {
+            
+            const date = task.scheduledDate;
+
+            if(!acc[date]) {
+                acc[date] = [];
+            }
+
+            acc[date].push(task.completed);
+
+            return acc;
+
+        }, {})
+
+        const theList = Object.entries(grouped).map(([date, completedStat]) => ({
+            date,
+            complete: completedStat.every(Boolean)
+        }));
+
+        const stopperList = theList.filter(t => dayjs(t.date).isBefore(today, "day"));
+
+        return stopperList;
+
+    }) 
+
+    
+    //1. GENERAL STATS
+
+    const generalCirlceProgress = useMemo(() => {
+
+        let counter = 100;
+
+        const completed = taskList.filter(t => t.completed).length;
+
+
+        const progress = taskList.length === 0 ? 0 : completed / taskList.length * 100;
+        
+        counter = counter - progress;
+
+        return {
+            counter,
+            progress: progress.toFixed(2)
+        };
+    
+    }, [taskList])
+
+
+    const generalTodayStatus = useMemo(() => {
+
+        const total = taskList.filter(t => dayjs(t.scheduledDate).isSame(today, "day"));
+        const completedList = total.filter(t => t.completed).length;
+
+        return {
+            todayComplete: total.length === completedList,
+            result: `${completedList}/${total.length}`
+        };
+
+    }, [taskList]);
+
+
+    const generalTopStreak = useMemo(() => {        
+
+        let count = 0;
+
+        const streakList = stopperList.reduce((acc, t) => {
+            
+            if(t.complete === true) {
+              count++  
+            } else {
+                acc.push(count);
+                count = 0;
+            }
+
+            return acc;
+
+        }, [])
+
+        if (count > 0) {
+            
+            if(generalTodayStatus.todayComplete) {
+                count++
+            }
+            
+            streakList.push(count);
+        
+        }
+
+        return Math.max(...streakList, 0);
+    
+    }, [stopperList]);
+
+
+    const generalCurrentStreak = useMemo(() => {
+        
+        let count = 0;
+
+        for (const task of stopperList) {
+            count = task.complete ? count + 1 : 0
+        }
+
+        if(generalTodayStatus.todayComplete) {
+            count++
+        }
+
+        return count;
+    
+    }, [stopperList, taskList]);
+
+    
+    const generalTotalActive = useMemo(() => {
+
+        const totalActive = uniqueTasks.filter(t => dayjs(t.end).isAfter(today));
+
+        return totalActive.length;
+
+    }, [uniqueTasks])
+    
+    useEffect(() => {
+        console.log(generalTotalActive);
+    }, [])
+
 
 
     return ( 
@@ -218,7 +363,7 @@ function Stats() {
                             cy="20"
                             r="16"
                             strokeDasharray={100}
-                            strokeDashoffset={100}
+                            strokeDashoffset={`${!chosenTaskId ? generalCirlceProgress.counter : 100}`}
                             style={{
                                 stroke: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
                             }}
@@ -229,7 +374,7 @@ function Stats() {
                     <div className="calculator-circle">
                         <div className="calculator-cirlce-inner">
                         
-                            <p>0%</p>
+                            <p> {`${!chosenTaskId ? generalCirlceProgress.progress : 0}`}%</p>
                         
                         </div>
                     </div>
@@ -249,7 +394,7 @@ function Stats() {
                             color: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
                         }}></i>
 
-                        <p className="result-counter">0 days</p>
+                        <p className="result-counter">{`${!chosenTaskId ? generalTopStreak : 0}`} days</p>
                         <p className="title">Top streak</p>
                     </div>
                     
@@ -266,7 +411,7 @@ function Stats() {
                             color: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
                         }}></i>
                         
-                        <p className="result-counter">0 days</p>
+                        <p className="result-counter">{`${!chosenTaskId ? generalCurrentStreak : 0}`} days</p>
                         <p className="title">Current streak</p>
                     </div>
 
@@ -283,8 +428,9 @@ function Stats() {
                             color: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
                         }}></i>
                         
-                        <p className="result-counter">0</p>
-                        <p className="title">Top streak</p>
+                        <p className="result-counter">{`${!chosenTaskId ? generalTodayStatus.result : 0}`}</p>
+                        <p className="title">Today's Status</p>
+
                     </div>
                     
                     
@@ -300,8 +446,8 @@ function Stats() {
                             color: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
                         }}></i>
                         
-                        <p className="result-counter">0 Active</p>
-                        <p className="title">Status</p>
+                        <p className="result-counter">{`${!chosenTaskId ? generalTotalActive : 0}`} Active</p>
+                        <p className="title">Active Status</p>
                     </div>
                 </div>
             
