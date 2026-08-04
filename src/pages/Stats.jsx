@@ -61,10 +61,6 @@ function Stats() {
         return chosenScheduled|| [];
     }, [chosenTaskId])
 
-    useEffect(() => {
-        console.log(chosenTasks);
-    }, [chosenTasks])
-
     const [aboutPage, setAboutPage] = useState(false);
     const [taskEditor, setTaskEditor] = useState(false);
 
@@ -127,6 +123,14 @@ function Stats() {
 
     }, [taskList]);
 
+    const generalActiveStatus = useMemo(() => {
+
+        const totalActive = uniqueTasks.filter(t => dayjs(t.end).isAfter(today));
+
+        return totalActive.length;
+
+    }, [uniqueTasks])
+
 
     const generalTopStreak = useMemo(() => {        
 
@@ -175,15 +179,6 @@ function Stats() {
         return count;
     
     }, [chosenTaskId, taskList]);
-
-    
-    const generalTotalActive = useMemo(() => {
-
-        const totalActive = uniqueTasks.filter(t => dayjs(t.end).isAfter(today));
-
-        return totalActive.length;
-
-    }, [uniqueTasks])
     
 
 
@@ -216,7 +211,7 @@ function Stats() {
             progress: progress.toFixed(2)
         };
     
-    }, [taskList, chosenTaskId])
+    }, [chosenTaskId])
 
 
     const specificTodayStatus = useMemo(() => {
@@ -225,10 +220,25 @@ function Stats() {
 
         return todaysTask ? `${todaysTask.complete ? 'Completed' : 'Pending'}` : 'None Today';
 
-    }, [taskList, chosenTaskId]);
+    }, [chosenTaskId]);
+
+
+    const specificActiveStatus = useMemo(() => {
+
+        const eligible = uniqueTasks.find(t => t.parentId === chosenTaskId);
+
+        const eligibleStatus = dayjs(eligible?.endDate).isAfter(today, "day");
+
+        return eligibleStatus ? "Active" : "Inactive";
+
+    }, [uniqueTasks, chosenTaskId])
 
     useEffect(() => {
-        console.log(specificTodayStatus);
+        // console.log("Chosen Tasks:", chosenTasks);
+        // console.log("Todays task", specificTodayStatus);
+
+        console.log("Unique Tasks:", uniqueTasks);      
+        console.log("Active status:", specificActiveStatus);
     }, [chosenTaskId])
 
 
@@ -446,7 +456,7 @@ function Stats() {
                             color: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
                         }}></i>
                         
-                        <p className="result-counter">{`${!chosenTaskId ? generalTotalActive : 0}`} Active</p>
+                        <p className="result-counter">{`${!chosenTaskId ? generalActiveStatus : specificActiveStatus}`} <span className={specificActiveStatus === 'Active' ? "hidden" : ''}>Active</span></p>
                         <p className="title">Active Status</p>
                     </div>
                 </div>
