@@ -55,7 +55,7 @@ function Stats() {
         const chosenScheduled = chosen.map(t => ({
             scheduledDate: t.scheduledDate,
             color: t.color,
-            complete: t.completed
+            completed: t.completed
         }));
 
         return chosenScheduled|| [];
@@ -200,7 +200,7 @@ function Stats() {
 
         let counter = 100;
 
-        const completed = chosenTasks.filter(t => t.complete).length;
+        const completed = chosenTasks.filter(t => t.completed).length;
 
         const progress = chosenTasks.length === 0 ? 0 : completed / chosenTasks.length * 100;
         
@@ -218,7 +218,7 @@ function Stats() {
 
         const todaysTask = chosenTasks.find(t => dayjs(t.scheduledDate).isSame(today, "day"));
 
-        return todaysTask ? `${todaysTask.complete ? 'Completed' : 'Pending'}` : 'None Today';
+        return todaysTask ? `${todaysTask.completed ? 'Completed' : 'Pending'}` : 'None Today';
 
     }, [chosenTaskId]);
 
@@ -233,12 +233,42 @@ function Stats() {
 
     }, [uniqueTasks, chosenTaskId])
 
-    useEffect(() => {
-        // console.log("Chosen Tasks:", chosenTasks);
-        // console.log("Todays task", specificTodayStatus);
 
-        console.log("Unique Tasks:", uniqueTasks);      
-        console.log("Active status:", specificActiveStatus);
+    const specificTopStreak = useMemo(() => {        
+
+        let count = 0;        
+
+        const streakList = statsStopperList(chosenTasks).reduce((acc, t) => {
+            
+            if(t.complete === true) {
+              count++  
+            } else {
+                acc.push(count);
+                count = 0;
+            }
+
+            return acc;
+
+        }, [])
+
+        if(specificTodayStatus.toLowerCase() === "completed") {
+            count++
+        }
+
+        if (count > 0) {
+                
+            streakList.push(count);
+        
+        }
+
+        return Math.max(...streakList, 0);
+        
+    }, [chosenTaskId]);
+
+
+    useEffect(() => {
+        console.log("Top Streak:", specificTodayStatus);
+        console.log("Top Streak:", specificTopStreak);
     }, [chosenTaskId])
 
 
@@ -264,7 +294,7 @@ function Stats() {
                             {`${t.emoji} ${t.name}`}
                         </option>
                     })}
-
+``
                 </select>
 
                 <i className="bi bi-clipboard-plus-fill" 
@@ -330,7 +360,7 @@ function Stats() {
                                         const chosenColor = color[0];
                                         
                                         const isScheduled = chosenTasks.some(t => t.scheduledDate === day.date.format('YYYY-MM-DD'));
-                                        const isCompleted = chosenTasks.some(t => t.scheduledDate === day.date.format('YYYY-MM-DD') && t.complete);
+                                        const isCompleted = chosenTasks.some(t => t.scheduledDate === day.date.format('YYYY-MM-DD') && t.completed);
 
                                         return (
                                             <p key={i} className={`dates 
@@ -404,7 +434,7 @@ function Stats() {
                             color: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
                         }}></i>
 
-                        <p className="result-counter">{`${!chosenTaskId ? generalTopStreak : 0}`} days</p>
+                        <p className="result-counter">{`${!chosenTaskId ? generalTopStreak : specificTopStreak}`} days</p>
                         <p className="title">Top streak</p>
                     </div>
                     
