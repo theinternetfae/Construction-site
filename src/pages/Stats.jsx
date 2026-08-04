@@ -283,12 +283,6 @@ function Stats() {
     }, [chosenTaskId]);
 
 
-    useEffect(() => {
-        console.log("Current Streak:", specificCurrentStreak);
-    }, [chosenTaskId])
-
-
-
     return ( 
         <div className="stats">
             
@@ -485,7 +479,7 @@ function Stats() {
                         }}></i>
                         
                         <p className="result-counter">{`${!chosenTaskId ? generalTodayStatus.result : specificTodayStatus}`}</p>
-                        <p className="title">Today's Status</p>
+                        <p className="title">Todays Status</p>
 
                     </div>
                     
