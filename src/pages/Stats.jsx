@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, useMemo } from "react";
 import { TaskContext } from "../js files/contexts";
 import dayjs from "dayjs";
-import { calculateTimeToMidnight, getDates } from "../js files/Utilities.js"
+import { calculateTimeToMidnight, getDates, statsStopperList } from "../js files/Utilities.js"
 import Alert from "../utilities jsx/Alert.jsx";
 import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 
@@ -95,47 +95,6 @@ function Stats() {
 
 
 
-
-
-
-
-
-
-
-
-
-    //STATS CALCULATIONS
-
-    const stopperList = useMemo(() => {
-
-        const sortedTaskList = [...taskList].sort((a, b) => dayjs(a.scheduledDate) - dayjs(b.scheduledDate))
-
-        const grouped = sortedTaskList.reduce((acc, task) => {
-            
-            const date = task.scheduledDate;
-
-            if(!acc[date]) {
-                acc[date] = [];
-            }
-
-            acc[date].push(task.completed);
-
-            return acc;
-
-        }, {})
-
-        const theList = Object.entries(grouped).map(([date, completedStat]) => ({
-            date,
-            complete: completedStat.every(Boolean)
-        }));
-
-        const stopperList = theList.filter(t => dayjs(t.date).isBefore(today, "day"));
-
-        return stopperList;
-
-    }) 
-
-    
     //1. GENERAL STATS
 
     const generalCirlceProgress = useMemo(() => {
@@ -143,7 +102,6 @@ function Stats() {
         let counter = 100;
 
         const completed = taskList.filter(t => t.completed).length;
-
 
         const progress = taskList.length === 0 ? 0 : completed / taskList.length * 100;
         
@@ -174,7 +132,7 @@ function Stats() {
 
         let count = 0;
 
-        const streakList = stopperList.reduce((acc, t) => {
+        const streakList = statsStopperList(taskList).reduce((acc, t) => {
             
             if(t.complete === true) {
               count++  
@@ -187,26 +145,26 @@ function Stats() {
 
         }, [])
 
+        if(generalTodayStatus.todayComplete) {
+            count++
+        }
+
         if (count > 0) {
-            
-            if(generalTodayStatus.todayComplete) {
-                count++
-            }
-            
+                
             streakList.push(count);
         
         }
 
         return Math.max(...streakList, 0);
     
-    }, [stopperList]);
+    }, [chosenTaskId]);
 
 
     const generalCurrentStreak = useMemo(() => {
         
         let count = 0;
 
-        for (const task of stopperList) {
+        for (const task of statsStopperList(taskList)) {
             count = task.complete ? count + 1 : 0
         }
 
@@ -216,7 +174,7 @@ function Stats() {
 
         return count;
     
-    }, [stopperList, taskList]);
+    }, [chosenTaskId, taskList]);
 
     
     const generalTotalActive = useMemo(() => {
@@ -227,9 +185,55 @@ function Stats() {
 
     }, [uniqueTasks])
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    //2.SPECIFIC STATS
+    const specificCirlceProgress = useMemo(() => {
+
+        let counter = 100;
+
+        const completed = chosenTasks.filter(t => t.complete).length;
+
+        const progress = chosenTasks.length === 0 ? 0 : completed / chosenTasks.length * 100;
+        
+        counter = counter - progress;
+
+        return {
+            counter,
+            progress: progress.toFixed(2)
+        };
+    
+    }, [taskList, chosenTaskId])
+
+
+    // const specificTodayStatus = useMemo(() => {
+
+    //     const total = taskList.filter(t => dayjs(t.scheduledDate).isSame(today, "day"));
+    //     const completedList = total.filter(t => t.completed).length;
+
+    //     return {
+    //         todayComplete: total.length === completedList,
+    //         result: `${completedList}/${total.length}`
+    //     };
+
+    // }, [taskList]);
+
     useEffect(() => {
-        console.log(generalTotalActive);
-    }, [])
+        console.log(specificCirlceProgress);
+    }, [chosenTaskId])
 
 
 
@@ -363,7 +367,7 @@ function Stats() {
                             cy="20"
                             r="16"
                             strokeDasharray={100}
-                            strokeDashoffset={`${!chosenTaskId ? generalCirlceProgress.counter : 100}`}
+                            strokeDashoffset={`${!chosenTaskId ? generalCirlceProgress.counter : specificCirlceProgress.counter}`}
                             style={{
                                 stroke: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
                             }}
@@ -374,7 +378,7 @@ function Stats() {
                     <div className="calculator-circle">
                         <div className="calculator-cirlce-inner">
                         
-                            <p> {`${!chosenTaskId ? generalCirlceProgress.progress : 0}`}%</p>
+                            <p> {`${!chosenTaskId ? generalCirlceProgress.progress : specificCirlceProgress.progress}`}%</p>
                         
                         </div>
                     </div>

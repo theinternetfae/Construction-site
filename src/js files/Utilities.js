@@ -87,3 +87,32 @@ export function generateTaskDuplicates(task) {
 
     return newTasksArray;
 }
+
+export function statsStopperList(list, today) {
+
+    const sortedTaskList = [...list].sort((a, b) => dayjs(a.scheduledDate) - dayjs(b.scheduledDate))
+
+    const grouped = sortedTaskList.reduce((acc, task) => {
+        
+        const date = task.scheduledDate;
+
+        if(!acc[date]) {
+            acc[date] = [];
+        }
+
+        acc[date].push(task.completed);
+
+        return acc;
+
+    }, {})
+
+    const theList = Object.entries(grouped).map(([date, completedStat]) => ({
+        date,
+        complete: completedStat.every(Boolean)
+    }));
+
+    const stopperList = theList.filter(t => dayjs(t.date).isBefore(today, "day"));
+
+    return stopperList;
+
+}
