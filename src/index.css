@@ -296,8 +296,8 @@ body {
         lg:hidden;
 
         .nav-sect-sm {
-          @apply flex gap-6
-          md:gap-12;
+          @apply flex gap-8
+          md:gap-15;
 
           .navigation {
             @apply gap-1 p-2 shadow-sm rounded-lg transition duration-300 ease-in-out;
@@ -328,7 +328,7 @@ body {
         }
 
         .nav-sect {
-          @apply flex flex-col gap-5 mt-10; 
+          @apply flex flex-col gap-8 mt-10; 
 
           .navigation {
             @apply border border-2 border-transparent shadow-xs cursor-pointer flex gap-2 p-3 rounded-lg text-[var(--muted-text)]
