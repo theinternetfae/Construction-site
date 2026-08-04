@@ -34,11 +34,11 @@ function SideMenu() {
                         <i className="bi bi-bar-chart"></i>
                         <p className={`${location.pathname === '/test/stats' ? 'block' : ""}`}>Stats</p>
                     </Link>
-                    
-                    <div className="navigation">
+
+                    <Link to={"settings"} className={`navigation ${location.pathname === '/test/settings' ? 'bg-[#BFDBFE] text-[var(--accent)] flex' : ""}`}>
                         <i className="bi bi-gear"></i>
                         <p className={`${location.pathname === '/test/settings' ? 'block' : ""}`}>Settings</p>
-                    </div>
+                    </Link>
 
                 </section>          
 
@@ -74,12 +74,12 @@ function SideMenu() {
                         <i className="bi bi-bar-chart"></i>
                         <p>Stats</p>
                     </Link>
-                    
-                    <div className={`navigation ${location.pathname === '/test/settings' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
+
+                    <Link to={"settings"} className={`navigation ${location.pathname === '/test/settings' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
                         <i className="bi bi-gear"></i>
                         <p>Settings</p>
-                    </div>
-                
+                    </Link>
+                                    
                 </section>
                 
                 <section className="quirk-sect">

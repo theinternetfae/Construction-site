@@ -600,62 +600,8 @@ body {
         }
       }
 
-      .history {
-        @apply h-full flex flex-col gap-8
-        md:p-3
-        lg:p-5;
-
-        .history-finder {
-          @apply flex justify-between items-center;
-
-          .input-date {
-            @apply flex gap-3;
-
-            input {
-              @apply w-10 text-center text-xs p-1 rounded-lg bg-[var(--mainbd-bg)] 
-              focus:outline-none
-              lg:w-20 lg:text-base
-            }
-
-            i {
-              @apply shadow-sm cursor-pointer w-10 flex items-center justify-center text-white bg-[var(--accent)] rounded-lg
-              active:scale-95
-            }
-          }
-
-          p {
-            @apply font-bold text-[10px] cursor-pointer
-            lg:text-base;
-          }
-        }
-
-        .info-on-date {
-          @apply p-2 flex flex-col gap-5 mb-20;
-
-          .history-tasks {
-            @apply p-4 text-center rounded-lg shadow-lg flex flex-col gap-5;
-          }
-
-          .history-result {
-            @apply p-4 grid grid-cols-2 gap-5;
-
-            .result-cont {
-              @apply border border-2 border-[var(--accent)] rounded-lg flex flex-col items-center justify-center gap-3 p-3 bg-[var(--mainbd-bg)];
-
-              i {
-                @apply text-[var(--accent)] text-2xl;
-              }
-
-              .result-counter {
-                @apply font-bold;
-              }
-
-              .title {
-                @apply text-sm font-bold text-[var(--light-muted-text)];
-              }
-            }
-          }
-        }
+      .settings {
+        @apply border border-2;
       }
     }
   }

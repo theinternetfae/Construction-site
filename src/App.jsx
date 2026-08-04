@@ -5,6 +5,7 @@ import WelcomeBack from './WelcomeBack.jsx';
 import { Route, Routes, Navigate } from "react-router-dom";
 import Home from './pages/Home.jsx';
 import Stats from './pages/Stats.jsx';
+import Settings from './pages/Settings.jsx';
 import { TaskContext, UserContext } from './js files/contexts.js';
 import { getTaskList } from './js files/Storage.js';
 
@@ -41,6 +42,7 @@ function App() {
 
             <Route path="home" element={<Home/>}></Route>
             <Route path="stats" element={<Stats/>}></Route>
+            <Route path="settings" element={<Settings/>}></Route>
 
           </Route>
 
