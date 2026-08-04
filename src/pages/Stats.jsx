@@ -198,7 +198,7 @@ function Stats() {
 
 
 
-    
+
 
     //2.SPECIFIC STATS
     const specificCirlceProgress = useMemo(() => {
@@ -219,20 +219,16 @@ function Stats() {
     }, [taskList, chosenTaskId])
 
 
-    // const specificTodayStatus = useMemo(() => {
+    const specificTodayStatus = useMemo(() => {
 
-    //     const total = taskList.filter(t => dayjs(t.scheduledDate).isSame(today, "day"));
-    //     const completedList = total.filter(t => t.completed).length;
+        const todaysTask = chosenTasks.find(t => dayjs(t.scheduledDate).isSame(today, "day"));
 
-    //     return {
-    //         todayComplete: total.length === completedList,
-    //         result: `${completedList}/${total.length}`
-    //     };
+        return todaysTask ? `${todaysTask.complete ? 'Completed' : 'Pending'}` : 'None Today';
 
-    // }, [taskList]);
+    }, [taskList, chosenTaskId]);
 
     useEffect(() => {
-        console.log(specificCirlceProgress);
+        console.log(specificTodayStatus);
     }, [chosenTaskId])
 
 
@@ -432,7 +428,7 @@ function Stats() {
                             color: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
                         }}></i>
                         
-                        <p className="result-counter">{`${!chosenTaskId ? generalTodayStatus.result : 0}`}</p>
+                        <p className="result-counter">{`${!chosenTaskId ? generalTodayStatus.result : specificTodayStatus}`}</p>
                         <p className="title">Today's Status</p>
 
                     </div>
