@@ -266,9 +266,25 @@ function Stats() {
     }, [chosenTaskId]);
 
 
+    const specificCurrentStreak = useMemo(() => {        
+
+        let count = 0;
+
+        for (const task of statsStopperList(chosenTasks)) {
+            count = task.complete ? count + 1 : 0
+        }
+
+        if(specificTodayStatus.toLowerCase() === 'completed') {
+            count++
+        }
+
+        return count;
+        
+    }, [chosenTaskId]);
+
+
     useEffect(() => {
-        console.log("Top Streak:", specificTodayStatus);
-        console.log("Top Streak:", specificTopStreak);
+        console.log("Current Streak:", specificCurrentStreak);
     }, [chosenTaskId])
 
 
@@ -451,7 +467,7 @@ function Stats() {
                             color: !chosenTasks.length ? 'var(--accent)' : chosenTasks[0].color 
                         }}></i>
                         
-                        <p className="result-counter">{`${!chosenTaskId ? generalCurrentStreak : 0}`} days</p>
+                        <p className="result-counter">{`${!chosenTaskId ? generalCurrentStreak : specificCurrentStreak}`} days</p>
                         <p className="title">Current streak</p>
                     </div>
 
