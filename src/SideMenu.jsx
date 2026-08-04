@@ -63,7 +63,6 @@ function SideMenu() {
                 </section>
 
                 <section className="nav-sect">
-                    
 
                     <Link to={"home"} className={`navigation ${location.pathname === '/test/home' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
                         <i className="bi bi-house-door-fill"></i>

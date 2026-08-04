@@ -601,7 +601,51 @@ body {
       }
 
       .settings {
-        @apply border border-2;
+        @apply flex flex-col gap-5
+        md:p-3
+        lg:p-5;
+
+        .heading {
+          @apply flex justify-between;
+
+          .page-info {
+            @apply flex flex-col;
+
+            h2 {
+              @apply text-lg font-bold;
+
+              span {
+                @apply text-base text-[var(--light-muted-text)];
+              }
+            }
+
+            p {
+              @apply text-[var(--light-muted-text)] text-xs;
+            }
+          }
+
+          .mode-toggle {
+            @apply w-40 rounded-lg bg-[var(--light-muted-text)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
+
+            .mode-toggle-switch {
+              @apply h-full w-8 rounded-full flex justify-center items-center bg-[var(--mainbd-bg)] shadow-lg transition duration-500 ease-in-out
+              text-[var(--yellow)];
+            } 
+          }
+        }
+
+        .demacator {
+          @apply border border-2 border-[var(--mainbd-bg)]
+        }
+
+        .settings-navigations {
+          @apply flex justify-around items-center p-4 rounded-lg shadow-lg bg-[var(--mainbd-bg)];
+
+          .sett-nav {
+            @apply border border-2 border-transparent p-2 rounded-lg
+            first:border-[var(--accent)];
+          }
+        }
       }
     }
   }
@@ -696,7 +740,7 @@ body {
         }
 
         .color-box {
-          @apply cursor-pointer bg-[var(--muted-text)] w-20 rounded-lg inset-shadow-sm;
+          @apply cursor-pointer bg-[var(--light-muted-text)] w-20 rounded-lg inset-shadow-sm;
         }
 
         .color-picker {
@@ -753,7 +797,7 @@ body {
         }
 
         .reminder-toggle {
-          @apply w-20 rounded-lg bg-[var(--muted-text)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
+          @apply w-20 rounded-lg bg-[var(--light-muted-text)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
 
           .reminder-toggle-slider {
             @apply h-full w-5 rounded-full bg-[var(--light-bgcolor)] shadow-lg transition duration-500 ease-in-out;
