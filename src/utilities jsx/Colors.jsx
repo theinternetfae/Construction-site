@@ -16,9 +16,6 @@ function ColorPicker({pickColor, color, close}) {
         "#14B8A6",
         "#2DD4BF",
         "#06B6D4",
-        "#3B82F6",
-        "#60A5FA",
-        "#2563EB",
         "#8B5CF6",
         "#A855F7",
         "#EC4899"
