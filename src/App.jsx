@@ -11,6 +11,7 @@ import { getTaskList } from './js files/Storage.js';
 import Profile from './settings pages/Profile.jsx';
 import History from './settings pages/History.jsx';
 import Privacy from './settings pages/Privacy.jsx';
+import About from './settings pages/About.jsx';
 
 
 function App() {
@@ -52,10 +53,8 @@ function App() {
 
               <Route path="profile" element={<Profile/>}></Route>
               <Route path="history" element={<History/>}></Route>
-              <Route path="privacy" element={<Privacy/>}></Route>
-
-              {/* 
-              <Route path="about"></Route> */}
+              <Route path="privacy" element={<Privacy/>}></Route>              
+              <Route path="about" element={<About/>}></Route>
             
             </Route>
 

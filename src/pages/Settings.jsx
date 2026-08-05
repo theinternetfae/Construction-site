@@ -40,8 +40,10 @@ function Settings() {
                     <p className="sett-nav">Data & Privacy</p>
                 </Link>
 
-
-                <p className="sett-nav">About</p>
+                <Link to={"about"} className={`sett-nav ${location.pathname === '/test/settings/about' ? 'border-[var(--accent)]' : ""}`}>
+                    <p className="sett-nav">About</p>
+                </Link>
+                
             </section>
             
             <section className="settings-main">
