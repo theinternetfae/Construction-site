@@ -5,7 +5,7 @@ function Profile() {
             <section className="user-display">
 
                 <div className="pfp-cont">
-                    <i class="bi bi-plus-lg"></i>
+                    <i className="bi bi-plus-lg"></i>
                 </div>
             
                 <div className="name-email">

@@ -612,10 +612,11 @@ body {
             @apply flex flex-col;
 
             h2 {
-              @apply text-lg font-bold;
+              @apply font-bold
+              md:text-lg;
 
               span {
-                @apply text-base text-[var(--light-muted-text)];
+                @apply text-[var(--light-muted-text)] text-sm;
               }
             }
 
@@ -625,7 +626,8 @@ body {
           }
 
           .mode-toggle {
-            @apply w-40 rounded-lg bg-[var(--light-muted-text)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
+            @apply w-20 rounded-lg bg-[var(--light-muted-text)] inset-shadow-sm flex items-center p-1 cursor-pointer
+            md:w-40; 
 
             .mode-toggle-switch {
               @apply h-full w-8 rounded-full flex justify-center items-center bg-[var(--mainbd-bg)] shadow-lg transition duration-500 ease-in-out
@@ -642,12 +644,14 @@ body {
           @apply flex justify-around items-center p-3 rounded-lg shadow-lg bg-[var(--mainbd-bg)];
 
           .sett-nav {
-            @apply border border-2 border-transparent p-2 rounded-lg transition duration-300 ease-in-out;
+            @apply border text-sm border-2 border-transparent p-2 rounded-lg transition duration-300 ease-in-out
+            md:text-base;
           }
         }
 
         .settings-main {
-          @apply p-2 rounded-lg bg-[var(--mainbd-bg)];
+          @apply p-2 rounded-lg bg-[var(--mainbd-bg)] mb-20
+          md:mb-0;
 
           .profile {
             @apply p-2 flex flex-col gap-3;
@@ -660,11 +664,13 @@ body {
               @apply flex flex-col gap-4 justify-center items-center p-2;
 
               .pfp-cont {
-                @apply h-50 w-50 rounded-full flex items-center justify-center text-2xl bg-[var(--light-grey)] shadow-sm cursor-pointer;
+                @apply h-40 w-40 rounded-full flex items-center justify-center text-2xl bg-[var(--light-grey)] shadow-sm cursor-pointer
+                md:h-50 md:w-50;
               }
 
               .name-email {
-                @apply flex gap-5;
+                @apply flex gap-5 text-sm
+                md:text-base;
 
                 span {
                   @apply p-2 rounded-lg shadow-sm bg-[var(--light-grey)];
@@ -679,15 +685,17 @@ body {
                 @apply p-2 rounded-lg bg-[var(--light-grey)] shadow-sm flex justify-between h-15 items-center;
 
                 p {
-                  @apply font-bold;
+                  @apply font-bold text-sm
+                  md:text-base;
                 }
 
                 .theme-array {
                   @apply w-50 flex justify-around items-center h-full;
 
                   div {
-                    @apply border border-2 border-transparent w-10 h-10 rounded-full cursor-pointer flex items-center justify-center p-1
-                    nth-1:border-[#2563EB] nth-2:border-[#491AB1] nth-3:border-[#AE0849] nth-4:border-[#20531A];  
+                    @apply border border-2 border-transparent w-8 h-8 rounded-full cursor-pointer flex items-center justify-center p-1
+                    nth-1:border-[#2563EB] nth-2:border-[#491AB1] nth-3:border-[#AE0849] nth-4:border-[#20531A]
+                    md:w-8 md:h-8;  
                     
                     span {
                       @apply shadow-sm w-full h-full rounded-full;
@@ -712,7 +720,8 @@ body {
                 }
 
                 .pref-toggle {
-                  @apply w-50 h-full rounded-lg bg-[var(--light-muted-text)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
+                  @apply w-30 h-full rounded-lg bg-[var(--light-muted-text)] inset-shadow-sm flex items-center p-1 cursor-pointer
+                  md:w-50; 
 
                   .pref-toggle-switch {
                     @apply h-full w-8 rounded-full flex justify-center items-center bg-[var(--mainbd-bg)] shadow-lg transition duration-500 ease-in-out
@@ -729,11 +738,13 @@ body {
                 @apply p-2 rounded-lg bg-[var(--light-grey)] shadow-sm flex justify-between h-15 items-center;
 
                 p {
-                  @apply font-bold;
+                  @apply font-bold text-sm
+                  md:text-base;
                 }
 
                 button {
-                  @apply border border-2 w-50 p-2 rounded-lg cursor-pointer shadow-sm;
+                  @apply border border-2 w-30 p-2 rounded-lg cursor-pointer shadow-sm
+                  md:w-50;
                 }
 
                 .log-out {
