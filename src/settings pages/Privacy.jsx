@@ -6,18 +6,18 @@ function Privacy() {
         
                 <div className="info">
                     <div className="opener">
-                        <i class="bi bi-caret-right"></i>
+                        <i className="bi bi-caret-right"></i>
                         What data is stored?
                     </div>
-                    <p>I am info hidden by opener</p>
+                    <p>Data stored include: Tasks and schedules, completion history, app preferences, and profile info.</p>
                 </div>
         
                 <div className="info">
                     <div className="opener">
-                        <i class="bi bi-caret-right"></i>
+                        <i className="bi bi-caret-right"></i>
                         How is it stored?
                     </div>
-                    <p>I am info hidden by opener</p>
+                    <p>Your data is stored in our appWrite database where only the creator of the app, Favour Egwele, has access.</p>
                 </div>
 
             </section>
@@ -36,7 +36,7 @@ function Privacy() {
                         <p className="subtitle">Delete all tasks</p>
                     </div>
                     <button>
-                        <i class="bi bi-trash"></i>
+                        <i className="bi bi-trash"></i>
                     </button>
                 </div>
 
@@ -46,14 +46,14 @@ function Privacy() {
                         <p className="subtitle">Delete all data and preferences</p>
                     </div>
                     <button>
-                        <i class="bi bi-trash"></i>
+                        <i className="bi bi-trash"></i>
                     </button>
                 </div>
 
             </section>
 
             <button className="download">
-                <i class="bi bi-download"></i>
+                <i className="bi bi-download"></i>
                 Download your data
             </button>
         

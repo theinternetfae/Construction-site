@@ -778,8 +778,12 @@ body {
           .privacy {
             @apply m-2 bg-[var(--light-grey)] rounded-lg p-5 flex flex-col gap-5;
 
-            .demacator {
-              @apply border border-[var(--light-muted-text)];
+            .separator {
+              @apply flex flex-col gap-2;
+
+              .demacator {
+                @apply border border-[var(--light-muted-text)];
+              }
             }
 
             .more-info {
@@ -797,10 +801,6 @@ body {
                   @apply p-4 flex gap-2 rounded-lg bg-[var(--mainbd-bg)] shadow-sm hidden;
                 }
               }
-            }
-
-            .separator {
-              @apply flex flex-col gap-2;
             }
 
             .task-handler {
@@ -826,6 +826,56 @@ body {
             .download {
               @apply p-3 flex gap-2 items-center justify-center rounded-lg bg-[var(--accent)] text-white font-bold cursor-pointer;
             }
+          }
+
+          .about {
+            @apply m-2 bg-[var(--light-grey)] rounded-lg p-5 flex flex-col gap-5;
+          
+            .separator {
+              @apply flex flex-col gap-2;
+
+              .demacator {
+                @apply border border-[var(--light-muted-text)];
+              }
+            }
+
+            .about-info {
+              @apply flex flex-col gap-3;
+
+              .opener {
+                @apply p-4 flex gap-2 rounded-lg bg-[var(--mainbd-bg)] shadow-lg cursor-pointer transition duration-300 ease-in-out
+                hover:text-[var(--accent)];
+              }
+
+              p {
+                @apply p-4 flex gap-2 rounded-lg bg-[var(--mainbd-bg)] shadow-sm hidden;
+              }
+            }
+
+            .about-contacts {
+              @apply flex flex-col gap-3;
+
+              .contact {
+                @apply p-2 flex justify-between gap-2 rounded-lg bg-[var(--mainbd-bg)] shadow-lg;
+
+                .contact-label {
+                  @apply flex flex-col;
+
+                  .subtitle {
+                    @apply text-sm text-[var(--light-muted-text)]
+                  }
+                }
+
+                button {
+                  @apply w-30 rounded-lg bg-[var(--accent)] text-white cursor-pointer;
+                }
+              }
+            }
+
+            .copyright {
+              @apply mt-auto text-center text-[var(--light-muted-text)]
+            }
+
           }
         }
       }
