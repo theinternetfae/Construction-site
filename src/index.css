@@ -645,6 +645,109 @@ body {
             @apply border border-2 border-transparent p-2 rounded-lg transition duration-300 ease-in-out;
           }
         }
+
+        .settings-main {
+          @apply p-2 rounded-lg bg-[var(--mainbd-bg)];
+
+          .profile {
+            @apply p-2 flex flex-col gap-3;
+
+            .demacator {
+              @apply border border-[var(--light-muted-text)];
+            }
+
+            .user-display {
+              @apply flex flex-col gap-4 justify-center items-center p-2;
+
+              .pfp-cont {
+                @apply h-50 w-50 rounded-full flex items-center justify-center text-2xl bg-[var(--light-grey)] shadow-sm cursor-pointer;
+              }
+
+              .name-email {
+                @apply flex gap-5;
+
+                span {
+                  @apply p-2 rounded-lg shadow-sm bg-[var(--light-grey)];
+                }
+              }
+            }
+
+            .user-preferences {
+              @apply flex flex-col gap-3;
+
+              .user-pref {
+                @apply p-2 rounded-lg bg-[var(--light-grey)] shadow-sm flex justify-between h-15 items-center;
+
+                p {
+                  @apply font-bold;
+                }
+
+                .theme-array {
+                  @apply w-50 flex justify-around items-center h-full;
+
+                  div {
+                    @apply border border-2 border-transparent w-10 h-10 rounded-full cursor-pointer flex items-center justify-center p-1
+                    nth-1:border-[#2563EB] nth-2:border-[#491AB1] nth-3:border-[#AE0849] nth-4:border-[#20531A];  
+                    
+                    span {
+                      @apply shadow-sm w-full h-full rounded-full;
+                    }
+
+                    .blue {
+                      @apply bg-[#2563EB];
+                    }
+
+                    .purple {
+                      @apply bg-[#491AB1];
+                    }
+
+                    .pink {
+                      @apply bg-[#AE0849];
+                    }
+
+                    .green {
+                      @apply bg-[#20531A];
+                    }
+                  }
+                }
+
+                .pref-toggle {
+                  @apply w-50 h-full rounded-lg bg-[var(--light-muted-text)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
+
+                  .pref-toggle-switch {
+                    @apply h-full w-8 rounded-full flex justify-center items-center bg-[var(--mainbd-bg)] shadow-lg transition duration-500 ease-in-out
+                    text-[var(--yellow)];
+                  } 
+                }
+              }
+            }
+
+            .account-commands {
+              @apply flex flex-col gap-3;
+
+              .command {
+                @apply p-2 rounded-lg bg-[var(--light-grey)] shadow-sm flex justify-between h-15 items-center;
+
+                p {
+                  @apply font-bold;
+                }
+
+                button {
+                  @apply border border-2 w-50 p-2 rounded-lg cursor-pointer shadow-sm;
+                }
+
+                .log-out {
+                  @apply bg-[var(--accent)] text-white text-2xl;
+                }
+
+                .delete-account {
+                  @apply bg-[var(--accent)] text-white text-2xl;
+                }
+              }
+            }
+          }
+       
+        }
       }
     }
   }
