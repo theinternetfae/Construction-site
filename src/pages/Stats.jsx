@@ -338,7 +338,7 @@ function Stats() {
             <section className="stats-calendar">
                 <div className="calendar-outer">
 
-                    <i className="bi bi-chevron-left" onClick={() => setChosenMonth(prev => prev.subtract(1, 'month'))}></i>
+                    <i className="bi bi-caret-left" onClick={() => setChosenMonth(prev => prev.subtract(1, 'month'))}></i>
                     
                     <div className="calendar-inner">
                         <p className="calendar-month" onClick={() => setChosenMonth(today)}>{chosenMonth.format('MMMM YYYY')}</p>
@@ -387,7 +387,7 @@ function Stats() {
                         </div>
                     </div>
                     
-                    <i className="bi bi-chevron-right" onClick={() => setChosenMonth(prev => prev.add(1, 'month'))}></i>
+                    <i className="bi bi-caret-right" onClick={() => setChosenMonth(prev => prev.add(1, 'month'))}></i>
                 
                 </div>
             </section>
