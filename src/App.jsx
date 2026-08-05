@@ -8,6 +8,8 @@ import Stats from './pages/Stats.jsx';
 import Settings from './pages/Settings.jsx';
 import { TaskContext, UserContext } from './js files/contexts.js';
 import { getTaskList } from './js files/Storage.js';
+import Profile from './settings pages/Profile.jsx';
+import Handler from './settings pages/Handler.jsx';
 
 
 function App() {
@@ -42,7 +44,20 @@ function App() {
 
             <Route path="home" element={<Home/>}></Route>
             <Route path="stats" element={<Stats/>}></Route>
-            <Route path="settings" element={<Settings/>}></Route>
+            
+            <Route path="settings" element={<Settings/>}>
+              
+              <Route index element={<Navigate to="profile" replace />}></Route>
+
+              <Route path="profile" element={<Profile/>}></Route>
+              <Route path="handler" element={<Handler/>}></Route>
+
+
+              {/* 
+              <Route path="data"></Route>
+              <Route path="about"></Route> */}
+            
+            </Route>
 
           </Route>
 

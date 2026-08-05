@@ -19,25 +19,39 @@ function SideMenu() {
 
     }, [quirkInfoShow])
 
+
+    const [loName, setLoName] = useState('');
+    const [loNameSett, setLoNameSett] = useState(false);
+
+    useEffect(() => {
+        let name = location.pathname;
+
+        if (name !== '/test/stats' && name !== '/test/home') {
+            name = '/test/settings';
+        }
+
+        setLoName(name);
+    }, [location])
+
     return ( 
         <nav>
             <div className="sm-nav">
 
                 <section className="nav-sect-sm">
                 
-                    <Link to={"home"} className={`navigation ${location.pathname === '/test/home' ? 'bg-[#BFDBFE] text-[var(--accent)] flex' : ""}`}>
+                    <Link to={"home"} className={`navigation ${loName === '/test/home' ? 'bg-[#BFDBFE] text-[var(--accent)] flex' : ""}`}>
                         <i className="bi bi-house-door-fill"></i>
-                        <p className={`${location.pathname === '/test/home' ? 'block' : ""}`}>Home</p>
+                        <p className={`${loName === '/test/home' ? 'block' : ""}`}>Home</p>
                     </Link>
 
-                    <Link to={"stats"} className={`navigation ${location.pathname === '/test/stats' ? 'bg-[#BFDBFE] text-[var(--accent)] flex' : ""}`}>
+                    <Link to={"stats"} className={`navigation ${loName === '/test/stats' ? 'bg-[#BFDBFE] text-[var(--accent)] flex' : ""}`}>
                         <i className="bi bi-bar-chart"></i>
-                        <p className={`${location.pathname === '/test/stats' ? 'block' : ""}`}>Stats</p>
+                        <p className={`${loName === '/test/stats' ? 'block' : ""}`}>Stats</p>
                     </Link>
 
-                    <Link to={"settings"} className={`navigation ${location.pathname === '/test/settings' ? 'bg-[#BFDBFE] text-[var(--accent)] flex' : ""}`}>
+                    <Link to={"settings"} className={`navigation ${loName === '/test/settings' ? 'bg-[#BFDBFE] text-[var(--accent)] flex' : ""}`}>
                         <i className="bi bi-gear"></i>
-                        <p className={`${location.pathname === '/test/settings' ? 'block' : ""}`}>Settings</p>
+                        <p className={`${loName === '/test/settings' ? 'block' : ""}`}>Settings</p>
                     </Link>
 
                 </section>          
@@ -64,17 +78,17 @@ function SideMenu() {
 
                 <section className="nav-sect">
 
-                    <Link to={"home"} className={`navigation ${location.pathname === '/test/home' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
+                    <Link to={"home"} className={`navigation ${loName === '/test/home' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
                         <i className="bi bi-house-door-fill"></i>
                         <p>Home</p>
                     </Link>
 
-                    <Link to={"stats"} className={`navigation ${location.pathname === '/test/stats' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
+                    <Link to={"stats"} className={`navigation ${loName === '/test/stats' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
                         <i className="bi bi-bar-chart"></i>
                         <p>Stats</p>
                     </Link>
 
-                    <Link to={"settings"} className={`navigation ${location.pathname === '/test/settings' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
+                    <Link to={"settings"} className={`navigation ${loName === '/test/settings' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
                         <i className="bi bi-gear"></i>
                         <p>Settings</p>
                     </Link>

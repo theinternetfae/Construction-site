@@ -1,4 +1,10 @@
+import { Outlet } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 function Settings() {
+
+    const location = useLocation();
+
     return ( 
         <div className="settings">
 
@@ -11,7 +17,7 @@ function Settings() {
 
                 <div className="mode-toggle">
                     <div className="mode-toggle-switch">
-                        <i class="bi bi-sun"></i>
+                        <i className="bi bi-sun"></i>
                         {/* <i class="bi bi-moon"></i> */}
                     </div>
                 </div>
@@ -21,13 +27,22 @@ function Settings() {
             <div className="demacator"></div>
 
             <section className="settings-navigations">
-                <p className="sett-nav">Profile & Preferences</p>
-                <p className="sett-nav">Task Handler</p>
+                
+                <Link to={"profile"} className={`sett-nav ${location.pathname === '/test/settings/profile' ? 'border-[var(--accent)]' : ""}`}>
+                    <p>Profile & Preferences</p>
+                </Link>
+
+                <Link to={"handler"} className={`sett-nav ${location.pathname === '/test/settings/handler' ? 'border-[var(--accent)]' : ""}`}>
+                    <p>Task Handler</p>
+                </Link>
+
                 <p className="sett-nav">Data & Privacy</p>
                 <p className="sett-nav">About</p>
             </section>
             
-            SETTINGS
+            <section className="settings-main">
+                <Outlet />
+            </section>
         </div>
     );
 }
