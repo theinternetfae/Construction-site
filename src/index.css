@@ -758,6 +758,22 @@ body {
             }
           }
        
+          .handler {
+            @apply flex flex-col gap-3;
+
+            i {
+              @apply cursor-pointer ml-auto text-[var(--muted-text)] text-xl transition duration-300 ease-in-out
+              hover:text-[var(--accent)];
+            }
+
+            .tasks-holder {
+              @apply p-5 rounded-lg bg-[var(--light-grey)];
+
+              p {
+                @apply text-center
+              }
+            }
+          }
         }
       }
     }
