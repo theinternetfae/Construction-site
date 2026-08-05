@@ -758,7 +758,7 @@ body {
             }
           }
        
-          .handler {
+          .history {
             @apply flex flex-col gap-3;
 
             i {

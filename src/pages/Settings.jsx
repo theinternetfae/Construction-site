@@ -32,11 +32,15 @@ function Settings() {
                     <p>Profile & Preferences</p>
                 </Link>
 
-                <Link to={"handler"} className={`sett-nav ${location.pathname === '/test/settings/handler' ? 'border-[var(--accent)]' : ""}`}>
-                    <p>Task Handler</p>
+                <Link to={"history"} className={`sett-nav ${location.pathname === '/test/settings/history' ? 'border-[var(--accent)]' : ""}`}>
+                    <p>Task History</p>
                 </Link>
 
-                <p className="sett-nav">Data & Privacy</p>
+                <Link to={"privacy"} className={`sett-nav ${location.pathname === '/test/settings/privacy' ? 'border-[var(--accent)]' : ""}`}>
+                    <p className="sett-nav">Data & Privacy</p>
+                </Link>
+
+
                 <p className="sett-nav">About</p>
             </section>
             

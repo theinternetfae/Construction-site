@@ -1,7 +1,7 @@
 function Handler() {
     return ( 
-        <div className="handler">
-            <i class="bi bi-lightbulb-fill"></i>
+        <div className="history">
+            <i className="bi bi-lightbulb-fill"></i>
             <section className="tasks-holder">
                 <p>No Tasks</p>
             </section>

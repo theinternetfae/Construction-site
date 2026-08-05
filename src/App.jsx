@@ -9,7 +9,8 @@ import Settings from './pages/Settings.jsx';
 import { TaskContext, UserContext } from './js files/contexts.js';
 import { getTaskList } from './js files/Storage.js';
 import Profile from './settings pages/Profile.jsx';
-import Handler from './settings pages/Handler.jsx';
+import History from './settings pages/History.jsx';
+import Privacy from './settings pages/Privacy.jsx';
 
 
 function App() {
@@ -50,11 +51,10 @@ function App() {
               <Route index element={<Navigate to="profile" replace />}></Route>
 
               <Route path="profile" element={<Profile/>}></Route>
-              <Route path="handler" element={<Handler/>}></Route>
-
+              <Route path="history" element={<History/>}></Route>
+              <Route path="privacy" element={<Privacy/>}></Route>
 
               {/* 
-              <Route path="data"></Route>
               <Route path="about"></Route> */}
             
             </Route>
