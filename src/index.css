@@ -22,6 +22,7 @@
 
 
   --faded-border: #FFFFFF25;
+  --special-text: #707070;
 
   --red: #d00018;
   --yellow: #FFB81C;
@@ -360,7 +361,7 @@ body {
 
           .navigation {
             @apply border border-2 border-transparent shadow-xs cursor-pointer flex gap-2 p-3 rounded-lg text-[var(--muted-text)]
-            duration-300 ease-in-out hover:bg-[var(--muted-accent)] border;
+            duration-300 ease-in-out hover:bg-[var(--muted-accent)] border hover:text-[var(--special-text)];
           }
         }
 
@@ -644,12 +645,12 @@ body {
               md:text-lg;
 
               span {
-                @apply text-[var(--lightest-bg)] text-sm;
+                @apply text-[var(--special-text)] text-sm;
               }
             }
 
             p {
-              @apply text-[var(--lightest-bg)] text-xs;
+              @apply text-[var(--special-text)] text-xs;
             }
           }
 
@@ -747,7 +748,7 @@ body {
                 }
 
                 .pref-toggle {
-                  @apply w-35 h-full rounded-lg bg-[var(--lightest-bg)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
+                  @apply w-35 h-full rounded-lg bg-[var(--lightest-bg)] inset-shadow-sm flex items-center p-1 cursor-pointer transition duration-300 ease-in-out; 
 
                   .pref-toggle-switch {
                     @apply h-full w-8 rounded-full flex justify-center items-center bg-[var(--mainbd-bg)] shadow-lg transition duration-500 ease-in-out
@@ -843,7 +844,7 @@ body {
                   @apply flex flex-col;
 
                   .subtitle {
-                    @apply text-xs text-[var(--lightest-bg)]
+                    @apply text-xs text-[var(--special-text)]
                     md:text-xs;
                   }
                 }
@@ -896,7 +897,7 @@ body {
                   @apply flex flex-col;
 
                   .subtitle {
-                    @apply text-xs text-[var(--lightest-bg)]
+                    @apply text-xs text-[var(--special-text)]
                     md:text-sm;
                   }
                 }
@@ -909,7 +910,7 @@ body {
             }
 
             .copyright {
-              @apply mt-auto text-center text-[var(--lightest-bg)] text-xs
+              @apply mt-auto text-center text-[var(--special-text)] text-xs
               md:text-sm;
             }
 
@@ -1121,7 +1122,7 @@ body {
       md:text-xl;
 
       i {
-        @apply text-[var(--lightest-bg)] cursor-pointer transition duration-300 ease-in-out
+        @apply text-[var(--special-text)] cursor-pointer transition duration-300 ease-in-out
         first:hover:text-[var(--accent)];
       }
 

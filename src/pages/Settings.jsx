@@ -9,8 +9,6 @@ function Settings() {
 
     const {theme, setTheme} = useContext(ThemeContext);
 
-    const [themeToggle, setThemeToggle] = useState(true);
-
     const [headerTag, setHeaderTag] = useState('Profile & Preferences');
     const [subtitleTag, setSubtitleTag] = useState('Manage your profile and preferences');
 
@@ -50,11 +48,10 @@ function Settings() {
                 </div>
 
                 <div className="mode-toggle" onClick={() => {
-                    setThemeToggle(prev => !prev)
                     setTheme(prev => !prev);
                 }}>
-                    <div className={`mode-toggle-switch ${themeToggle ? 'translate-x-20' : ''}`}>
-                        <i className={`bi ${!themeToggle ? 'bi-sun' : 'bi-moon text-[var(--muted-text)]'}`}></i>
+                    <div className={`mode-toggle-switch ${theme ? 'translate-x-20' : ''}`}>
+                        <i className={`bi ${!theme ? 'bi-sun' : 'bi-moon text-[var(--muted-text)]'}`}></i>
                     </div>
                 </div>
             

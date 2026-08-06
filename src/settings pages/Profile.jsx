@@ -53,21 +53,24 @@ function Profile() {
                 
                 <div className="user-pref">
                     <p>Optima quirk</p>
-                    <div className="pref-toggle" onClick={() => setQuirkToggle(prev => !prev)}>
+                    <div className={`pref-toggle ${quirkToggle ? 'bg-[var(--accent)]' : ''}`} 
+                    onClick={() => setQuirkToggle(prev => !prev)}>
                         <div className={`pref-toggle-switch ${quirkToggle ? 'translate-x-25':''}`}></div>
                     </div>
                 </div>
                 
                 <div className="user-pref">
                     <p>Daily quote</p>
-                    <div className="pref-toggle" onClick={() => setQuoteToggle(prev => !prev)}>
+                    <div className={`pref-toggle ${quoteToggle ? 'bg-[var(--accent)]' : ''}`} 
+                    onClick={() => setQuoteToggle(prev => !prev)}>
                         <div className={`pref-toggle-switch ${quoteToggle ? 'translate-x-25':''}`}></div>
                     </div>
                 </div>
                 
                 <div className="user-pref">
                     <p>Streak</p>
-                    <div className="pref-toggle" onClick={() => setStreakToggle(prev => !prev)}>
+                    <div className={`pref-toggle ${streakToggle ? 'bg-[var(--accent)]' : ''}`} 
+                    onClick={() => setStreakToggle(prev => !prev)}>
                         <div className={`pref-toggle-switch ${streakToggle ? 'translate-x-25':''}`}></div>
                     </div>
                 </div>
