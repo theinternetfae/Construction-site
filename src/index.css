@@ -352,6 +352,7 @@ body {
         @apply hidden h-full flex-col justify-between 
         lg:flex;
           
+        
         .logo-sect {
           @apply flex text-3xl gap-1 text-[var(--accent)];
         }

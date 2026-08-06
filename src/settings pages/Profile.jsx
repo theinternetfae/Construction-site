@@ -1,13 +1,12 @@
 import { useState, useContext } from "react";
-import { ThemeContext } from "../js files/contexts";
+import { ThemeContext, UserContext } from "../js files/contexts";
 
 function Profile() {
 
     const {themeAccent, setThemeAccent} = useContext(ThemeContext);
+    const {quirk, setQuirk, streak, setStreak} = useContext(UserContext);
 
-    const [quirkToggle, setQuirkToggle] = useState(true);
     const [quoteToggle, setQuoteToggle] = useState(false);
-    const [streakToggle, setStreakToggle] = useState(false);
 
     return (  
         <div className="profile">
@@ -53,9 +52,9 @@ function Profile() {
                 
                 <div className="user-pref">
                     <p>Optima quirk</p>
-                    <div className={`pref-toggle ${quirkToggle ? 'bg-[var(--accent)]' : ''}`} 
-                    onClick={() => setQuirkToggle(prev => !prev)}>
-                        <div className={`pref-toggle-switch ${quirkToggle ? 'translate-x-25':''}`}></div>
+                    <div className={`pref-toggle ${quirk ? 'bg-[var(--accent)]' : ''}`} 
+                    onClick={() => setQuirk(prev => !prev)}>
+                        <div className={`pref-toggle-switch ${quirk ? 'translate-x-25':''}`}></div>
                     </div>
                 </div>
                 
@@ -69,9 +68,9 @@ function Profile() {
                 
                 <div className="user-pref">
                     <p>Streak</p>
-                    <div className={`pref-toggle ${streakToggle ? 'bg-[var(--accent)]' : ''}`} 
-                    onClick={() => setStreakToggle(prev => !prev)}>
-                        <div className={`pref-toggle-switch ${streakToggle ? 'translate-x-25':''}`}></div>
+                    <div className={`pref-toggle ${streak ? 'bg-[var(--accent)]' : ''}`} 
+                    onClick={() => setStreak(prev => !prev)}>
+                        <div className={`pref-toggle-switch ${streak ? 'translate-x-25':''}`}></div>
                     </div>
                 </div>
             

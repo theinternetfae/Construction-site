@@ -16,9 +16,10 @@ import About from './settings pages/About.jsx';
 
 function App() {
 
-  const [user, setIsUser] = useState(null);
   const [verified, isVerified] = useState(true);
-  
+  const [quirk, setQuirk] = useState(true);
+  const [streak, setStreak] = useState(true);
+
   const userData = { 
     name: "",
     email: "",
@@ -59,7 +60,7 @@ function App() {
     
     <TaskContext.Provider value={{taskList, setTaskList}}>
 
-      <UserContext.Provider value={{user, setIsUser, verified, isVerified}}>
+      <UserContext.Provider value={{quirk, setQuirk, streak, setStreak}}>
 
         <ThemeContext.Provider value={{themeAccent, setThemeAccent, theme, setTheme}}>
 

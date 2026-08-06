@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState, useMemo } from "react";
-import { TaskContext } from "../js files/contexts";
+import { TaskContext, UserContext } from "../js files/contexts";
 import dayjs from "dayjs";
 import { calculateTimeToMidnight, getDates, statsStopperList } from "../js files/Utilities.js"
 import Alert from "../utilities jsx/Alert.jsx";
@@ -8,6 +8,7 @@ import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 function Stats() {
 
     const { taskList } = useContext(TaskContext);
+    const { streak } = useContext(UserContext);
 
     const [today, setToday] = useState(dayjs());
 
@@ -392,7 +393,7 @@ function Stats() {
                 </div>
             </section>
 
-            <section className="stats-calculator-cont">
+            <section className={`stats-calculator-cont ${!streak ? 'hidden' : ''}`}>
 
                 <div className="stats-calculator cont-main">
 
