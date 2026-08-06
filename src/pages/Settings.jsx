@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
+import { ThemeContext } from "../js files/contexts";
 
 function Settings() {
 
     const location = useLocation();
 
-    const [themeToggle, setThemeToggle] = useState(false);
+    const {theme, setTheme} = useContext(ThemeContext);
+
+    const [themeToggle, setThemeToggle] = useState(true);
 
     const [headerTag, setHeaderTag] = useState('Profile & Preferences');
     const [subtitleTag, setSubtitleTag] = useState('Manage your profile and preferences');
@@ -46,10 +49,12 @@ function Settings() {
                     <p>{subtitleTag}</p>
                 </div>
 
-                <div className="mode-toggle" onClick={() => setThemeToggle(prev => !prev)}>
+                <div className="mode-toggle" onClick={() => {
+                    setThemeToggle(prev => !prev)
+                    setTheme(prev => !prev);
+                }}>
                     <div className={`mode-toggle-switch ${themeToggle ? 'translate-x-20' : ''}`}>
-                        <i className="bi bi-sun"></i>
-                        {/* <i class="bi bi-moon"></i> */}
+                        <i className={`bi ${!themeToggle ? 'bi-sun' : 'bi-moon text-[var(--muted-text)]'}`}></i>
                     </div>
                 </div>
             

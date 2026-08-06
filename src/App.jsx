@@ -30,6 +30,7 @@ function App() {
   )
 
   const root = document.documentElement;
+  const [theme, setTheme] = useState(true);
   const [themeAccent, setThemeAccent] = useState('blue');
 
   useLayoutEffect(() => {
@@ -48,13 +49,19 @@ function App() {
     
   }, [themeAccent])
 
+  useLayoutEffect(() => {
+
+    root.classList.toggle('dark', theme)
+
+  }, [theme])
+
   return (
     
     <TaskContext.Provider value={{taskList, setTaskList}}>
 
       <UserContext.Provider value={{user, setIsUser, verified, isVerified}}>
 
-        <ThemeContext.Provider value={{themeAccent, setThemeAccent}}>
+        <ThemeContext.Provider value={{themeAccent, setThemeAccent, theme, setTheme}}>
 
 
           <Routes>

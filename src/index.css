@@ -7,12 +7,14 @@
   --muted-accent: #BFDBFE;
   --logo: url(images/optima-logo-light.png);
 
-  --light-bgcolor: #E0E0DE;
-  --light-text: #000000;
+  --bgcolor: #E0E0DE;
+  --text: #000000;
   --mainbd-bg: #F9FAFB;
   --muted-text: #5F5F5F;
-  --light-muted-text: #A5A5A5;
-  --light-img: url(images/optima-productivity-backdrop.jpg);
+  --lightest-bg: #A5A5A5;
+  --img: url(images/optima-productivity-backdrop.jpg);
+  --light-grey: #F3F4F6;
+
 
   --dark-bgcolor: #171717;
   --dark-text: #FFFFFF;
@@ -20,11 +22,20 @@
 
 
   --faded-border: #FFFFFF25;
-  --light-grey: #F3F4F6;
 
   --red: #d00018;
   --yellow: #FFB81C;
   --green: #477023;
+}
+
+.dark {
+  --bgcolor: #171717;
+  --text: #FFFFFF;
+  --mainbd-bg:  #262626;
+  --muted-text: #E5E7EB;
+  --lightest-bg: #363636;
+  --img: url(images/optima-productivity-backdrop-black.jpg);
+  --light-grey: #2C2C2C;
 }
 
 .accent-purple {
@@ -48,7 +59,7 @@
 body {
   cursor: default;
   caret-color: light-dark(var(--accent));  
-  color: light-dark(var(--light-text), var(--dark-text));
+  color: light-dark(var(--text), var(--dark-text));
 }
 
 @utility no-scrollbar {
@@ -67,7 +78,7 @@ body {
 
   .welcome {
  
-    @apply [background-image:var(--light-img)] bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center
+    @apply [background-image:var(--img)] bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center
       dark:[background-image:var(--dark-img)];
   
     .welcome-body {
@@ -90,7 +101,7 @@ body {
         }
 
         h2 {
-          @apply text-[var(--light-muted-text)] text-lg
+          @apply text-[var(--lightest-bg)] text-lg
           dark:text-[var(--muted-text)];
         }
 
@@ -98,7 +109,7 @@ body {
           @apply flex gap-5 items-center;
 
           i {
-            @apply p-3 text-[var(--accent)] bg-[var(--light-bgcolor)] rounded-xl shadow-2xl
+            @apply p-3 text-[var(--accent)] bg-[var(--bgcolor)] rounded-xl shadow-2xl
             dark:bg-[var(--dark-bgcolor)];
           }
 
@@ -114,7 +125,7 @@ body {
       }
 
       .welcome-body-sect-two {
-        @apply border border-2 border-[var(--faded-border)] bg-[var(--light-bgcolor)] rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
+        @apply border border-2 border-[var(--faded-border)] bg-[var(--bgcolor)] rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
         md:w-[50%] md:p-10
         lg:p-15
         dark:bg-[var(--dark-bgcolor)];
@@ -185,7 +196,7 @@ body {
 
   .welcome-back {
  
-    @apply [background-image:var(--light-img)] z-10 bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center
+    @apply [background-image:var(--img)] z-10 bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center
       dark:[background-image:var(--dark-img)];
   
     .welcome-body {
@@ -208,7 +219,7 @@ body {
         }
 
         h2 {
-          @apply text-[var(--light-muted-text)] text-lg
+          @apply text-[var(--lightest-bg)] text-lg
           dark:text-[var(--muted-text)];
         }
 
@@ -216,7 +227,7 @@ body {
           @apply flex gap-5 items-center;
 
           i {
-            @apply p-3 text-[var(--accent)] bg-[var(--light-bgcolor)] rounded-xl shadow-2xl
+            @apply p-3 text-[var(--accent)] bg-[var(--bgcolor)] rounded-xl shadow-2xl
             dark:bg-[var(--dark-bgcolor)];
           }
 
@@ -232,7 +243,7 @@ body {
       }
 
       .welcome-body-sect-two {
-        @apply border border-2 border-[var(--faded-border)] bg-[var(--light-bgcolor)] rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
+        @apply border border-2 border-[var(--faded-border)] bg-[var(--bgcolor)] rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
         md:w-[50%] md:p-10
         lg:p-15
         dark:bg-[var(--dark-bgcolor)];
@@ -300,7 +311,7 @@ body {
   }
 
   .overall-main-body {
-    @apply min-h-screen w-full flex bg-[var(--light-bgcolor)] flex-col relative
+    @apply min-h-screen w-full flex bg-[var(--bgcolor)] flex-col relative
     lg:flex-row; 
 
     nav {
@@ -368,7 +379,7 @@ body {
             @apply h-8 rounded-lg flex justify-between shadow-xl;
 
             span {
-              @apply w-[33%] bg-[var(--light-muted-text)]
+              @apply w-[33%] bg-[var(--lightest-bg)]
               first:rounded-l-lg first:bg-[var(--accent)] last:rounded-r-lg;
             }
           }
@@ -420,7 +431,7 @@ body {
               md:p-2 md:w-20 md:text-base;
 
               .date-day {
-                @apply text-xs font-bold text-[var(--light-muted-text)]
+                @apply text-xs font-bold text-[var(--lightest-bg)]
                 md:text-sm;
               }
 
@@ -432,7 +443,7 @@ body {
                   md:h-18;
   
                   .progress-bg {
-                    @apply fill-none stroke-3 stroke-[var(--light-muted-text)];
+                    @apply fill-none stroke-3 stroke-[var(--lightest-bg)];
                   }
 
                   .progress {
@@ -457,7 +468,7 @@ body {
         }
 
         .task-display {
-          @apply rounded-lg bg-[var(--light-bgcolor)] h-[65%] overflow-y-auto no-scrollbar
+          @apply rounded-lg bg-[var(--bgcolor)] h-[65%] overflow-y-auto no-scrollbar
           md:h-[80%];
 
           .task-slider {
@@ -539,7 +550,7 @@ body {
                   md:gap-6;
 
                   p {
-                    @apply border border-2 border-[var(--light-muted-text)] p-1 rounded-full text-center
+                    @apply border border-2 border-[var(--lightest-bg)] p-1 rounded-full text-center
                     md:p-2;
 
                     i {
@@ -568,7 +579,7 @@ body {
               md:h-80;
 
               .progress-bg {
-                @apply fill-none stroke-7 stroke-[var(--light-muted-text)];
+                @apply fill-none stroke-7 stroke-[var(--lightest-bg)];
               }
 
               .progress {
@@ -583,7 +594,7 @@ body {
               md:h-80 md:w-80;
             
               .calculator-cirlce-inner {
-                @apply h-[60%] w-[60%] rounded-full flex justify-center items-center bg-[var(--light-bgcolor)] inset-shadow-sm;
+                @apply h-[60%] w-[60%] rounded-full flex justify-center items-center bg-[var(--bgcolor)] inset-shadow-sm;
 
                 p {
                   @apply font-bold text-xl;
@@ -610,7 +621,7 @@ body {
               }
 
               .title {
-                @apply text-sm font-bold text-[var(--light-muted-text)];
+                @apply text-sm font-bold text-[var(--lightest-bg)];
               }
             }
           }
@@ -633,17 +644,17 @@ body {
               md:text-lg;
 
               span {
-                @apply text-[var(--light-muted-text)] text-sm;
+                @apply text-[var(--lightest-bg)] text-sm;
               }
             }
 
             p {
-              @apply text-[var(--light-muted-text)] text-xs;
+              @apply text-[var(--lightest-bg)] text-xs;
             }
           }
 
           .mode-toggle {
-            @apply w-30 h-10 rounded-lg bg-[var(--light-muted-text)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
+            @apply w-30 h-10 rounded-lg bg-[var(--lightest-bg)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
 
             .mode-toggle-switch {
               @apply h-full w-8 rounded-full flex justify-center items-center bg-[var(--mainbd-bg)] shadow-lg transition duration-500 ease-in-out
@@ -674,7 +685,7 @@ body {
             @apply p-2 flex flex-col gap-3;
 
             .demacator {
-              @apply border border-[var(--light-muted-text)];
+              @apply border border-[var(--lightest-bg)];
             }
 
             .user-display {
@@ -736,7 +747,7 @@ body {
                 }
 
                 .pref-toggle {
-                  @apply w-35 h-full rounded-lg bg-[var(--light-muted-text)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
+                  @apply w-35 h-full rounded-lg bg-[var(--lightest-bg)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
 
                   .pref-toggle-switch {
                     @apply h-full w-8 rounded-full flex justify-center items-center bg-[var(--mainbd-bg)] shadow-lg transition duration-500 ease-in-out
@@ -758,7 +769,7 @@ body {
                 }
 
                 button {
-                  @apply border border-2 w-35 p-2 rounded-lg cursor-pointer shadow-sm
+                  @apply w-35 p-2 rounded-lg cursor-pointer shadow-sm
                   md:w-35;
                 }
 
@@ -799,7 +810,7 @@ body {
               md:text-base;
 
               .demacator {
-                @apply border border-[var(--light-muted-text)];
+                @apply border border-[var(--lightest-bg)];
               }
             }
 
@@ -832,7 +843,7 @@ body {
                   @apply flex flex-col;
 
                   .subtitle {
-                    @apply text-xs text-[var(--light-muted-text)]
+                    @apply text-xs text-[var(--lightest-bg)]
                     md:text-xs;
                   }
                 }
@@ -858,7 +869,7 @@ body {
               @apply flex flex-col gap-2;
 
               .demacator {
-                @apply border border-[var(--light-muted-text)];
+                @apply border border-[var(--lightest-bg)];
               }
             }
 
@@ -885,7 +896,7 @@ body {
                   @apply flex flex-col;
 
                   .subtitle {
-                    @apply text-xs text-[var(--light-muted-text)]
+                    @apply text-xs text-[var(--lightest-bg)]
                     md:text-sm;
                   }
                 }
@@ -898,7 +909,7 @@ body {
             }
 
             .copyright {
-              @apply mt-auto text-center text-[var(--light-muted-text)] text-xs
+              @apply mt-auto text-center text-[var(--lightest-bg)] text-xs
               md:text-sm;
             }
 
@@ -912,7 +923,7 @@ body {
     @apply bg-black/1 backdrop-blur-sm fixed top-0 z-50 w-full h-full flex justify-center;
 
     .alert-box {
-      @apply border border-2 border-[var(--accent)] mb-auto p-5 flex flex-col gap-5 bg-[var(--mainbd-bg)] text-[var(--light-text)] rounded-b-xl text-sm
+      @apply border border-2 border-[var(--accent)] mb-auto p-5 flex flex-col gap-5 bg-[var(--mainbd-bg)] text-[var(--text)] rounded-b-xl text-sm
       translate-y-[-30rem] transition ease-in duration-800
       /* dark:bg-[var(--dark-bgcolor)] dark:text-[var(--dark-text)] */
       md:text-base;
@@ -951,7 +962,7 @@ body {
         @apply rounded-lg flex items-center justify-center flex flex-col gap-3 relative; 
 
         .emoji-box {
-          @apply p-5 bg-[var(--light-bgcolor)] shadow-lg rounded-lg cursor-pointer text-4xl;
+          @apply p-5 bg-[var(--bgcolor)] shadow-lg rounded-lg cursor-pointer text-4xl;
         }
 
         .emoji-picker {
@@ -959,7 +970,7 @@ body {
           md:mt-[25%];
 
           .emoji-labels {
-            @apply bg-[var(--light-bgcolor)] rounded-lg p-2 flex gap-6 text-lg;
+            @apply bg-[var(--bgcolor)] rounded-lg p-2 flex gap-6 text-lg;
 
             i {
               @apply cursor-pointer transition duration-300 ease-in-out
@@ -968,7 +979,7 @@ body {
           }
 
           .emoji-holder {
-            @apply p-2 rounded-lg bg-[var(--light-bgcolor)] grid grid-cols-6 place-items-center w-full;
+            @apply p-2 rounded-lg bg-[var(--bgcolor)] grid grid-cols-6 place-items-center w-full;
 
             span {
               @apply cursor-pointer
@@ -986,7 +997,7 @@ body {
       }
 
       .color-section {
-        @apply p-4 flex flex-col rounded-lg bg-[var(--light-bgcolor)] relative;    
+        @apply p-4 flex flex-col rounded-lg bg-[var(--bgcolor)] relative;    
 
         .color-controls {
           @apply flex justify-between;
@@ -998,14 +1009,14 @@ body {
         }
 
         .color-box {
-          @apply cursor-pointer bg-[var(--light-muted-text)] w-20 rounded-lg inset-shadow-sm;
+          @apply cursor-pointer bg-[var(--lightest-bg)] w-20 rounded-lg inset-shadow-sm;
         }
 
         .color-picker {
           @apply absolute right-3 top-10 p-3 rounded-lg flex flex-col gap-2 bg-[var(--mainbd-bg)] border border-2 border-[var(--accent)];
 
           .color-holder {
-            @apply bg-[var(--light-bgcolor)] rounded-lg p-2 flex gap-6 text-lg grid grid-cols-6 place-items-center;
+            @apply bg-[var(--bgcolor)] rounded-lg p-2 flex gap-6 text-lg grid grid-cols-6 place-items-center;
             
             span {
               @apply border border-2 border-transparent p-2 rounded-full cursor-pointer;
@@ -1015,7 +1026,7 @@ body {
       }
 
       .days-section {
-        @apply rounded-lg p-4 bg-[var(--light-bgcolor)] flex flex-col gap-4;
+        @apply rounded-lg p-4 bg-[var(--bgcolor)] flex flex-col gap-4;
 
         p {
           @apply font-bold 
@@ -1035,7 +1046,7 @@ body {
       }
 
       .start-end-section {
-        @apply rounded-lg p-4 bg-[var(--light-bgcolor)] flex justify-around items-center;
+        @apply rounded-lg p-4 bg-[var(--bgcolor)] flex justify-around items-center;
 
         input {
           @apply p-2 rounded-lg bg-[var(--mainbd-bg)] shadow-lg
@@ -1047,7 +1058,7 @@ body {
       }
 
       .reminder-section {
-        @apply rounded-lg p-4 bg-[var(--light-bgcolor)] flex justify-between;
+        @apply rounded-lg p-4 bg-[var(--bgcolor)] flex justify-between;
 
         p {
           @apply font-bold 
@@ -1055,16 +1066,16 @@ body {
         }
 
         .reminder-toggle {
-          @apply w-20 rounded-lg bg-[var(--light-muted-text)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
+          @apply w-20 rounded-lg bg-[var(--lightest-bg)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
 
           .reminder-toggle-slider {
-            @apply h-full w-5 rounded-full bg-[var(--light-bgcolor)] shadow-lg transition duration-500 ease-in-out;
+            @apply h-full w-5 rounded-full bg-[var(--bgcolor)] shadow-lg transition duration-500 ease-in-out;
           }
         }
       }
 
       .reminder-time-section {
-        @apply rounded-lg p-4 bg-[var(--light-bgcolor)] flex justify-between;
+        @apply rounded-lg p-4 bg-[var(--bgcolor)] flex justify-between;
       
         p {
           @apply font-bold 
@@ -1097,7 +1108,7 @@ body {
       @apply flex gap-3 items-center;
 
       .emoji-box {
-        @apply p-2 rounded-lg text-lg bg-[var(--light-muted-text)];
+        @apply p-2 rounded-lg text-lg bg-[var(--lightest-bg)];
       }
 
       p {
@@ -1110,7 +1121,7 @@ body {
       md:text-xl;
 
       i {
-        @apply text-[var(--light-muted-text)] cursor-pointer transition duration-300 ease-in-out
+        @apply text-[var(--lightest-bg)] cursor-pointer transition duration-300 ease-in-out
         first:hover:text-[var(--accent)];
       }
 
