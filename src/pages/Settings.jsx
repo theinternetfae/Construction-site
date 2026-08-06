@@ -8,9 +8,33 @@ function Settings() {
 
     const [themeToggle, setThemeToggle] = useState(false);
 
+    const [headerTag, setHeaderTag] = useState('Profile & Preferences');
+    const [subtitleTag, setSubtitleTag] = useState('Manage your profile and preferences');
+
     useEffect(() => {
-        console.log(themeToggle);
-    }, [themeToggle])
+        
+        if(location.pathname === '/test/settings/profile') {
+            setHeaderTag('Profile & Preferences');
+            setSubtitleTag('Manage your profile and preferences');
+        }
+
+        if(location.pathname === '/test/settings/history') {
+            setHeaderTag('Task History');
+            setSubtitleTag('View your task history');
+        }
+
+        if(location.pathname === '/test/settings/privacy') {
+            setHeaderTag('Data & Privacy');
+            setSubtitleTag('All about your data');
+        }
+
+        if(location.pathname === '/test/settings/about') {
+            setHeaderTag('About');
+            setSubtitleTag('Learn more about us!');
+        }
+
+    }, [location])
+
 
     return ( 
         <div className="settings">
@@ -18,8 +42,8 @@ function Settings() {
             <section className="heading">
 
                 <div className="page-info">
-                    <h2>Settings <span className="hidden md:block">{`>`} Profile & Preferences</span></h2>
-                    <p>Manage your account settings</p>
+                    <h2>Settings <span className="hidden md:block">{` > ${headerTag}`}</span></h2>
+                    <p>{subtitleTag}</p>
                 </div>
 
                 <div className="mode-toggle" onClick={() => setThemeToggle(prev => !prev)}>
