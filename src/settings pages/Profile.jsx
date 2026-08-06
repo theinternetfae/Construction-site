@@ -1,4 +1,11 @@
+import { useState } from "react";
+
 function Profile() {
+
+    const [quirkToggle, setQuirkToggle] = useState(true);
+    const [quoteToggle, setQuoteToggle] = useState(false);
+    const [streakToggle, setStreakToggle] = useState(false);
+
     return (  
         <div className="profile">
             
@@ -41,24 +48,24 @@ function Profile() {
                     </div>
                 </div>
                 
-                <div className="user-pref">
+                <div className="user-pref" onClick={() => setQuirkToggle(prev => !prev)}>
                     <p>Optima quirk</p>
                     <div className="pref-toggle">
-                        <div className="pref-toggle-switch"></div>
+                        <div className={`pref-toggle-switch ${quirkToggle ? 'translate-x-25':''}`}></div>
                     </div>
                 </div>
                 
-                <div className="user-pref">
+                <div className="user-pref" onClick={() => setQuoteToggle(prev => !prev)}>
                     <p>Daily quote</p>
                     <div className="pref-toggle">
-                        <div className="pref-toggle-switch"></div>
+                        <div className={`pref-toggle-switch ${quoteToggle ? 'translate-x-25':''}`}></div>
                     </div>
                 </div>
                 
-                <div className="user-pref">
+                <div className="user-pref" onClick={() => setStreakToggle(prev => !prev)}>
                     <p>Streak</p>
                     <div className="pref-toggle">
-                        <div className="pref-toggle-switch"></div>
+                        <div className={`pref-toggle-switch ${streakToggle ? 'translate-x-25':''}`}></div>
                     </div>
                 </div>
             

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
 
@@ -5,18 +6,24 @@ function Settings() {
 
     const location = useLocation();
 
+    const [themeToggle, setThemeToggle] = useState(false);
+
+    useEffect(() => {
+        console.log(themeToggle);
+    }, [themeToggle])
+
     return ( 
         <div className="settings">
 
             <section className="heading">
 
                 <div className="page-info">
-                    <h2>Settings <span>{`>`} Profile & Preferences</span></h2>
+                    <h2>Settings <span className="hidden md:block">{`>`} Profile & Preferences</span></h2>
                     <p>Manage your account settings</p>
                 </div>
 
-                <div className="mode-toggle">
-                    <div className="mode-toggle-switch">
+                <div className="mode-toggle" onClick={() => setThemeToggle(prev => !prev)}>
+                    <div className={`mode-toggle-switch ${themeToggle ? 'translate-x-20' : ''}`}>
                         <i className="bi bi-sun"></i>
                         {/* <i class="bi bi-moon"></i> */}
                     </div>
