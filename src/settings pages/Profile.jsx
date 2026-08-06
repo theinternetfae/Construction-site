@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ThemeContext } from "../js files/contexts";
 
 function Profile() {
+
+    const {themeAccent, setThemeAccent} = useContext(ThemeContext);
 
     const [quirkToggle, setQuirkToggle] = useState(true);
     const [quoteToggle, setQuoteToggle] = useState(false);
@@ -30,19 +33,19 @@ function Profile() {
                     <p>Themes</p>
 
                     <div className="theme-array">
-                        <div>
+                        <div onClick={() => setThemeAccent('blue')} className={`${themeAccent === 'blue' ? 'border-[var(--accent)]' : ''}`}>
                             <span className="blue"></span>
                         </div>
 
-                        <div>
+                        <div onClick={() => setThemeAccent('purple')} className={`${themeAccent === 'purple' ? 'border-[var(--accent)]' : ''}`}>
                             <span className="purple"></span>
                         </div>
                         
-                        <div>
+                        <div onClick={() => setThemeAccent('pink')} className={`${themeAccent === 'pink' ? 'border-[var(--accent)]' : ''}`}>
                             <span className="pink"></span>
                         </div>
 
-                        <div>
+                        <div onClick={() => setThemeAccent('green')} className={`${themeAccent === 'green' ? 'border-[var(--accent)]' : ''}`}>
                             <span className="green"></span>
                         </div>
                     </div>

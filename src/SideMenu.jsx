@@ -39,17 +39,17 @@ function SideMenu() {
 
                 <section className="nav-sect-sm">
                 
-                    <Link to={"home"} className={`navigation ${loName === '/test/home' ? 'bg-[#BFDBFE] text-[var(--accent)] flex' : ""}`}>
+                    <Link to={"home"} className={`navigation ${loName === '/test/home' ? 'bg-[var(--muted-accent)] text-[var(--accent)] flex' : ""}`}>
                         <i className="bi bi-house-door-fill"></i>
                         <p className={`${loName === '/test/home' ? 'block' : ""}`}>Home</p>
                     </Link>
 
-                    <Link to={"stats"} className={`navigation ${loName === '/test/stats' ? 'bg-[#BFDBFE] text-[var(--accent)] flex' : ""}`}>
+                    <Link to={"stats"} className={`navigation ${loName === '/test/stats' ? 'bg-[var(--muted-accent)] text-[var(--accent)] flex' : ""}`}>
                         <i className="bi bi-bar-chart"></i>
                         <p className={`${loName === '/test/stats' ? 'block' : ""}`}>Stats</p>
                     </Link>
 
-                    <Link to={"settings"} className={`navigation ${loName === '/test/settings' ? 'bg-[#BFDBFE] text-[var(--accent)] flex' : ""}`}>
+                    <Link to={"settings"} className={`navigation ${loName === '/test/settings' ? 'bg-[var(--muted-accent)] text-[var(--accent)] flex' : ""}`}>
                         <i className="bi bi-gear"></i>
                         <p className={`${loName === '/test/settings' ? 'block' : ""}`}>Settings</p>
                     </Link>
@@ -78,17 +78,17 @@ function SideMenu() {
 
                 <section className="nav-sect">
 
-                    <Link to={"home"} className={`navigation ${loName === '/test/home' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
+                    <Link to={"home"} className={`navigation ${loName === '/test/home' ? 'bg-[var(--muted-accent)] text-[var(--accent)]' : ""}`}>
                         <i className="bi bi-house-door-fill"></i>
                         <p>Home</p>
                     </Link>
 
-                    <Link to={"stats"} className={`navigation ${loName === '/test/stats' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
+                    <Link to={"stats"} className={`navigation ${loName === '/test/stats' ? 'bg-[var(--muted-accent)] text-[var(--accent)]' : ""}`}>
                         <i className="bi bi-bar-chart"></i>
                         <p>Stats</p>
                     </Link>
 
-                    <Link to={"settings"} className={`navigation ${loName === '/test/settings' ? 'bg-[#BFDBFE] text-[var(--accent)]' : ""}`}>
+                    <Link to={"settings"} className={`navigation ${loName === '/test/settings' ? 'bg-[var(--muted-accent)] text-[var(--accent)]' : ""}`}>
                         <i className="bi bi-gear"></i>
                         <p>Settings</p>
                     </Link>

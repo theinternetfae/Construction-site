@@ -27,6 +27,23 @@
   --green: #477023;
 }
 
+.accent-purple {
+  --accent: #491AB1;
+  --muted-accent: #DDD6FE;
+}
+
+.accent-pink {
+  --accent: #AE0849;
+  --muted-accent: #FBCFE8;
+}
+
+.accent-green {
+  --accent: #20531A;
+  --muted-accent: #DCFCE7;
+}
+
+
+
 
 body {
   cursor: default;
@@ -630,7 +647,7 @@ body {
 
             .mode-toggle-switch {
               @apply h-full w-8 rounded-full flex justify-center items-center bg-[var(--mainbd-bg)] shadow-lg transition duration-500 ease-in-out
-              text-[var(--yellow)];
+              text-[var(--accent)];
             } 
           }
         }
@@ -694,7 +711,6 @@ body {
 
                   div {
                     @apply border border-2 border-transparent w-8 h-8 rounded-full cursor-pointer flex items-center justify-center p-1
-                    nth-1:border-[#2563EB] nth-2:border-[#491AB1] nth-3:border-[#AE0849] nth-4:border-[#20531A]
                     md:w-8 md:h-8;  
                     
                     span {
@@ -742,8 +758,8 @@ body {
                 }
 
                 button {
-                  @apply border border-2 w-30 p-2 rounded-lg cursor-pointer shadow-sm
-                  md:w-50;
+                  @apply border border-2 w-35 p-2 rounded-lg cursor-pointer shadow-sm
+                  md:w-35;
                 }
 
                 .log-out {
