@@ -352,7 +352,7 @@ body {
         @apply hidden h-full flex-col justify-between 
         lg:flex;
           
-        
+
         .logo-sect {
           @apply flex text-3xl gap-1 text-[var(--accent)];
         }
@@ -1094,11 +1094,11 @@ body {
       }
 
       .add-task {
-        @apply border border-2 p-2 rounded-lg bg-[var(--accent)] font-bold text-white cursor-pointer;
+        @apply p-2 rounded-lg bg-[var(--accent)] font-bold text-white cursor-pointer;
       }
 
       .delete-task {
-        @apply border border-2 p-2 rounded-lg bg-[var(--red)] font-bold text-white cursor-pointer;
+        @apply p-2 rounded-lg bg-[var(--red)] font-bold text-white cursor-pointer;
       }
     }
   }

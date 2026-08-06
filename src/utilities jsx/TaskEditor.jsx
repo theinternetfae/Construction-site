@@ -209,7 +209,7 @@ function TaskEditor({exit, task}) {
 
                 <section className="reminder-section">
                     <p>On Reminder?</p>
-                    <div className="reminder-toggle" onClick={() => setReminder(!reminder)} >
+                    <div className={`reminder-toggle ${reminder ? "bg-[var(--accent)]" : ''}`} onClick={() => setReminder(!reminder)} >
                         <div className={`reminder-toggle-slider ${reminder ? "translate-x-13" : ""}`}></div>
                     </div>
                 </section>

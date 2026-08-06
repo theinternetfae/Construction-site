@@ -47,11 +47,12 @@ function Settings() {
                     <p>{subtitleTag}</p>
                 </div>
 
-                <div className="mode-toggle" onClick={() => {
+                <div className="mode-toggle" 
+                onClick={() => {
                     setTheme(prev => !prev);
                 }}>
-                    <div className={`mode-toggle-switch ${theme ? 'translate-x-20' : ''}`}>
-                        <i className={`bi ${!theme ? 'bi-sun' : 'bi-moon text-[var(--muted-text)]'}`}></i>
+                    <div className={`mode-toggle-switch ${theme ? 'translate-x-20 bg-[var(--accent)] text-white' : ''}`}>
+                        <i className={`bi ${!theme ? 'bi-sun' : 'bi-moon'}`}></i>
                     </div>
                 </div>
             
