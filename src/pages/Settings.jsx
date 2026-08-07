@@ -26,7 +26,7 @@ function Settings() {
 
         if(location.pathname === '/test/settings/privacy') {
             setHeaderTag('Data & Privacy');
-            setSubtitleTag('All about your data');
+            setSubtitleTag('All about your data & privacy');
         }
 
         if(location.pathname === '/test/settings/about') {
@@ -63,19 +63,23 @@ function Settings() {
             <section className="settings-navigations">
                 
                 <Link to={"profile"} className={`sett-nav ${location.pathname === '/test/settings/profile' ? 'border-[var(--accent)]' : ""}`}>
-                    <p>Profile & Preferences</p>
+                    <i className="bi bi-person md:hidden"></i>
+                    <p className="hidden md:block">Profile & Preferences</p>
                 </Link>
 
                 <Link to={"history"} className={`sett-nav ${location.pathname === '/test/settings/history' ? 'border-[var(--accent)]' : ""}`}>
-                    <p>Task History</p>
+                    <i className="bi bi-clock-history md:hidden"></i>
+                    <p className="hidden md:block">Task History</p>
                 </Link>
 
                 <Link to={"privacy"} className={`sett-nav ${location.pathname === '/test/settings/privacy' ? 'border-[var(--accent)]' : ""}`}>
-                    <p className="sett-nav">Data & Privacy</p>
+                    <i className="bi bi-lock md:hidden"></i>
+                    <p className="hidden md:block">Data & Privacy</p>
                 </Link>
 
                 <Link to={"about"} className={`sett-nav ${location.pathname === '/test/settings/about' ? 'border-[var(--accent)]' : ""}`}>
-                    <p className="sett-nav">About</p>
+                    <i className="bi bi-info-circle md:hidden"></i>
+                    <p className="hidden md:block">About</p>
                 </Link>
                 
             </section>

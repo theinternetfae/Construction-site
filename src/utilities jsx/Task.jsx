@@ -3,6 +3,7 @@ import TaskEditor from "./TaskEditor.jsx"
 import { TaskContext } from "../js files/contexts.js";
 import { saveTaskList } from "../js files/Storage.js";
 import dayjs from "../js files/DayJs.js";
+import TaskInfo from "./TaskInfo.jsx";
 
 function Task({taskInfo, noShow}) {
 
@@ -10,6 +11,8 @@ function Task({taskInfo, noShow}) {
     const createdToday = !dayjs(taskInfo.scheduledDate).isToday();
 
     const {taskList, setTaskList} = useContext(TaskContext);
+
+    const [info, setInfo] = useState(false);
 
     const [editing, setEditing] = useState(false);
 
@@ -44,6 +47,9 @@ function Task({taskInfo, noShow}) {
                 }}
                 
                 disabled={createdToday}/>
+
+                <i className={`bi bi-eye ${noShow ? 'block' : 'hidden'}`}
+                onClick={() => setInfo(true)}></i>
             
             </section>
 
@@ -54,6 +60,10 @@ function Task({taskInfo, noShow}) {
 
             />}
 
+            {info && <TaskInfo
+                task={taskInfo}
+                exit={() => setInfo(false)}
+            />}
         </div>
     );
 }

@@ -795,11 +795,21 @@ body {
             }
 
             .tasks-holder {
-              @apply p-5 rounded-lg bg-[var(--light-grey)];
+              @apply p-5 rounded-lg bg-[var(--light-grey)] flex flex-col gap-8;
 
-              p {
-                @apply text-center text-sm
-                md:text-base;
+              .task-sections {
+                @apply flex flex-col gap-2;
+              
+                .label {
+                  @apply text-[var(--special-text)] 
+                  before:content-[''] before:border before:flex before:my-2
+                  after:content-[''] after:border after:flex after:my-2;
+                }
+
+                .filler {
+                  @apply text-center;
+                }
+
               }
             }
           }
@@ -946,6 +956,20 @@ body {
     }
   }
 
+  .task-info {
+    @apply bg-black/1 backdrop-blur-sm fixed top-0 z-50 w-full h-full flex flex-col justify-center p-5;
+
+    .task-info-body {
+      @apply border border-2 m-auto flex flex-col w-[50%] rounded-lg p-5 bg-[var(--mainbd-bg)] shadow-lg;
+
+
+      i {
+        @apply ml-auto text-lg cursor-pointer transition duration-300 ease-in-out
+        hover:text-[var(--accent)];
+      }
+    }
+  }
+
   .task-editor {
     @apply bg-black/1 backdrop-blur-sm fixed top-0 z-50 w-full h-full flex flex-col justify-center p-5;
 
@@ -955,7 +979,7 @@ body {
       lg:w-[50%];
 
       .exit-editor {
-        @apply ml-auto text-lg cursor-pointer text-[var(--muted-text)] transition duration-300 ease-in-out text-base
+        @apply ml-auto cursor-pointer text-lg text-[var(--muted-text)] transition duration-300 ease-in-out
         hover:text-[var(--accent)]
         md:text-xl; 
       }
