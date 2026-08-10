@@ -35,8 +35,6 @@ function App() {
   const [themeAccent, setThemeAccent] = useState('blue');
 
   useLayoutEffect(() => {
-
-    console.log(themeAccent)
     
     root.classList.remove(
       'accent-purple',

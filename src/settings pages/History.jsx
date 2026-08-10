@@ -41,11 +41,6 @@ function History() {
 
     }, [taskList, today]);
 
-    useEffect(() => {
-        console.log("Re-occuring:", reOccuringTasks);
-        console.log("One-off:", oneOffTasks);
-    }, [])
-
     return ( 
         <div className="history">
             <i className="bi bi-lightbulb-fill"></i>
@@ -67,6 +62,7 @@ function History() {
                         key={t.uniqueId}
                         taskInfo={t}
                         noShow={true}
+                        oneOff={true}
                     />)}
                 </div>
 

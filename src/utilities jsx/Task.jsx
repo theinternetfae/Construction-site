@@ -5,7 +5,7 @@ import { saveTaskList } from "../js files/Storage.js";
 import dayjs from "../js files/DayJs.js";
 import TaskInfo from "./TaskInfo.jsx";
 
-function Task({taskInfo, noShow}) {
+function Task({taskInfo, noShow, oneOff}) {
 
     const now = dayjs();
     const createdToday = !dayjs(taskInfo.scheduledDate).isToday();
@@ -63,6 +63,7 @@ function Task({taskInfo, noShow}) {
             {info && <TaskInfo
                 task={taskInfo}
                 exit={() => setInfo(false)}
+                oneOff={oneOff}
             />}
         </div>
     );
