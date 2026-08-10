@@ -1,11 +1,14 @@
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { TaskContext } from "../js files/contexts";
 import dayjs from "../js files/DayJs.js";
 import Task from "../utilities jsx/Task";
+import Alert from "../utilities jsx/Alert.jsx";
 
 function History() {
     
     const {taskList} = useContext(TaskContext);
+
+    const [alert, setAlert] = useState(false);
 
     const today = dayjs();
 
@@ -43,7 +46,7 @@ function History() {
 
     return ( 
         <div className="history">
-            <i className="bi bi-lightbulb-fill"></i>
+            <i className="bi bi-lightbulb-fill" onClick={() => setAlert(true)}></i>
             <section className="tasks-holder">
                 <div className="task-sections">
                     <p className="label">Re-occuring</p>
@@ -67,6 +70,12 @@ function History() {
                 </div>
 
             </section>
+
+            {alert && <Alert
+                text={'Here you view your tasks and get an overview of the selected task stats'}
+                buttonTextOne={'Okay'}
+                buttonActionOne={() => setAlert(false)}
+            />}
         </div>
     );
 }
