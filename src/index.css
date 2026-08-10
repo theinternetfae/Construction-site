@@ -960,12 +960,39 @@ body {
     @apply bg-black/1 backdrop-blur-sm fixed top-0 z-50 w-full h-full flex flex-col justify-center p-5;
 
     .task-info-body {
-      @apply border border-2 m-auto flex flex-col w-[50%] rounded-lg p-5 bg-[var(--mainbd-bg)] shadow-lg;
-
+      @apply border border-2 m-auto flex flex-col w-[50%] rounded-lg p-5 bg-[var(--mainbd-bg)] shadow-lg gap-5;
 
       i {
         @apply ml-auto text-lg cursor-pointer transition duration-300 ease-in-out
         hover:text-[var(--accent)];
+      }
+
+      .initial-info {
+        @apply flex justify-center gap-5;
+
+        .emoji {
+          @apply p-6 bg-[var(--bgcolor)] shadow-lg rounded-lg cursor-pointer text-5xl;
+        }
+
+        .tags {
+          @apply flex flex-col justify-between;
+
+          span {
+            @apply text-center bg-[var(--bgcolor)] rounded-lg p-2;
+          }
+        }
+      }
+
+      .further-info {
+        @apply flex flex-col justify-center gap-5;
+
+        .f-info {
+          @apply bg-[var(--bgcolor)] rounded-lg p-4 flex justify-between items-center;
+
+          span {
+            @apply flex items-center gap-3
+          }
+        }
       }
     }
   }
