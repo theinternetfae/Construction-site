@@ -1,23 +1,37 @@
+import { useState } from "react";
+
 function Privacy() {
+
+    const [infoOne, setInfoOne] = useState(false);
+    const [infoTwo, setInfoTwo] = useState(false);
+
     return ( 
         <div className="privacy">
 
             <section className="more-info">
         
                 <div className="info">
-                    <div className="opener">
-                        <i className="bi bi-caret-right"></i>
+                    <div className="opener"
+                        onClick={() => {
+                            setInfoOne(prev => !prev)
+                        }}
+                    >
+                        <i className={infoOne ? 'bi bi-caret-down' : 'bi bi-caret-right'}></i>
                         What data is stored?
                     </div>
-                    <p>Data stored include: Tasks and schedules, completion history, app preferences, and profile info.</p>
+                    <p className={infoOne ? '' : 'hidden'}>Data stored include: Tasks and schedules, completion history, app preferences, and profile info.</p>
                 </div>
         
                 <div className="info">
-                    <div className="opener">
-                        <i className="bi bi-caret-right"></i>
+                    <div className="opener"
+                        onClick={() => {
+                            setInfoTwo(prev => !prev)
+                        }}
+                    >
+                        <i className={infoTwo ? 'bi bi-caret-down' : 'bi bi-caret-right'}></i>
                         How is it stored?
                     </div>
-                    <p>Your data is stored in our appWrite database where only the creator of the app, Favour Egwele, has access.</p>
+                    <p className={infoTwo ? '' : 'hidden'}>Your data is stored in our appWrite database where only the creator of the app, Favour Egwele, has access.</p>
                 </div>
 
             </section>

@@ -839,7 +839,7 @@ body {
                 }
 
                 p {
-                  @apply p-4 flex gap-2 rounded-lg bg-[var(--mainbd-bg)] shadow-sm hidden;
+                  @apply p-4 flex gap-2 rounded-lg bg-[var(--mainbd-bg)] shadow-sm;
                 }
               }
             }
