@@ -1,9 +1,40 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import Alert from "../utilities jsx/Alert";
+import { TaskContext, UserContext } from "../js files/contexts";
 
 function Privacy() {
 
+    const {setTaskList} = useContext(TaskContext);
+    const {setUserProfile} = useContext(UserContext);
+
     const [infoOne, setInfoOne] = useState(false);
     const [infoTwo, setInfoTwo] = useState(false);
+
+    const [alertOne, setAlertOne] = useState(false);
+    const [alertTwo, setAlertTwo] = useState(false);
+    
+    function clearTaskHistory() {
+        localStorage.removeItem('tasks');
+        
+        setTaskList([]);
+    }
+
+    function resetUserData() {
+        localStorage.clear();
+        
+        setTaskList([]);
+        
+        setUserProfile({
+            name: 'Jane Doe',
+            email: 'janedoe@gmail.com',
+            accent: 'blue',
+            quirk: true,
+            quote: false,
+            streak: true,
+            themeDark: true,
+            pfp: ''
+        });
+    }
 
     return ( 
         <div className="privacy">
@@ -49,7 +80,9 @@ function Privacy() {
                         <p>Clear task history</p>
                         <p className="subtitle">Delete all tasks</p>
                     </div>
-                    <button>
+                    <button
+                        onClick={() => setAlertOne(true)}
+                    >
                         <i className="bi bi-trash"></i>
                     </button>
                 </div>
@@ -59,7 +92,9 @@ function Privacy() {
                         <p>Reset all data</p>
                         <p className="subtitle">Delete all data and preferences</p>
                     </div>
-                    <button>
+                    <button
+                        onClick={() => setAlertTwo(true)}
+                    >
                         <i className="bi bi-trash"></i>
                     </button>
                 </div>
@@ -70,6 +105,30 @@ function Privacy() {
                 <i className="bi bi-download"></i>
                 Download your data
             </button>
+
+            {alertOne && <Alert
+                text={'Agreeing to this will delete every task in your storage, giving you a clean slate. Are you sure?'}
+                buttonTextOne={'Cancel'}
+                buttonActionOne={() => setAlertOne(false)}
+                buttonTextTwo={'Delete'}
+                buttonActionTwo={() => {
+                    clearTaskHistory();
+                    setAlertOne(false)
+                }}
+                unique={true}
+            />}
+
+            {alertTwo && <Alert
+                text={'Agreeing to this will delete all your data; tasks, preferences etc. Are you sure?'}
+                buttonTextOne={'Cancel'}
+                buttonActionOne={() => setAlertTwo(false)}
+                buttonTextTwo={'Delete'}
+                buttonActionTwo={() => {
+                    resetUserData();
+                    setAlertTwo(false)
+                }}
+                unique={true}
+            />}
         
         </div>
     );
