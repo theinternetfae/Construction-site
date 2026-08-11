@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
-import { ThemeContext } from "../js files/contexts";
+import { ThemeContext, UserContext } from "../js files/contexts";
 
 function Settings() {
 
     const location = useLocation();
 
-    const {theme, setTheme} = useContext(ThemeContext);
+    const {userProfile, setUserProfile} = useContext(UserContext);
 
     const [headerTag, setHeaderTag] = useState('Profile & Preferences');
     const [subtitleTag, setSubtitleTag] = useState('Manage your profile and preferences');
@@ -49,10 +49,10 @@ function Settings() {
 
                 <div className="mode-toggle" 
                 onClick={() => {
-                    setTheme(prev => !prev);
+                    setUserProfile({...userProfile, themeDark: !userProfile.themeDark});
                 }}>
-                    <div className={`mode-toggle-switch ${theme ? 'translate-x-20 bg-[var(--accent)] text-white' : ''}`}>
-                        <i className={`bi ${!theme ? 'bi-sun' : 'bi-moon'}`}></i>
+                    <div className={`mode-toggle-switch ${userProfile.themeDark ? 'translate-x-20 bg-[var(--accent)] text-white' : ''}`}>
+                        <i className={`bi ${!userProfile.themeDark ? 'bi-sun' : 'bi-moon'}`}></i>
                     </div>
                 </div>
             

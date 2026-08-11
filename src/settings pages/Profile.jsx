@@ -3,8 +3,7 @@ import { ThemeContext, UserContext } from "../js files/contexts";
 
 function Profile() {
 
-    const {themeAccent, setThemeAccent} = useContext(ThemeContext);
-    const {quirk, setQuirk, streak, setStreak} = useContext(UserContext);
+    const {quirk, setQuirk, streak, setStreak, userProfile, setUserProfile} = useContext(UserContext);
 
     const [quoteToggle, setQuoteToggle] = useState(false);
 
@@ -18,8 +17,8 @@ function Profile() {
                 </div>
             
                 <div className="name-email">
-                    <span>Jane Doe</span>
-                    <span>janedoe@gmail.com</span>
+                    <span>{userProfile.name}</span>
+                    <span>{userProfile.email}</span>
                 </div>
             
             </section>
@@ -32,19 +31,19 @@ function Profile() {
                     <p>Themes</p>
 
                     <div className="theme-array">
-                        <div onClick={() => setThemeAccent('blue')} className={`${themeAccent === 'blue' ? 'border-[var(--accent)]' : ''}`}>
+                        <div onClick={() => setUserProfile({...userProfile, accent: 'blue'})} className={`${userProfile.accent === 'blue' ? 'border-[var(--accent)]' : ''}`}>
                             <span className="blue"></span>
                         </div>
 
-                        <div onClick={() => setThemeAccent('purple')} className={`${themeAccent === 'purple' ? 'border-[var(--accent)]' : ''}`}>
+                        <div onClick={() => setUserProfile({...userProfile, accent: 'purple'})} className={`${userProfile.accent === 'purple' ? 'border-[var(--accent)]' : ''}`}>
                             <span className="purple"></span>
                         </div>
                         
-                        <div onClick={() => setThemeAccent('pink')} className={`${themeAccent === 'pink' ? 'border-[var(--accent)]' : ''}`}>
+                        <div onClick={() => setUserProfile({...userProfile, accent: 'pink'})} className={`${userProfile.accent === 'pink' ? 'border-[var(--accent)]' : ''}`}>
                             <span className="pink"></span>
                         </div>
 
-                        <div onClick={() => setThemeAccent('green')} className={`${themeAccent === 'green' ? 'border-[var(--accent)]' : ''}`}>
+                        <div onClick={() => setUserProfile({...userProfile, accent: 'green'})} className={`${userProfile.accent === 'green' ? 'border-[var(--accent)]' : ''}`}>
                             <span className="green"></span>
                         </div>
                     </div>

@@ -20,19 +20,32 @@ function App() {
   const [quirk, setQuirk] = useState(true);
   const [streak, setStreak] = useState(true);
 
-  const userData = { 
-    name: "",
-    email: "",
-    password: ""
-  }
+  const [userProfile, setUserProfile] = useState({
+    name: 'Jane Doe',
+    email: 'janedoe@gmail.com',
+    accent: 'blue',
+    quirk: true,
+    quote: false,
+    streak: true,
+    themeDark: true,
+    pfp: ''
+  });
+
+  useEffect(() => {
+    console.log(userProfile);
+  }, [userProfile])
+
+  // const userData = { 
+  //   name: "",
+  //   email: "",
+  //   password: ""
+  // }
 
   const [taskList, setTaskList] = useState(
     getTaskList() || []
   )
 
   const root = document.documentElement;
-  const [theme, setTheme] = useState(true);
-  const [themeAccent, setThemeAccent] = useState('blue');
 
   useLayoutEffect(() => {
     
@@ -42,56 +55,50 @@ function App() {
       'accent-green'
     );
 
-    if (themeAccent === 'purple') root.classList.add('accent-purple');
-    if (themeAccent === 'pink') root.classList.add('accent-pink');
-    if (themeAccent === 'green') root.classList.add('accent-green');
+    if (userProfile.accent === 'purple') root.classList.add('accent-purple');
+    if (userProfile.accent === 'pink') root.classList.add('accent-pink');
+    if (userProfile.accent === 'green') root.classList.add('accent-green');
     
-  }, [themeAccent])
+  }, [userProfile])
 
   useLayoutEffect(() => {
 
-    root.classList.toggle('dark', theme)
+    root.classList.toggle('dark', userProfile.themeDark)
 
-  }, [theme])
+  }, [userProfile])
 
   return (
     
     <TaskContext.Provider value={{taskList, setTaskList}}>
 
-      <UserContext.Provider value={{quirk, setQuirk, streak, setStreak}}>
+      <UserContext.Provider value={{quirk, setQuirk, streak, setStreak, userProfile, setUserProfile}}>
 
-        <ThemeContext.Provider value={{themeAccent, setThemeAccent, theme, setTheme}}>
+        <Routes>
 
+          <Route path="/" element={verified ? <Navigate to="/test" replace/> : <Welcome/>}></Route>
+          <Route path="/signin" element={verified ? <Navigate to="/test" replace/> : <WelcomeBack/>}></Route>
 
-          <Routes>
+          <Route path="/test" element={!verified ? <Navigate to="/" replace/> : <AppLayout/>}>
 
-            <Route path="/" element={verified ? <Navigate to="/test" replace/> : <Welcome/>}></Route>
-            <Route path="/signin" element={verified ? <Navigate to="/test" replace/> : <WelcomeBack/>}></Route>
+            <Route index element={<Navigate to="home" replace />}></Route>
 
-            <Route path="/test" element={!verified ? <Navigate to="/" replace/> : <AppLayout/>}>
-
-              <Route index element={<Navigate to="home" replace />}></Route>
-
-              <Route path="home" element={<Home/>}></Route>
-              <Route path="stats" element={<Stats/>}></Route>
+            <Route path="home" element={<Home/>}></Route>
+            <Route path="stats" element={<Stats/>}></Route>
+            
+            <Route path="settings" element={<Settings/>}>
               
-              <Route path="settings" element={<Settings/>}>
-                
-                <Route index element={<Navigate to="profile" replace />}></Route>
+              <Route index element={<Navigate to="profile" replace />}></Route>
 
-                <Route path="profile" element={<Profile/>}></Route>
-                <Route path="history" element={<History/>}></Route>
-                <Route path="privacy" element={<Privacy/>}></Route>              
-                <Route path="about" element={<About/>}></Route>
-              
-              </Route>
-
+              <Route path="profile" element={<Profile/>}></Route>
+              <Route path="history" element={<History/>}></Route>
+              <Route path="privacy" element={<Privacy/>}></Route>              
+              <Route path="about" element={<About/>}></Route>
+            
             </Route>
 
-          </Routes>
+          </Route>
 
-
-        </ThemeContext.Provider>
+        </Routes>
 
       </UserContext.Provider>
 
