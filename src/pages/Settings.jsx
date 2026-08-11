@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeContext, UserContext } from "../js files/contexts";
+import { saveUserProfile } from "../js files/Storage.js";
 
 function Settings() {
 
@@ -48,9 +49,19 @@ function Settings() {
                 </div>
 
                 <div className="mode-toggle" 
-                onClick={() => {
-                    setUserProfile({...userProfile, themeDark: !userProfile.themeDark});
-                }}>
+                onClick={() => 
+                    setUserProfile(prev => {
+
+                        const profile = {
+                            ...prev,
+                            themeDark: !prev.themeDark
+                        }
+            
+                        saveUserProfile(profile)
+            
+                        return profile
+                    })
+                }>
                     <div className={`mode-toggle-switch ${userProfile.themeDark ? 'translate-x-20 bg-[var(--accent)] text-white' : ''}`}>
                         <i className={`bi ${!userProfile.themeDark ? 'bi-sun' : 'bi-moon'}`}></i>
                     </div>

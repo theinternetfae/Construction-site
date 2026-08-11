@@ -7,7 +7,7 @@ import Home from './pages/Home.jsx';
 import Stats from './pages/Stats.jsx';
 import Settings from './pages/Settings.jsx';
 import { TaskContext, UserContext, ThemeContext } from './js files/contexts.js';
-import { getTaskList } from './js files/Storage.js';
+import { getTaskList, getUserProfile } from './js files/Storage.js';
 import Profile from './settings pages/Profile.jsx';
 import History from './settings pages/History.jsx';
 import Privacy from './settings pages/Privacy.jsx';
@@ -18,16 +18,23 @@ function App() {
 
   const [verified, isVerified] = useState(true);
 
-  const [userProfile, setUserProfile] = useState({
-    name: 'Jane Doe',
-    email: 'janedoe@gmail.com',
-    accent: 'blue',
-    quirk: true,
-    quote: false,
-    streak: true,
-    themeDark: true,
-    pfp: ''
-  });
+  const [userProfile, setUserProfile] = useState(
+    getUserProfile() || 
+    {
+      name: 'Jane Doe',
+      email: 'janedoe@gmail.com',
+      accent: 'blue',
+      quirk: true,
+      quote: false,
+      streak: true,
+      themeDark: true,
+      pfp: ''
+    }
+  );
+
+  useEffect(() => {
+    console.log(userProfile);
+  }, [userProfile])
 
   const [taskList, setTaskList] = useState(
     getTaskList() || []
