@@ -8,7 +8,7 @@ import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 function Stats() {
 
     const { taskList } = useContext(TaskContext);
-    const { streak } = useContext(UserContext);
+    const { streak, userProfile } = useContext(UserContext);
 
     const [today, setToday] = useState(dayjs());
 
@@ -393,7 +393,7 @@ function Stats() {
                 </div>
             </section>
 
-            <section className={`stats-calculator-cont ${!streak ? 'hidden' : ''}`}>
+            <section className={`stats-calculator-cont ${userProfile.streak ? '' : 'hidden'}`}>
 
                 <div className="stats-calculator cont-main">
 

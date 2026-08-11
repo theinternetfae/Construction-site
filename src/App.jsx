@@ -17,8 +17,6 @@ import About from './settings pages/About.jsx';
 function App() {
 
   const [verified, isVerified] = useState(true);
-  const [quirk, setQuirk] = useState(true);
-  const [streak, setStreak] = useState(true);
 
   const [userProfile, setUserProfile] = useState({
     name: 'Jane Doe',
@@ -30,16 +28,6 @@ function App() {
     themeDark: true,
     pfp: ''
   });
-
-  useEffect(() => {
-    console.log(userProfile);
-  }, [userProfile])
-
-  // const userData = { 
-  //   name: "",
-  //   email: "",
-  //   password: ""
-  // }
 
   const [taskList, setTaskList] = useState(
     getTaskList() || []
@@ -71,7 +59,7 @@ function App() {
     
     <TaskContext.Provider value={{taskList, setTaskList}}>
 
-      <UserContext.Provider value={{quirk, setQuirk, streak, setStreak, userProfile, setUserProfile}}>
+      <UserContext.Provider value={{userProfile, setUserProfile}}>
 
         <Routes>
 

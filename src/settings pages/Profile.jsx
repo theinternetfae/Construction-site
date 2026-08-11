@@ -51,25 +51,25 @@ function Profile() {
                 
                 <div className="user-pref">
                     <p>Optima quirk</p>
-                    <div className={`pref-toggle ${quirk ? 'bg-[var(--accent)]' : ''}`} 
-                    onClick={() => setQuirk(prev => !prev)}>
-                        <div className={`pref-toggle-switch ${quirk ? 'translate-x-25':''}`}></div>
+                    <div className={`pref-toggle ${userProfile.quirk ? 'bg-[var(--accent)]' : ''}`} 
+                    onClick={() => setUserProfile({...userProfile, quirk: !userProfile.quirk})}>
+                        <div className={`pref-toggle-switch ${userProfile.quirk ? 'translate-x-25':''}`}></div>
                     </div>
                 </div>
                 
                 <div className="user-pref">
                     <p>Daily quote</p>
-                    <div className={`pref-toggle ${quoteToggle ? 'bg-[var(--accent)]' : ''}`} 
-                    onClick={() => setQuoteToggle(prev => !prev)}>
-                        <div className={`pref-toggle-switch ${quoteToggle ? 'translate-x-25':''}`}></div>
+                    <div className={`pref-toggle ${userProfile.quote ? 'bg-[var(--accent)]' : ''}`} 
+                    onClick={() => setUserProfile({...userProfile, quote: !userProfile.quote})}>
+                        <div className={`pref-toggle-switch ${userProfile.quote ? 'translate-x-25':''}`}></div>
                     </div>
                 </div>
                 
                 <div className="user-pref">
                     <p>Streak</p>
-                    <div className={`pref-toggle ${streak ? 'bg-[var(--accent)]' : ''}`} 
-                    onClick={() => setStreak(prev => !prev)}>
-                        <div className={`pref-toggle-switch ${streak ? 'translate-x-25':''}`}></div>
+                    <div className={`pref-toggle ${userProfile.streak ? 'bg-[var(--accent)]' : ''}`} 
+                    onClick={() => setUserProfile({...userProfile, streak: !userProfile.streak})}>
+                        <div className={`pref-toggle-switch ${userProfile.streak ? 'translate-x-25':''}`}></div>
                     </div>
                 </div>
             

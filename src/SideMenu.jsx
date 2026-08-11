@@ -4,7 +4,7 @@ import { UserContext } from "./js files/contexts";
 
 function SideMenu() {
 
-    const {quirk} = useContext(UserContext);
+    const {quirk, userProfile} = useContext(UserContext);
 
     const [quirkInfoShow, setQuirkInfoShow] = useState(false);
 
@@ -60,7 +60,7 @@ function SideMenu() {
                 </section>          
 
 
-                <section className={`quirk-sect-sm ${!quirk ? 'hidden' : ''}`} onClick={() => setQuirkInfoShow(!quirkInfoShow)}>
+                <section className={`quirk-sect-sm ${userProfile.quirk ? '' : 'hidden'}`} onClick={() => setQuirkInfoShow(!quirkInfoShow)}>
                     <p className="quirk-level-sm">1</p>
                     <div className={`quirk-info-sm ${quirkInfoShow && 'block'}`}>
                         <p>Level One: Rookie</p>
@@ -102,7 +102,7 @@ function SideMenu() {
                 
                 </section>
                 
-                <section className={`quirk-sect ${!quirk ? 'hidden' : ''}`}>
+                <section className={`quirk-sect ${userProfile.quirk ? '' : 'hidden'}`}>
                     
                     <div className="level-info">
                         <p>Level 1: Rookie</p>
