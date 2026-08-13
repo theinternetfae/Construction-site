@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../js files/contexts";
 import { saveUserProfile } from "../js files/Storage.js";
 
@@ -8,14 +8,69 @@ function Profile() {
 
     const [quoteToggle, setQuoteToggle] = useState(false);
 
+    useEffect(() => {
+        console.log(userProfile)
+    }, [userProfile])
+
+    // function setPfpImage(e) {
+    //     const file = e.target.files[0];
+
+    //     const imageUrl = URL.createObjectURL(file);
+
+    //     console.log(imageUrl);
+    //     setUserProfile(prev => {
+    //         const profile = {
+    //             ...prev, 
+    //             pfp: imageUrl
+    //         }
+
+    //         saveUserProfile(profile);
+    //         return profile;
+    //     });
+    // }
+
+    function setPfpImage(e) {
+        const file = e.target.files[0];
+
+        const reader = new FileReader();
+        
+        reader.onload = () => {
+            const imageUrl = reader.result;
+
+            setUserProfile(prev => {
+                const profile = {
+                    ...prev, 
+                    pfp: imageUrl
+                }
+
+                saveUserProfile(profile);
+                return profile;
+            });
+        };
+
+        reader.readAsDataURL(file);
+        console.log(reader);
+    }
+
+
     return (  
         <div className="profile">
             
             <section className="user-display">
 
-                <div className="pfp-cont">
-                    <i className="bi bi-plus-lg"></i>
-                </div>
+                <label className="pfp-cont">
+                    {userProfile.pfp ? 
+                        <img src={userProfile.pfp} alt="your pfp" className="pfp"/> 
+                    :
+                        <i className="bi bi-plus-lg"></i>
+                    }
+
+                    <input type="file" 
+                        accept="image/*"
+                        onChange={setPfpImage}
+                        hidden
+                    />
+                </label>
             
                 <div className="name-email">
                     <span>{userProfile.name}</span>
@@ -124,7 +179,7 @@ function Profile() {
                         })
                     
                     }>
-                        <div className={`pref-toggle-switch ${userProfile.quirk ? 'translate-x-25':''}`}></div>
+                        <div className={`pref-toggle-switch ${userProfile.quirk ? 'translate-x-24':''}`}></div>
                     </div>
                 </div>
                 
@@ -144,7 +199,7 @@ function Profile() {
                             return profile
                         })
                     }>
-                        <div className={`pref-toggle-switch ${userProfile.quote ? 'translate-x-25':''}`}></div>
+                        <div className={`pref-toggle-switch ${userProfile.quote ? 'translate-x-24':''}`}></div>
                     </div>
                 </div>
                 
@@ -164,7 +219,7 @@ function Profile() {
                             return profile
                         })
                     }>
-                        <div className={`pref-toggle-switch ${userProfile.streak ? 'translate-x-25':''}`}></div>
+                        <div className={`pref-toggle-switch ${userProfile.streak ? 'translate-x-24':''}`}></div>
                     </div>
                 </div>
             

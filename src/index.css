@@ -656,7 +656,7 @@ body {
           }
 
           .mode-toggle {
-            @apply w-30 h-10 rounded-lg bg-[var(--lightest-bg)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
+            @apply w-30 h-10 rounded-full bg-[var(--lightest-bg)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
 
             .mode-toggle-switch {
               @apply h-full w-8 rounded-full flex justify-center items-center bg-[var(--mainbd-bg)] shadow-lg transition duration-500 ease-in-out
@@ -674,7 +674,7 @@ body {
           md:p-3;
 
           .sett-nav {
-            @apply text-sm text-center border border-2 border-transparent p-2 rounded-lg transition duration-300 ease-in-out
+            @apply text-sm text-center border border-2 border-transparent p-2 transition duration-300 ease-in-out
             md:text-base;
           }
         }
@@ -696,6 +696,10 @@ body {
               .pfp-cont {
                 @apply h-40 w-40 rounded-full flex items-center justify-center text-2xl bg-[var(--light-grey)] shadow-sm cursor-pointer
                 md:h-50 md:w-50;
+
+                .pfp {
+                  @apply h-full w-full rounded-full object-cover;
+                }
               }
 
               .name-email {
@@ -749,10 +753,10 @@ body {
                 }
 
                 .pref-toggle {
-                  @apply w-35 h-full rounded-lg bg-[var(--lightest-bg)] inset-shadow-sm flex items-center p-1 cursor-pointer transition duration-300 ease-in-out; 
+                  @apply w-35 h-full rounded-full bg-[var(--lightest-bg)] inset-shadow-sm flex items-center p-1 cursor-pointer transition duration-300 ease-in-out; 
 
                   .pref-toggle-switch {
-                    @apply h-full w-8 rounded-full flex justify-center items-center bg-[var(--mainbd-bg)] shadow-lg transition duration-500 ease-in-out
+                    @apply h-full w-9 rounded-full flex justify-center items-center bg-[var(--mainbd-bg)] shadow-lg transition duration-500 ease-in-out
                     text-[var(--yellow)];
                   } 
                 }

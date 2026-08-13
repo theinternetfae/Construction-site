@@ -73,22 +73,22 @@ function Settings() {
 
             <section className="settings-navigations">
                 
-                <Link to={"profile"} className={`sett-nav ${location.pathname === '/test/settings/profile' ? 'border-[var(--accent)]' : ""}`}>
+                <Link to={"profile"} className={`sett-nav ${location.pathname === '/test/settings/profile' ? 'border-[var(--accent)] border-t-transparent border-x-transparent' : ""}`}>
                     <i className="bi bi-person md:hidden"></i>
                     <p className="hidden md:block">Profile & Preferences</p>
                 </Link>
 
-                <Link to={"history"} className={`sett-nav ${location.pathname === '/test/settings/history' ? 'border-[var(--accent)]' : ""}`}>
+                <Link to={"history"} className={`sett-nav ${location.pathname === '/test/settings/history' ? 'border-[var(--accent)] border-t-transparent border-x-transparent' : ""}`}>
                     <i className="bi bi-clock-history md:hidden"></i>
                     <p className="hidden md:block">Task History</p>
                 </Link>
 
-                <Link to={"privacy"} className={`sett-nav ${location.pathname === '/test/settings/privacy' ? 'border-[var(--accent)]' : ""}`}>
+                <Link to={"privacy"} className={`sett-nav ${location.pathname === '/test/settings/privacy' ? 'border-[var(--accent)] border-t-transparent border-x-transparent' : ""}`}>
                     <i className="bi bi-lock md:hidden"></i>
                     <p className="hidden md:block">Data & Privacy</p>
                 </Link>
 
-                <Link to={"about"} className={`sett-nav ${location.pathname === '/test/settings/about' ? 'border-[var(--accent)]' : ""}`}>
+                <Link to={"about"} className={`sett-nav ${location.pathname === '/test/settings/about' ? 'border-[var(--accent)] border-t-transparent border-x-transparent' : ""}`}>
                     <i className="bi bi-info-circle md:hidden"></i>
                     <p className="hidden md:block">About</p>
                 </Link>

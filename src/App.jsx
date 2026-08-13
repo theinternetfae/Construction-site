@@ -32,10 +32,6 @@ function App() {
     }
   );
 
-  useEffect(() => {
-    console.log(userProfile);
-  }, [userProfile])
-
   const [taskList, setTaskList] = useState(
     getTaskList() || []
   )
