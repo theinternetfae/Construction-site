@@ -6,7 +6,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Home from './pages/Home.jsx';
 import Stats from './pages/Stats.jsx';
 import Settings from './pages/Settings.jsx';
-import { TaskContext, UserContext, ThemeContext } from './js files/contexts.js';
+import { TaskContext, UserContext } from './js files/contexts.js';
 import { getTaskList, getUserProfile } from './js files/Storage.js';
 import Profile from './settings pages/Profile.jsx';
 import History from './settings pages/History.jsx';

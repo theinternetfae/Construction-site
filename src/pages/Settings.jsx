@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
-import { ThemeContext, UserContext } from "../js files/contexts";
+import { UserContext } from "../js files/contexts";
 import { saveUserProfile } from "../js files/Storage.js";
 
 function Settings() {

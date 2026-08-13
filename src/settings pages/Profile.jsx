@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { ThemeContext, UserContext } from "../js files/contexts";
+import { UserContext } from "../js files/contexts";
 import { saveUserProfile } from "../js files/Storage.js";
 
 function Profile() {
