@@ -4,6 +4,8 @@ import { useContext } from "react";
 import { UserContext } from "./js files/contexts";
 import { isValidEmail, isStrongPassword } from "./js files/Utilities";
 import Alert from "./utilities jsx/Alert.jsx";
+import { saveUserProfile } from "./js files/Storage.js";
+import db from "./appwrite files/databases.js";
 
 function Welcome() {
 
@@ -13,7 +15,7 @@ function Welcome() {
     const [password, setPassWord] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
 
-    const {setIsUser} = useContext(UserContext);
+    const {userProfile, setUserProfile} = useContext(UserContext);
 
     const [hiddenPass, setHiddenPass] = useState(false);
 
@@ -73,7 +75,7 @@ function Welcome() {
     }, [hiddenPass])
 
 
-    function signUp(e) {
+    async function signUp(e) {
 
         e.preventDefault();
 
@@ -103,15 +105,24 @@ function Welcome() {
         }
 
         const fullName = `${firstName} ${lastName}`;
-        
-        const userData = { 
+
+        const userData = {
+            ...userProfile, 
             name: fullName,
             email: email,
-            password: password
         }
-        
-        setIsUser(userData);
-        console.log(userData);
+    
+        try {
+            const result = await db.demtable.create(userData, null);
+
+            console.log("Created:", result);
+
+            setUserProfile(userData);
+            saveUserProfile(userData);
+
+        } catch (err) {
+            console.log("Error:", err);
+        }
 
         setFirstName('');
         setLastName('');
@@ -174,24 +185,26 @@ function Welcome() {
 
                     <form className="sign-up-two">
 
-                        <input type="text" placeholder="First Name" className="actual-input" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
-                        <input type="text" placeholder="Last Name" className="actual-input" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                        <input type="text" placeholder="First Name" name="first name" className="actual-input" value={firstName} 
+                        onChange={(e) => setFirstName(e.target.value)}/>
+                      
+                        <input type="text" placeholder="Last Name" name="last name" className="actual-input" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
                 
                         <p className={`error-message ${emailError ? '' : 'hidden'}`}>Please input a valid email address</p>
-                        <input type="email" placeholder="Email" className="actual-input" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                        <input type="email" placeholder="Email" name="email" className="actual-input" value={email} onChange={(e) => setEmail(e.target.value)}/>
 
                 
                         <p className={`error-message ${passError ? '' : 'hidden'}`}>{passErrorMessage}</p>
                         <div className="password-input">
 
-                            <input type={hiddenPass ? "text" : "password"} placeholder="Password" value={password} onChange={(e) => setPassWord(e.target.value)}/>
+                            <input type={hiddenPass ? "text" : "password"} name="input password" placeholder="Password" value={password} onChange={(e) => setPassWord(e.target.value)}/>
                             <i className={`${hiddenPass ? "bi bi-eye" : "bi bi-eye-slash"}`} onClick={() => setHiddenPass(!hiddenPass)}></i>   
 
                         </div>
 
                         <div className="password-input">
 
-                            <input type={hiddenPass ? "text" : "password"} placeholder="Confirm Password" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)}/>
+                            <input type={hiddenPass ? "text" : "password"} name="confirm password" placeholder="Confirm Password" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)}/>
                             <i className={`${hiddenPass ? "bi bi-eye" : "bi bi-eye-slash"}`} onClick={() => setHiddenPass(!hiddenPass)}></i>   
 
                         </div>

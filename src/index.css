@@ -3,6 +3,8 @@
 :root {
   /* color-scheme: light dark; */
 
+  --app-accent: #2563EB;
+
   --accent: #2563EB; 
   --muted-accent: #BFDBFE;
   --logo: url(images/optima-logo-light.png);
@@ -79,8 +81,7 @@ body {
 
   .welcome {
  
-    @apply [background-image:var(--img)] bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center
-      dark:[background-image:var(--dark-img)];
+    @apply [background-image:var(--img)] bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center;
   
     .welcome-body {
       @apply border border-2 border-[var(--faded-border)] w-[95%] bg-[var(--faded-border)] backdrop-blur-[10px] rounded-xl p-5 flex;
@@ -97,21 +98,19 @@ body {
           @apply text-3xl;
           
           span {
-            @apply text-[var(--accent)] font-bold;
+            @apply text-[var(--app-accent)] font-bold;
           }
         }
 
         h2 {
-          @apply text-[var(--lightest-bg)] text-lg
-          dark:text-[var(--muted-text)];
+          @apply text-[var(--lightest-bg)] text-lg;
         }
 
         .benefit {
           @apply flex gap-5 items-center;
 
           i {
-            @apply p-3 text-[var(--accent)] bg-[var(--bgcolor)] rounded-xl shadow-2xl
-            dark:bg-[var(--dark-bgcolor)];
+            @apply p-3 text-[var(--app-accent)] bg-[var(--bgcolor)] rounded-xl shadow-2xl;
           }
 
           .benefit-info {
@@ -128,8 +127,7 @@ body {
       .welcome-body-sect-two {
         @apply border border-2 border-[var(--faded-border)] bg-[var(--bgcolor)] rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
         md:w-[50%] md:p-10
-        lg:p-15
-        dark:bg-[var(--dark-bgcolor)];
+        lg:p-15;
 
         .sign-up-one {
           @apply flex flex-col gap-2;
@@ -170,7 +168,7 @@ body {
           }
 
           .submit-input {
-            @apply border border-2 border-[var(--faded-border)] bg-[var(--accent)] text-white shadow-xl p-2 rounded-lg flex justify-between cursor-pointer;
+            @apply border border-2 border-[var(--faded-border)] bg-[var(--app-accent)] text-white shadow-xl p-2 rounded-lg flex justify-between cursor-pointer;
           }
         }
 
@@ -179,7 +177,7 @@ body {
           md:text-base;
 
           span {
-            @apply text-[var(--accent)] cursor-pointer;
+            @apply text-[var(--app-accent)] cursor-pointer;
           }
           
           button {
@@ -197,8 +195,7 @@ body {
 
   .welcome-back {
  
-    @apply [background-image:var(--img)] z-10 bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center
-      dark:[background-image:var(--dark-img)];
+    @apply [background-image:var(--img)] z-10 bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center;
   
     .welcome-body {
       @apply border border-2 border-[var(--faded-border)] w-[95%] bg-[var(--faded-border)] backdrop-blur-[10px] rounded-xl p-5 flex;
@@ -215,21 +212,19 @@ body {
           @apply text-3xl;
           
           span {
-            @apply text-[var(--accent)] font-bold;
+            @apply text-[var(--app-accent)] font-bold;
           }
         }
 
         h2 {
-          @apply text-[var(--lightest-bg)] text-lg
-          dark:text-[var(--muted-text)];
+          @apply text-[var(--lightest-bg)] text-lg;
         }
 
         .benefit {
           @apply flex gap-5 items-center;
 
           i {
-            @apply p-3 text-[var(--accent)] bg-[var(--bgcolor)] rounded-xl shadow-2xl
-            dark:bg-[var(--dark-bgcolor)];
+            @apply p-3 text-[var(--app-accent)] bg-[var(--bgcolor)] rounded-xl shadow-2xl;
           }
 
           .benefit-info {
@@ -246,8 +241,7 @@ body {
       .welcome-body-sect-two {
         @apply border border-2 border-[var(--faded-border)] bg-[var(--bgcolor)] rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
         md:w-[50%] md:p-10
-        lg:p-15
-        dark:bg-[var(--dark-bgcolor)];
+        lg:p-15;
 
         .sign-up-one {
           @apply flex flex-col gap-2;
@@ -288,8 +282,7 @@ body {
           }
 
           .submit-input {
-            @apply border border-2 border-[var(--faded-border)] bg-[var(--accent)] text-white shadow-xl p-2 rounded-lg flex justify-between cursor-pointer
-            dark:bg-[var(--accent)];
+            @apply border border-2 border-[var(--faded-border)] bg-[var(--app-accent)] text-white shadow-xl p-2 rounded-lg flex justify-between cursor-pointer;
           }
         }
 
@@ -298,7 +291,7 @@ body {
           md:text-base;
 
           span {
-            @apply text-[var(--accent)] cursor-pointer;
+            @apply text-[var(--app-accent)] cursor-pointer;
           }
           
           button {
@@ -942,7 +935,6 @@ body {
     .alert-box {
       @apply border border-2 border-[var(--accent)] mb-auto p-5 flex flex-col gap-5 bg-[var(--mainbd-bg)] text-[var(--text)] rounded-b-xl text-sm
       translate-y-[-30rem] transition ease-in duration-800
-      /* dark:bg-[var(--dark-bgcolor)] dark:text-[var(--dark-text)] */
       md:text-base;
 
       p {

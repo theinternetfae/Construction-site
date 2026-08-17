@@ -134,6 +134,7 @@ function Stats() {
 
 
     const generalTopStreak = useMemo(() => {        
+        if(taskList.length === 0) return 0;
 
         let count = 0;
 
@@ -167,6 +168,8 @@ function Stats() {
 
     const generalCurrentStreak = useMemo(() => {
         
+        if(taskList.length === 0) return 0;
+
         let count = 0;
 
         for (const task of statsStopperList(taskList)) {

@@ -16,11 +16,11 @@ import About from './settings pages/About.jsx';
 
 function App() {
 
-  const [verified, isVerified] = useState(true);
+  const [verified, isVerified] = useState(false);
 
   const [userProfile, setUserProfile] = useState(
     getUserProfile() || 
-    {
+    { 
       name: 'Jane Doe',
       email: 'janedoe@gmail.com',
       accent: 'blue',
@@ -31,6 +31,10 @@ function App() {
       pfp: ''
     }
   );
+
+  useEffect(() => {
+    console.log("INITIAL", userProfile);
+  }, []);
 
   const [taskList, setTaskList] = useState(
     getTaskList() || []
