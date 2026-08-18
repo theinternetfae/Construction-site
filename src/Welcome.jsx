@@ -5,7 +5,8 @@ import { UserContext } from "./js files/contexts";
 import { isValidEmail, isStrongPassword } from "./js files/Utilities";
 import Alert from "./utilities jsx/Alert.jsx";
 import { saveUserProfile } from "./js files/Storage.js";
-import db from "./appwrite files/databases.js";
+import user from "./appwrite files/accounts.js";
+import { account } from "./appwrite files/config.js";
 
 function Welcome() {
 
@@ -105,23 +106,43 @@ function Welcome() {
         }
 
         const fullName = `${firstName} ${lastName}`;
-
-        const userData = {
-            ...userProfile, 
-            name: fullName,
-            email: email,
-        }
     
         try {
-            const result = await db.demtable.create(userData, null);
+
+            const result = await user.create({
+                email,
+                password,
+                name: fullName
+            });
 
             console.log("Created:", result);
+            
+            await user.login({email, password});
 
-            setUserProfile(userData);
-            saveUserProfile(userData);
+            // await user.prefs({
+            //     accent: 'blue',
+            //     quirk: true,
+            //     quote: false,
+            //     streak: true,
+            //     themeDark: true,
+            // })
+
+            const prefs = await user.prefs({
+                accent: 'blue',
+                quirk: true,
+                quote: false,
+                streak: true,
+                themeDark: true,
+            });
+
+            console.log("Prefs updated:", prefs);
+
+            const updatedUser = await user.get();
 
         } catch (err) {
+            
             console.log("Error:", err);
+        
         }
 
         setFirstName('');
@@ -129,6 +150,13 @@ function Welcome() {
         setEmail('');
         setPassWord('');
         setConfirmPass('');
+
+
+        // try {
+        //     await user.logout();    
+        // } catch (error) {
+        //     console.log("Logout error:", error);
+        // }
 
     }    
 

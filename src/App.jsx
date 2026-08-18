@@ -12,7 +12,7 @@ import Profile from './settings pages/Profile.jsx';
 import History from './settings pages/History.jsx';
 import Privacy from './settings pages/Privacy.jsx';
 import About from './settings pages/About.jsx';
-
+import user from './appwrite files/accounts.js';
 
 function App() {
 
@@ -35,6 +35,29 @@ function App() {
   useEffect(() => {
     console.log("INITIAL", userProfile);
   }, []);
+
+  
+  useEffect(() => {
+    
+    async function getUser() {
+
+      try {
+        
+        const theUser = await user.get();
+        console.log(theUser.prefs.accent);
+        
+      } catch (error) {
+        
+        console.log("Getting user error:", error)
+      
+      }
+    }
+
+    getUser();
+    
+  }, [])
+
+
 
   const [taskList, setTaskList] = useState(
     getTaskList() || []
