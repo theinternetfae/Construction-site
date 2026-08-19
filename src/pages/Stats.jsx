@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, useMemo } from "react";
-import { TaskContext, UserContext } from "../js files/contexts";
+import { TaskContext, UserContext } from "../js files/contexts.js";
 import dayjs from "dayjs";
-import { calculateTimeToMidnight, getDates, statsStopperList } from "../js files/Utilities.js"
+import { calculateTimeToMidnight, getDates, statsStopperList } from "../js files/utilities.js"
 import Alert from "../utilities jsx/Alert.jsx";
 import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 

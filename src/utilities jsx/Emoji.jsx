@@ -1,4 +1,4 @@
-import EMOJIS from "../js files/Emojis.js"
+import EMOJIS from "../js files/emojis.js"
 import { useState, useEffect } from "react";
 
 function EmojiPicker({pickEmoji, close}) {

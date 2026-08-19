@@ -1,4 +1,4 @@
-import dayjs from "./DayJs.js";
+import dayjs from "./dayJs.js";
 
 export function isValidEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 

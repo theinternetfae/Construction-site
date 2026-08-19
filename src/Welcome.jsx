@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
-import { UserContext } from "./js files/contexts";
-import { isValidEmail, isStrongPassword } from "./js files/Utilities";
+import { UserContext } from "./js files/contexts.js";
+import { isValidEmail, isStrongPassword } from "./js files/utilities.js";
 import Alert from "./utilities jsx/Alert.jsx";
 import user from "./appwrite files/accounts.js";
 import { account } from "./appwrite files/config.js";
