@@ -1,9 +1,11 @@
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../js files/contexts";
+import user from "../appwrite files/accounts";
+import Alert from "../utilities jsx/Alert";
 
 function Profile() {
 
-    const { userProfile, setUserProfile} = useContext(UserContext);
+    const { userProfile, setUserProfile, getUser } = useContext(UserContext);
 
     useEffect(() => {
         console.log(userProfile)
@@ -45,6 +47,17 @@ function Profile() {
 
         reader.readAsDataURL(file);
         console.log(reader);
+    }
+
+    const [logoutAlert, setLogoutAlert] = useState(false);
+
+    async function logout() {
+        try {
+            await user.logout();    
+            getUser();
+        } catch (error) {
+            console.log("Logout error:", error);
+        }
     }
 
     return (  
@@ -217,7 +230,7 @@ function Profile() {
                 
                 <div className="command">
                     <p>Log out</p>
-                    <button className="log-out">
+                    <button className="log-out" onClick={() => setLogoutAlert(true)}>
                         <i className="bi bi-person-walking"></i>
                     </button>
                 </div>
@@ -230,6 +243,16 @@ function Profile() {
                 </div>
             
             </section>
+
+            {
+                logoutAlert && <Alert
+                    text={"Are you sure you want to log out?"}
+                    buttonTextOne={"Stay"}
+                    buttonActionOne={() => setLogoutAlert(false)}
+                    buttonTextTwo={"Leave"}
+                    buttonActionTwo={() => logout()}
+                />
+            }
         
         </div>
     );

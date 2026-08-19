@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "./js files/Contexts.js";
+import { UserContext } from "./js files/contexts";
 import Alert from "./utilities jsx/Alert";
 import { isValidEmail } from "./js files/Utilities.js";
+import user from "./appwrite files/accounts.js";
+
 
 function WelcomeBack() {
 
-    // const { verified, isVerified } = useContext(UserContext);
+    const { getUser } = useContext(UserContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,7 +20,7 @@ function WelcomeBack() {
 
     const [alertVisibility, setAlertVisibility] = useState(false);
 
-    function signUp(e) {
+    async function login(e) {
 
         e.preventDefault();
 
@@ -34,6 +36,21 @@ function WelcomeBack() {
 
         console.log("Working:", `${email}-${password}`);
     
+        try {
+           
+            user.login({
+                email,
+                password
+            })
+
+            getUser();
+            
+        } catch (error) {
+            
+            console.log("Login error:", error);
+
+        }
+
         setEmail('');
         setPassword('');
 
@@ -135,7 +152,7 @@ function WelcomeBack() {
 
                         </div>
 
-                        <input type="submit" value={"Sign In"} className="submit-input" onClick={(e) => signUp(e)}/>
+                        <input type="submit" value={"Sign In"} className="submit-input" onClick={(e) => login(e)}/>
 
                     </form>
 
