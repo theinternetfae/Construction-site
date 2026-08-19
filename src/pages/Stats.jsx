@@ -396,7 +396,7 @@ function Stats() {
                 </div>
             </section>
 
-            <section className={`stats-calculator-cont ${userProfile?.streak ? '' : 'hidden'}`}>
+            <section className={`stats-calculator-cont ${userProfile?.prefs.streak ? '' : 'hidden'}`}>
 
                 <div className="stats-calculator cont-main">
 

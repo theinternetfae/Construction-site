@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "./js files/contexts";
+import { UserContext } from "./js files/contexts.js";
 import Alert from "./utilities jsx/Alert";
 import { isValidEmail } from "./js files/Utilities.js";
 import user from "./appwrite files/accounts.js";

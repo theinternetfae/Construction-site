@@ -3,8 +3,6 @@
 :root {
   /* color-scheme: light dark; */
 
-  --app-accent: #2563EB;
-
   --accent: #2563EB; 
   --muted-accent: #BFDBFE;
   --logo: url(images/optima-logo-light.png);
@@ -14,7 +12,7 @@
   --mainbd-bg: #F9FAFB;
   --muted-text: #5F5F5F;
   --lightest-bg: #A5A5A5;
-  --img: url(images/optima-productivity-backdrop.jpg);
+  --img: url(images/optima-productivity-backdrop-black.jpg); /*UNCHANGED*/
   --light-grey: #F3F4F6;
 
 
@@ -29,6 +27,10 @@
   --red: #d00018;
   --yellow: #FFB81C;
   --green: #477023;
+
+  /*DEFAULT*/
+  --default-bg: #171717;
+  --default-accent: #2563EB;
 }
 
 .dark {
@@ -37,7 +39,6 @@
   --mainbd-bg:  #262626;
   --muted-text: #E5E7EB;
   --lightest-bg: #363636;
-  --img: url(images/optima-productivity-backdrop-black.jpg);
   --light-grey: #2C2C2C;
 }
 
@@ -98,7 +99,7 @@ body {
           @apply text-3xl;
           
           span {
-            @apply text-[var(--app-accent)] font-bold;
+            @apply text-[var(--default-accent)] font-bold;
           }
         }
 
@@ -110,7 +111,7 @@ body {
           @apply flex gap-5 items-center;
 
           i {
-            @apply p-3 text-[var(--app-accent)] bg-[var(--bgcolor)] rounded-xl shadow-2xl;
+            @apply p-3 text-[var(--default-accent)] bg-[var(--default-bg)] rounded-xl shadow-2xl;
           }
 
           .benefit-info {
@@ -125,7 +126,7 @@ body {
       }
 
       .welcome-body-sect-two {
-        @apply border border-2 border-[var(--faded-border)] bg-[var(--bgcolor)] rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
+        @apply text-white border border-2 border-[var(--faded-border)] bg-[var(--default-bg)] rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
         md:w-[50%] md:p-10
         lg:p-15;
 
@@ -168,7 +169,7 @@ body {
           }
 
           .submit-input {
-            @apply border border-2 border-[var(--faded-border)] bg-[var(--app-accent)] text-white shadow-xl p-2 rounded-lg flex justify-between cursor-pointer;
+            @apply border border-2 border-[var(--faded-border)] bg-[var(--default-accent)] text-white shadow-xl p-2 rounded-lg flex justify-between cursor-pointer;
           }
         }
 
@@ -177,7 +178,7 @@ body {
           md:text-base;
 
           span {
-            @apply text-[var(--app-accent)] cursor-pointer;
+            @apply text-[var(--default-accent)] cursor-pointer;
           }
           
           button {
@@ -212,7 +213,7 @@ body {
           @apply text-3xl;
           
           span {
-            @apply text-[var(--app-accent)] font-bold;
+            @apply text-[var(--default-accent)] font-bold;
           }
         }
 
@@ -224,7 +225,7 @@ body {
           @apply flex gap-5 items-center;
 
           i {
-            @apply p-3 text-[var(--app-accent)] bg-[var(--bgcolor)] rounded-xl shadow-2xl;
+            @apply p-3 text-[var(--default-accent)] bg-[var(--default-bg)] rounded-xl shadow-2xl;
           }
 
           .benefit-info {
@@ -239,7 +240,7 @@ body {
       }
 
       .welcome-body-sect-two {
-        @apply border border-2 border-[var(--faded-border)] bg-[var(--bgcolor)] rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
+        @apply text-white border border-2 border-[var(--faded-border)] bg-[var(--default-bg)] rounded-xl shadow-2xl p-10 flex flex-col gap-5 justify-around w-full
         md:w-[50%] md:p-10
         lg:p-15;
 
@@ -282,7 +283,7 @@ body {
           }
 
           .submit-input {
-            @apply border border-2 border-[var(--faded-border)] bg-[var(--app-accent)] text-white shadow-xl p-2 rounded-lg flex justify-between cursor-pointer;
+            @apply border border-2 border-[var(--faded-border)] bg-[var(--default-accent)] text-white shadow-xl p-2 rounded-lg flex justify-between cursor-pointer;
           }
         }
 
@@ -291,7 +292,7 @@ body {
           md:text-base;
 
           span {
-            @apply text-[var(--app-accent)] cursor-pointer;
+            @apply text-[var(--default-accent)] cursor-pointer;
           }
           
           button {
@@ -696,7 +697,7 @@ body {
               }
 
               .name-email {
-                @apply flex gap-5 text-sm
+                @apply flex gap-5 text-xs
                 md:text-base;
 
                 span {
