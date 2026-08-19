@@ -8,19 +8,10 @@ export function saveTaskList(taskList) {
 
 }
 
-export function getUserProfile() {
-    return JSON.parse(localStorage.getItem("profile")) || {
-        name: 'Jane Doe',
-        email: 'janedoe@gmail.com',
-        accent: 'blue',
-        quirk: true,
-        quote: false,
-        streak: true,
-        themeDark: true,
-        pfp: ''
-    }
-}
+// export function getUserProfile() {
+//     return JSON.parse(localStorage.getItem("profile")) || {}
+// }
 
-export function saveUserProfile(userProfile) {
-    localStorage.setItem("profile", JSON.stringify(userProfile));
-}
+// export function saveUserProfile(userProfile) {
+//     localStorage.setItem("profile", JSON.stringify(userProfile));
+// }

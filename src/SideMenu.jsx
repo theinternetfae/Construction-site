@@ -29,8 +29,8 @@ function SideMenu() {
     useEffect(() => {
         let name = location.pathname;
 
-        if (name !== '/test/stats' && name !== '/test/home') {
-            name = '/test/settings';
+        if (name !== '/interior/stats' && name !== '/interior/home') {
+            name = '/interior/settings';
         }
 
         setLoName(name);
@@ -42,25 +42,25 @@ function SideMenu() {
 
                 <section className="nav-sect-sm">
                 
-                    <Link to={"home"} className={`navigation ${loName === '/test/home' ? 'bg-[var(--muted-accent)] text-[var(--accent)] flex' : ""}`}>
+                    <Link to={"home"} className={`navigation ${loName === '/interior/home' ? 'bg-[var(--muted-accent)] text-[var(--accent)] flex' : ""}`}>
                         <i className="bi bi-house-door-fill"></i>
-                        <p className={`${loName === '/test/home' ? 'block' : ""}`}>Home</p>
+                        <p className={`${loName === '/interior/home' ? 'block' : ""}`}>Home</p>
                     </Link>
 
-                    <Link to={"stats"} className={`navigation ${loName === '/test/stats' ? 'bg-[var(--muted-accent)] text-[var(--accent)] flex' : ""}`}>
+                    <Link to={"stats"} className={`navigation ${loName === '/interior/stats' ? 'bg-[var(--muted-accent)] text-[var(--accent)] flex' : ""}`}>
                         <i className="bi bi-bar-chart"></i>
-                        <p className={`${loName === '/test/stats' ? 'block' : ""}`}>Stats</p>
+                        <p className={`${loName === '/interior/stats' ? 'block' : ""}`}>Stats</p>
                     </Link>
 
-                    <Link to={"settings"} className={`navigation ${loName === '/test/settings' ? 'bg-[var(--muted-accent)] text-[var(--accent)] flex' : ""}`}>
+                    <Link to={"settings"} className={`navigation ${loName === '/interior/settings' ? 'bg-[var(--muted-accent)] text-[var(--accent)] flex' : ""}`}>
                         <i className="bi bi-gear"></i>
-                        <p className={`${loName === '/test/settings' ? 'block' : ""}`}>Settings</p>
+                        <p className={`${loName === '/interior/settings' ? 'block' : ""}`}>Settings</p>
                     </Link>
 
                 </section>          
 
 
-                <section className={`quirk-sect-sm ${userProfile.quirk ? '' : 'hidden'}`} onClick={() => setQuirkInfoShow(!quirkInfoShow)}>
+                <section className={`quirk-sect-sm ${userProfile?.prefs.quirk ? '' : 'hidden'}`} onClick={() => setQuirkInfoShow(!quirkInfoShow)}>
                     <p className="quirk-level-sm">1</p>
                     <div className={`quirk-info-sm ${quirkInfoShow && 'block'}`}>
                         <p>Level One: Rookie</p>
@@ -83,17 +83,17 @@ function SideMenu() {
 
                     <section className="nav-sect">
 
-                        <Link to={"home"} className={`navigation ${loName === '/test/home' ? 'bg-[var(--muted-accent)] text-[var(--accent)]' : ""}`}>
+                        <Link to={"home"} className={`navigation ${loName === '/interior/home' ? 'bg-[var(--muted-accent)] text-[var(--accent)]' : ""}`}>
                             <i className="bi bi-house-door-fill"></i>
                             <p>Home</p>
                         </Link>
 
-                        <Link to={"stats"} className={`navigation ${loName === '/test/stats' ? 'bg-[var(--muted-accent)] text-[var(--accent)]' : ""}`}>
+                        <Link to={"stats"} className={`navigation ${loName === '/interior/stats' ? 'bg-[var(--muted-accent)] text-[var(--accent)]' : ""}`}>
                             <i className="bi bi-bar-chart"></i>
                             <p>Stats</p>
                         </Link>
 
-                        <Link to={"settings"} className={`navigation ${loName === '/test/settings' ? 'bg-[var(--muted-accent)] text-[var(--accent)]' : ""}`}>
+                        <Link to={"settings"} className={`navigation ${loName === '/interior/settings' ? 'bg-[var(--muted-accent)] text-[var(--accent)]' : ""}`}>
                             <i className="bi bi-gear"></i>
                             <p>Settings</p>
                         </Link>
@@ -102,7 +102,7 @@ function SideMenu() {
                 
                 </section>
                 
-                <section className={`quirk-sect ${userProfile.quirk ? '' : 'hidden'}`}>
+                <section className={`quirk-sect ${userProfile?.prefs.quirk ? '' : 'hidden'}`}>
                     
                     <div className="level-info">
                         <p>Level 1: Rookie</p>

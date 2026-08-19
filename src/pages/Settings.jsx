@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../js files/contexts";
-import { saveUserProfile } from "../js files/Storage.js";
 
 function Settings() {
 
@@ -15,22 +14,22 @@ function Settings() {
 
     useEffect(() => {
         
-        if(location.pathname === '/test/settings/profile') {
+        if(location.pathname === '/interior/settings/profile') {
             setHeaderTag('Profile & Preferences');
             setSubtitleTag('Manage your profile and preferences');
         }
 
-        if(location.pathname === '/test/settings/history') {
+        if(location.pathname === '/interior/settings/history') {
             setHeaderTag('Task History');
             setSubtitleTag('View your task history');
         }
 
-        if(location.pathname === '/test/settings/privacy') {
+        if(location.pathname === '/interior/settings/privacy') {
             setHeaderTag('Data & Privacy');
             setSubtitleTag('All about your data & privacy');
         }
 
-        if(location.pathname === '/test/settings/about') {
+        if(location.pathname === '/interior/settings/about') {
             setHeaderTag('About');
             setSubtitleTag('Learn more about us!');
         }
@@ -62,8 +61,8 @@ function Settings() {
                         return profile
                     })
                 }>
-                    <div className={`mode-toggle-switch ${userProfile.themeDark ? 'translate-x-20 bg-[var(--accent)] text-white' : ''}`}>
-                        <i className={`bi ${!userProfile.themeDark ? 'bi-sun' : 'bi-moon'}`}></i>
+                    <div className={`mode-toggle-switch ${userProfile?.prefs.themeDark ? 'translate-x-20 bg-[var(--accent)] text-white' : ''}`}>
+                        <i className={`bi ${!userProfile?.prefs.themeDark ? 'bi-sun' : 'bi-moon'}`}></i>
                     </div>
                 </div>
             
@@ -73,22 +72,22 @@ function Settings() {
 
             <section className="settings-navigations">
                 
-                <Link to={"profile"} className={`sett-nav ${location.pathname === '/test/settings/profile' ? 'border-[var(--accent)] border-t-transparent border-x-transparent' : ""}`}>
+                <Link to={"profile"} className={`sett-nav ${location.pathname === '/interior/settings/profile' ? 'border-[var(--accent)] border-t-transparent border-x-transparent' : ""}`}>
                     <i className="bi bi-person md:hidden"></i>
                     <p className="hidden md:block">Profile & Preferences</p>
                 </Link>
 
-                <Link to={"history"} className={`sett-nav ${location.pathname === '/test/settings/history' ? 'border-[var(--accent)] border-t-transparent border-x-transparent' : ""}`}>
+                <Link to={"history"} className={`sett-nav ${location.pathname === '/interior/settings/history' ? 'border-[var(--accent)] border-t-transparent border-x-transparent' : ""}`}>
                     <i className="bi bi-clock-history md:hidden"></i>
                     <p className="hidden md:block">Task History</p>
                 </Link>
 
-                <Link to={"privacy"} className={`sett-nav ${location.pathname === '/test/settings/privacy' ? 'border-[var(--accent)] border-t-transparent border-x-transparent' : ""}`}>
+                <Link to={"privacy"} className={`sett-nav ${location.pathname === '/interior/settings/privacy' ? 'border-[var(--accent)] border-t-transparent border-x-transparent' : ""}`}>
                     <i className="bi bi-lock md:hidden"></i>
                     <p className="hidden md:block">Data & Privacy</p>
                 </Link>
 
-                <Link to={"about"} className={`sett-nav ${location.pathname === '/test/settings/about' ? 'border-[var(--accent)] border-t-transparent border-x-transparent' : ""}`}>
+                <Link to={"about"} className={`sett-nav ${location.pathname === '/interior/settings/about' ? 'border-[var(--accent)] border-t-transparent border-x-transparent' : ""}`}>
                     <i className="bi bi-info-circle md:hidden"></i>
                     <p className="hidden md:block">About</p>
                 </Link>

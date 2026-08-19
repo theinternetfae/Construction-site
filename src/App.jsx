@@ -7,7 +7,7 @@ import Home from './pages/Home.jsx';
 import Stats from './pages/Stats.jsx';
 import Settings from './pages/Settings.jsx';
 import { TaskContext, UserContext } from './js files/contexts.js';
-import { getTaskList, getUserProfile } from './js files/Storage.js';
+import { getTaskList } from './js files/Storage.js';
 import Profile from './settings pages/Profile.jsx';
 import History from './settings pages/History.jsx';
 import Privacy from './settings pages/Privacy.jsx';
@@ -18,45 +18,33 @@ function App() {
 
   const [verified, isVerified] = useState(false);
 
-  const [userProfile, setUserProfile] = useState(
-    getUserProfile() || 
-    { 
-      name: 'Jane Doe',
-      email: 'janedoe@gmail.com',
-      accent: 'blue',
-      quirk: true,
-      quote: false,
-      streak: true,
-      themeDark: true,
-      pfp: ''
-    }
-  );
-
-  useEffect(() => {
-    console.log("INITIAL", userProfile);
-  }, []);
-
+  const [userProfile, setUserProfile] = useState(null);
   
-  useEffect(() => {
-    
-    async function getUser() {
+  async function getUser() {
 
-      try {
-        
-        const theUser = await user.get();
-        console.log(theUser.prefs.accent);
-        
-      } catch (error) {
-        
-        console.log("Getting user error:", error)
+    try {
       
-      }
+      const theUser = await user.get();
+
+      console.log("Logged in user:", theUser);
+
+      setUserProfile(theUser);
+      
+    } catch (error) {
+      
+      console.log("Getting user error:", error)
+    
+      setUserProfile(null);
+
     }
+
+  }
+  
+  useEffect(() => {  
 
     getUser();
     
   }, [])
-
 
 
   const [taskList, setTaskList] = useState(
@@ -73,15 +61,15 @@ function App() {
       'accent-green'
     );
 
-    if (userProfile.accent === 'purple') root.classList.add('accent-purple');
-    if (userProfile.accent === 'pink') root.classList.add('accent-pink');
-    if (userProfile.accent === 'green') root.classList.add('accent-green');
+    if (userProfile?.prefs.accent === 'purple') root.classList.add('accent-purple');
+    if (userProfile?.prefs.accent === 'pink') root.classList.add('accent-pink');
+    if (userProfile?.prefs.accent === 'green') root.classList.add('accent-green');
     
   }, [userProfile])
 
   useLayoutEffect(() => {
 
-    root.classList.toggle('dark', userProfile.themeDark)
+    root.classList.toggle('dark', userProfile?.prefs.themeDark)
 
   }, [userProfile])
 
@@ -89,14 +77,14 @@ function App() {
     
     <TaskContext.Provider value={{taskList, setTaskList}}>
 
-      <UserContext.Provider value={{userProfile, setUserProfile}}>
+      <UserContext.Provider value={{userProfile, setUserProfile, getUser}}>
 
         <Routes>
 
-          <Route path="/" element={verified ? <Navigate to="/test" replace/> : <Welcome/>}></Route>
-          <Route path="/signin" element={verified ? <Navigate to="/test" replace/> : <WelcomeBack/>}></Route>
+          <Route path="/" element={userProfile ? <Navigate to="/interior" replace/> : <Welcome/>}></Route>
+          <Route path="/signin" element={userProfile ? <Navigate to="/interior" replace/> : <WelcomeBack/>}></Route>
 
-          <Route path="/test" element={!verified ? <Navigate to="/" replace/> : <AppLayout/>}>
+          <Route path="/interior" element={!userProfile ? <Navigate to="/" replace/> : <AppLayout/>}>
 
             <Route index element={<Navigate to="home" replace />}></Route>
 

@@ -1,12 +1,9 @@
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../js files/contexts";
-import { saveUserProfile } from "../js files/Storage.js";
 
 function Profile() {
 
     const { userProfile, setUserProfile} = useContext(UserContext);
-
-    const [quoteToggle, setQuoteToggle] = useState(false);
 
     useEffect(() => {
         console.log(userProfile)
@@ -24,7 +21,6 @@ function Profile() {
     //             pfp: imageUrl
     //         }
 
-    //         saveUserProfile(profile);
     //         return profile;
     //     });
     // }
@@ -43,7 +39,6 @@ function Profile() {
                     pfp: imageUrl
                 }
 
-                saveUserProfile(profile);
                 return profile;
             });
         };
@@ -52,14 +47,13 @@ function Profile() {
         console.log(reader);
     }
 
-
     return (  
         <div className="profile">
             
             <section className="user-display">
 
                 <label className="pfp-cont">
-                    {userProfile.pfp ? 
+                    {userProfile?.pfp ? 
                         <img src={userProfile.pfp} alt="your pfp" className="pfp"/> 
                     :
                         <i className="bi bi-plus-lg"></i>
@@ -73,8 +67,8 @@ function Profile() {
                 </label>
             
                 <div className="name-email">
-                    <span>{userProfile.name}</span>
-                    <span>{userProfile.email}</span>
+                    <span>{userProfile?.name}</span>
+                    <span>{userProfile?.email}</span>
                 </div>
             
             </section>
@@ -97,11 +91,9 @@ function Profile() {
                                     accent: 'blue'
                                 }
                     
-                                saveUserProfile(profile)
-                    
                                 return profile
                             })
-                        } className={`${userProfile.accent === 'blue' ? 'border-[var(--accent)]' : ''}`}>
+                        } className={`${userProfile?.prefs.accent === 'blue' ? 'border-[var(--accent)]' : ''}`}>
                             <span className="blue"></span>
                         </div>
 
@@ -114,12 +106,11 @@ function Profile() {
                                     ...prev,
                                     accent: 'purple'
                                 }
-                    
-                                saveUserProfile(profile)
+                
                     
                                 return profile
                             })
-                        } className={`${userProfile.accent === 'purple' ? 'border-[var(--accent)]' : ''}`}>
+                        } className={`${userProfile?.prefs.accent === 'purple' ? 'border-[var(--accent)]' : ''}`}>
                             <span className="purple"></span>
                         </div>
                         
@@ -133,11 +124,10 @@ function Profile() {
                                     accent: 'pink'
                                 }
                     
-                                saveUserProfile(profile)
                     
                                 return profile
                             })
-                        } className={`${userProfile.accent === 'pink' ? 'border-[var(--accent)]' : ''}`}>
+                        } className={`${userProfile?.prefs.accent === 'pink' ? 'border-[var(--accent)]' : ''}`}>
                             <span className="pink"></span>
                         </div>
 
@@ -151,11 +141,10 @@ function Profile() {
                                     accent: 'green'
                                 }
                     
-                                saveUserProfile(profile)
                     
                                 return profile
                             })
-                        } className={`${userProfile.accent === 'green' ? 'border-[var(--accent)]' : ''}`}>
+                        } className={`${userProfile?.prefs.accent === 'green' ? 'border-[var(--accent)]' : ''}`}>
                             <span className="green"></span>
                         </div>
                     </div>
@@ -163,7 +152,7 @@ function Profile() {
                 
                 <div className="user-pref">
                     <p>Optima quirk</p>
-                    <div className={`pref-toggle ${userProfile.quirk ? 'bg-[var(--accent)]' : ''}`} 
+                    <div className={`pref-toggle ${userProfile?.prefs.quirk ? 'bg-[var(--accent)]' : ''}`} 
                     onClick={() => 
 
                         setUserProfile(prev => {
@@ -173,19 +162,18 @@ function Profile() {
                                 quirk: !prev.quirk
                             }
                    
-                            saveUserProfile(profile)
                    
                             return profile
                         })
                     
                     }>
-                        <div className={`pref-toggle-switch ${userProfile.quirk ? 'translate-x-24':''}`}></div>
+                        <div className={`pref-toggle-switch ${userProfile?.prefs.quirk ? 'translate-x-24':''}`}></div>
                     </div>
                 </div>
                 
                 <div className="user-pref">
                     <p>Daily quote</p>
-                    <div className={`pref-toggle ${userProfile.quote ? 'bg-[var(--accent)]' : ''}`} 
+                    <div className={`pref-toggle ${userProfile?.prefs.quote ? 'bg-[var(--accent)]' : ''}`} 
                     onClick={() => 
                         setUserProfile(prev => {
 
@@ -194,18 +182,17 @@ function Profile() {
                                 quote: !prev.quote
                             }
                    
-                            saveUserProfile(profile)
                    
                             return profile
                         })
                     }>
-                        <div className={`pref-toggle-switch ${userProfile.quote ? 'translate-x-24':''}`}></div>
+                        <div className={`pref-toggle-switch ${userProfile?.prefs.quote ? 'translate-x-24':''}`}></div>
                     </div>
                 </div>
                 
                 <div className="user-pref">
                     <p>Streak</p>
-                    <div className={`pref-toggle ${userProfile.streak ? 'bg-[var(--accent)]' : ''}`} 
+                    <div className={`pref-toggle ${userProfile?.prefs.streak ? 'bg-[var(--accent)]' : ''}`} 
                     onClick={() => 
                         setUserProfile(prev => {
 
@@ -214,12 +201,11 @@ function Profile() {
                                 streak: !prev.streak
                             }
                    
-                            saveUserProfile(profile)
                    
                             return profile
                         })
                     }>
-                        <div className={`pref-toggle-switch ${userProfile.streak ? 'translate-x-24':''}`}></div>
+                        <div className={`pref-toggle-switch ${userProfile?.prefs.streak ? 'translate-x-24':''}`}></div>
                     </div>
                 </div>
             

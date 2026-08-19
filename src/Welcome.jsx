@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { UserContext } from "./js files/contexts";
 import { isValidEmail, isStrongPassword } from "./js files/Utilities";
 import Alert from "./utilities jsx/Alert.jsx";
-import { saveUserProfile } from "./js files/Storage.js";
 import user from "./appwrite files/accounts.js";
 import { account } from "./appwrite files/config.js";
 
@@ -16,7 +15,7 @@ function Welcome() {
     const [password, setPassWord] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
 
-    const {userProfile, setUserProfile} = useContext(UserContext);
+    const {getUser} = useContext(UserContext);
 
     const [hiddenPass, setHiddenPass] = useState(false);
 
@@ -119,14 +118,6 @@ function Welcome() {
             
             await user.login({email, password});
 
-            // await user.prefs({
-            //     accent: 'blue',
-            //     quirk: true,
-            //     quote: false,
-            //     streak: true,
-            //     themeDark: true,
-            // })
-
             const prefs = await user.prefs({
                 accent: 'blue',
                 quirk: true,
@@ -137,12 +128,12 @@ function Welcome() {
 
             console.log("Prefs updated:", prefs);
 
-            const updatedUser = await user.get();
+            getUser();
 
         } catch (err) {
             
             console.log("Error:", err);
-        
+
         }
 
         setFirstName('');
@@ -150,13 +141,6 @@ function Welcome() {
         setEmail('');
         setPassWord('');
         setConfirmPass('');
-
-
-        // try {
-        //     await user.logout();    
-        // } catch (error) {
-        //     console.log("Logout error:", error);
-        // }
 
     }    
 
