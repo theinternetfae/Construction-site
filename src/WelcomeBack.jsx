@@ -38,7 +38,7 @@ function WelcomeBack() {
     
         try {
            
-            user.login({
+            await user.login({
                 email,
                 password
             })
