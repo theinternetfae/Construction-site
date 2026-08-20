@@ -13,6 +13,7 @@ import History from './settings pages/History.jsx';
 import Privacy from './settings pages/Privacy.jsx';
 import About from './settings pages/About.jsx';
 import user from './appwrite files/accounts.js';
+import Loading from './utilities jsx/Loading.jsx';
 
 function App() {
 
@@ -79,7 +80,9 @@ function App() {
 
       <UserContext.Provider value={{userProfile, setUserProfile, getUser}}>
 
-        <Routes>
+        <Loading/>
+
+        {/* <Routes>
 
           <Route path="/" element={userProfile ? <Navigate to="/interior" replace/> : <Welcome/>}></Route>
           <Route path="/signin" element={userProfile ? <Navigate to="/interior" replace/> : <WelcomeBack/>}></Route>
@@ -104,7 +107,7 @@ function App() {
 
           </Route>
 
-        </Routes>
+        </Routes> */}
 
       </UserContext.Provider>
 
