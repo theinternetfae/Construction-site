@@ -8,7 +8,7 @@ import user from "./appwrite files/accounts.js";
 
 function WelcomeBack() {
 
-    const { getUser } = useContext(UserContext);
+    const { setUserProfile } = useContext(UserContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -19,6 +19,7 @@ function WelcomeBack() {
     const [hiddenPass, setHiddenPass] = useState(false);
 
     const [alertVisibility, setAlertVisibility] = useState(false);
+    const [verificationAlert, setVerificationAlert] = useState(false);
 
     async function login(e) {
 
@@ -37,13 +38,32 @@ function WelcomeBack() {
         console.log("Working:", `${email}-${password}`);
     
         try {
-           
+
+            const staleUser = await user.get();
+            if(staleUser) {
+                await user.logout();
+            }
+
             await user.login({
                 email,
                 password
             })
 
-            getUser();
+            const theUser = await user.get();
+    
+            console.log("Logged in user:", theUser);
+
+            if(!theUser.emailVerification) {
+                await user.createVer("http://localhost:5173/verify");
+
+                setEmail('');
+                setPassword('');
+                setVerificationAlert(true);
+                
+                return;
+            }
+
+            setUserProfile(theUser);                  
             
         } catch (error) {
             
@@ -180,6 +200,14 @@ function WelcomeBack() {
                 buttonText={'Okay'}
                 buttonActionOne={() => setAlertVisibility(false)}
             />}
+
+            {verificationAlert && <Alert
+                text={'Verify your email to log in properly, check your inbox!'}
+                buttonText={'Okay'}
+                buttonActionOne={() => setVerificationAlert(false)}
+            />}
+
+
         
         </div>
     );
