@@ -7,50 +7,32 @@ import Home from './pages/Home.jsx';
 import Stats from './pages/Stats.jsx';
 import Settings from './pages/Settings.jsx';
 import { TaskContext, UserContext } from './js files/contexts.js';
-import { getTaskList } from './js files/Storage.js';
+import { getTaskList } from './js files/storage.js';
 import Profile from './settings pages/Profile.jsx';
 import History from './settings pages/History.jsx';
 import Privacy from './settings pages/Privacy.jsx';
 import About from './settings pages/About.jsx';
+import Verify from './utilities jsx/Verifying.jsx';
 import user from './appwrite files/accounts.js';
-import Loading from './utilities jsx/Loading.jsx';
 
 function App() {
 
-  const [verified, isVerified] = useState(false);
-
   const [userProfile, setUserProfile] = useState(null);
-  
-  async function getUser() {
 
-    try {
-      
-      const theUser = await user.get();
-
-      console.log("Logged in user:", theUser);
-
-      // if(!theUser.emailVerification) {
-      //   await user.
-      // }
-
-      setUserProfile(theUser);
-      
-    } catch (error) {
-      
-      console.log("Getting user error:", error)
-    
-      setUserProfile(null);
-
+  useEffect(() => {
+    async function getUser() {
+      try {
+        const theUser = await user.get();
+        console.log("current user:", theUser);
+        setUserProfile(theUser)
+      } catch(err) {
+        console.log(err);
+        setUserProfile(null);
+      }
     }
 
-  }
-  
-  useEffect(() => {  
-
     getUser();
-    
   }, [])
-
 
   const [taskList, setTaskList] = useState(
     getTaskList() || []
@@ -82,16 +64,15 @@ function App() {
     
     <TaskContext.Provider value={{taskList, setTaskList}}>
 
-      <UserContext.Provider value={{userProfile, setUserProfile, getUser}}>
-
-        {/* <Loading/> */}
+      <UserContext.Provider value={{userProfile, setUserProfile}}>
 
         <Routes>
 
-          <Route path="/" element={userProfile ? <Navigate to="/interior" replace/> : <Welcome/>}></Route>
-          <Route path="/signin" element={userProfile ? <Navigate to="/interior" replace/> : <WelcomeBack/>}></Route>
+          <Route path='/verify' element={<Verify/>}></Route>
+          <Route path="/" element={userProfile?.emailVerification ? <Navigate to="/interior" replace/> : <Welcome/>}></Route>
+          <Route path="/signin" element={userProfile?.emailVerification ? <Navigate to="/interior" replace/> : <WelcomeBack/>}></Route>
 
-          <Route path="/interior" element={!userProfile ? <Navigate to="/" replace/> : <AppLayout/>}>
+          <Route path="/interior" element={!userProfile?.emailVerification ? <Navigate to="/" replace/> : <AppLayout/>}>
 
             <Route index element={<Navigate to="home" replace />}></Route>
 

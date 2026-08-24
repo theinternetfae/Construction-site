@@ -26,7 +26,11 @@ const user = {
         themeDark
     }),
 
-    get: () => account.get()
+    get: () => account.get(),
+
+    createVer: (redirectUrl) => account.createEmailVerification(redirectUrl),
+
+    updateVer: (userId, secret) => account.updateEmailVerification(userId, secret),
 }
 
 export default user;

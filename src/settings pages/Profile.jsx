@@ -53,8 +53,8 @@ function Profile() {
 
     async function logout() {
         try {
-            await user.logout();    
-            getUser();
+            await user.logout();
+            setUserProfile(null);
         } catch (error) {
             console.log("Logout error:", error);
         }

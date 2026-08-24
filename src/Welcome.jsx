@@ -5,17 +5,16 @@ import { UserContext } from "./js files/contexts.js";
 import { isValidEmail, isStrongPassword } from "./js files/utilities.js";
 import Alert from "./utilities jsx/Alert.jsx";
 import user from "./appwrite files/accounts.js";
-import { account } from "./appwrite files/config.js";
 
 function Welcome() {
+
+    const {setUserProfile} = useContext(UserContext);
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassWord] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
-
-    const {getUser} = useContext(UserContext);
 
     const [hiddenPass, setHiddenPass] = useState(false);
 
@@ -26,6 +25,7 @@ function Welcome() {
     const [emailError, setEmailError] = useState(false);
 
     const [alertVisibility, setAlertVisibility] = useState(false);
+    const [verificationAlert, setVerificationAlert] = useState(false);
 
     useEffect(() => {
 
@@ -127,12 +127,30 @@ function Welcome() {
             });
 
             console.log("Prefs updated:", prefs);
+    
+            const theUser = await user.get();
+    
+            console.log("Logged in user:", theUser);
 
-            getUser();
+            if(!theUser.emailVerification) {
+                await user.createVer("http://localhost:5173/verify");
+
+                setFirstName('');
+                setLastName('');
+                setEmail('');
+                setPassWord('');
+                setConfirmPass('');
+                setVerificationAlert(true);
+                
+                return;
+            }
+    
+            setUserProfile(theUser);                  
 
         } catch (err) {
             
             console.log("Error:", err);
+            setUserProfile(null);
 
         }
 
@@ -222,7 +240,6 @@ function Welcome() {
                         </div>
 
                         <input type="submit" value={"Sign Up"} className="submit-input" onClick={(e) => signUp(e)}/>
-
                     </form>
 
                     <div className="sign-up-three">
@@ -246,8 +263,14 @@ function Welcome() {
 
             {alertVisibility && <Alert
                 text={'Feature coming soon!'}
-                buttonText={'Okay'}
+                buttonTextOne={'Okay'}
                 buttonActionOne={() => setAlertVisibility(false)}
+            />}
+
+            {verificationAlert && <Alert
+                text={'Account created successfully! Verify your email to access the website, check your inbox.'}
+                buttonTextOne={'Okay'}
+                buttonActionOne={() => setVerificationAlert(false)}
             />}
 
         </div>
