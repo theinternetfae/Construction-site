@@ -29,6 +29,10 @@ function App() {
 
       console.log("Logged in user:", theUser);
 
+      // if(!theUser.emailVerification) {
+      //   await user.
+      // }
+
       setUserProfile(theUser);
       
     } catch (error) {
@@ -80,9 +84,9 @@ function App() {
 
       <UserContext.Provider value={{userProfile, setUserProfile, getUser}}>
 
-        <Loading/>
+        {/* <Loading/> */}
 
-        {/* <Routes>
+        <Routes>
 
           <Route path="/" element={userProfile ? <Navigate to="/interior" replace/> : <Welcome/>}></Route>
           <Route path="/signin" element={userProfile ? <Navigate to="/interior" replace/> : <WelcomeBack/>}></Route>
@@ -107,7 +111,7 @@ function App() {
 
           </Route>
 
-        </Routes> */}
+        </Routes>
 
       </UserContext.Provider>
 

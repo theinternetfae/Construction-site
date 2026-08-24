@@ -58,8 +58,6 @@
 }
 
 
-
-
 body {
   cursor: default;
   caret-color: light-dark(var(--accent));  
@@ -77,6 +75,33 @@ body {
   }
 }
 
+
+@keyframes orbit {
+  0% {
+    top: 0;
+    left: 0;
+  }
+
+  25% {
+    top: 0;
+    left: calc(100% - 12px);
+  }
+
+  50% {
+    top: calc(100% - 12px);
+    left: calc(100% - 12px);
+  }
+
+  75% {
+    top: calc(100% - 12px);
+    left: 0;
+  }
+
+  100% {
+    top: 0;
+    left: 0;
+  }
+}
 
 @layer components {
 
@@ -309,9 +334,16 @@ body {
     @apply bg-[var(--default-bg)] text-white min-h-screen flex flex-col gap-3 items-center justify-center;
 
     .loader {
-      @apply border border-15 border-[var(--default-accent)] h-20 w-20 rounded-full flex items-center justify-center
-      md:h-40 md:w-40;
+      @apply relative h-20 w-20 md:h-30 md:w-40 flex items-center justify-center;
+
+      .move-ball {
+        @apply absolute h-3 w-3 rounded-full bg-[var(--accent)]
+        shadow-[0_0_20px_var(--accent),0_0_40px_var(--accent),0_0_80px_var(--accent)];
+
+        animation: orbit 3s linear infinite;
+      }
     }
+
   }
 
   .overall-main-body {
