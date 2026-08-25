@@ -39,16 +39,11 @@ function WelcomeBack() {
     
         try {
 
-            const staleUser = await user.get();
-            if(staleUser) {
-                await user.logout();
-            }
-
             await user.login({
                 email,
                 password
             })
-
+            
             const theUser = await user.get();
     
             console.log("Logged in user:", theUser);

@@ -1,8 +1,19 @@
+import { createPortal } from "react-dom";
+
 function Loader() {
-    return ( 
-        <>
-            LOADER
-        </>
+    return createPortal( 
+        <div className="loader-screen">
+
+            <div className="loader">
+
+                <div className="move-ball"></div>
+
+                <p>Loading...</p>                
+
+            </div>
+        
+        </div>,
+        document.getElementById("modal-root")
     );
 }
 

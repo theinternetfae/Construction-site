@@ -14,21 +14,35 @@ import Privacy from './settings pages/Privacy.jsx';
 import About from './settings pages/About.jsx';
 import Verify from './utilities jsx/Verifying.jsx';
 import user from './appwrite files/accounts.js';
+import Loader from './utilities jsx/Loader.jsx';
 
 function App() {
 
   const [userProfile, setUserProfile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    
     async function getUser() {
+      
       try {
+      
+        setLoading(true);
         const theUser = await user.get();
         console.log("current user:", theUser);
         setUserProfile(theUser)
+      
       } catch(err) {
+
         console.log(err);
         setUserProfile(null);
+      
+      } finally {
+      
+        setLoading(false);
+      
       }
+    
     }
 
     getUser();
@@ -60,6 +74,10 @@ function App() {
 
   }, [userProfile])
 
+  if(loading) {
+    return <Loader/>;
+  }
+
   return (
     
     <TaskContext.Provider value={{taskList, setTaskList}}>
@@ -69,6 +87,7 @@ function App() {
         <Routes>
 
           <Route path='/verify' element={<Verify/>}></Route>
+          
           <Route path="/" element={userProfile?.emailVerification ? <Navigate to="/interior" replace/> : <Welcome/>}></Route>
           <Route path="/signin" element={userProfile?.emailVerification ? <Navigate to="/interior" replace/> : <WelcomeBack/>}></Route>
 
