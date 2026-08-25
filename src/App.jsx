@@ -7,7 +7,7 @@ import Home from './pages/Home.jsx';
 import Stats from './pages/Stats.jsx';
 import Settings from './pages/Settings.jsx';
 import { TaskContext, UserContext } from './js files/contexts.js';
-import { getTaskList } from './js files/storage.js';
+import { getTaskList } from './js files/appStorage.js';
 import Profile from './settings pages/Profile.jsx';
 import History from './settings pages/History.jsx';
 import Privacy from './settings pages/Privacy.jsx';
@@ -15,10 +15,13 @@ import About from './settings pages/About.jsx';
 import Verify from './utilities jsx/Verifying.jsx';
 import user from './appwrite files/accounts.js';
 import Loader from './utilities jsx/Loader.jsx';
+import str from './appwrite files/storage.js';
 
 function App() {
 
   const [userProfile, setUserProfile] = useState(null);
+  const [userPfp, setUserPfp] = useState(null);
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -30,6 +33,18 @@ function App() {
         setLoading(true);
         const theUser = await user.get();
         setUserProfile(theUser)
+
+        try {
+          
+          await str.pfp.check(theUser.$id);
+        
+          const pfpUrl = await str.pfp.getUrl(theUser.$id);
+          setUserPfp(pfpUrl);
+        
+        } catch (error) {
+          console.log("PFP loading error:", error);
+          setUserPfp(null)  
+        }
       
       } catch(err) {
 
@@ -46,10 +61,6 @@ function App() {
 
     getUser();
   }, [])
-
-  useEffect(() => {
-    console.log("currentUserProfile:", userProfile?.$id);
-  }, [userProfile])
 
   const [taskList, setTaskList] = useState(
     getTaskList() || []
@@ -85,7 +96,7 @@ function App() {
     
     <TaskContext.Provider value={{taskList, setTaskList}}>
 
-      <UserContext.Provider value={{userProfile, setUserProfile}}>
+      <UserContext.Provider value={{userProfile, setUserProfile, userPfp, setUserPfp}}>
 
         <Routes>
 

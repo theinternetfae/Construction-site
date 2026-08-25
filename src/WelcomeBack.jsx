@@ -4,11 +4,11 @@ import { UserContext } from "./js files/contexts.js";
 import Alert from "./utilities jsx/Alert";
 import { isValidEmail } from "./js files/utilities.js";
 import user from "./appwrite files/accounts.js";
-
+import str from "./appwrite files/storage.js";
 
 function WelcomeBack() {
 
-    const { setUserProfile } = useContext(UserContext);
+    const { setUserProfile, setUserPfp } = useContext(UserContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -60,6 +60,14 @@ function WelcomeBack() {
 
             setUserProfile(theUser);                  
             
+            try {              
+                const pfpUrl = await str.pfp.getUrl(theUser.$id);
+                setUserPfp(pfpUrl);
+            } catch (error) {
+                console.log("PFP loading error:", error);
+                setUserPfp(null)  
+            }
+
         } catch (error) {
             
             console.log("Login error:", error);

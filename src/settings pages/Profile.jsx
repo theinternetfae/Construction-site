@@ -2,51 +2,46 @@ import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../js files/contexts";
 import user from "../appwrite files/accounts";
 import Alert from "../utilities jsx/Alert";
+import str from "../appwrite files/storage";
 
 function Profile() {
 
-    const { userProfile, setUserProfile, getUser } = useContext(UserContext);
+    const { userProfile, setUserProfile, userPfp, setUserPfp } = useContext(UserContext);
 
     useEffect(() => {
         console.log(userProfile)
     }, [userProfile])
 
-    // function setPfpImage(e) {
-    //     const file = e.target.files[0];
+    async function setPfpImage(e) {
+        try {
+            
+            const file = e.target.files[0];
+    
+            try {
+                await str.pfp.check(userProfile.$id);
+                await str.pfp.delete(userProfile.$id);
+            } catch (error) {
+                console.log("Deleting users existing pfp:", error)
+            }
 
-    //     const imageUrl = URL.createObjectURL(file);
+            await str.pfp.create(userProfile.$id, file);
 
-    //     console.log(imageUrl);
-    //     setUserProfile(prev => {
-    //         const profile = {
-    //             ...prev, 
-    //             pfp: imageUrl
-    //         }
+            const reader = new FileReader();
+            
+            reader.onload = () => {
+                const imageUrl = reader.result;
+    
+                setUserPfp(imageUrl);
+            };
 
-    //         return profile;
-    //     });
-    // }
+            reader.readAsDataURL(file);
+            console.log(reader);
 
-    function setPfpImage(e) {
-        const file = e.target.files[0];
+        } catch (error) {
 
-        const reader = new FileReader();
-        
-        reader.onload = () => {
-            const imageUrl = reader.result;
+            console.log("Pfp error:", error);           
 
-            setUserProfile(prev => {
-                const profile = {
-                    ...prev, 
-                    pfp: imageUrl
-                }
-
-                return profile;
-            });
-        };
-
-        reader.readAsDataURL(file);
-        console.log(reader);
+        }
     }
 
     const [logoutAlert, setLogoutAlert] = useState(false);
@@ -159,6 +154,7 @@ function Profile() {
         try {
             await user.logout();
             setUserProfile(null);
+            setUserPfp(null)
         } catch (error) {
             console.log("Logout error:", error);
         }
@@ -170,8 +166,8 @@ function Profile() {
             <section className="user-display">
 
                 <label className="pfp-cont">
-                    {userProfile?.pfp ? 
-                        <img src={userProfile.pfp} alt="your pfp" className="pfp"/> 
+                    {userPfp ? 
+                        <img src={userPfp} alt="your pfp" className="pfp"/> 
                     :
                         <i className="bi bi-plus-lg"></i>
                     }

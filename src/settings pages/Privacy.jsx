@@ -2,11 +2,12 @@ import { useContext, useState } from "react";
 import Alert from "../utilities jsx/Alert";
 import { TaskContext, UserContext } from "../js files/contexts";
 import user from "../appwrite files/accounts";
+import str from "../appwrite files/storage";
 
 function Privacy() {
 
     const {setTaskList} = useContext(TaskContext);
-    const {userProfile, setUserProfile} = useContext(UserContext);
+    const {userProfile, setUserProfile, setUserPfp} = useContext(UserContext);
 
     const [infoOne, setInfoOne] = useState(false);
     const [infoTwo, setInfoTwo] = useState(false);
@@ -28,6 +29,7 @@ function Privacy() {
             
             setTaskList([]);
 
+            
             const updatedPrefs = { 
                 accent: 'blue',
                 quirk: true,
@@ -35,15 +37,27 @@ function Privacy() {
                 streak: true,
                 themeDark: true,
             }
-
+            
             await user.prefs(updatedPrefs)
-
+            
             const profile = {
                 ...userProfile,
                 prefs: updatedPrefs
             }
-
+            
             setUserProfile(profile);
+        
+            try {
+            
+                await str.pfp.delete(userProfile.$id);
+                setUserPfp(null);
+                
+            } catch (error) {
+        
+                console.log("PFP deleting error:", error);  
+        
+            }
+        
 
         } catch (error) {
 

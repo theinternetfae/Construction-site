@@ -1,7 +1,7 @@
 import {useContext, useEffect, useState} from "react";
 import TaskEditor from "./TaskEditor.jsx"
 import { TaskContext } from "../js files/contexts.js";
-import { saveTaskList } from "../js files/Storage.js";
+import { saveTaskList } from "../js files/appStorage.js";
 import dayjs from "../js files/DayJs.js";
 import TaskInfo from "./TaskInfo.jsx";
 

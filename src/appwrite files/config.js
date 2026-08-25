@@ -1,4 +1,4 @@
-import {Client, Databases, Account} from "appwrite";
+import {Client, Databases, Account, Storage} from "appwrite";
 
 console.log("ENV:", import.meta.env);
 
@@ -9,5 +9,6 @@ const client = new Client()
 
 const databases = new Databases(client);
 const account = new Account(client);
+const storage = new Storage(client); 
 
-export {databases, account};
+export {databases, account, storage};
