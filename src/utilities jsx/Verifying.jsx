@@ -31,7 +31,6 @@ function Verify() {
                         ...prev,
                         emailVerification: true
                     }
-                
                     
                     return profile
                 })

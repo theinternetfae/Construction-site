@@ -342,6 +342,11 @@ body {
 
         animation: orbit 3s linear infinite;
       }
+
+      p {
+        @apply text-sm 
+        md:text-base;
+      }
     }
 
   }
@@ -357,6 +362,11 @@ body {
         shadow-[0_0_20px_var(--accent),0_0_40px_var(--accent),0_0_80px_var(--accent)];
 
         animation: orbit 3s linear infinite;
+      }
+
+      p {
+        @apply text-sm 
+        md:text-base;
       }
     }
 

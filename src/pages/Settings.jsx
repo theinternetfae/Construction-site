@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../js files/contexts";
+import user from "../appwrite files/accounts";
 
 function Settings() {
 
@@ -12,29 +13,56 @@ function Settings() {
     const [headerTag, setHeaderTag] = useState('Profile & Preferences');
     const [subtitleTag, setSubtitleTag] = useState('Manage your profile and preferences');
 
+    
     useEffect(() => {
         
         if(location.pathname === '/interior/settings/profile') {
             setHeaderTag('Profile & Preferences');
             setSubtitleTag('Manage your profile and preferences');
         }
-
+        
         if(location.pathname === '/interior/settings/history') {
             setHeaderTag('Task History');
             setSubtitleTag('View your task history');
         }
-
+        
         if(location.pathname === '/interior/settings/privacy') {
             setHeaderTag('Data & Privacy');
             setSubtitleTag('All about your data & privacy');
         }
-
+        
         if(location.pathname === '/interior/settings/about') {
             setHeaderTag('About');
             setSubtitleTag('Learn more about us!');
         }
-
+        
     }, [location])
+
+    async function updateThemeDark() {
+        
+        try {
+            
+            const updatedPrefs = {
+                ...userProfile.prefs, 
+                themeDark: !userProfile.prefs.themeDark
+            }
+
+            await user.prefs(updatedPrefs)
+
+            const profile = {
+                ...userProfile,
+                prefs: updatedPrefs
+            }
+
+            setUserProfile(profile);
+
+        } catch (error) {
+
+            console.log("Updating theme:", error);
+        
+        }
+
+    }
 
 
     return ( 
@@ -48,19 +76,7 @@ function Settings() {
                 </div>
 
                 <div className="mode-toggle" 
-                onClick={() => 
-                    setUserProfile(prev => {
-
-                        const profile = {
-                            ...prev,
-                            themeDark: !prev.themeDark
-                        }
-            
-                        saveUserProfile(profile)
-            
-                        return profile
-                    })
-                }>
+                onClick={() => updateThemeDark()}>
                     <div className={`mode-toggle-switch ${userProfile?.prefs.themeDark ? 'translate-x-20 bg-[var(--accent)] text-white' : ''}`}>
                         <i className={`bi ${!userProfile?.prefs.themeDark ? 'bi-sun' : 'bi-moon'}`}></i>
                     </div>

@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
 import Alert from "../utilities jsx/Alert";
 import { TaskContext, UserContext } from "../js files/contexts";
+import user from "../appwrite files/accounts";
 
 function Privacy() {
 
     const {setTaskList} = useContext(TaskContext);
-    const {setUserProfile} = useContext(UserContext);
+    const {userProfile, setUserProfile} = useContext(UserContext);
 
     const [infoOne, setInfoOne] = useState(false);
     const [infoTwo, setInfoTwo] = useState(false);
@@ -19,21 +20,37 @@ function Privacy() {
         setTaskList([]);
     }
 
-    function resetUserData() {
-        localStorage.clear();
+    async function resetUserData() {
         
-        setTaskList([]);
+        try {
+
+            localStorage.clear();
+            
+            setTaskList([]);
+
+            const updatedPrefs = { 
+                accent: 'blue',
+                quirk: true,
+                quote: false,
+                streak: true,
+                themeDark: true,
+            }
+
+            await user.prefs(updatedPrefs)
+
+            const profile = {
+                ...userProfile,
+                prefs: updatedPrefs
+            }
+
+            setUserProfile(profile);
+
+        } catch (error) {
+
+            console.log("Resetting user Data:", error);
         
-        setUserProfile({
-            name: 'Jane Doe',
-            email: 'janedoe@gmail.com',
-            accent: 'blue',
-            quirk: true,
-            quote: false,
-            streak: true,
-            themeDark: true,
-            pfp: ''
-        });
+        }
+
     }
 
     return ( 

@@ -29,7 +29,6 @@ function App() {
       
         setLoading(true);
         const theUser = await user.get();
-        console.log("current user:", theUser);
         setUserProfile(theUser)
       
       } catch(err) {
@@ -47,6 +46,10 @@ function App() {
 
     getUser();
   }, [])
+
+  useEffect(() => {
+    console.log("currentUserProfile:", userProfile?.$id);
+  }, [userProfile])
 
   const [taskList, setTaskList] = useState(
     getTaskList() || []

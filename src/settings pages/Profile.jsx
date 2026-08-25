@@ -51,6 +51,110 @@ function Profile() {
 
     const [logoutAlert, setLogoutAlert] = useState(false);
 
+    async function updateAccent(newAccent) {
+        
+        try {
+            
+            const updatedPrefs = {
+                ...userProfile.prefs, 
+                accent: newAccent
+            }
+
+            await user.prefs(updatedPrefs)
+
+            const profile = {
+                ...userProfile,
+                prefs: updatedPrefs
+            }
+
+            setUserProfile(profile);
+
+        } catch (error) {
+
+            console.log("Updating theme:", error);
+        
+        }
+
+    }
+
+    async function updateQuirk() {
+        
+        try {
+            
+            const updatedPrefs = {
+                ...userProfile.prefs, 
+                quirk: !userProfile.prefs.quirk
+            }
+
+            await user.prefs(updatedPrefs)
+
+            const profile = {
+                ...userProfile,
+                prefs: updatedPrefs
+            }
+
+            setUserProfile(profile);
+
+        } catch (error) {
+
+            console.log("Updating theme:", error);
+        
+        }
+
+    }
+
+    async function updateQuote() {
+        
+        try {
+            
+            const updatedPrefs = {
+                ...userProfile.prefs, 
+                quote: !userProfile.prefs.quote
+            }
+
+            await user.prefs(updatedPrefs)
+
+            const profile = {
+                ...userProfile,
+                prefs: updatedPrefs
+            }
+
+            setUserProfile(profile);
+
+        } catch (error) {
+
+            console.log("Updating theme:", error);
+        
+        }
+
+    }
+
+    async function updateStreak() {
+        
+        try {
+            
+            const updatedPrefs = {
+                ...userProfile.prefs, 
+                streak: !userProfile.prefs.streak
+            }
+
+            await user.prefs(updatedPrefs)
+
+            const profile = {
+                ...userProfile,
+                prefs: updatedPrefs
+            }
+
+            setUserProfile(profile);
+
+        } catch (error) {
+
+            console.log("Updating theme:", error);
+        
+        }
+
+    }
+
     async function logout() {
         try {
             await user.logout();
@@ -96,68 +200,26 @@ function Profile() {
                     <div className="theme-array">
 
 
-                        <div onClick={() => 
-                            setUserProfile(prev => {
-
-                                const profile = {
-                                    ...prev,
-                                    accent: 'blue'
-                                }
-                    
-                                return profile
-                            })
-                        } className={`${userProfile?.prefs.accent === 'blue' ? 'border-[var(--accent)]' : ''}`}>
+                        <div className={`${userProfile?.prefs.accent === 'blue' ? 'border-[var(--accent)]' : ''}`}
+                        onClick={() => updateAccent('blue')}>
                             <span className="blue"></span>
                         </div>
 
 
-
-                        <div onClick={() => 
-                            setUserProfile(prev => {
-
-                                const profile = {
-                                    ...prev,
-                                    accent: 'purple'
-                                }
-                
-                    
-                                return profile
-                            })
-                        } className={`${userProfile?.prefs.accent === 'purple' ? 'border-[var(--accent)]' : ''}`}>
+                        <div className={`${userProfile?.prefs.accent === 'purple' ? 'border-[var(--accent)]' : ''}`}
+                        onClick={() => updateAccent('purple')}>
                             <span className="purple"></span>
                         </div>
                         
 
-
-                        <div onClick={() => 
-                            setUserProfile(prev => {
-
-                                const profile = {
-                                    ...prev,
-                                    accent: 'pink'
-                                }
-                    
-                    
-                                return profile
-                            })
-                        } className={`${userProfile?.prefs.accent === 'pink' ? 'border-[var(--accent)]' : ''}`}>
+                        <div className={`${userProfile?.prefs.accent === 'pink' ? 'border-[var(--accent)]' : ''}`}
+                        onClick={() => updateAccent('pink')}>
                             <span className="pink"></span>
                         </div>
 
 
-
-                        <div onClick={() => 
-                            setUserProfile(prev => {
-
-                                const profile = {
-                                    ...prev,
-                                    accent: 'green'
-                                }
-                    
-                    
-                                return profile
-                            })
-                        } className={`${userProfile?.prefs.accent === 'green' ? 'border-[var(--accent)]' : ''}`}>
+                        <div className={`${userProfile?.prefs.accent === 'green' ? 'border-[var(--accent)]' : ''}`}
+                        onClick={() => updateAccent('green')}>
                             <span className="green"></span>
                         </div>
                     </div>
@@ -166,20 +228,7 @@ function Profile() {
                 <div className="user-pref">
                     <p>Optima quirk</p>
                     <div className={`pref-toggle ${userProfile?.prefs.quirk ? 'bg-[var(--accent)]' : ''}`} 
-                    onClick={() => 
-
-                        setUserProfile(prev => {
-
-                            const profile = {
-                                ...prev,
-                                quirk: !prev.quirk
-                            }
-                   
-                   
-                            return profile
-                        })
-                    
-                    }>
+                    onClick={() => updateQuirk()}>
                         <div className={`pref-toggle-switch ${userProfile?.prefs.quirk ? 'translate-x-24':''}`}></div>
                     </div>
                 </div>
@@ -187,18 +236,7 @@ function Profile() {
                 <div className="user-pref">
                     <p>Daily quote</p>
                     <div className={`pref-toggle ${userProfile?.prefs.quote ? 'bg-[var(--accent)]' : ''}`} 
-                    onClick={() => 
-                        setUserProfile(prev => {
-
-                            const profile = {
-                                ...prev,
-                                quote: !prev.quote
-                            }
-                   
-                   
-                            return profile
-                        })
-                    }>
+                    onClick={() => updateQuote()}>
                         <div className={`pref-toggle-switch ${userProfile?.prefs.quote ? 'translate-x-24':''}`}></div>
                     </div>
                 </div>
@@ -206,18 +244,7 @@ function Profile() {
                 <div className="user-pref">
                     <p>Streak</p>
                     <div className={`pref-toggle ${userProfile?.prefs.streak ? 'bg-[var(--accent)]' : ''}`} 
-                    onClick={() => 
-                        setUserProfile(prev => {
-
-                            const profile = {
-                                ...prev,
-                                streak: !prev.streak
-                            }
-                   
-                   
-                            return profile
-                        })
-                    }>
+                    onClick={() => updateStreak()}>
                         <div className={`pref-toggle-switch ${userProfile?.prefs.streak ? 'translate-x-24':''}`}></div>
                     </div>
                 </div>
