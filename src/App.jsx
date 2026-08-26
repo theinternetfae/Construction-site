@@ -16,11 +16,14 @@ import Verify from './utilities jsx/Verifying.jsx';
 import user from './appwrite files/accounts.js';
 import Loader from './utilities jsx/Loader.jsx';
 import str from './appwrite files/storage.js';
+import db from './appwrite files/databases.js';
+import { Query } from "appwrite";
 
 function App() {
 
   const [userProfile, setUserProfile] = useState(null);
   const [userPfp, setUserPfp] = useState(null);
+  const [taskList, setTaskList] = useState([])
 
   const [loading, setLoading] = useState(false);
 
@@ -30,10 +33,13 @@ function App() {
       
       try {
       
+        //USERPROFILE
         setLoading(true);
         const theUser = await user.get();
         setUserProfile(theUser)
 
+
+        //USERPFP
         try {
           
           await str.pfp.check(theUser.$id);
@@ -46,6 +52,30 @@ function App() {
           setUserPfp(null)  
         }
       
+        //TASKLIST
+        try {
+    
+          const tasks = await db.tasks.list([
+            Query.equal("userId", theUser.$id),
+            Query.orderAsc("$createdAt"),
+            Query.limit(500)
+          ]);
+
+          console.log("Tasks returned:", tasks.documents.length);
+          console.log("Total tasks:", tasks.total);
+          
+          setTaskList(tasks.documents);
+
+          console.log("taskList set")
+    
+        } catch (err) {
+
+          setTaskList([]);
+                  
+          console.log("Loading tasks list:", err);
+
+        }
+
       } catch(err) {
 
         console.log(err);
@@ -62,9 +92,9 @@ function App() {
     getUser();
   }, [])
 
-  const [taskList, setTaskList] = useState(
-    getTaskList() || []
-  )
+  useEffect(() => {
+    console.log(taskList);
+  }, [taskList]);
 
   const root = document.documentElement;
 

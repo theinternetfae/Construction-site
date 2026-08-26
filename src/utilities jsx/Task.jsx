@@ -36,7 +36,7 @@ function Task({taskInfo, noShow, oneOff}) {
                    
                    if(createdToday) return;
 
-                    const editedTaskList = taskList.map(e => e.uniqueId === taskInfo.uniqueId ? {
+                    const editedTaskList = taskList.map(e => e.$id === taskInfo.$id ? {
                         ...taskInfo,
                         completed: !e.completed
                     } : e);

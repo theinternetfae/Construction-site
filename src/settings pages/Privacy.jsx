@@ -3,6 +3,8 @@ import Alert from "../utilities jsx/Alert";
 import { TaskContext, UserContext } from "../js files/contexts";
 import user from "../appwrite files/accounts";
 import str from "../appwrite files/storage";
+import db from "../appwrite files/databases";
+import { Query } from "appwrite";
 
 function Privacy() {
 
@@ -14,11 +16,32 @@ function Privacy() {
 
     const [alertOne, setAlertOne] = useState(false);
     const [alertTwo, setAlertTwo] = useState(false);
-    
-    function clearTaskHistory() {
-        localStorage.removeItem('tasks');
+    const [taskHistoryAlert, setTaskHistoryAlert] = useState(false);
+
+    async function clearTaskHistory() {
         
-        setTaskList([]);
+        try {
+
+            const tasks = await db.tasks.list([
+                Query.equal("userId", userProfile.$id),
+                Query.limit(500)
+            ]);
+
+            const allTasks = tasks.documents;
+
+            await Promise.all(
+                allTasks.map(dc =>
+                db.tasks.delete(dc.$id).catch(err => console.log("Deleting task in DataPrivacy:", err))
+            ));
+        
+            setTaskList([]);  
+            
+            setTaskHistoryAlert(true);
+
+        } catch (error) {
+            console.log(error);            
+        }
+
     }
 
     async function resetUserData() {
@@ -159,6 +182,13 @@ function Privacy() {
                     setAlertTwo(false)
                 }}
                 unique={true}
+            />}
+
+            {taskHistoryAlert && <Alert
+                text={'Your task history has been cleared'}
+                buttonActionOne={() => {
+                    setTaskHistoryAlert(false)
+                }}
             />}
         
         </div>

@@ -3,15 +3,17 @@ import EmojiPicker from "./Emoji.jsx";
 import ColorPicker from "./Colors.jsx";
 import { useContext, useState } from "react";
 import { formatDate, generateTaskDuplicates, lessThanTen } from "../js files/utilities.js";
-import { TaskContext } from "../js files/contexts.js";
+import { TaskContext, UserContext } from "../js files/contexts.js";
 import { saveTaskList } from "../js files/appStorage.js";
 import Alert from "./Alert.jsx";
 import dayjs from "../js files/dayJs.js"
+import db from "../appwrite files/databases.js";
 
 
 function TaskEditor({exit, task}) {
 
     const {taskList, setTaskList} = useContext(TaskContext);
+    const {userProfile} = useContext(UserContext);
 
     const now = dayjs();
     const today = now.format('YYYY-MM-DD');
@@ -42,7 +44,7 @@ function TaskEditor({exit, task}) {
 
     const [alert, setAlert] = useState(false);
 
-    function createTask() {
+    async function createTask() {
 
         if(!emoji || !name) {
             setAlert(true);
@@ -51,12 +53,12 @@ function TaskEditor({exit, task}) {
 
         const reminderTime = !reminder ? null : `${reminderHour}:${reminderMinutes} ${meridiem}`;
 
-        const uniqueId = crypto.randomUUID()
+        const uniqueId = crypto.randomUUID();
 
         const newTask = {
+            $id: uniqueId,
+            userId: userProfile.$id,
             parentId: uniqueId,
-            uniqueId,
-            createdAt: dayjs().toISOString(),
             scheduledDate: dayjs().format('YYYY-MM-DD'),
             emoji,
             name,
@@ -67,12 +69,21 @@ function TaskEditor({exit, task}) {
             reminderTime,
             completed
         }
-
-        const newTaskList = [...taskList, newTask];
-        const duplicates = generateTaskDuplicates(newTask);
         
-        setTaskList(!duplicates ? newTaskList : newTaskList.concat(duplicates));
-        saveTaskList(!duplicates ? newTaskList : newTaskList.concat(duplicates));
+        try {
+        
+            db.tasks.create(newTask, null);
+
+            const newTaskList = [...taskList, newTask];
+            const duplicates = await generateTaskDuplicates(newTask);
+            
+            setTaskList(duplicates ? newTaskList.concat(duplicates) : newTaskList);
+
+        } catch (error) {
+            
+            console.log("creating tasks:", error);
+            setTaskList([]);
+        }
         
         exit();
 

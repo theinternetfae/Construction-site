@@ -187,7 +187,7 @@ function Home() {
                     {visibleTasks.length === 0 && <p>No tasks</p>}
                     {visibleTasks.map(e => {
                         return <Task
-                            key={e.uniqueId}
+                            key={e.$id}
                             taskInfo={e} />;
                     })}
 

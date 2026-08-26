@@ -37,9 +37,9 @@ function Alert({text, buttonTextOne, buttonTextTwo, buttonActionOne, buttonActio
             
                 <div className="choices">
     
-                    {buttonActionTwo && <button className="bg-[var(--red)]" onClick={buttonActionTwo}>{buttonTextTwo}</button>}
+                    {buttonTextTwo && <button className="bg-[var(--red)]" onClick={buttonActionTwo}>{buttonTextTwo}</button>}
 
-                    <button onClick={buttonActionOne}>{buttonTextOne}</button>                
+                    {buttonTextOne && <button onClick={buttonActionOne}>{buttonTextOne}</button>}                
 
                 </div>
 

@@ -52,7 +52,7 @@ function History() {
                     <p className="label">Re-occuring</p>
                     {reOccuringTasks.length === 0 && <p className="filler">No Tasks</p>}
                     {reOccuringTasks.map((t, i) => <Task
-                        key={t.uniqueId}
+                        key={t.$id}
                         taskInfo={t}    
                         noShow={true}
                     />)}
@@ -62,7 +62,7 @@ function History() {
                     <p className="label">One-off</p>
                     {oneOffTasks.length === 0 && <p className="filler">No Tasks</p>}
                     {oneOffTasks.map((t, i) => <Task
-                        key={t.uniqueId}
+                        key={t.$id}
                         taskInfo={t}
                         noShow={true}
                         oneOff={true}

@@ -1,4 +1,5 @@
 import dayjs from "./dayJs.js";
+import db from "../appwrite files/databases.js";
 
 export function isValidEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
@@ -60,7 +61,7 @@ export function calculateTimeToMidnight() {
 
 }
 
-export function generateTaskDuplicates(task) {
+export async function generateTaskDuplicates(task) {
 
     if(!task.startDate || !task.endDate) return;   
 
@@ -74,14 +75,28 @@ export function generateTaskDuplicates(task) {
         const uniqueId = crypto.randomUUID();
 
         if (task.days.includes(i.format('ddd'))) {
-            const newTask = {
-                ...task, 
-                uniqueId,
-                scheduledDate: i.format('YYYY-MM-DD'),
-                completed: false    
+
+            try {
+
+                const newTask = {
+                    ...task, 
+                    $id: uniqueId,
+                    scheduledDate: i.format('YYYY-MM-DD'),
+                    completed: false
+                }
+
+                db.tasks.create(newTask, null);
+                
+                newTasksArray.push(newTask);
+
+            } catch (error) {
+                
+                console.log("Duplicates error:", error);
+
             }
             
-            newTasksArray.push(newTask);
+            
+            
         }
     }
 
