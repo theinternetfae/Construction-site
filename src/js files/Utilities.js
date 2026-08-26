@@ -72,20 +72,21 @@ export async function generateTaskDuplicates(task) {
 
     for(let i = start; i.isSameOrBefore(end); i = i.add(1, "day")) {
         
-        const uniqueId = crypto.randomUUID();
-
+        
         if (task.days.includes(i.format('ddd'))) {
 
+            const uniqueId = crypto.randomUUID();
+
+            const newTask = {
+                ...task, 
+                $id: uniqueId,
+                scheduledDate: i.format('YYYY-MM-DD'),
+                completed: false
+            }
+            
             try {
 
-                const newTask = {
-                    ...task, 
-                    $id: uniqueId,
-                    scheduledDate: i.format('YYYY-MM-DD'),
-                    completed: false
-                }
-
-                db.tasks.create(newTask, null);
+                await db.tasks.create(newTask, null);
                 
                 newTasksArray.push(newTask);
 
@@ -93,9 +94,7 @@ export async function generateTaskDuplicates(task) {
                 
                 console.log("Duplicates error:", error);
 
-            }
-            
-            
+            }            
             
         }
     }

@@ -4,10 +4,10 @@ import ColorPicker from "./Colors.jsx";
 import { useContext, useState } from "react";
 import { formatDate, generateTaskDuplicates, lessThanTen } from "../js files/utilities.js";
 import { TaskContext, UserContext } from "../js files/contexts.js";
-import { saveTaskList } from "../js files/appStorage.js";
 import Alert from "./Alert.jsx";
 import dayjs from "../js files/dayJs.js"
 import db from "../appwrite files/databases.js";
+import { ID } from "appwrite";
 
 
 function TaskEditor({exit, task}) {
@@ -54,9 +54,10 @@ function TaskEditor({exit, task}) {
         const reminderTime = !reminder ? null : `${reminderHour}:${reminderMinutes} ${meridiem}`;
 
         const uniqueId = crypto.randomUUID();
+        const specialId = ID.unique();
 
         const newTask = {
-            $id: uniqueId,
+            $id: specialId,
             userId: userProfile.$id,
             parentId: uniqueId,
             scheduledDate: dayjs().format('YYYY-MM-DD'),
@@ -72,7 +73,7 @@ function TaskEditor({exit, task}) {
         
         try {
         
-            db.tasks.create(newTask, null);
+            await db.tasks.create(newTask, null, specialId);
 
             const newTaskList = [...taskList, newTask];
             const duplicates = await generateTaskDuplicates(newTask);
@@ -101,7 +102,6 @@ function TaskEditor({exit, task}) {
 
         const editedTask = {
             ...task,
-            createdAt: dayjs().toISOString(),
             scheduledDate: dayjs().format('YYYY-MM-DD'),
             emoji,
             name,
@@ -117,7 +117,6 @@ function TaskEditor({exit, task}) {
         const freshDuplicates = generateTaskDuplicates(editedTask);
         
         setTaskList(!freshDuplicates ? editedTaskList : editedTaskList.concat(freshDuplicates));
-        saveTaskList(!freshDuplicates ? editedTaskList : editedTaskList.concat(freshDuplicates));
         
         exit();
 
@@ -127,7 +126,6 @@ function TaskEditor({exit, task}) {
         const cleanedTaskList = taskList.filter(t => dayjs(t.scheduledDate).isBefore(dayjs(task.scheduledDate)) || t.parentId !== task.parentId);
 
         setTaskList(cleanedTaskList);
-        saveTaskList(cleanedTaskList);
         exit();
     }
 

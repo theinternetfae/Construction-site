@@ -2,8 +2,8 @@ import { useContext, useState, useEffect, useMemo } from "react";
 import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 import Task from "../utilities jsx/Task.jsx";
 import { TaskContext } from "../js files/contexts.js";
-import dayjs from "../js files/DayJs.js";   
-import { calculateTimeToMidnight, getDates } from "../js files/Utilities.js";
+import dayjs from "../js files/dayJs.js";   
+import { calculateTimeToMidnight, getDates } from "../js files/utilities.js";
 
 function Home() {
 

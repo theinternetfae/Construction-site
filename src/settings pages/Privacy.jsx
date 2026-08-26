@@ -29,13 +29,11 @@ function Privacy() {
 
             const allTasks = tasks.documents;
 
-            await Promise.all(
-                allTasks.map(dc =>
-                db.tasks.delete(dc.$id).catch(err => console.log("Deleting task in DataPrivacy:", err))
-            ));
+            await Promise.all(allTasks.map(dc => db.tasks.delete(dc.$id)));
         
             setTaskList([]);  
-            
+            localStorage.clear();
+
             setTaskHistoryAlert(true);
 
         } catch (error) {
@@ -50,8 +48,7 @@ function Privacy() {
 
             localStorage.clear();
             
-            setTaskList([]);
-
+            clearTaskHistory();
             
             const updatedPrefs = { 
                 accent: 'blue',
@@ -185,7 +182,7 @@ function Privacy() {
             />}
 
             {taskHistoryAlert && <Alert
-                text={'Your task history has been cleared'}
+                text={'Your data has been cleared successfully!'}
                 buttonActionOne={() => {
                     setTaskHistoryAlert(false)
                 }}
