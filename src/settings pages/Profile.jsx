@@ -21,7 +21,7 @@ function Profile() {
                 await str.pfp.check(userProfile.$id);
                 await str.pfp.delete(userProfile.$id);
             } catch (error) {
-                console.log("Deleting users existing pfp:", error)
+                console.log("Deleting users existing pfp:", error);
             }
 
             await str.pfp.create(userProfile.$id, file);
