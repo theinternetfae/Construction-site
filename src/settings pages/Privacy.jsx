@@ -17,6 +17,7 @@ function Privacy() {
     const [alertOne, setAlertOne] = useState(false);
     const [alertTwo, setAlertTwo] = useState(false);
     const [taskHistoryAlert, setTaskHistoryAlert] = useState(false);
+    const [featureAlert, setFeatureAlert] = useState(false);
 
     async function clearTaskHistory() {
         
@@ -152,7 +153,7 @@ function Privacy() {
 
             </section>
 
-            <button className="download">
+            <button className="download" onClick={() => setFeatureAlert(true)}>
                 <i className="bi bi-download"></i>
                 Download your data
             </button>
@@ -185,6 +186,13 @@ function Privacy() {
                 text={'Your data has been cleared successfully!'}
                 buttonActionOne={() => {
                     setTaskHistoryAlert(false)
+                }}
+            />}
+
+            {featureAlert && <Alert
+                text={'Feature coming soon!'}
+                buttonActionOne={() => {
+                    setFeatureAlert(false)
                 }}
             />}
         

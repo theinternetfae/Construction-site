@@ -39,10 +39,9 @@ function TaskEditor({exit, task}) {
     const [reminderHour, setReminderHour] = useState('08');
     const [reminderMinutes, setReminderMinutes] = useState('00');
     const [meridiem, setMeridiem] = useState('AM');
-    
-    const [completed, setCompleted] = useState(task ? task.completed : false);
 
     const [alert, setAlert] = useState(false);
+    const [featureAlert, setFeatureAlert] = useState(false);
 
     async function createTask() {
 
@@ -68,7 +67,7 @@ function TaskEditor({exit, task}) {
             startDate: days.length === 0 ? null : startDate,
             endDate: days.length === 0 ? null : endDate,
             reminderTime,
-            completed
+            completed: false
         }
         
         try {
@@ -244,7 +243,7 @@ function TaskEditor({exit, task}) {
 
                 <section className="reminder-section">
                     <p>On Reminder?</p>
-                    <div className={`reminder-toggle ${reminder ? "bg-[var(--accent)]" : ''}`} onClick={() => setReminder(!reminder)} >
+                    <div className={`reminder-toggle ${reminder ? "bg-[var(--accent)]" : ''}`} onClick={() => setFeatureAlert(true)}>
                         <div className={`reminder-toggle-slider ${reminder ? "translate-x-13" : ""}`}></div>
                     </div>
                 </section>
@@ -297,6 +296,11 @@ function TaskEditor({exit, task}) {
                 text={'Please fill in required fields; Name & Emoji'}
                 buttonActionOne={() => setAlert(false)}
                 buttonTextOne={'Okay'}
+            />}
+
+            {featureAlert && <Alert
+                text={'Feature coming soon!'}
+                buttonActionOne={() => setFeatureAlert(false)}
             />}
         </div>,
         document.getElementById("modal-root")

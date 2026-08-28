@@ -263,7 +263,6 @@ function Welcome() {
 
             {alertVisibility && <Alert
                 text={'Feature coming soon!'}
-                buttonTextOne={'Okay'}
                 buttonActionOne={() => setAlertVisibility(false)}
             />}
 

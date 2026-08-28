@@ -45,6 +45,7 @@ function Profile() {
     }
 
     const [logoutAlert, setLogoutAlert] = useState(false);
+    const [featureAlert, setFeatureAlert] = useState(false);
 
     async function updateAccent(newAccent) {
         
@@ -231,8 +232,8 @@ function Profile() {
                 
                 <div className="user-pref">
                     <p>Daily quote</p>
-                    <div className={`pref-toggle ${userProfile?.prefs.quote ? 'bg-[var(--accent)]' : ''}`} 
-                    onClick={() => updateQuote()}>
+                    <div className={`pref-toggle pref-toggle-quote ${userProfile?.prefs.quote ? 'bg-[var(--accent)]' : ''}`} 
+                    onClick={() => setFeatureAlert(true)}>
                         <div className={`pref-toggle-switch ${userProfile?.prefs.quote ? 'translate-x-24':''}`}></div>
                     </div>
                 </div>
@@ -260,7 +261,7 @@ function Profile() {
 
                 <div className="command">
                     <p>Delete account</p>
-                    <button className="delete-account">
+                    <button className="delete-account" onClick={() => setFeatureAlert(true)}>
                         <i className="bi bi-person-x-fill"></i>
                     </button>
                 </div>
@@ -274,6 +275,13 @@ function Profile() {
                     buttonActionOne={() => setLogoutAlert(false)}
                     buttonTextTwo={"Leave"}
                     buttonActionTwo={() => logout()}
+                />
+            }
+
+            {
+                featureAlert && <Alert
+                    text={"Feature coming soon!"}
+                    buttonActionOne={() => setFeatureAlert(false)}
                 />
             }
         

@@ -29,6 +29,7 @@
   --green: #477023;
 
   /*DEFAULT*/
+  --default-bd-bg: #262626; 
   --default-bg: #171717;
   --default-accent: #2563EB;
 }
@@ -821,6 +822,10 @@ body {
                     text-[var(--yellow)];
                   } 
                 }
+
+                .pref-toggle-quote {
+                  @apply bg-[var(--special-text)]
+                }
               }
             }
 
@@ -845,7 +850,7 @@ body {
                 }
 
                 .delete-account {
-                  @apply bg-[var(--accent)] text-white text-2xl;
+                  @apply bg-[var(--special-text)] text-white text-2xl;
                 }
               }
             }
@@ -933,7 +938,7 @@ body {
             }
 
             .download {
-              @apply p-3 text-sm flex gap-2 items-center justify-center rounded-lg bg-[var(--accent)] text-white font-bold cursor-pointer
+              @apply p-3 text-sm flex gap-2 items-center justify-center rounded-lg bg-[var(--special-text)] text-white font-bold cursor-pointer
               md:text-base;
             }
           }
@@ -1171,7 +1176,8 @@ body {
         @apply rounded-lg p-4 bg-[var(--bgcolor)] flex justify-around items-center;
 
         input {
-          @apply p-2 rounded-lg bg-[var(--mainbd-bg)] shadow-lg
+          @apply p-2 rounded-lg bg-[var(--mainbd-bg)] shadow-lg text-xs
+          md:text-base;
         }
 
         i {
@@ -1188,7 +1194,7 @@ body {
         }
 
         .reminder-toggle {
-          @apply w-20 rounded-lg bg-[var(--lightest-bg)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
+          @apply w-20 rounded-lg bg-[var(--special-text)] inset-shadow-sm flex items-center p-1 cursor-pointer; 
 
           .reminder-toggle-slider {
             @apply h-full w-5 rounded-full bg-[var(--bgcolor)] shadow-lg transition duration-500 ease-in-out;

@@ -1,8 +1,10 @@
 import { createPortal } from "react-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../js files/contexts.js";
 
 function Alert({text, buttonTextOne, buttonTextTwo, buttonActionOne, buttonActionTwo, unique}) {
-    
+
+    const {userProfile} = useContext(UserContext);
     const [scrolling, setScrolling] = useState("");
 
     useEffect(() => {
@@ -31,9 +33,9 @@ function Alert({text, buttonTextOne, buttonTextTwo, buttonActionOne, buttonActio
         
         <div className="alert-container">
             
-            <div className={`alert-box ${scrolling}`}>
+            <div className={`alert-box ${scrolling} ${!userProfile ? 'bg-[var(--default-bd-bg)]' : ''}`}>
 
-                <p>{text}</p>
+                <p className={`${!userProfile ? 'text-white' : ''}`}>{text}</p>
             
                 <div className="choices">
     
