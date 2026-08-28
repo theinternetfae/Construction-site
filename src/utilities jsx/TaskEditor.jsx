@@ -90,43 +90,69 @@ function TaskEditor({exit, task}) {
 
     }
 
-    function editTask() {
+    async function editTask() {
         if(!emoji || !name) {
             setAlert(true);
             return;
         };
 
-        const reminderTime = !reminder ? null : `${reminderHour}:${reminderMinutes} ${meridiem}`
+        try {
+            
+            const reminderTime = !reminder ? null : `${reminderHour}:${reminderMinutes} ${meridiem}`
+    
+            const cleanedTaskDuplicates = taskList.filter(t => dayjs(t.scheduledDate).isBefore(dayjs(task.scheduledDate)) || t.parentId !== task.parentId);
+            const taskDuplicates = taskList.filter(t => dayjs(t.scheduledDate).isAfter(dayjs(task.scheduledDate)) && t.parentId === task.parentId);
+    
+            const editedTask = {
+                ...task,
+                scheduledDate: dayjs().format('YYYY-MM-DD'),
+                emoji,
+                name,
+                color,
+                days,
+                endDate: days.length === 0 ? null : endDate,
+                reminderTime,
+                completed
+            }
+    
+            await Promise.all(taskDuplicates.map(dc => db.tasks.delete(dc.$id)));
+    
+            await db.tasks.update(task.$id, editedTask, null);
+    
+            const freshDuplicates = await generateTaskDuplicates(editedTask);
+            
+            const editedTaskList = [...cleanedTaskDuplicates, editedTask];
+            
+            setTaskList(!freshDuplicates ? editedTaskList : editedTaskList.concat(freshDuplicates));
+        
+            exit();
 
-        const cleanedTaskDuplicates = taskList.filter(t => dayjs(t.scheduledDate).isBefore(dayjs(task.scheduledDate)) || t.parentId !== task.parentId);
-
-        const editedTask = {
-            ...task,
-            scheduledDate: dayjs().format('YYYY-MM-DD'),
-            emoji,
-            name,
-            color,
-            days,
-            endDate: days.length === 0 ? null : endDate,
-            reminderTime,
-            completed
+        } catch (error) {
+        
+            console.log(error);
+            
         }
-
-        const editedTaskList = [...cleanedTaskDuplicates, editedTask];
-
-        const freshDuplicates = generateTaskDuplicates(editedTask);
         
-        setTaskList(!freshDuplicates ? editedTaskList : editedTaskList.concat(freshDuplicates));
-        
-        exit();
 
     }
 
-    function deleteTask() {
-        const cleanedTaskList = taskList.filter(t => dayjs(t.scheduledDate).isBefore(dayjs(task.scheduledDate)) || t.parentId !== task.parentId);
+    async function deleteTask() {
+        
+        try {
+            
+            const cleanedTaskList = taskList.filter(t => t.$id !== task.$id);
+    
+            await db.tasks.delete(task.$id);
+    
+            setTaskList(cleanedTaskList);
+            exit();
 
-        setTaskList(cleanedTaskList);
-        exit();
+        } catch (error) {
+            
+            console.log(error);
+
+        }
+        
     }
 
     return createPortal( 

@@ -1,5 +1,6 @@
 import dayjs from "./dayJs.js";
 import db from "../appwrite files/databases.js";
+import { ID } from "appwrite";
 
 export function isValidEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
@@ -75,18 +76,18 @@ export async function generateTaskDuplicates(task) {
         
         if (task.days.includes(i.format('ddd'))) {
 
-            const uniqueId = crypto.randomUUID();
+            const specialId = ID.unique();
 
             const newTask = {
                 ...task, 
-                $id: uniqueId,
+                $id: specialId,
                 scheduledDate: i.format('YYYY-MM-DD'),
                 completed: false
             }
             
             try {
 
-                await db.tasks.create(newTask, null);
+                await db.tasks.create(newTask, null, specialId);
                 
                 newTasksArray.push(newTask);
 
