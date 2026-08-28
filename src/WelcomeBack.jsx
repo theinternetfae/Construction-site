@@ -69,8 +69,10 @@ function WelcomeBack() {
             }
 
         } catch (error) {
-            
-            console.log("Login error:", error);
+
+            if(error.type === "user_invalid_credentials") {
+                alert("Your email or password is wrong, or the account might not exist. Try again.")
+            }
 
         }
 

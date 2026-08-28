@@ -148,9 +148,12 @@ function Welcome() {
             setUserProfile(theUser);                  
 
         } catch (err) {
-            
-            console.log("Error:", err);
+        
             setUserProfile(null);
+
+            if(err.type === "user_already_exists") {
+                alert("An account already exists with this email.")
+            }
 
         }
 

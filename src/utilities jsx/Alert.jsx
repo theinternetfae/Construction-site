@@ -28,7 +28,6 @@ function Alert({text, buttonTextOne, buttonTextTwo, buttonActionOne, buttonActio
         return () => clearTimeout(exit);
     }, [])
 
-
     return createPortal( 
         
         <div className="alert-container">
