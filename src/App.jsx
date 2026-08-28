@@ -47,8 +47,10 @@ function App() {
           setUserPfp(pfpUrl);
         
         } catch (error) {
+
           console.log("PFP loading error:", error);
           setUserPfp(null)  
+        
         }
       
         //TASKLIST

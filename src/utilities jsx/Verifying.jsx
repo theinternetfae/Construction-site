@@ -24,16 +24,11 @@ function Verify() {
                 
                 await user.updateVer(userId, secret);
 
-                alert("Email verification successful!");
+                const verifiedUser = await user.get();
 
-                setUserProfile(prev => {
-                    const profile = {
-                        ...prev,
-                        emailVerification: true
-                    }
-                    
-                    return profile
-                })
+                setUserProfile(verifiedUser);
+
+                alert("Email verification successful!");
 
                 navigate('/interior');
 
