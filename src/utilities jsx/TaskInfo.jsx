@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import dayjs from "../js files/DayJs.js";
+import dayjs from "../js files/dayJs.js";
 import { useContext, useEffect, useMemo } from "react";
 import { TaskContext } from "../js files/contexts.js";
 
@@ -20,8 +20,8 @@ function TaskInfo({task, exit, oneOff}) {
             color: task.color === 'var(--accent)' ? 'None' : task.color,
             created: dayjs(task.createdAt).format('MMMM D, YYYY'),
             scheduled: task.days.length !== 0 ? task.days.join(", ") : 'None',
-            start: dayjs(task.startDate).format('MMMM D, YYYY'),
-            end: dayjs(task.endDate).format('MMMM D, YYYY'),
+            start: dayjs(task.startDate).format('MMM D, YYYY'),
+            end: dayjs(task.endDate).format('MMM D, YYYY'),
             reminderTime: task.reminderTime ? task.reminderTime : 'None',
             completed: oneOff ? (task.completed ? "True" : "False") : `${completed.length}/${matchingTasks.length}`,
             status: active ? 'Active' : 'Inactive'
