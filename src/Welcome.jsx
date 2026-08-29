@@ -8,6 +8,8 @@ import user from "./appwrite files/accounts.js";
 
 function Welcome() {
 
+    //FINISH THE QUIRK +
+
     const {setUserProfile} = useContext(UserContext);
 
     const [firstName, setFirstName] = useState("");
