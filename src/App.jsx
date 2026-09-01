@@ -119,13 +119,17 @@ function App() {
 
   }, [userProfile])
 
+
+  const [level, setLevel] = useState(1);
+
+
   if(loading) {
     return <Loader/>;
   }
 
   return (
     
-    <TaskContext.Provider value={{taskList, setTaskList}}>
+    <TaskContext.Provider value={{taskList, setTaskList, level, setLevel}}>
 
       <UserContext.Provider value={{userProfile, setUserProfile, userPfp, setUserPfp}}>
 

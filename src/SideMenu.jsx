@@ -1,10 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "./js files/contexts";
+import { useState, useEffect, useContext, useMemo } from "react";
+import { TaskContext, UserContext } from "./js files/contexts";
 
 function SideMenu() {
 
-    const {quirk, userProfile} = useContext(UserContext);
+    const {level} = useContext(TaskContext);
+    const {userProfile} = useContext(UserContext);
 
     const [quirkInfoShow, setQuirkInfoShow] = useState(false);
 
@@ -36,6 +37,10 @@ function SideMenu() {
         setLoName(name);
     }, [location])
 
+    const smLevel = useMemo(() => {
+        return level === 1 ? "Level One: Rookie" : level === 2 ? "Level Two: Student" : level === 3 ? "Level Three: Master" : ''
+    }, [level])
+
     return ( 
         <nav>
             <div className="sm-nav">
@@ -63,7 +68,7 @@ function SideMenu() {
                 <section className={`quirk-sect-sm ${userProfile?.prefs.quirk ? '' : 'hidden'}`} onClick={() => setQuirkInfoShow(!quirkInfoShow)}>
                     <p className="quirk-level-sm">1</p>
                     <div className={`quirk-info-sm ${quirkInfoShow && 'block'}`}>
-                        <p>Level One: Rookie</p>
+                        <p>{smLevel}</p>
                         <p>0/100</p>
                     </div>
                 </section>
@@ -114,9 +119,9 @@ function SideMenu() {
                     </div>
 
                     <div className="level-display">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <span className={`${level === 1 || level === 2 || level === 3 ? 'bg-[var(--accent)]' : ''}`}></span>
+                        <span className={`${level === 2 || level === 3 ? 'bg-[var(--accent)]' : ''}`}></span>
+                        <span className={`${level === 3 ? 'bg-[var(--accent)]' : ''}`}></span>
                     </div>
 
                 </section>
