@@ -1,14 +1,16 @@
 import { useContext, useState, useEffect, useMemo } from "react";
 import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 import Task from "../utilities jsx/Task.jsx";
-import { TaskContext } from "../js files/contexts.js";
+import { TaskContext, UserContext } from "../js files/contexts.js";
 import dayjs from "../js files/dayJs.js";   
 import { calculateTimeToMidnight, getDates } from "../js files/utilities.js";
+import Alert from "../utilities jsx/Alert.jsx";
 
 function Home() {
 
-    const {taskList} = useContext(TaskContext);
-    
+    const {taskList, level, generalCirlceProgress} = useContext(TaskContext);
+    const {userProfile} = useContext(UserContext);
+
     const [today, setToday] = useState(dayjs());
 
     useEffect(() => {
@@ -75,37 +77,50 @@ function Home() {
     const [visibleTasks, setVisibileTasks] = useState([]);
     
 
-    const todaysTasks = useMemo(() => {
+    const chosenDayTasks = useMemo(() => {
 
-        const todaysTasksStorage = taskList.filter(t => t.scheduledDate === chosenDate.format('YYYY-MM-DD'))
-        return todaysTasksStorage;
+        const chosenDayTasksStorage = taskList.filter(t => t.scheduledDate === chosenDate.format('YYYY-MM-DD'))
+        return chosenDayTasksStorage;
 
     }, [chosenDate, taskList]);
+
+    const [stopAlert, setStopAlert] = useState(false);
+    const todaysTasks = useMemo(() => {
+
+        const limit = level === 1 ? 4 : level === 2 ? 8 : level === 3 ? 10 : '';
+        const todaysTasksStorage = taskList.filter(t => t.scheduledDate === today.format('YYYY-MM-DD'))
+        
+        return {
+            tTasks: todaysTasksStorage,
+            limit
+        };
+
+    }, [today, taskList, generalCirlceProgress]);
 
 
     useEffect(() => {
 
         if(taskCategory === 'All') {
             
-            setVisibileTasks(todaysTasks);
+            setVisibileTasks(chosenDayTasks);
 
         } else if (taskCategory === 'Met') {
             
-            const met = todaysTasks.filter(t => t.completed);
+            const met = chosenDayTasks.filter(t => t.completed);
             setVisibileTasks(met);
 
         } else if (taskCategory === 'Unmet') {
 
-            const unmet = todaysTasks.filter(t => !t.completed);
+            const unmet = chosenDayTasks.filter(t => !t.completed);
             setVisibileTasks(unmet);
 
         } else {
 
-            setVisibileTasks(todaysTasks);
+            setVisibileTasks(chosenDayTasks);
 
         }
 
-    }, [taskCategory, todaysTasks]);
+    }, [taskCategory, chosenDayTasks]);
 
     const [showEditor, setShowEditor] = useState(false);
     
@@ -125,7 +140,7 @@ function Home() {
                     {chosenDate.format('MMMM DD, YYYY').toUpperCase()}
                 </p>
 
-                <i className="bi bi-clipboard-plus-fill" onClick={(() => setShowEditor(true))}></i>
+                <i className="bi bi-clipboard-plus-fill" onClick={(() => todaysTasks.tTasks.length >= todaysTasks.limit && userProfile.prefs.quirk ? setStopAlert(true) : setShowEditor(true))}></i>
 
             </section>
             <section className="date-slider-cont">
@@ -196,6 +211,11 @@ function Home() {
 
             {showEditor && <TaskEditor
                 exit={() => setShowEditor(false)}
+            />}
+
+            {stopAlert && <Alert
+                text={"You've reached your daily task limit. Take it easy."}
+                buttonActionOne={() => setStopAlert(false)} 
             />}
             
         </div>

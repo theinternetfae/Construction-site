@@ -61,14 +61,9 @@ function App() {
             Query.orderAsc("$createdAt"),
             Query.limit(500)
           ]);
-
-          console.log("Tasks returned:", tasks.documents.length);
-          console.log("Total tasks:", tasks.total);
           
           setTaskList(tasks.documents);
-
-          console.log("taskList set")
-    
+ 
         } catch (err) {
 
           setTaskList([]);
@@ -92,10 +87,6 @@ function App() {
 
     getUser();
   }, [])
-
-  useEffect(() => {
-    console.log(taskList);
-  }, [taskList]);
 
   const root = document.documentElement;
 
@@ -132,8 +123,6 @@ function App() {
     
     counter = counter - progress;
 
-    console.log("Progress", progress);
-
     progress <= 49 ? setLevel(1) : progress <= 79 ? setLevel(2) : progress >= 80 ? setLevel(3) : '';
 
     return {
@@ -166,7 +155,7 @@ function App() {
 
             <Route index element={<Navigate to="home" replace />}></Route>
 
-            <Route path="home" element={<Home/>}></Route>
+            <Route path="home" index element={<Home/>}></Route>
             <Route path="stats" element={<Stats/>}></Route>
             
             <Route path="settings" element={<Settings/>}>

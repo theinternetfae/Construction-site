@@ -146,7 +146,7 @@ function Stats() {
 
         return Math.max(...streakList, 0);
     
-    }, [chosenTaskId]);
+    }, [chosenTaskId, taskList]);
 
 
     const generalCurrentStreak = useMemo(() => {
@@ -165,7 +165,7 @@ function Stats() {
 
         return count;
     
-    }, [chosenTaskId, taskList]);
+    }, [chosenTaskId, taskList, generalTodayStatus]);
     
 
 

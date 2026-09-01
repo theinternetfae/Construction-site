@@ -8,10 +8,6 @@ function Profile() {
 
     const { userProfile, setUserProfile, userPfp, setUserPfp } = useContext(UserContext);
 
-    useEffect(() => {
-        console.log(userProfile)
-    }, [userProfile])
-
     async function setPfpImage(e) {
         try {
             

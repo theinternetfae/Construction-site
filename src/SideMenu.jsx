@@ -73,7 +73,7 @@ function SideMenu() {
 
 
                 <section className={`quirk-sect-sm ${userProfile?.prefs.quirk ? '' : 'hidden'}`} onClick={() => setQuirkInfoShow(!quirkInfoShow)}>
-                    <p className="quirk-level-sm">1</p>
+                    <p className="quirk-level-sm">{level}</p>
                     <div className={`quirk-info-sm ${quirkInfoShow && 'block'}`}>
                         <p>{smLevel.lvlM}</p>
                         <p className="level-calc">Daily task limit: {smLevel.ftrM}</p>
