@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState, useMemo } from 'react';
 import AppLayout from './AppLayout.jsx';
 import Welcome from './Welcome.jsx';
 import WelcomeBack from './WelcomeBack.jsx';
@@ -120,7 +120,29 @@ function App() {
   }, [userProfile])
 
 
-  const [level, setLevel] = useState(1);
+  const [level, setLevel] = useState(0);
+
+  const generalCirlceProgress = useMemo(() => {
+
+    let counter = 100;
+
+    const completed = taskList.filter(t => t.completed).length;
+
+    const progress = taskList.length === 0 ? 0 : completed / taskList.length * 100;
+    
+    counter = counter - progress;
+
+    console.log("Progress", progress);
+
+    progress <= 49 ? setLevel(1) : progress <= 79 ? setLevel(2) : progress >= 80 ? setLevel(3) : '';
+
+    return {
+      counter,
+      progress: progress.toFixed(2)
+    };
+  
+
+  }, [taskList])
 
 
   if(loading) {
@@ -129,7 +151,7 @@ function App() {
 
   return (
     
-    <TaskContext.Provider value={{taskList, setTaskList, level, setLevel}}>
+    <TaskContext.Provider value={{taskList, setTaskList, level, setLevel, generalCirlceProgress}}>
 
       <UserContext.Provider value={{userProfile, setUserProfile, userPfp, setUserPfp}}>
 

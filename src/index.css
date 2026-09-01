@@ -406,6 +406,10 @@ body {
           .quirk-info-sm {
             @apply text-sm absolute top-[-60px] right-[-12px] rounded-lg bg-[var(--mainbd-bg)] shadow-md w-40 text-[var(--accent)] text-center hidden
             md:text-base md:top-[-70px];
+
+            .level-calc {
+              @apply text-xs text-[var(--muted-accent)];
+            }
           }
         }
       }
@@ -436,7 +440,7 @@ body {
           }
 
           .level-calc {
-            @apply text-2xl ;
+            @apply text-sm text-[var(--muted-accent)];
           }
 
           .level-display {

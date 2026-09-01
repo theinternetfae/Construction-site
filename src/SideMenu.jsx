@@ -4,7 +4,7 @@ import { TaskContext, UserContext } from "./js files/contexts";
 
 function SideMenu() {
 
-    const {level} = useContext(TaskContext);
+    const {level, generalCirlceProgress} = useContext(TaskContext);
     const {userProfile} = useContext(UserContext);
 
     const [quirkInfoShow, setQuirkInfoShow] = useState(false);
@@ -25,7 +25,6 @@ function SideMenu() {
 
 
     const [loName, setLoName] = useState('');
-    const [loNameSett, setLoNameSett] = useState(false);
 
     useEffect(() => {
         let name = location.pathname;
@@ -38,8 +37,16 @@ function SideMenu() {
     }, [location])
 
     const smLevel = useMemo(() => {
-        return level === 1 ? "Level One: Rookie" : level === 2 ? "Level Two: Student" : level === 3 ? "Level Three: Master" : ''
-    }, [level])
+        
+        const levelMessage = level === 1 ? "Level One: Rookie" : level === 2 ? "Level Two: Student" : level === 3 ? "Level Three: Master" : '';
+
+        const furtherMessage = level === 1 ? 4 : level === 2 ? 8 : level === 3 ? 10 : '';
+
+        return {
+            lvlM: levelMessage,
+            ftrM: furtherMessage
+        }
+    }, [generalCirlceProgress])
 
     return ( 
         <nav>
@@ -68,8 +75,8 @@ function SideMenu() {
                 <section className={`quirk-sect-sm ${userProfile?.prefs.quirk ? '' : 'hidden'}`} onClick={() => setQuirkInfoShow(!quirkInfoShow)}>
                     <p className="quirk-level-sm">1</p>
                     <div className={`quirk-info-sm ${quirkInfoShow && 'block'}`}>
-                        <p>{smLevel}</p>
-                        <p>0/100</p>
+                        <p>{smLevel.lvlM}</p>
+                        <p className="level-calc">Daily task limit: {smLevel.ftrM}</p>
                     </div>
                 </section>
 
@@ -110,12 +117,12 @@ function SideMenu() {
                 <section className={`quirk-sect ${userProfile?.prefs.quirk ? '' : 'hidden'}`}>
                     
                     <div className="level-info">
-                        <p>Level 1: Rookie</p>
+                        <p>{smLevel.lvlM}</p>
                         <i className="bi bi-info-circle"></i>
                     </div>
 
                     <div className="level-calc">
-                        <p>0/100</p>
+                        <p className={`${level === 3 ? 'text-[var(--yellow)]' : ''}`}>Daily task limit: {smLevel.ftrM}</p>
                     </div>
 
                     <div className="level-display">

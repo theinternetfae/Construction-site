@@ -7,8 +7,8 @@ import TaskEditor from "../utilities jsx/TaskEditor.jsx";
 
 function Stats() {
 
-    const { taskList } = useContext(TaskContext);
-    const { streak, userProfile } = useContext(UserContext);
+    const { taskList, generalCirlceProgress } = useContext(TaskContext);
+    const { userProfile } = useContext(UserContext);
 
     const [today, setToday] = useState(dayjs());
 
@@ -93,23 +93,6 @@ function Stats() {
 
 
     //1. GENERAL STATS
-
-    const generalCirlceProgress = useMemo(() => {
-
-        let counter = 100;
-
-        const completed = taskList.filter(t => t.completed).length;
-
-        const progress = taskList.length === 0 ? 0 : completed / taskList.length * 100;
-        
-        counter = counter - progress;
-
-        return {
-            counter,
-            progress: progress.toFixed(2)
-        };
-    
-    }, [taskList])
 
 
     const generalTodayStatus = useMemo(() => {
