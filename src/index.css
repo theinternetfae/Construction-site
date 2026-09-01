@@ -106,6 +106,19 @@ body {
 
 @layer components {
 
+
+  .offline {
+    @apply absolute z-50 h-full w-full flex flex-col items-center justify-center bg-black text-white gap-4;
+
+    .bi {
+    @apply text-[var(--default-accent)] text-shadow-[0_0_5px_#60A5FA,_0_0_5px_#60A5FA,_0_0_5px_#60A5FA] text-7xl lg:text-9xl;
+    }
+
+    p {
+    @apply font-bold text-center lg:text-xl;
+    }
+  }
+
   .welcome {
  
     @apply [background-image:var(--img)] bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center;

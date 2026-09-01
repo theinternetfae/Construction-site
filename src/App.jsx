@@ -17,6 +17,7 @@ import Loader from './utilities jsx/Loader.jsx';
 import str from './appwrite files/storage.js';
 import db from './appwrite files/databases.js';
 import { Query } from "appwrite";
+import Online from './utilities jsx/Online.jsx';
 
 function App() {
 
@@ -26,66 +27,90 @@ function App() {
 
   const [loading, setLoading] = useState(false);
 
+  const [online, setOnline] = useState(navigator.onLine);
+
   useEffect(() => {
+
+    const handleOnline = () => {
+      setOnline(true);
+      getUser();
+    };
+
+    const handleOffline = () => {
+      setOnline(false);
+    };
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    }
+
+  }, []);
+
+  async function getUser() {
     
-    async function getUser() {
-      
+    try {
+    
+      //USERPROFILE
+      setLoading(true);
+      const theUser = await user.get();
+      setUserProfile(theUser)
+
+
+      //USERPFP
       try {
-      
-        //USERPROFILE
-        setLoading(true);
-        const theUser = await user.get();
-        setUserProfile(theUser)
-
-
-        //USERPFP
-        try {
-          
-          await str.pfp.check(theUser.$id);
         
-          const pfpUrl = await str.pfp.getUrl(theUser.$id);
-          setUserPfp(pfpUrl);
-        
-        } catch (error) {
-
-          console.log("PFP loading error:", error);
-          setUserPfp(null)  
-        
-        }
+        await str.pfp.check(theUser.$id);
       
-        //TASKLIST
-        try {
-    
-          const tasks = await db.tasks.list([
-            Query.equal("userId", theUser.$id),
-            Query.orderAsc("$createdAt"),
-            Query.limit(500)
-          ]);
-          
-          setTaskList(tasks.documents);
- 
-        } catch (err) {
-
-          setTaskList([]);
-                  
-          console.log("Loading tasks list:", err);
-
-        }
-
-      } catch(err) {
-
-        console.log(err);
-        setUserProfile(null);
+        const pfpUrl = await str.pfp.getUrl(theUser.$id);
+        setUserPfp(pfpUrl);
       
-      } finally {
-      
-        setLoading(false);
+      } catch (error) {
+
+        console.log("PFP loading error:", error);
+        setUserPfp(null)  
       
       }
     
+      //TASKLIST
+      try {
+  
+        const tasks = await db.tasks.list([
+          Query.equal("userId", theUser.$id),
+          Query.orderAsc("$createdAt"),
+          Query.limit(500)
+        ]);
+        
+        setTaskList(tasks.documents);
+
+      } catch (err) {
+
+        setTaskList([]);
+                
+        console.log("Loading tasks list:", err);
+
+      }
+
+    } catch(err) {
+
+      console.log(err);
+      setUserProfile(null);
+    
+    } finally {
+    
+      setLoading(false);
+    
     }
+  
+  }
+
+  useEffect(() => { 
 
     getUser();
+
   }, [])
 
   const root = document.documentElement;
@@ -133,6 +158,10 @@ function App() {
 
   }, [taskList])
 
+
+  if(!online) {
+    return <Online/>;
+  }
 
   if(loading) {
     return <Loader/>;
