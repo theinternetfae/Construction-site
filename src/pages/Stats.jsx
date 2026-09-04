@@ -291,7 +291,7 @@ function Stats() {
                             {`${t.emoji} ${t.name}`}
                         </option>
                     })}
-``
+
                 </select>
 
                 <i className="bi bi-clipboard-plus-fill" 
@@ -359,14 +359,28 @@ function Stats() {
                                         const isScheduled = chosenTasks.some(t => t.scheduledDate === day.date.format('YYYY-MM-DD'));
                                         const isCompleted = chosenTasks.some(t => t.scheduledDate === day.date.format('YYYY-MM-DD') && t.completed);
 
+                                        const taskExists = taskList.some(t => t.scheduledDate === day.date.format('YYYY-MM-DD'));
+
+                                        const existingTasks = taskList.filter(t => t.scheduledDate === day.date.format('YYYY-MM-DD'));
+
+                                        let existingTasksComplete = false; 
+
+                                        if(existingTasks.length > 0) {
+
+                                            const checkComplete = existingTasks.every(t => t.completed === true);
+
+                                            existingTasksComplete = checkComplete;
+
+                                        }
+
                                         return (
                                             <p key={i} className={`dates 
                                                 ${isToday ? 'bg-[var(--accent)] text-white' : ''} 
                                             `}
                                             style={{
-                                                borderColor: isScheduled ? chosenColor : ''
+                                                borderColor: !chosenTaskId && taskExists ? 'var(--accent)' : (isScheduled ? chosenColor : '')
                                             }}
-                                            >{isCompleted ? <i className="bi bi-trophy-fill"></i> : day.dayNumber}</p>
+                                            >{!chosenTaskId ? (existingTasksComplete ? <i className="bi bi-trophy-fill"></i> : day.dayNumber) : (isCompleted ? <i className="bi bi-trophy-fill"></i> : day.dayNumber)}</p>
                                         )
                                     })
                                 }
