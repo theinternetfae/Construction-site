@@ -421,7 +421,7 @@ body {
             md:text-base md:top-[-70px];
 
             .level-calc {
-              @apply text-xs text-[var(--muted-accent)];
+              @apply text-xs text-[var(--text)];
             }
           }
         }
@@ -453,7 +453,7 @@ body {
           }
 
           .level-calc {
-            @apply text-sm text-[var(--muted-accent)];
+            @apply text-sm text-[var(--text)];
           }
 
           .level-display {
