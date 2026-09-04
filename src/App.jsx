@@ -25,7 +25,7 @@ function App() {
   const [userPfp, setUserPfp] = useState(null);
   const [taskList, setTaskList] = useState([]);
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [online, setOnline] = useState(navigator.onLine);
 
