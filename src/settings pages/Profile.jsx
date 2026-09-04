@@ -9,37 +9,36 @@ function Profile() {
     const { userProfile, setUserProfile, userPfp, setUserPfp } = useContext(UserContext);
 
     async function setPfpImage(e) {
+
+        
         try {
-            
             const file = e.target.files[0];
-    
+            
             try {
+              
                 await str.pfp.check(userProfile.$id);
                 await str.pfp.delete(userProfile.$id);
+            
             } catch (error) {
-                console.log("Deleting users existing pfp:", error);
+                
+                console.log("No existing PFP to delete.");
+                
             }
-
+            
             await str.pfp.create(userProfile.$id, file);
 
-            const reader = new FileReader();
-            
-            reader.onload = () => {
-                const imageUrl = reader.result;
-    
-                setUserPfp(imageUrl);
-            };
-
-            reader.readAsDataURL(file);
-            console.log(reader);
+            const imageUrl = URL.createObjectURL(file);
+        
+            setUserPfp(imageUrl);
 
         } catch (error) {
 
-            console.log("Pfp error:", error);           
+            console.log("Pfp error:", error);              
 
         }
-    }
 
+    }
+    
     const [logoutAlert, setLogoutAlert] = useState(false);
     const [featureAlert, setFeatureAlert] = useState(false);
 
@@ -170,7 +169,7 @@ function Profile() {
                     }
 
                     <input type="file" 
-                        accept="image/*"
+                        accept=".png, .jpeg"
                         onChange={setPfpImage}
                         hidden
                     />

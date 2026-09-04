@@ -23,7 +23,7 @@ function App() {
 
   const [userProfile, setUserProfile] = useState(null);
   const [userPfp, setUserPfp] = useState(null);
-  const [taskList, setTaskList] = useState([])
+  const [taskList, setTaskList] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
@@ -57,8 +57,7 @@ function App() {
       //USERPROFILE
       setLoading(true);
       const theUser = await user.get();
-      setUserProfile(theUser)
-
+      setUserProfile(theUser);
 
       //USERPFP
       try {
