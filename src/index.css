@@ -5,7 +5,7 @@
 
   --accent: #2563EB; 
   --muted-accent: #BFDBFE;
-  --logo: url(images/optima-logo-light.png);
+  --logo: url(/images/optima-logo-light.png);
 
   --bgcolor: #E0E0DE;
   --text: #000000;
@@ -141,7 +141,7 @@ body {
         }
 
         h2 {
-          @apply text-[var(--lightest-bg)] text-lg;
+          @apply text-[var(--special-text)] text-lg;
         }
 
         .benefit {
@@ -255,7 +255,7 @@ body {
         }
 
         h2 {
-          @apply text-[var(--lightest-bg)] text-lg;
+          @apply text-[var(--special-text)] text-lg;
         }
 
         .benefit {
