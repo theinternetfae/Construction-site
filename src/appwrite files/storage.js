@@ -5,7 +5,7 @@ const str = {};
 
 const bucket = [
     {
-        stId: import.meta.env.VITE_OPTIMA3_STORAGE_ID_PFP,
+        stId: import.meta.env.VITE_OPTIMA_STORAGE_ID_PFP,
         name: "pfp",   
     }
 ]

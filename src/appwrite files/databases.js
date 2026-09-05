@@ -5,8 +5,8 @@ const db = {};
 
 const database = [
     {
-        dbId: import.meta.env.VITE_OPTIMA3_DATABASE_ID_TASKLIST,
-        id: import.meta.env.VITE_OPTIMA3_TABLE_ID_TASKS,
+        dbId: import.meta.env.VITE_OPTIMA_DATABASE_ID_TASKLIST,
+        id: import.meta.env.VITE_OPTIMA_TABLE_ID_TASKS,
         name: "tasks",
     }
 ]
