@@ -119,7 +119,7 @@ body {
 
   .welcome {
  
-    @apply bg-[var(--default-bg)] bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center;
+    @apply bg-[var(--default-bg)] bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center text-white;
   
     .welcome-body {
       @apply border border-2 border-[var(--faded-border)] w-[95%] bg-[var(--faded-border)] backdrop-blur-[10px] rounded-xl p-5 flex;
@@ -233,7 +233,7 @@ body {
 
   .welcome-back {
  
-    @apply bg-[var(--default-bg)] z-10 bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center;
+    @apply bg-[var(--default-bg)] z-10 bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center text-white;
   
     .welcome-body {
       @apply border border-2 border-[var(--faded-border)] w-[95%] bg-[var(--faded-border)] backdrop-blur-[10px] rounded-xl p-5 flex;
