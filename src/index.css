@@ -12,13 +12,11 @@
   --mainbd-bg: #F9FAFB;
   --muted-text: #5F5F5F;
   --lightest-bg: #A5A5A5;
-  --img: url(images/optima-productivity-backdrop-black.jpg); /*UNCHANGED*/
   --light-grey: #F3F4F6;
 
 
   --dark-bgcolor: #171717;
   --dark-text: #FFFFFF;
-  --dark-img: url(images/optima-productivity-backdrop-black.jpg);
 
 
   --faded-border: #FFFFFF25;
@@ -121,7 +119,7 @@ body {
 
   .welcome {
  
-    @apply [background-image:var(--img)] bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center;
+    @apply bg-[var(--default-bg)] bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center;
   
     .welcome-body {
       @apply border border-2 border-[var(--faded-border)] w-[95%] bg-[var(--faded-border)] backdrop-blur-[10px] rounded-xl p-5 flex;
@@ -235,7 +233,7 @@ body {
 
   .welcome-back {
  
-    @apply [background-image:var(--img)] z-10 bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center;
+    @apply bg-[var(--default-bg)] z-10 bg-center bg-no-repeat bg-cover w-full min-h-svh flex justify-center items-center;
   
     .welcome-body {
       @apply border border-2 border-[var(--faded-border)] w-[95%] bg-[var(--faded-border)] backdrop-blur-[10px] rounded-xl p-5 flex;
