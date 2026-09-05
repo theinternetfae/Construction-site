@@ -385,7 +385,7 @@ body {
   }
 
   .overall-main-body {
-    @apply min-h-screen w-full flex bg-[var(--bgcolor)] flex-col relative
+    @apply min-h-screen w-full flex bg-[var(--bgcolor)] flex-col relative text-[var(--text)]
     lg:flex-row; 
 
     nav {
